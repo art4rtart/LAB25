@@ -25,6 +25,12 @@ TagManager:
   - PlayerAgent
   - DeadZone
   - LimpidA
+  - Wall
+  - Medic
+  - Enemy
+  - Limpid
+  - SceneManager
+  - Guard
   layers:
   - Default
   - TransparentFX
@@ -46,10 +52,10 @@ TagManager:
   - universeA
   - universeB
   - 
-  - 
-  - 
-  - 
-  - 
+  - UnWalkable
+  - Enemy
+  - Team
+  - Human
   - 
   - 
   - 
