@@ -24,6 +24,7 @@ TagManager:
   - Fire
   - PlayerAgent
   - DeadZone
+  - LimpidA
   layers:
   - Default
   - TransparentFX
@@ -41,9 +42,9 @@ TagManager:
   - Enviroment
   - 
   - 
-  - 
-  - 
-  - 
+  - Player
+  - universeA
+  - universeB
   - 
   - 
   - 
