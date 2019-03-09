@@ -12,15 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage1.unity
     guid: 19afca36228b0f14dba3bad64d328a1e
   - enabled: 1
+    path: Assets/Scenes/Stage1-1.unity
+    guid: 4838b50b3c5a8af41a675b031b8dff3f
+  - enabled: 0
     path: Assets/Scenes/Stage2.unity
     guid: 6ee66f51cefaa174bb7db09da0917b9a
-  - enabled: 1
-    path: Assets/ZeroBase/Ward/Scenes/UniverseA.unity
+  - enabled: 0
+    path: Assets/ZeroBase/Item/Ward/Scenes/UniverseA.unity
     guid: 506baaee41cb1cd46852b344b462521d
-  - enabled: 1
-    path: Assets/ZeroBase/Ward/Scenes/UniverseB.unity
+  - enabled: 0
+    path: Assets/ZeroBase/Item/Ward/Scenes/UniverseB.unity
     guid: 2acfe48382fa93e42b95d46e52b6aa34
-  - enabled: 1
-    path: Assets/ZeroBase/Heart/Scenes/Scene3.unity
+  - enabled: 0
+    path: Assets/ZeroBase/Item/Hearter/Scenes/Scene3.unity
     guid: 2048ce61a3f99524ab3c2769d3cf1e9c
   m_configObjects: {}

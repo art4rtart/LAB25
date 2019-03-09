@@ -30,6 +30,10 @@ public class ItemManager : MonoBehaviour
 	[HideInInspector] public bool isHoldingWeapon;
 	[HideInInspector] public bool isHoldingSomething = true;
 
+	[Header("Special Item")]
+	[HideInInspector] public bool isUsingWard;
+	[HideInInspector] public bool isUsingHearter;
+
 	[Header("Player Stat")]
 	public static float currentHealth = 30f;
 	public float totalHealth = 100f;
@@ -37,16 +41,6 @@ public class ItemManager : MonoBehaviour
 	public float totalArmor = 100f;
 	public float currentHeartRate = 90f;
 	public float totalHeartRate = 150f;
-
-	// wait
-	bool gainArmor;
-	public float lerpSpeed;
-
-	public static float targetHealth;
-	public static float targetArmor;
-
-	float lerpTime;
-	float armorLerpTime;
 
 	[HideInInspector] public static bool takeDamage;
 	void Update()
@@ -138,9 +132,6 @@ public class ItemManager : MonoBehaviour
 		// Get Item
 		if (Input.GetKeyDown(KeyCode.F) && uiManager.isPointingItem)
 			GetItem(hit.transform);
-
-		GainArmor(gainArmor);
-		HealthManager(takeDamage);
 	}
 
 	void GetItem(Transform item)
@@ -168,8 +159,7 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Vest":
-				gainArmor = true;
-				targetArmor = currentArmor + 40f;
+				PlayerManager.armor += 40f;
 				break;
 
 			case "Kit":
@@ -191,37 +181,5 @@ public class ItemManager : MonoBehaviour
 		}
 
 		item.gameObject.SetActive(false);
-	}
-
-	void GainArmor(bool _gainArmor)
-	{
-		if (_gainArmor)
-		{
-			currentArmor = Mathf.Lerp(currentArmor, targetArmor, armorLerpTime);
-			armorLerpTime += Time.deltaTime * lerpSpeed;
-
-			if (Mathf.Floor(currentArmor) == Mathf.Floor(targetArmor))
-			{
-				currentArmor = targetArmor = Mathf.Floor(currentArmor);
-				_gainArmor = false;
-				armorLerpTime = 0;
-			}
-		}
-	}
-
-	void HealthManager(bool _takeDamage)
-	{
-		if (_takeDamage)
-		{
-			currentHealth = Mathf.Lerp(currentHealth, targetHealth, lerpTime);
-			lerpTime += Time.deltaTime * lerpSpeed;
-
-			if (Mathf.Floor(currentHealth) == Mathf.Floor(targetHealth))
-			{
-				currentHealth = targetHealth = Mathf.Floor(currentHealth);
-				_takeDamage = false;
-				lerpTime = 0;
-			}
-		}
 	}
 }

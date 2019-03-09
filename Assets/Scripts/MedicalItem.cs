@@ -111,8 +111,8 @@ public class MedicalItem : MonoBehaviour
 		if (_medicalKitEffect)
 		{
 			totalUseTime = 0;
-			ItemManager.targetHealth = ItemManager.currentHealth + 50f;
-			ItemManager.takeDamage = true;
+			PlayerManager.hp += 40f;
+			Debug.Log("HI");
 			_medicalKitEffect = medicalKitEffect = false;
 		}
 	}

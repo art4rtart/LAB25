@@ -75,9 +75,6 @@ public class PlayerManager : MonoBehaviour
             else
             {
                 hp -= damage;
-
-				ItemManager.targetHealth = hp - damage;
-				ItemManager.takeDamage = true;
 				//UpdateHP();
 			}
         }

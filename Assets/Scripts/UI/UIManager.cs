@@ -102,8 +102,15 @@ public class UIManager : MonoBehaviour
 
     void TextUpdate()
     {
-		healthProgressbar.value = ItemManager.currentHealth;
-        armorProgressbar.value = ItemManager.currentArmor;
+		if (Input.GetKeyDown(KeyCode.V))
+		{
+			PlayerManager.hp -= 10f;
+			PlayerManager.armor -= 10f;
+			Debug.Log(healthProgressbar.value);
+		}
+
+		healthProgressbar.value = ItemManager.currentHealth / 100f;
+        armorProgressbar.value = ItemManager.currentArmor / 100f;
 		bulletProgressbar.value = Mathf.Floor((float)WeaponCtrl.currentBullets / (float)maxBullet * 100f) * 0.01f;
 
         healthText.text = Mathf.Clamp(Mathf.Floor(ItemManager.currentHealth), 0, itemManager.totalHealth).ToString();
