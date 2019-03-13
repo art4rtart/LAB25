@@ -126,6 +126,7 @@ public class WeaponCtrl : MonoBehaviour
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
         {
             InfecteeCtrl enemyCtrl = hit.transform.GetComponent<InfecteeCtrl>();
+            TInfecteeCtrl tenemyCtrl = hit.transform.GetComponent<TInfecteeCtrl>();
             Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
 
  
@@ -135,12 +136,16 @@ public class WeaponCtrl : MonoBehaviour
             {
                 if(enemyCtrl && enemyCtrl.hp > 0)
                     StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
+                else if (tenemyCtrl && tenemyCtrl.hp > 0)
+                    StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
                 //var bP = (GameObject)Instantiate(bloodParticlePrefab, hit.transform.position + Vector3.up * 1.2f, hit.transform.rotation);
             }
 
 
             if (enemyCtrl && enemyCtrl.hp > 0)
                 enemyCtrl.ApplyDamage(damage);
+            else if (tenemyCtrl && tenemyCtrl.hp > 0)
+                tenemyCtrl.ApplyDamage(damage);
 
         }
         currentBullets--;
