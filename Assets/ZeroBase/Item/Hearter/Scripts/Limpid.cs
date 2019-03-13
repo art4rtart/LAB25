@@ -5,36 +5,36 @@ using UnityEngine.AI;
 
 public class Limpid : MonoBehaviour
 {
+	[Header("For TeamMate Script")]
 	public Material mat1;
 	public Material mat2;
+	public Renderer limpidRenderer;
 
-	Animator animator;
-	NavMeshAgent navmesh;
-	public SpawnEffect spawnEffect;
+	[Header("For Limpid Script")]
+	Animator parentAnimator;
+	[HideInInspector]
+	public Animator childAnimator;
+	bool setChildAnim = false;
 
-	public float viewRadius;
-	public LayerMask targetMask;
-	public Transform target;
-	Transform jumpTarget;
-
-	bool setTarget;
-	bool jumped;
-	bool jumpTrigger;
-
-	public float flyingSpeed = 5f;
-	bool firstLoop = false;
-
-	// 모델이 바뀌면 수정해야될 것
-	// remaining distance -> 현재 9f, 애니메이션 시간 -> guswo .43f
-
-	// Start is called before the first frame update
-	void Start()
-    {
-		navmesh = GetComponent<NavMeshAgent>();
-		animator = GetComponent<Animator>();
+	void Awake()
+	{
+		parentAnimator = GetComponent<Animator>();
 	}
 
-	public Renderer limpidRenderer;
+	void Update()
+	{
+		if (!setChildAnim)
+		{
+			childAnimator = this.transform.GetChild(1).GetComponent<Animator>();
+			setChildAnim = true;
+		}
+
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			parentAnimator.SetTrigger("isRun");
+			childAnimator.SetTrigger("isRun");
+		}
+	}
 
 	public void ChangeToNormalMaterial()
 	{
@@ -46,91 +46,8 @@ public class Limpid : MonoBehaviour
 		limpidRenderer.material = mat1;
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-		Collider[] humanInRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
-
-		if (humanInRadius.Length > 0)
-		{
-			if(!jumped)
-				target = humanInRadius[0].transform;
-
-			if (!setTarget)
-			{
-				animator.SetTrigger("Run");
-				spawnEffect.enabled = true;
-				navmesh.enabled = true;
-				setTarget = true;
-			}
-		}
-
-		else
-			target = null;
-
-		if (target != null)
-		{
-			if (!jumped)
-			{
-				navmesh.SetDestination(target.position);
-			}
-
-			else
-			{
-				navmesh.enabled = false;
-			}
-
-			if (navmesh.enabled)
-			{
-				float distance = navmesh.remainingDistance;
-				
-				if (distance < 9f && firstLoop && !jumped)
-				{
-					animator.SetTrigger("Jump");
-					jumped = true;
-				}
-			}
-
-			else
-			{
-				if (!jumpTrigger)
-				{
-					jumpTarget = target;
-					StartCoroutine(JumpToHuman(jumpTarget));
-					jumpTrigger = true;
-				}
-			}
-
-			firstLoop = true;
-		}
-	}
-
-
-	IEnumerator JumpToHuman(Transform jumpTarget)
+	public void ApplyDamage(int damage)
 	{
-		Vector3 landingPosition = jumpTarget.position;
 
-		yield return new WaitForSeconds(0.5f);
-
-		while (animator.GetCurrentAnimatorStateInfo(0).IsName("JumpAttack") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime <= 0.43f)
-		{
-			this.transform.position = Vector3.MoveTowards(this.transform.position, landingPosition, flyingSpeed * Time.deltaTime);
-
-			yield return null;
-		}
-
-		animator.SetTrigger("Idle");
-		yield return new WaitForSeconds(2.0f);
-		Debug.Log("OK");
-		jumpTrigger = false;
-		jumped = false;
-		firstLoop = false;
-		setTarget = false;
-	}
-
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, viewRadius);
 	}
 }

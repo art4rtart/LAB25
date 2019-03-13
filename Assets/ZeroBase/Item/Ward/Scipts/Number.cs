@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Number : MonoBehaviour
 {
+	public string LimpidName;
 	public GameObject[] limpidsA;
 	public GameObject[] limpidsB;
 
 	public List<GameObject> temp1;
 	public List<GameObject> temp2;
+
 	public List<GameObject> Limpid;
 
 	// Start is called before the first frame update
@@ -22,7 +24,7 @@ public class Number : MonoBehaviour
 		{
 			for(int j = 0; j < limpidsA.Length;j++)
 			{
-				if (limpidsA[j].transform.name == "Dancing (" + (i + 1) + ")")
+				if (limpidsA[j].transform.name == LimpidName + " (" + (i + 1) + ")")
 				{
 					temp1.Add(limpidsA[j]);
 					break;
@@ -34,7 +36,7 @@ public class Number : MonoBehaviour
 		{
 			for (int j = 0; j < limpidsA.Length; j++)
 			{
-				if (limpidsB[j].transform.name == "Dancing (" + (i + 1) + ")")
+				if (limpidsB[j].transform.name == LimpidName + " (" + (i + 1) + ")")
 				{
 					temp2.Add(limpidsB[j]);
 					break;

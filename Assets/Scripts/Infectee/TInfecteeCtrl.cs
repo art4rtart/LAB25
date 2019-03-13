@@ -31,12 +31,16 @@ public class TInfecteeCtrl : MonoBehaviour
 
     //flag
     private bool isStart = false;
-    //public bool nvEnableFlag = true;
+	//public bool nvEnableFlag = true;
 
-    //Idle ref
-    //private bool startTurn = false;
+	//Idle ref
+	//private bool startTurn = false;
 
-    private void Awake()
+	// her0in
+	public SpawnEffect spawnEffect;
+	Limpid limpid;
+
+	private void Awake()
     {
         target = GameObject.FindWithTag("Player").transform;
         anim = GetComponent<Animator>();
@@ -44,8 +48,8 @@ public class TInfecteeCtrl : MonoBehaviour
         myChange = GetComponentInParent<ChangeTRagDoll>();
         nv = GetComponentInParent<NavMeshAgent>();
         toTargetDir = (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f))).normalized;
-        
 
+		limpid = GetComponent<Limpid>();
         StartCoroutine(Idle());
     }
 
@@ -57,7 +61,9 @@ public class TInfecteeCtrl : MonoBehaviour
         {
             moveToTargetRoutine = StartCoroutine(MoveToTarget());
             anim.applyRootMotion = false;
-        }
+			limpid.childAnimator.applyRootMotion = false;
+
+		}
 
         isStart = true;
     }
@@ -77,10 +83,11 @@ public class TInfecteeCtrl : MonoBehaviour
 
     public IEnumerator MoveToTarget()
     {
-        anim.SetBool(hashRun, true);
-        
+		spawnEffect.enabled = true;
+		anim.SetBool(hashRun, true);
+		limpid.childAnimator.SetBool(hashRun, true);
 
-        float distance = Vector3.Distance(target.position, transform.position);
+		float distance = Vector3.Distance(target.position, transform.position);
 
 
         if (distance <= attackRange && !isAttack)
@@ -102,9 +109,9 @@ public class TInfecteeCtrl : MonoBehaviour
     private void Attack(GameObject hitPerson)
     {
         anim.SetBool(hashAttack, true);
-        
+		limpid.childAnimator.SetBool(hashAttack, true);
 
-        StartCoroutine(AttackLoop());
+		StartCoroutine(AttackLoop());
     }
 
     private IEnumerator AttackLoop()
@@ -112,9 +119,12 @@ public class TInfecteeCtrl : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         anim.SetBool(hashAttack, false);
-        anim.SetBool(hashRun, false);
+		limpid.childAnimator.SetBool(hashAttack, false);
 
-        yield return new WaitForSeconds(1.5f);
+		anim.SetBool(hashRun, false);
+		limpid.childAnimator.SetBool(hashRun, false);
+
+		yield return new WaitForSeconds(1.5f);
 
         float distance = Vector3.Distance(target.position, transform.position);
 

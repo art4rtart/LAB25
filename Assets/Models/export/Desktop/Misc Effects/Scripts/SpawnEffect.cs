@@ -15,7 +15,7 @@ public class SpawnEffect : MonoBehaviour {
 
 	void Start ()
     {
-        shaderProperty = Shader.PropertyToID("_cutoff");
+        shaderProperty = Shader.PropertyToID("_Dissolved");
         _renderer = GetComponent<Renderer>();
         ps = GetComponentInChildren <ParticleSystem>();
 
