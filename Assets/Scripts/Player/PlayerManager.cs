@@ -5,9 +5,9 @@ using UnityEngine.AI;
 public class PlayerManager : MonoBehaviour
 {
 	public ItemManager itemManager;
-
-	// Player Specification
-	public static float hp = 100f;
+    public static Transform myPos;
+    // Player Specification
+    public static float hp = 100f;
     public static float armor = 100;
     private float maxHp;
     private float maxArmor = 100;
@@ -52,7 +52,7 @@ public class PlayerManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        myPos = transform;
         //if( teleportFlag )
         //{
         //    teleportFlag = false;
@@ -70,7 +70,7 @@ public class PlayerManager : MonoBehaviour
             {
                 hp = 0;
                 // Die;
-                Debug.Log("You Died!");
+                //Debug.Log("You Died!");
             }
             else
             {
