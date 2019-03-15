@@ -15,24 +15,20 @@ public class Limpid : MonoBehaviour
 	[HideInInspector]
 	public Animator childAnimator;
 	bool setChildAnim = false;
+	UniverseController universeController;
 
 	void Awake()
 	{
 		parentAnimator = GetComponent<Animator>();
+		universeController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<UniverseController>();
 	}
 
 	void Update()
 	{
-		if (!setChildAnim)
+		if (!setChildAnim && universeController.trigger)
 		{
 			childAnimator = this.transform.GetChild(1).GetComponent<Animator>();
 			setChildAnim = true;
-		}
-
-		if(Input.GetKeyDown(KeyCode.R))
-		{
-			parentAnimator.SetTrigger("isRun");
-			childAnimator.SetTrigger("isRun");
 		}
 	}
 
@@ -44,10 +40,5 @@ public class Limpid : MonoBehaviour
 	public void ChangeToVisionMaterial()
 	{
 		limpidRenderer.material = mat1;
-	}
-
-	public void ApplyDamage(int damage)
-	{
-
 	}
 }

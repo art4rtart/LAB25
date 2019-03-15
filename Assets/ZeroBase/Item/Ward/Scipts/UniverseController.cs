@@ -1,113 +1,110 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class UniverseController : MonoBehaviour
 {
-	public static bool Swapping
-	{
-		get; private set;
-	}
-
-	[SerializeField]
-	private TwinCameraController _twinCameras;
-	[Header("Swap Effect Stuff")]
-	[SerializeField]
-	private Vingette _vingette;
-	[SerializeField]
-	private AnimationCurve _innerVingette;
-	[SerializeField]
-	private AnimationCurve _outerVingette;
-	[SerializeField]
-	private AnimationCurve _saturation;
-	[SerializeField]
-	private Camera[] _cameras;
-	[SerializeField]
-	private AnimationCurve _fov;
-	[SerializeField]
-	private AnimationCurve _timeScale;
-	//[SerializeField]
-	//private Transform _itemTransform;
-	[SerializeField]
-	private AnimationCurve _itemPosition;
-
-	private AudioSource _audio;
-	private bool _swapTiggered;
-	private readonly float _swapTime = 0.85f;
 	public string sceneName;
+	public string LimpidName;
+	public GameObject[] limpidsA;
+	public GameObject[] limpidsB;
+
+	public List<GameObject> temp1;
+	public List<GameObject> temp2;
+
+	public List<GameObject> Limpid;
+
+	public bool trigger;
 
 	void Awake()
 	{
-		SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
-		_audio = GetComponent<AudioSource>();
+		// SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
 	}
 
-	void SwapUniverses()
-	{
-		Swapping = true;
-		StartCoroutine(SwapAsync());
+	void Start()
+    {
+		StartCoroutine(LoadAsynchronously(sceneName));
 	}
 
-	void Update()
+	IEnumerator LoadAsynchronously(string sceneName)
 	{
-		if (!Swapping && Input.GetMouseButtonDown(0))
+		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+
+		while (!operation.isDone)
 		{
-			//StartCoroutine(SwapAsync());
-		}
-	}
-
-	/// <summary>
-	/// Controls a bunch of stuff like vingette and FoV over time and calls the swap cameras function after a fixed duration.
-	/// </summary>
-	IEnumerator SwapAsync()
-	{
-		Swapping = true;
-		_swapTiggered = false;
-
-		_audio.PlayOneShot(_audio.clip);
-
-		for (float t = 0; t < 1.0f; t += Time.unscaledDeltaTime * 1.2f)
-		{
-			for (int i = 0; i < _cameras.Length; i++)
-			{
-				_cameras[i].fieldOfView = _fov.Evaluate(t);
-			}
-			_vingette.MinRadius = _innerVingette.Evaluate(t);
-			_vingette.MaxRadius = _outerVingette.Evaluate(t);
-			_vingette.Saturation = _saturation.Evaluate(t);
-			Time.timeScale = _timeScale.Evaluate(t);
-
-			//_itemTransform.localPosition = new Vector3(-0.5f, -0.5f, _itemPosition.Evaluate(t));
-
-			if (t > _swapTime && !_swapTiggered)
-			{
-				_swapTiggered = true;
-				_twinCameras.SwapCameras();
-			}
-
+			float progress = Mathf.Clamp01(operation.progress / .9f);
 			yield return null;
 		}
+		LoadLimpidData();
+	}
 
-		// technically a huge lag spike could cause this to be missed in the coroutine so double check it here.
-		if (!_swapTiggered)
+	void LoadLimpidData()
+	{
+		trigger = true;
+		limpidsA = GameObject.FindGameObjectsWithTag("LimpidA");
+		limpidsB = GameObject.FindGameObjectsWithTag("LimpidB");
+
+		// 리스트에 넣어 정렬
+		for (int i = 0; i < limpidsA.Length; i++)
 		{
-			_swapTiggered = true;
-			_twinCameras.SwapCameras();
+			for (int j = 0; j < limpidsA.Length; j++)
+			{
+				if (limpidsA[j].transform.name == LimpidName + " (" + (i + 1) + ")")
+				{
+					temp1.Add(limpidsA[j]);
+					break;
+				}
+			}
 		}
 
-		for (int i = 0; i < _cameras.Length; i++)
+		for (int i = 0; i < limpidsA.Length; i++)
 		{
-			_cameras[i].fieldOfView = _fov.Evaluate(1.0f);
+			for (int j = 0; j < limpidsA.Length; j++)
+			{
+				if (limpidsB[j].transform.name == LimpidName + " (" + (i + 1) + ")")
+				{
+					temp2.Add(limpidsB[j]);
+					break;
+				}
+			}
 		}
 
-		_vingette.MinRadius = _innerVingette.Evaluate(1.0f);
-		_vingette.MaxRadius = _outerVingette.Evaluate(1.0f);
-		_vingette.Saturation = 1.0f;
-		//_itemTransform.localPosition = new Vector3(-0.5f, -0.5f, 0.5f);
+		for (int i = 0; i < temp1.Count; i++)
+		{
+			Limpid.Add(temp1[i]);
+			Limpid.Add(temp2[i]);
+		}
 
-		Time.timeScale = 1.0f;
+		// 자식 객체에 붙여 주는 것
+		for (int i = 0; i < temp1.Count; i++)
+		{
+			for (int j = 0; j < temp2.Count; j++)
+			{
+				if (temp2[j].transform.gameObject.name == temp1[i].transform.gameObject.name)
+				{
+					temp2[j].transform.SetParent(temp1[i].transform);
+					break;
+				}
+			}
+		}
 
-		Swapping = false;
+		for (int i = 0; i < temp1.Count; i++)
+		{
+			for (int j = 0; j < temp2.Count; j++)
+			{
+				if (temp2[j].transform.gameObject.name == temp1[i].transform.gameObject.name)
+				{
+					temp2[j].transform.SetParent(temp1[i].transform);
+					break;
+				}
+			}
+		}
+
+		for (int i = 0; i < temp1.Count; i++)
+		{
+			Animator anim = temp1[i].GetComponent<Animator>();
+			temp2[i].transform.GetComponent<Animator>().runtimeAnimatorController = anim.runtimeAnimatorController;
+		}
 	}
 }
