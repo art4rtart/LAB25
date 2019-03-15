@@ -7,6 +7,8 @@ public class TwinCameraController : MonoBehaviour
 	private Camera _activeCamera;
 	[SerializeField]
 	private Camera _hiddenCamera;
+	[SerializeField]
+	private GameObject _glowCamera;
 
 	private CommandBuffer _depthHackBuffer;
 	[SerializeField]
@@ -20,7 +22,6 @@ public class TwinCameraController : MonoBehaviour
 		var swapCamera = _activeCamera;
 		_activeCamera = _hiddenCamera;
 		_hiddenCamera = swapCamera;
-
 		DoDepthHack();
     }
 	
@@ -29,6 +30,7 @@ public class TwinCameraController : MonoBehaviour
 	/// </summary>
 	private void Awake()
 	{
+		_glowCamera.SetActive(true);
 		var rt = new RenderTexture(Screen.width, Screen.height, 24);
 		Shader.SetGlobalTexture("_TimeCrackTexture", rt);
 		_hiddenCamera.targetTexture = rt;
