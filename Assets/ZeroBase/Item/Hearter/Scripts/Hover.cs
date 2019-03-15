@@ -7,7 +7,7 @@ public class Hover : MonoBehaviour
 {
 	[Header("Default")]
 	Lobby lobby;
-	SceneChanger sceneChanger;
+	LevelLoader levelLoader;
 
 	[Header("TextMeshPro")]
 	public TMP_FontAsset glowFont;
@@ -25,7 +25,7 @@ public class Hover : MonoBehaviour
 	void Awake()
 	{
 		lobby = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Lobby>();
-		sceneChanger = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneChanger>();
+		levelLoader = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<LevelLoader>();
 	}
 
 	void Update()
@@ -48,7 +48,7 @@ public class Hover : MonoBehaviour
 
 	public void PlayCampaignClicked()
 	{
-		StartCoroutine(sceneChanger.LoadAsynchronously(sceneChanger.nextSceneName));
+		StartCoroutine(levelLoader.LoadAsynchronously(levelLoader.sceneName));
 	}
 
 	public void AchievementsClicked()

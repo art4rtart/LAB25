@@ -113,7 +113,6 @@ public class ItemManager : MonoBehaviour
 			isHoldingSomething = true;
 		}
 
-		// Point Item
 		RaycastHit hit;
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
 		{
