@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/ZeroBase/Folder/Scenes/GUI/Loading.unity
     guid: 436b08a0155e81f4dbb3d7d5e250e0d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/ZeroBase/Item/Hearter/Scenes/Scene2.unity
     guid: 858e1d0b3231f44449705feb1d6ca43a
   - enabled: 1

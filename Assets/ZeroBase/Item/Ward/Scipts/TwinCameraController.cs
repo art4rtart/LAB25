@@ -8,11 +8,8 @@ public class TwinCameraController : MonoBehaviour
 	[SerializeField]
 	private Camera _hiddenCamera;
 	[SerializeField]
-	private GameObject _glowCamera;
-
-	private CommandBuffer _depthHackBuffer;
-	[SerializeField]
 	private Renderer _depthHackQuad;
+	private CommandBuffer _depthHackBuffer;
 
 	public void SwapCameras()
 	{
@@ -24,13 +21,9 @@ public class TwinCameraController : MonoBehaviour
 		_hiddenCamera = swapCamera;
 		DoDepthHack();
     }
-	
-	/// <summary>
-	/// Set up our RT and 
-	/// </summary>
+
 	private void Awake()
 	{
-		_glowCamera.SetActive(true);
 		var rt = new RenderTexture(Screen.width, Screen.height, 24);
 		Shader.SetGlobalTexture("_TimeCrackTexture", rt);
 		_hiddenCamera.targetTexture = rt;
@@ -43,14 +36,6 @@ public class TwinCameraController : MonoBehaviour
         DoDepthHack();
     }
 
-	/// <summary>
-	/// A depth buffer trick that makes drawing both scenes a bit nicer on the GPU.
-	/// 
-	/// The command buffer that we add clears the depth buffer to the minimum distance,
-	/// then draws a quad which always passes the depth test, but fudges it's Z value to
-	/// write the maximum distance into the buffer. This makes it so everything outside
-	/// the quad it depth culled.
-	/// </summary>
 	private void DoDepthHack()
 	{
 		_hiddenCamera.AddCommandBuffer(CameraEvent.BeforeForwardOpaque, _depthHackBuffer);

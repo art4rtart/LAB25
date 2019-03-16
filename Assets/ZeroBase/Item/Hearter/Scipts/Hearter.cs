@@ -11,7 +11,7 @@ public class Hearter : MonoBehaviour
 	public bool resetTrigger;
 
 	public PostProcessingProfile ppProfile;
-	public XRayVisionController visionController;
+
 	public Material displacementMaterial;
 
 	float evaluateValue;
@@ -36,9 +36,10 @@ public class Hearter : MonoBehaviour
 	[Header("Audio Source")]
 	public AudioSource[] soundEffects;
 
-	void Start()
+	void Awake()
 	{
-		cameras[2].gameObject.SetActive(true);
+		for (int i = 0; i < cameras.Length - 1; i++)
+			cameras[i].gameObject.SetActive(true);
 	}
 
 	void Update()
@@ -47,22 +48,22 @@ public class Hearter : MonoBehaviour
 		{
 			soundEffects[0].PlayOneShot(soundEffects[0].clip);
 			SetFrameBlending(0.4f);
-			visionController.changeToVisionMaterial();
 			resetTrigger = false;
+			cameras[cameras.Length-1].gameObject.SetActive(true);
 		}
 
 		if (Input.GetMouseButton(0))
 		{
 			evaluateValue = Mathf.Clamp(evaluateValue + Time.unscaledDeltaTime * 2.0f, 0, 1f);
-			displacementValue = Mathf.Clamp(displacementValue + Time.deltaTime, 0, 0.003f);
+			displacementValue = Mathf.Clamp(displacementValue + Time.deltaTime, 0, 0.01f);
 		}
 
 		if (Input.GetMouseButtonUp(0))
 		{
 			SetFrameBlending(0.0f);
 			soundEffects[1].PlayOneShot(soundEffects[1].clip);
-			visionController.changeToDefaultMaterial();
 			resetTrigger = true;
+			cameras[cameras.Length-1].gameObject.SetActive(false);
 		}
 
 		for (int i = 0; i < cameras.Length; i++)

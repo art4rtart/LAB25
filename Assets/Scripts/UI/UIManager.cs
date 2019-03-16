@@ -149,9 +149,11 @@ public class UIManager : MonoBehaviour
 
     void DeveloperMode()
     {
+		int usedBullet = (maxBullet - WeaponCtrl.currentBullets);
 		if (weaponController.isReloaded)
 		{
-			totalBullet -= (maxBullet - WeaponCtrl.currentBullets);
+			Debug.Log(usedBullet);
+			totalBullet -= usedBullet;
 			WeaponCtrl.currentBullets = maxBullet;
 			bulletProgressbar.value = 1f;
 			weaponController.isReloaded = false;

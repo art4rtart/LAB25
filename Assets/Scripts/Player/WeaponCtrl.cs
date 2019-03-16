@@ -254,7 +254,7 @@ public class WeaponCtrl : MonoBehaviour
         {
             bulletsToReload = bulletsTotal;
         }
-        currentBullets += bulletsToReload;
+        if(isReloaded) currentBullets += bulletsToReload;
         bulletsTotal -= bulletsToReload;
     }
 
