@@ -6,12 +6,9 @@ public class LevelLoader : MonoBehaviour
 {
 	public string sceneName;
 
-	void Update()
+	void Start()
 	{
-		if(Input.GetKeyDown(KeyCode.Space))
-		{
-			LoadLevel(sceneName);
-		}
+		LoadLevel(sceneName);
 	}
 
 	public void LoadLevel(string sceneName)

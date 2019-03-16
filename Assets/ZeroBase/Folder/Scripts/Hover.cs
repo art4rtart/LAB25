@@ -20,7 +20,7 @@ public class Hover : MonoBehaviour
 	float blurValue;
 	float blurSpeed = 15f;
 	bool blur;
-	bool firstTrigger = true;
+	bool blurTrigger = false;
 
 	void Awake()
 	{
@@ -30,19 +30,18 @@ public class Hover : MonoBehaviour
 
 	void Update()
 	{
-		if (!blur)
-		{
-			if (!firstTrigger) blurValue = blurValue - blurSpeed * Time.deltaTime;
-			lobby.blurRenderer.GetComponent<Renderer>().sharedMaterial.SetFloat("_Size", blurValue);
-			if (blurValue < 0) lobby.blurRenderer.SetActive(false);
-		}
-
-		else
+		if(blurTrigger && blur)
 		{
 			lobby.blurRenderer.SetActive(true);
-			blurValue = Mathf.Clamp(blurValue + blurSpeed * Time.deltaTime, 0, 3.5f);
+			blurValue = Mathf.Clamp(blurValue + blurSpeed * Time.deltaTime, 0, 2.5f);
 			lobby.blurRenderer.GetComponent<Renderer>().sharedMaterial.SetFloat("_Size", blurValue);
-			Debug.Log(blurValue);
+		}
+
+		else if (blurTrigger && !blur)
+		{
+			blurValue = Mathf.Clamp(blurValue - blurSpeed * Time.deltaTime, 0, 2.5f);
+			lobby.blurRenderer.GetComponent<Renderer>().sharedMaterial.SetFloat("_Size", blurValue);
+			if (blurValue <= 0) lobby.blurRenderer.SetActive(false);
 		}
 	}
 
@@ -84,19 +83,20 @@ public class Hover : MonoBehaviour
 	public void QuitClicked()
 	{
 		blur = true;
-		lobby.QuitMesseageBox.SetActive(blur);
-		if(!firstTrigger) lobby.QuitMesseageBox.GetComponent<Animator>().SetTrigger("FadeIn");
+		blurTrigger = true;
+		lobby.QuitMesseageBox.SetActive(true);
+		lobby.QuitMesseageBox.GetComponent<Animator>().SetTrigger("FadeIn");
 	}
 
 	public void ExitYesClicked()
 	{
+		blur = false;
 		Application.Quit();
 	}
 
 	public void ExitNoClicked()
 	{
-		lobby.QuitMesseageBox.SetActive(true);
-		firstTrigger = blur = false;
+		blur = false;
 		lobby.QuitMesseageBox.GetComponent<Animator>().SetTrigger("FadeOut");
 	}
 
