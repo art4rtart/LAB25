@@ -31,11 +31,11 @@ public class TInfecteeCtrl : MonoBehaviour
 
     //flag
     private bool isStart = false;
-	//public bool nvEnableFlag = true;
+    //public bool nvEnableFlag = true;
 
-	//Idle ref
-	//private bool startTurn = false;
-
+    //Idle ref
+    //private bool startTurn = false;
+    public string name;
 	// her0in
 	public SpawnEffect spawnEffect;
 	Limpid limpid;
@@ -83,26 +83,29 @@ public class TInfecteeCtrl : MonoBehaviour
 
     public IEnumerator MoveToTarget()
     {
-		spawnEffect.enabled = true;
-		anim.SetBool(hashRun, true);
-		limpid.childAnimator.SetBool(hashRun, true);
-
-		float distance = Vector3.Distance(target.position, transform.position);
-
-
-        if (distance <= attackRange && !isAttack)
-            Attack(target.gameObject);
-        else
+        if (name == "A")
         {
-            if (nv.enabled)
-                nv.SetDestination(target.transform.position);
+            spawnEffect.enabled = true;
+            anim.SetBool(hashRun, true);
+            limpid.childAnimator.SetBool(hashRun, true);
 
-            //startTurn = true;
-            yield return new WaitForSeconds(.5f);
-            moveToTargetRoutine = StartCoroutine(MoveToTarget());
+            float distance = Vector3.Distance(target.position, transform.position);
 
-            if (!nv.enabled)
-                nv.enabled = true;
+
+            if (distance <= attackRange && !isAttack)
+                Attack(target.gameObject);
+            else
+            {
+                if (nv.enabled)
+                    nv.SetDestination(target.transform.position);
+
+                //startTurn = true;
+                yield return new WaitForSeconds(.5f);
+                moveToTargetRoutine = StartCoroutine(MoveToTarget());
+
+                if (!nv.enabled)
+                    nv.enabled = true;
+            }
         }
     }
 
