@@ -17,6 +17,9 @@ public class ZombieScanner : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag("Player");
 	}
 
+	public float findRadius = 10f;
+	public LayerMask zombieMask;
+
 	void Update()
 	{
 		if (scanning)
@@ -24,6 +27,16 @@ public class ZombieScanner : MonoBehaviour
 			if (ScanDistance < 100f)
 				ScanDistance += Time.deltaTime * scanSpeed;
 			else scanning = false;
+
+			Collider[] zombieInRadius = Physics.OverlapSphere(player.transform.position, findRadius, zombieMask);
+
+			for(int i = 0; i < zombieInRadius.Length; i++)
+			{
+				if (Vector3.Distance(this.transform.position, zombieInRadius[i].transform.position) <= ScanDistance)
+				{
+					zombieInRadius[i].GetComponent<TInfecteeCtrl>().spawnEffect.enabled = true;
+				}
+			}
 		}
 		else
 			ScanDistance = 0;

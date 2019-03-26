@@ -36,7 +36,7 @@ public class UniverseController : MonoBehaviour
 			float progress = Mathf.Clamp01(operation.progress / .9f);
 			yield return null;
 		}
-		LoadLimpidData();
+		//LoadLimpidData();
 	}
 
 	void LoadLimpidData()

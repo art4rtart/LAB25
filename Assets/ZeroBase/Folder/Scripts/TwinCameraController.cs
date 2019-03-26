@@ -8,6 +8,9 @@ public class TwinCameraController : MonoBehaviour
 	[SerializeField]
 	private Camera _hiddenCamera;
 	[SerializeField]
+	private Camera _xRayCamera;
+
+	[SerializeField]
 	private Renderer _depthHackQuad;
 	private CommandBuffer _depthHackBuffer;
 
@@ -18,6 +21,7 @@ public class TwinCameraController : MonoBehaviour
 
 		var swapCamera = _activeCamera;
 		_activeCamera = _hiddenCamera;
+
 		_hiddenCamera = swapCamera;
 		DoDepthHack();
     }
@@ -27,17 +31,19 @@ public class TwinCameraController : MonoBehaviour
 		var rt = new RenderTexture(Screen.width, Screen.height, 24);
 		Shader.SetGlobalTexture("_TimeCrackTexture", rt);
 		_hiddenCamera.targetTexture = rt;
+		_xRayCamera.targetTexture = rt;
 
 		_depthHackBuffer = new CommandBuffer();
 		_depthHackBuffer.ClearRenderTarget(true, true, Color.black, 0);
 		_depthHackBuffer.name = "Fancy Depth Magic";
 		_depthHackBuffer.DrawRenderer(_depthHackQuad, new Material(Shader.Find("Hidden/DepthHack")));
 
-        DoDepthHack();
+		DoDepthHack();
     }
 
 	private void DoDepthHack()
 	{
+		//_xRayCamera.AddCommandBuffer(CameraEvent.BeforeForwardOpaque, _depthHackBuffer);
 		_hiddenCamera.AddCommandBuffer(CameraEvent.BeforeForwardOpaque, _depthHackBuffer);
 		_activeCamera.RemoveAllCommandBuffers();
     }

@@ -12,6 +12,7 @@ public class SpawnEffect : MonoBehaviour {
     Renderer _renderer;
 
     int shaderProperty;
+	public GameObject attackRange;
 
 	void Start ()
     {
@@ -22,8 +23,8 @@ public class SpawnEffect : MonoBehaviour {
         var main = ps.main;
         main.duration = spawnEffectTime;
 
+		attackRange.SetActive(true);
         ps.Play();
-
     }
 	
 	void Update ()
@@ -31,11 +32,6 @@ public class SpawnEffect : MonoBehaviour {
         if (timer < spawnEffectTime)
         {
             timer += Time.deltaTime;
-        }
-
-        else
-        {
-            ps.Play();
         }
 
         _renderer.material.SetFloat(shaderProperty, fadeIn.Evaluate( Mathf.InverseLerp(0, spawnEffectTime, timer)));

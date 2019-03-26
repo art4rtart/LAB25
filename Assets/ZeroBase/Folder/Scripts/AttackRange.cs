@@ -11,12 +11,22 @@ public class AttackRange : MonoBehaviour
 	public float viewRadius;
 	public LayerMask playerMask;
 
-
 	void Awake()
 	{
 		projector = GetComponent<Projector>();
 		if(zemmer == null) zemmer = FindObjectOfType<Zemmer>();
+		StartCoroutine(Init());
+	}
+
+	IEnumerator Init()
+	{
+		while (projector.orthographicSize < 7f)
+		{
+			projector.orthographicSize = Mathf.Clamp(projector.orthographicSize += speed * Time.deltaTime, 0f, 7f);
+			yield return null;
+		}
 		StartCoroutine(ZemmerUpdate());
+		yield return null;
 	}
 
 	IEnumerator ZemmerUpdate()
