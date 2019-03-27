@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.PostProcessing;
 
 public class MedicalItem : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class MedicalItem : MonoBehaviour
 	float medicalItemActivateTime = 5f;
 	float totalUseTime = 5f;
 
-	[Header("Medical Item stat Info")]
+	[Header("Medical item stat info")]
 	public float adrenalineUseTime;
 	public float medicalKitUseTime;
 	public string adrenalineUseMessage;
@@ -27,8 +28,14 @@ public class MedicalItem : MonoBehaviour
 	public TextMeshProUGUI useTimeText;
 	public TextMeshProUGUI useMessageText;
 
+	[Header("Medical item use effect")]
+	public PostProcessingProfile ppProfile;
+	public Beat beat;
+	public PlayerCtrl playerCtrl;
+
 	void Start()
     {
+		SetFrameBlending(0f);
 		itemManager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
 	}
 
@@ -94,15 +101,54 @@ public class MedicalItem : MonoBehaviour
 		}
 	}
 
+	public float targetMotionValue;
+	public float continueTime;
+	float blurMotionValue;
+	public float blurMotionSpeed;
+	float timeCount;
+	
+	float defaultHeartRateValue = 80f;
+	float targetHeartRateValue = 155f;
+	public Animator reloadAnim;
+	float reloadAnimSpeed = 1f;
+
 	void UseAdrenaline(bool _adrenalineEffect)
 	{
 		if (_adrenalineEffect)
 		{
-			float targetHeartRate = 150f; 
-			if (itemManager.currentHeartRate < targetHeartRate)
-				itemManager.currentHeartRate += increaseSpeed * Time.deltaTime;
+			timeCount += Time.deltaTime;
+
+			if (timeCount < continueTime)
+			{
+				itemManager.currentHeartRate = Mathf.Clamp(itemManager.currentHeartRate += increaseSpeed * Time.deltaTime, defaultHeartRateValue, targetHeartRateValue);
+				blurMotionValue = Mathf.Clamp(blurMotionValue += blurMotionSpeed * Time.deltaTime, 0f, targetMotionValue);
+
+				playerCtrl.m_WalkSpeed = Mathf.Clamp(playerCtrl.m_WalkSpeed += blurMotionSpeed * 0.2f * Time.deltaTime, 5f, 10f);
+				playerCtrl.m_RunSpeed = Mathf.Clamp(playerCtrl.m_RunSpeed += blurMotionSpeed * 0.2f * Time.deltaTime, 10f, 15f);
+
+				reloadAnimSpeed = Mathf.Clamp(reloadAnimSpeed += blurMotionSpeed * Time.deltaTime, 1f, 1.5f);
+				reloadAnim.SetFloat("ReloadSpeed", reloadAnimSpeed);
+				beat.AdrenalineHeartBeatTrigger();
+			}
+
 			else
-				_adrenalineEffect = false;
+			{
+				itemManager.currentHeartRate = Mathf.Clamp(itemManager.currentHeartRate -= increaseSpeed * Time.deltaTime, defaultHeartRateValue, targetHeartRateValue);
+				blurMotionValue = Mathf.Clamp(blurMotionValue -= blurMotionSpeed * Time.deltaTime, 0f, targetMotionValue);
+
+				playerCtrl.m_WalkSpeed = Mathf.Clamp(playerCtrl.m_WalkSpeed -= blurMotionSpeed * 0.4f * Time.deltaTime, 5f, 7f);
+				playerCtrl.m_RunSpeed = Mathf.Clamp(playerCtrl.m_RunSpeed -= blurMotionSpeed * 0.4f * Time.deltaTime, 10f, 13f);
+				reloadAnimSpeed = Mathf.Clamp(reloadAnimSpeed -= blurMotionSpeed * 0.4f * Time.deltaTime, 1f, 1.5f);
+				reloadAnim.SetFloat("ReloadSpeed", reloadAnimSpeed);
+
+				if (itemManager.currentHeartRate <= defaultHeartRateValue)
+				{
+					beat.DefaultHeartBeatTrigger();
+					timeCount = 0;
+					adrenalineEffect = false;
+				}
+			}
+			SetFrameBlending(blurMotionValue);
 		}
 	}
 
@@ -112,8 +158,14 @@ public class MedicalItem : MonoBehaviour
 		{
 			totalUseTime = 0;
 			PlayerManager.hp += 40f;
-			Debug.Log("HI");
 			_medicalKitEffect = medicalKitEffect = false;
 		}
+	}
+
+	void SetFrameBlending(float value)
+	{
+		MotionBlurModel.Settings motionblurSettings = ppProfile.motionBlur.settings;
+		motionblurSettings.frameBlending = value;
+		ppProfile.motionBlur.settings = motionblurSettings;
 	}
 }

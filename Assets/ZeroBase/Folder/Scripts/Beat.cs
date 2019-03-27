@@ -20,18 +20,14 @@ public class Beat : MonoBehaviour
 
 	void Update()
     {
-		if (Input.GetKeyDown(KeyCode.A))
+		if (Input.GetKeyDown(KeyCode.B))
 		{
-			defaultTrigger = true;
-			adrenalineTrigger = false;
-			value = 0;
+			DefaultHeartBeatTrigger();
 		}
 
-		if (Input.GetKeyDown(KeyCode.D))
+		if (Input.GetKeyDown(KeyCode.N))
 		{
-			adrenalineTrigger = true;
-			defaultTrigger = false;
-			value = 0;
+			AdrenalineHeartBeatTrigger();
 		}
 
 		if (adrenalineTrigger)
@@ -47,14 +43,34 @@ public class Beat : MonoBehaviour
 		this.transform.position = new Vector3(this.transform.position.x, height * 4f, this.transform.position.z);
 	}
 
-	public void DefaultMovement()
+	public void DefaultHeartBeatTrigger()
+	{
+		if (!defaultTrigger)
+		{
+			defaultTrigger = true;
+			adrenalineTrigger = false;
+			value = 0;
+		}
+	}
+
+	public void AdrenalineHeartBeatTrigger()
+	{
+		if (!adrenalineTrigger)
+		{
+			adrenalineTrigger = true;
+			defaultTrigger = false;
+			value = 0;
+		}
+	}
+
+	void DefaultMovement()
 	{
 		defaultTrigger = true;
 		value += Time.deltaTime;
 		height = defaultAnimCurve.Evaluate(value);
 	}
 
-	public void AdrenalineMovement()
+	void AdrenalineMovement()
 	{
 		adrenalineTrigger = true;
 		value += Time.deltaTime;
