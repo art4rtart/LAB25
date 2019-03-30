@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ItemManager : MonoBehaviour
 {
@@ -42,7 +43,11 @@ public class ItemManager : MonoBehaviour
 	public float currentHeartRate = 90f;
 	public float totalHeartRate = 150f;
 
+	bool pointTrigger;
+	Transform item;
+	public TextMeshProUGUI itemNameText;
 	[HideInInspector] public static bool takeDamage;
+
 	void Update()
 	{
 		// define player stat here ---------------------
@@ -114,16 +119,32 @@ public class ItemManager : MonoBehaviour
 		}
 
 		RaycastHit hit;
+
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
 		{
 			if (hit.transform.CompareTag("Item"))
 			{
+				item = hit.transform;
 				if (Vector3.Distance(player.transform.position, hit.transform.position) < itemGetRange)
-					uiManager.isPointingItem = true;
+				{
+					if (!pointTrigger)
+					{
+						item.GetComponent<GlowObject>().ChangeToTargetColor();
+						uiManager.isPointingItem = true;
+						itemNameText.text = hit.transform.name;
+					}
+				}
 			}
 
 			else
 			{
+				if (item != null)
+				{
+					pointTrigger = false;
+					item.GetComponent<GlowObject>().ChangeToDefaultColor();
+					item = null;
+				}
+
 				uiManager.isPointingItem = false;
 			}
 		}
@@ -157,23 +178,23 @@ public class ItemManager : MonoBehaviour
 				weaponIndex = 4;
 				break;
 
-			case "Vest":
+			case "Damage Protection Vest":
 				PlayerManager.armor += 40f;
 				break;
 
-			case "Kit":
+			case "Medical Kit":
 				medicalKitCount++;
 				break;
 
-			case "Adrenaline":
+			case "Adrenaline Syringe":
 				adrenalineCount++;
 				break;
 
-			case "Grenade":
+			case "grenade":
 				grenadeCount++;
 				break;
 
-			case "Helmet":
+			case "Biometrics Goggle":
 				StartCoroutine(uiManager.FadeIn());
 				isWearingHelmet = true;
 				break;

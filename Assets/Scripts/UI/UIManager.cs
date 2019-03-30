@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public bool isPointingItem;
     [HideInInspector] public bool changeWeaponImage;
 
-    void Start()
+	void Start()
     {
         currentWeaponImage.sprite = weaponImage[0];
     }

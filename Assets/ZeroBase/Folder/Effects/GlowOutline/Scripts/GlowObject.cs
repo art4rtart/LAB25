@@ -20,9 +20,11 @@ public class GlowObject : MonoBehaviour
 	private List<Material> _materials = new List<Material>();
 	private Color _currentColor;
 	private Color _targetColor;
+	private UIManager uiManager;
 
-	void Start()
+	void Awake()
 	{
+		uiManager = FindObjectOfType<UIManager>();
 		Renderers = GetComponentsInChildren<Renderer>();
 
 		foreach (var renderer in Renderers)
@@ -31,21 +33,28 @@ public class GlowObject : MonoBehaviour
 		}
 	}
 
-	private void OnMouseEnter()
+	//private void OnMouseEnter()
+	//{
+	//	enabled = true;
+	//	_targetColor = GlowColor;
+	//}
+
+	//private void OnMouseExit()
+	//{
+	//	_targetColor = Color.black;
+	//}
+
+	public void ChangeToTargetColor()
 	{
-		_targetColor = GlowColor;
 		enabled = true;
+		_targetColor = GlowColor;
 	}
 
-	private void OnMouseExit()
+	public void ChangeToDefaultColor()
 	{
 		_targetColor = Color.black;
-		enabled = true;
 	}
 
-	/// <summary>
-	/// Loop over all cached materials and update their color, disable self if we reach our target color.
-	/// </summary>
 	private void Update()
 	{
 		_currentColor = Color.Lerp(_currentColor, _targetColor, Time.deltaTime * LerpFactor);
