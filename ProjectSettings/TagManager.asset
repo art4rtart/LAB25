@@ -4,35 +4,35 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Weapon
-  - Heal
-  - Armor
-  - Item
   - Infectee
-  - banana
-  - badBanana
-  - agent
+  - Item
   - wall
+  - GameManager
+  - Guard
+  - SpawnZone
+  - Medic
+  - LimpidA
+  - Portal
+  - ItemManager
   - Stage1
   - Stage2
   - Stage3
   - Stage4
   - Stage5
-  - Portal
-  - SpawnZone
-  - ItemManager
   - Fire
   - PlayerAgent
   - DeadZone
-  - LimpidA
   - Wall
-  - Medic
   - Enemy
   - Limpid
-  - SceneManager
-  - Guard
+  - SceneMangaer
+  - Weapon
+  - Heal
+  - Armor
+  - banana
+  - badBanana
+  - agent
   - LimpidB
-  - GameManager
   layers:
   - Default
   - TransparentFX

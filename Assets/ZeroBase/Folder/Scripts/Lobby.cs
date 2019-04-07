@@ -8,13 +8,10 @@ using UnityEngine.PostProcessing;
 
 public class Lobby : MonoBehaviour
 {
-	public Animator logoAnimator;
-	public Animator titleAnimator;
+	public Animator highlightMenuAnimator;
 	public Animator menuAnimator;
 
 	public PostProcessingProfile ppProfile;
-	public GameObject logoCanvas;
-	public GameObject titleCanvas;
 	public GameObject menuCanvas;
 	bool glowTrigger = false;
 
@@ -37,104 +34,42 @@ public class Lobby : MonoBehaviour
 	public GameObject blurRenderer;
 	public GameObject QuitMesseageBox;
 
+	[HideInInspector] public bool isSomethingClicked;
+	[HideInInspector] public bool isSubMenuClosed;
+	public int menuIndex;
+	AudioManager audioManager;
+
+	[Header("Cursor Settings")]
+	public Texture2D cursorTexture;
+	public CursorMode cursorMode = CursorMode.Auto;
+	public Vector2 hotSpot = Vector2.zero;
+
+
+	void Awake()
+	{
+		audioManager = FindObjectOfType<AudioManager>();
+	}
+
 	void Start()
 	{
 		SetPostprocessing();
-		UpdateMenu();
+		RefreshMenu();
 		blurRenderer.GetComponent<Renderer>().sharedMaterial.SetFloat("_Size", 0);
 	}
 
-	void Update()
-	{
-		if (logoAnimator.gameObject.activeSelf &&
-			logoAnimator.GetCurrentAnimatorStateInfo(0).IsName("LogoAnimation") &&
-			logoAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
-		{
-			logoCanvas.SetActive(false);
-			titleCanvas.SetActive(true);
-		}
-
-		if (titleAnimator.gameObject.activeSelf && 
-			titleAnimator.GetCurrentAnimatorStateInfo(0).IsName("IntroAnimation") &&
-			titleAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
-		{
-			if(Input.GetMouseButtonDown(0))
-			{
-				titleAnimator.SetTrigger("Press");
-				glowText = false;
-				SetPostprocessing();
-			}
-
-			if (glowTrigger)
-				return;
-
-			else
-			{
-				StartCoroutine(GlowText());
-				glowTrigger = true;
-			}
-		}
-
-		if (titleAnimator.gameObject.activeSelf && 
-			titleAnimator.GetCurrentAnimatorStateInfo(0).IsName("Pressed") &&
-			titleAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
-		{
-			if (!glowTrigger)
-				return;
-
-			else
-			{
-				titleCanvas.SetActive(false);
-				menuCanvas.SetActive(true);
-				menuCanvas.GetComponent<Animator>().SetTrigger("ShowMenu");
-				glowTrigger = false;
-			}
-		}
-	}
-
-	IEnumerator GlowText()
-	{
-		BloomModel.Settings bloomSettings = ppProfile.bloom.settings;
-		float dir = 1;
-		float speed = 10f;
-
-		while (glowText)
-		{
-			float value = speed * dir * Time.deltaTime;
-			float calculatedValue = Mathf.Floor(value* 100) * 0.01f;
-
-			bloomSettings.bloom.intensity += calculatedValue;
-
-			if (bloomSettings.bloom.intensity > 15f)
-			{
-				bloomSettings.bloom.intensity = 15f;
-				dir *= -1f;
-			}
-
-			if (bloomSettings.bloom.intensity < 2f) {
-				bloomSettings.bloom.intensity = 2f;
-				dir *= -1f;
-			}
-
-			ppProfile.bloom.settings = bloomSettings;
-
-			yield return null;
-		}
-	}
-
-	public void moveLeftEvent()
+	public void MoveLeftEvent()
 	{
 		spriteIndex = (spriteIndex + 1) % stageSprites.Length;
-		UpdateMenu();
+		RefreshMenu();
 	}
 
-	public void moveRightButton()
+	public void MoveRightButton()
 	{
 		spriteIndex = (spriteIndex - 1) % stageSprites.Length;
-		UpdateMenu();
+		RefreshMenu();
 	}
 
-	void UpdateMenu()
+	void RefreshMenu()
 	{
 		for (int i = 0; i < stageRawImage.Length; i++)
 		{
@@ -150,4 +85,19 @@ public class Lobby : MonoBehaviour
 		bloomSettings.bloom.intensity = 2f;
 		ppProfile.bloom.settings = bloomSettings;
 	}
+
+	public void LobbyActiveEvent()
+	{
+		menuCanvas.SetActive(true);
+	}
+
+	//void OnMouseEnter()
+	//{
+	//	Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+	//}
+
+	//void OnMouseExit()
+	//{
+	//	Cursor.SetCursor(null, Vector2.zero, cursorMode);
+	//}
 }
