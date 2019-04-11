@@ -106,7 +106,6 @@ public class UIManager : MonoBehaviour
 		{
 			PlayerManager.hp -= 10f;
 			PlayerManager.armor -= 10f;
-			Debug.Log(healthProgressbar.value);
 		}
 
 		healthProgressbar.value = ItemManager.currentHealth / 100f;
@@ -152,7 +151,6 @@ public class UIManager : MonoBehaviour
 		int usedBullet = (maxBullet - WeaponCtrl.currentBullets);
 		if (weaponController.isReloaded)
 		{
-			Debug.Log(usedBullet);
 			totalBullet -= usedBullet;
 			WeaponCtrl.currentBullets = maxBullet;
 			bulletProgressbar.value = 1f;

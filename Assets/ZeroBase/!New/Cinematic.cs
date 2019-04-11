@@ -31,7 +31,6 @@ public class Cinematic : MonoBehaviour
 			{
 				if (!stopTrigger)
 				{
-					Debug.Log("OK");
 					limpidCinematicAnimator.SetBool("Walk", false);
 					//navmesh.enabled = false;
 					stopTrigger = true;
