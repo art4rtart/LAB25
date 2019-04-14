@@ -48,25 +48,31 @@ public class GlowObject : MonoBehaviour
 	{
 		enabled = true;
 		_targetColor = GlowColor;
+		startTrigger = false;
 	}
 
 	public void ChangeToDefaultColor()
 	{
+		startTrigger = false;
 		_targetColor = Color.black;
 	}
 
+	bool startTrigger = true;
 	private void Update()
 	{
-		_currentColor = Color.Lerp(_currentColor, _targetColor, Time.deltaTime * LerpFactor);
-
-		for (int i = 0; i < _materials.Count; i++)
+		if (!startTrigger)
 		{
-			_materials[i].SetColor("_GlowColor", _currentColor);
-		}
+			_currentColor = Color.Lerp(_currentColor, _targetColor, Time.deltaTime * LerpFactor);
 
-		if (_currentColor.Equals(_targetColor))
-		{
-			enabled = false;
+			for (int i = 0; i < _materials.Count; i++)
+			{
+				_materials[i].SetColor("_GlowColor", _currentColor);
+			}
+
+			if (_currentColor.Equals(_targetColor))
+			{
+				startTrigger = true;
+			}
 		}
 	}
 }

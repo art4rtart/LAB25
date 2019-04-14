@@ -47,6 +47,7 @@ public class ItemManager : MonoBehaviour
 	Transform item;
 	public TextMeshProUGUI itemNameText;
 	[HideInInspector] public static bool takeDamage;
+	bool isInteracting = false;
 
 	void Update()
 	{
@@ -94,7 +95,7 @@ public class ItemManager : MonoBehaviour
 			isHoldingSomething = true;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Alpha3) && isHoldingSomething)
+		if (Input.GetKeyDown(KeyCode.Alpha3))
 		{
 			Debug.Log("I am Holding a Adrenalin");
 
@@ -106,7 +107,7 @@ public class ItemManager : MonoBehaviour
 			isHoldingSomething = true;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Alpha4) && isHoldingSomething)
+		if (Input.GetKeyDown(KeyCode.Alpha4))
 		{
 			Debug.Log("I am Holding a Grenade");
 
@@ -122,9 +123,11 @@ public class ItemManager : MonoBehaviour
 
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
 		{
-			if (hit.transform.CompareTag("Item"))
+			if (hit.transform.CompareTag("Item") && !isInteracting)
 			{
+				isInteracting = true;
 				item = hit.transform;
+
 				if (Vector3.Distance(player.transform.position, hit.transform.position) < itemGetRange)
 				{
 					if (!pointTrigger)
@@ -132,20 +135,36 @@ public class ItemManager : MonoBehaviour
 						item.GetComponent<GlowObject>().ChangeToTargetColor();
 						uiManager.isPointingItem = true;
 						itemNameText.text = hit.transform.name;
+						pointTrigger = true;
 					}
 				}
 			}
 
 			else
 			{
-				if (item != null)
+				if (!hit.transform.CompareTag("Item"))
 				{
+					if (item != null)
+					{
+						item.GetComponent<GlowObject>().ChangeToDefaultColor();
+						item = null;
+					}
 					pointTrigger = false;
-					item.GetComponent<GlowObject>().ChangeToDefaultColor();
-					item = null;
+					isInteracting = false;
+					uiManager.isPointingItem = false;
+					return;
 				}
 
-				uiManager.isPointingItem = false;
+				//else if (item != null)
+				//{
+				//	Debug.Log("HI");
+				//	pointTrigger = false;
+				//	item.GetComponent<GlowObject>().ChangeToDefaultColor();
+				//	item = null;
+				//}
+
+				//uiManager.isPointingItem = false;
+				//isInteracting = false;
 			}
 		}
 
@@ -190,8 +209,8 @@ public class ItemManager : MonoBehaviour
 				adrenalineCount++;
 				break;
 
-			case "grenade":
-				grenadeCount++;
+			case "Grenade":
+				grenadeCount += 100;
 				break;
 
 			case "Biometrics Goggle":
