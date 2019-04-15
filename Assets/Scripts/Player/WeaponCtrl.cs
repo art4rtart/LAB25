@@ -25,7 +25,7 @@ public class WeaponCtrl : MonoBehaviour
 
     // Parameters
     private float fireTimer;
-	public bool isReloaded;
+    public bool isReloaded;
     private bool isReloading;
     private bool isAiming;
     private bool isRunning;
@@ -54,8 +54,6 @@ public class WeaponCtrl : MonoBehaviour
     public GameObject bulletCasingPrefab;
     public GameObject bloodParticlePrefab;
 
-    // Animations
-    //private int hashAttack = Animator.StringToHash("isAttack");
 
     // ObjectPool
     public static MemoryPool bulletHolePool = new MemoryPool();
@@ -85,18 +83,43 @@ public class WeaponCtrl : MonoBehaviour
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         isReloading = info.IsName("Reload");
 
-		if (info.IsName("Reload") && info.normalizedTime >= 1f)
-			isReloaded = true;
+        if (info.IsName("Reload") && info.normalizedTime >= 1f)
+            isReloaded = true;
 
         if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
             if (currentBullets > 0)
                 Fire();
             else
+            {
                 DoReload();
+            }
         }
         if (Input.GetKeyDown(KeyCode.R))
             DoReload();
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            anim.CrossFadeInFixedTime("Heal", 0.01f);
+        }
+        else if (Input.GetKeyDown(KeyCode.W))
+        {
+            anim.CrossFadeInFixedTime("Ward", 0.01f);
+        }
+        else if (Input.GetKeyDown(KeyCode.J))
+        {
+            anim.CrossFadeInFixedTime("Jammer", 0.01f);
+        }
+        else if (Input.GetKeyDown(KeyCode.T))
+        {
+            anim.CrossFadeInFixedTime("Harter", 0.01f);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            anim.SetBool("isWalk", true);
+        }
 
         if (fireTimer < fireRate)
             fireTimer += Time.deltaTime;
@@ -110,33 +133,30 @@ public class WeaponCtrl : MonoBehaviour
     {
         anim.SetBool("isRun", Input.GetKey(KeyCode.LeftShift));
         isRunning = characterController.velocity.sqrMagnitude > 99 ? true : false;
-
+        Debug.Log(characterController.velocity.sqrMagnitude);
         anim.SetFloat("Speed", characterController.velocity.sqrMagnitude);
     }
-    
+
     public void Fire()
     {
         if (fireTimer < fireRate || isReloading || isRunning)
         {
             return;
         }
-        
+
         RaycastHit hit;
 
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
         {
             InfecteeCtrl enemyCtrl = hit.transform.GetComponent<InfecteeCtrl>();
-            TInfecteeCtrl tenemyCtrl = hit.transform.GetComponent<TInfecteeCtrl>();
             Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
 
- 
+
             if (hit.transform.gameObject.tag != "Infectee")
                 StartCoroutine(FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             else
             {
-                if(enemyCtrl && enemyCtrl.hp > 0)
-                    StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
-                else if (tenemyCtrl && tenemyCtrl.hp > 0)
+                if (enemyCtrl && enemyCtrl.hp > 0)
                     StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
                 //var bP = (GameObject)Instantiate(bloodParticlePrefab, hit.transform.position + Vector3.up * 1.2f, hit.transform.rotation);
             }
@@ -144,8 +164,6 @@ public class WeaponCtrl : MonoBehaviour
 
             if (enemyCtrl && enemyCtrl.hp > 0)
                 enemyCtrl.ApplyDamage(damage);
-            else if (tenemyCtrl && tenemyCtrl.hp > 0)
-                tenemyCtrl.ApplyDamage(damage);
 
         }
         currentBullets--;
@@ -240,6 +258,7 @@ public class WeaponCtrl : MonoBehaviour
 
     private void DoReload()
     {
+
         if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
         {
             anim.CrossFadeInFixedTime("Reload", 0.01f); // Reloading
@@ -254,7 +273,7 @@ public class WeaponCtrl : MonoBehaviour
         {
             bulletsToReload = bulletsTotal;
         }
-        if(isReloaded) currentBullets += bulletsToReload;
+        currentBullets += bulletsToReload;
         bulletsTotal -= bulletsToReload;
     }
 
@@ -266,6 +285,5 @@ public class WeaponCtrl : MonoBehaviour
         flarePool.Dispose();
         bulletCasingPool.Dispose();
     }
-
 }
 
