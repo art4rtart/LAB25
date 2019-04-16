@@ -54,13 +54,13 @@ public class WeaponCtrl : MonoBehaviour
     public GameObject bulletCasingPrefab;
     public GameObject bloodParticlePrefab;
 
-
     // ObjectPool
     public static MemoryPool bulletHolePool = new MemoryPool();
     public static MemoryPool flarePool = new MemoryPool();
     public static MemoryPool bulletCasingPool = new MemoryPool();
     public static MemoryPool bloodParticlePool = new MemoryPool();
 
+    private int useWard = 0;
     private Transform fireTraceParent;
 
     private void Awake()
@@ -102,9 +102,18 @@ public class WeaponCtrl : MonoBehaviour
         {
             anim.CrossFadeInFixedTime("Heal", 0.01f);
         }
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.Y))
         {
-            anim.CrossFadeInFixedTime("Ward", 0.01f);
+            if( useWard == 0 )
+            {
+                useWard = 1;
+                anim.SetInteger("useWard", 1);
+            }
+            else if ( useWard == 1)
+            {
+                useWard = 0;
+                anim.SetInteger("useWard", 0);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.J))
         {
@@ -114,16 +123,16 @@ public class WeaponCtrl : MonoBehaviour
         {
             anim.CrossFadeInFixedTime("Harter", 0.01f);
         }
-
-
-        if (Input.GetKeyDown(KeyCode.Y))
+        else if ( useWard == 1 && Input.GetMouseButtonDown(1))
         {
-            anim.SetBool("isWalk", true);
+            anim.SetInteger("useWard", 2);
+            useWard = 0;
         }
+
+
 
         if (fireTimer < fireRate)
             fireTimer += Time.deltaTime;
-        Debug.DrawRay(shootPoint.position, shootPoint.transform.forward * 10, Color.black);
 
         RecoilBack();
         Run();
@@ -133,7 +142,7 @@ public class WeaponCtrl : MonoBehaviour
     {
         anim.SetBool("isRun", Input.GetKey(KeyCode.LeftShift));
         isRunning = characterController.velocity.sqrMagnitude > 99 ? true : false;
-        Debug.Log(characterController.velocity.sqrMagnitude);
+        //Debug.Log(characterController.velocity.sqrMagnitude);
         anim.SetFloat("Speed", characterController.velocity.sqrMagnitude);
     }
 
