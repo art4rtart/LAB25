@@ -8,13 +8,12 @@ public class ChangeRagDoll : MonoBehaviour
     public GameObject charObj;
     public GameObject ragdollObj;
 
-    public Rigidbody spine;
-
     private InfecteeCtrl myInfecteeCtrl;
 
     private void Start()
     {
         myInfecteeCtrl = GetComponentInChildren<InfecteeCtrl>();
+
     }
     void Update()
     {
@@ -30,13 +29,13 @@ public class ChangeRagDoll : MonoBehaviour
 
         charObj.gameObject.SetActive(false);
         ragdollObj.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(2.5f);
 
         charObj.gameObject.SetActive(true);
         ragdollObj.gameObject.SetActive(false);
 
         myInfecteeCtrl.hp = myInfecteeCtrl.maxHp;
-   
 
         InfecteeGenerator.enemyPool.RemoveItem(transform.gameObject, InfecteeGenerator.enemy, InfecteeGenerator.parent);
     }
@@ -53,6 +52,6 @@ public class ChangeRagDoll : MonoBehaviour
             rag.transform.GetChild(i).localRotation = origin.transform.GetChild(i).localRotation;
         }
         ragdollObj.transform.position = charObj.transform.position;
+        ragdollObj.transform.rotation = charObj.transform.rotation;
     }
 }
-    

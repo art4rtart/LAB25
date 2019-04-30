@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class WeaponCtrl : MonoBehaviour
 {
-    public enum WeaponType
-    {
-        Rifle,
-        Pistol
-    }
     // Weapon Specification
     public string weaponName;
     public int bulletsPerMag;
@@ -21,7 +16,6 @@ public class WeaponCtrl : MonoBehaviour
     public float accuracy;
     private float originalAccuracy;
     public int damage;
-    public WeaponType weaponType;
 
     // Parameters
     private float fireTimer;
@@ -121,7 +115,10 @@ public class WeaponCtrl : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.T))
         {
-            anim.CrossFadeInFixedTime("Harter", 0.01f);
+            if (anim.GetBool("useHarter"))
+                anim.SetBool("useHarter", false);
+            else
+                anim.SetBool("useHarter", true);
         }
         else if ( useWard == 1 && Input.GetMouseButtonDown(1))
         {
