@@ -5,11 +5,11 @@ using System.Collections;
 public class ZombieScanner : MonoBehaviour
 {
 	public Material EffectMaterial;
-	public float ScanDistance;
+	public float ScanDistance = 0;
 
 	private Camera cam;
 	public float scanSpeed = 25f;
-	bool scanning;
+	public bool scanning;
 	GameObject player;
 
 	void Awake()
@@ -40,12 +40,6 @@ public class ZombieScanner : MonoBehaviour
 		}
 		else
 			ScanDistance = 0;
-
-		if (Input.GetKeyDown(KeyCode.C))
-		{
-			scanning = true;
-			ScanDistance = 0;
-		}
 	}
 
 	void OnEnable()

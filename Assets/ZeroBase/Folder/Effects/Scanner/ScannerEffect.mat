@@ -40,5 +40,5 @@ Material:
     m_Colors:
     - _HBarColor: {r: 0, g: 0.28676468, b: 0.27439448, a: 0}
     - _LeadColor: {r: 1, g: 1, b: 1, a: 0}
-    - _MidColor: {r: 0.18940164, g: 0.33088237, b: 0, a: 0}
-    - _TrailColor: {r: 0, g: 1, b: 0.95862055, a: 0}
+    - _MidColor: {r: 0.23113209, g: 0.93506706, b: 1, a: 0}
+    - _TrailColor: {r: 0, g: 0.6152477, b: 1, a: 0}

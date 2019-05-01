@@ -7,15 +7,12 @@ public class Zemmer : MonoBehaviour
 	public bool activate;
 	int count;
 
-	void Update()
+	public void UseZemmer()
 	{
-		if(Input.GetKeyDown(KeyCode.Z))
-		{
-			if (count % 2 == 0)
-				activate = true;
-			else
-				activate = false;
-			count += 1;
-		}
+		if (count % 2 == 0)
+			activate = true;
+		else
+			activate = false;
+		count += 1;
 	}
 }

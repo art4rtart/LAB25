@@ -56,8 +56,10 @@ public class WeaponCtrl : MonoBehaviour
 
     private int useWard = 0;
     private Transform fireTraceParent;
+	public ZombieScanner scanner;
+	public Zemmer zemmer;
 
-    private void Awake()
+	private void Awake()
     {
         fireTraceParent = GameObject.Find("ObjectManager").transform;
     }
@@ -112,7 +114,9 @@ public class WeaponCtrl : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.J))
         {
             anim.CrossFadeInFixedTime("Jammer", 0.01f);
+			// zemmer.UseZemmer();
         }
+
         else if (Input.GetKeyDown(KeyCode.T))
         {
             if (anim.GetBool("useHarter"))
@@ -120,10 +124,14 @@ public class WeaponCtrl : MonoBehaviour
             else
                 anim.SetBool("useHarter", true);
         }
+
         else if ( useWard == 1 && Input.GetMouseButtonDown(1))
         {
             anim.SetInteger("useWard", 2);
-            useWard = 0;
+			scanner.ScanDistance = 0;
+			scanner.scanning = true;
+
+			useWard = 0;
         }
 
 
