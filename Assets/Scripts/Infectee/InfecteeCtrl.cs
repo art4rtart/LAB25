@@ -20,7 +20,7 @@ public class InfecteeCtrl : MonoBehaviour
 
     //anim
     private Animator anim;
-    private int hashFind = Animator.StringToHash("isFind");
+   
     private int hashAttack1 = Animator.StringToHash("isAttack1");
     private int hashAttack2 = Animator.StringToHash("isAttack2");
     private int hashWalk = Animator.StringToHash("isWalk");
@@ -29,6 +29,12 @@ public class InfecteeCtrl : MonoBehaviour
     private Coroutine moveToTargetRoutine;
     private ChangeRagDoll myChange;
     private NavMeshAgent nv;
+    public RagDollDIeCtrl myRagDollCtrl;
+
+    [HideInInspector]
+    public GameObject hitObject;
+    [HideInInspector]
+    public Vector3 hitPos;
 
     //enemy -> player directrion
     private Vector3 toTargetDir = Vector3.zero;
@@ -36,7 +42,6 @@ public class InfecteeCtrl : MonoBehaviour
 
     //flag
     private bool isStart = false;
-    //public bool nvEnableFlag = true;
 
     //Idle ref
     //private bool startTurn = false;
@@ -68,6 +73,7 @@ public class InfecteeCtrl : MonoBehaviour
         isStart = true;
     }
 
+
     private IEnumerator Idle()
     {
 
@@ -75,13 +81,8 @@ public class InfecteeCtrl : MonoBehaviour
 
         if (distance <= recognitionRange)
         {
-
             anim.applyRootMotion = false;
-            anim.SetBool(hashFind, true);
-
-            yield return new WaitForSeconds(0.75f);
             StartCoroutine(MoveToTarget());
-
         }
         else
         {
@@ -122,17 +123,17 @@ public class InfecteeCtrl : MonoBehaviour
     private void Attack(GameObject hitPerson)
     {
         int randomAttackPattern = Random.Range(0, 2);
-
+        hitObject = hitPerson;
         if (randomAttackPattern == 0)
             anim.SetBool(hashAttack1, true);
         else
             anim.SetBool(hashAttack2, true);
         anim.SetBool(hashWalk, false);
 
-        StartCoroutine(AttackLoop());
+        StartCoroutine(AttackLoop(hitPerson));
     }
 
-    private IEnumerator AttackLoop()
+    private IEnumerator AttackLoop(GameObject hitPerson)
     {
         yield return new WaitForSeconds(1.5f);
 
@@ -141,10 +142,10 @@ public class InfecteeCtrl : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = Vector3.Distance(hitPerson.transform.position, transform.position);
 
         if (distance <= attackRange && !isAttack)
-            Attack(target.gameObject);
+            Attack(hitPerson);
         else
             moveToTargetRoutine = StartCoroutine(MoveToTarget());
     }
@@ -153,20 +154,24 @@ public class InfecteeCtrl : MonoBehaviour
     {
 
         hp -= damage;
-
+   
         if (hp <= 0)
         {
+            myRagDollCtrl.speed = nv.velocity.magnitude;
+            myRagDollCtrl.AttackedPos = hitPos;
             Die();
-            //gameObject.SetActive(false);
+            //////////////////////////////////////////////////////////ML
+            //isAttack = false;
+            //transform.parent.gameObject.SetActive(false);
             //hp = 100;
 
-            //////////////////////////////////////////////////////////ML
-            //TestPlayerAgent1.isKill = true;
+
+            //Healing.isKill = true;
         }
     }
     private void Die()
     {
-        myChange.StartCoroutine(myChange.ChangeRagdoll());
+        StartCoroutine(myChange.ChangeRagdoll());
     }
 
     public void OnCollisionStay(Collision collision)
@@ -176,10 +181,10 @@ public class InfecteeCtrl : MonoBehaviour
             if (!isAttack)
                 Attack(collision.gameObject);
         }
-        //if (collision.gameObject.CompareTag("PlayerAgent"))
-        //{
-        //    if (!isAttack)
-        //        StartCoroutine(Attack(collision.gameObject));
-        //}
+        if (collision.gameObject.CompareTag("PlayerAgent"))
+        {
+            if (!isAttack)
+                Attack(collision.gameObject);
+        }
     }
 }

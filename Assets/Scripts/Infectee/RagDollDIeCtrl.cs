@@ -21,6 +21,7 @@ public class RagDollDIeCtrl : MonoBehaviour
     private Transform targetTr;
     [HideInInspector]
     public float speed;
+    [HideInInspector]
     public Vector3 AttackedPos;
     private void Awake()
     {
@@ -31,7 +32,6 @@ public class RagDollDIeCtrl : MonoBehaviour
     {
         Vector3 AttackedDir = (transform.position - targetTr.position).normalized;
         AttackedDir = (AttackedDir + transform.forward * speed).normalized;
-
 
         if (AttackedPos.y <= 0.6)
         {

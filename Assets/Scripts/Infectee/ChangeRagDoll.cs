@@ -8,6 +8,7 @@ public class ChangeRagDoll : MonoBehaviour
     public GameObject charObj;
     public GameObject ragdollObj;
 
+
     private InfecteeCtrl myInfecteeCtrl;
 
     private void Start()

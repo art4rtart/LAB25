@@ -157,20 +157,19 @@ public class WeaponCtrl : MonoBehaviour
             InfecteeCtrl enemyCtrl = hit.transform.GetComponent<InfecteeCtrl>();
             Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
 
-
+            //Debug.Log(hit.transform.gameObject.name);
             if (hit.transform.gameObject.tag != "Infectee")
                 StartCoroutine(FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             else
             {
                 if (enemyCtrl && enemyCtrl.hp > 0)
+                {
+                    enemyCtrl.hitPos = hit.transform.InverseTransformPoint(hit.point);
+                    enemyCtrl.ApplyDamage(damage);
                     StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
+                }
                 //var bP = (GameObject)Instantiate(bloodParticlePrefab, hit.transform.position + Vector3.up * 1.2f, hit.transform.rotation);
             }
-
-
-            if (enemyCtrl && enemyCtrl.hp > 0)
-                enemyCtrl.ApplyDamage(damage);
-
         }
         currentBullets--;
         fireTimer = 0.0f;

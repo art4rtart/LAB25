@@ -24,7 +24,6 @@ public class PlayerManager : MonoBehaviour
     private CharacterController characterController;
     private GameObject infecteeParent;
     //public NavMeshAgent _nvAgent;
-    private Transform targetTr;
 
     public static bool isHit = false;
 
@@ -37,30 +36,12 @@ public class PlayerManager : MonoBehaviour
         
         DontDestroyOnLoad(gameObject);
     }
-    private void OnEnable()
-    {
-        //_nvAgent = GetComponent<NavMeshAgent>();
-        targetTr = GameObject.Find("Portal").transform;
-        //_nvAgent.SetDestination(targetTr.position);
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-            ApplyDamage(50);
-        //_nvAgent.SetDestination(targetTr.position);
-    }
 
     private void FixedUpdate()
     {
         myPos = transform;
-        //if( teleportFlag )
-        //{
-        //    teleportFlag = false;
-        //    transform.position = TeleportPos;
-        //    Debug.Log(transform.position);
-        //    TeleportPos = Vector3.zero;
-        //}
     }
+
     public static void ApplyDamage(float damage)
     {
         isHit = true;
@@ -94,45 +75,6 @@ public class PlayerManager : MonoBehaviour
             armor = 100;
     }
 
-    private void UpdateHP()
-    {
-        //hpText.text = hp + " / " + maxHp;
-        //hpBar.localScale = new Vector3(hp / maxHp, 1, 1);
-    }
-
-    private void UpdateArmor()
-    {
-        //armorText.text = armor + " / " + maxArmor;
-        //armorBar.localScale = new Vector3(armor / maxArmor, 1, 1);
-    }
-
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.CompareTag("Portal") && teleportFlag == false)
-        {
-            InfecteeGenerator.enemyPool.ClearItem();
-
-            foreach (Transform child in infecteeParent.transform)
-            {
-                child.GetChild(0).gameObject.GetComponent<NavMeshAgent>().enabled = false;
-            }
-
-            if (currentStage == stage.STAGE_1)
-            {
-                SceneManager.LoadScene("Stage2");
-                currentStage = stage.STAGE_2;
-                TeleportPos = new Vector3(0, 0, -6);
-                isEnd = true;
-                InfecteeGenerator.stage_EnemyZone = GameObject.FindGameObjectsWithTag("SpawnZone");
-            }
-
-            //foreach (Transform child in infecteeParent.transform)
-            //{
-            //    child.GetChild(0).gameObject.GetComponent<NavMeshAgent>().enabled = true;
-            //}
-            teleportFlag = true;
-        }
-    }
     private void OnTriggerStay(Collider collision)
     {
         //Debug.Log("TCollision");

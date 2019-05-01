@@ -53,17 +53,16 @@ public class InfecteeGenerator : MonoBehaviour
         for (int i = 0; i < stage_EnemyZone.Length; i++)
         {
             InfecteeZone stageEnemyZone = stage_EnemyZone[i].GetComponent<InfecteeZone>();
-            
-            if (stageEnemyZone.spawnStage == PlayerManager.currentStage)
+
+
+            infectee = enemyPool.NewItem();
+
+            if (infectee)
             {
-                infectee = enemyPool.NewItem();
-                
-                if (infectee)
-                {
-                    infectee.transform.GetChild(0).position = new Vector3(Random.Range(-stageEnemyZone.rangeX + generateOffset, stageEnemyZone.rangeX - generateOffset), transform.position.y, Random.Range(-stageEnemyZone.rangeZ + generateOffset, stageEnemyZone.rangeZ - generateOffset)) + stageEnemyZone.transform.position + new Vector3(0,0.4f,0);
-                    infectee.transform.SetParent(parent);
-                }
+                infectee.transform.GetChild(0).position = new Vector3(Random.Range(-stageEnemyZone.rangeX + generateOffset, stageEnemyZone.rangeX - generateOffset), transform.position.y, Random.Range(-stageEnemyZone.rangeZ + generateOffset, stageEnemyZone.rangeZ - generateOffset)) + stageEnemyZone.transform.position + new Vector3(0, 0.4f, 0);
+                infectee.transform.SetParent(parent);
             }
+
         }
         yield return new WaitForSeconds(generateTime);
         StartCoroutine(Generate());

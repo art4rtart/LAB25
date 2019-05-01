@@ -120,7 +120,7 @@ public class MemoryPool : System.IDisposable
         for (int i = 0; i < count; i++)
         {
             Item item = table[i];
-            GameObject.Destroy(item.gameObject);
+            Object.Destroy(item.gameObject);
         }
         table = null;
     }
