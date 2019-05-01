@@ -10,20 +10,25 @@ public class InfecteeGenerator : MonoBehaviour
     public int generateNum;
     public float generateTime;
 
-    private float generateOffset = 1.5f;
+	[Header("Names")]
+	public string infecteeName = "Infectee";
+	public string generatorName = "Generator";
+	public string spawnZoneTag = "SpawnZone";
+
+	private float generateOffset = 1.5f;
     //ObjectPool
     public static MemoryPool enemyPool = new MemoryPool();
  
 
     private void Awake()
     {
-        enemy = GameObject.Find("Infectee");
-        parent = GameObject.Find("Generator").transform;
+        enemy = GameObject.Find(infecteeName);
+        parent = GameObject.Find(generatorName).transform;
     }
     void Start()
     {
         enemyPool.Create(enemy, generateNum, this.transform);
-        stage_EnemyZone = GameObject.FindGameObjectsWithTag("SpawnZone");
+        stage_EnemyZone = GameObject.FindGameObjectsWithTag(spawnZoneTag);
         StartCoroutine(Generate());
         DontDestroyOnLoad(gameObject);
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6247058513001465508}
   - component: {fileID: 6247058513001465509}
   - component: {fileID: 6247058513001465506}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 6247058513132011666}
   - component: {fileID: 6247058513132011667}
   - component: {fileID: 6247058513132011664}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 6247058513346021759}
   - component: {fileID: 6247058513346021756}
   - component: {fileID: 6247058513346021757}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6247058513404539023}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 6247058513599563542}
   - component: {fileID: 6247058513599563543}
   - component: {fileID: 6247058513599563540}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 6247058513604882471}
   - component: {fileID: 6247058513604882470}
   - component: {fileID: 6247058513604882649}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: SimpleDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,8 +477,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 5, z: 3.5}
-  m_Center: {x: 0, y: 2.5, z: 0}
+  m_Size: {x: 10, y: 0.28454494, z: 5.5137777}
+  m_Center: {x: 0, y: 0.14227247, z: 0.4465556}
 --- !u!1 &6247058513703709264
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6247058513703709267}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 6247058513785127115}
   - component: {fileID: 6247058513785127112}
   - component: {fileID: 6247058513785127113}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +615,7 @@ GameObject:
   - component: {fileID: 6247058513797816229}
   - component: {fileID: 6247058513797816226}
   - component: {fileID: 6247058513797816227}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 6247058513830555059}
   - component: {fileID: 6247058513830555056}
   - component: {fileID: 6247058513830555057}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 6247058514209328947}
   - component: {fileID: 6247058514209328944}
   - component: {fileID: 6247058514209328945}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,7 +892,7 @@ GameObject:
   - component: {fileID: 6247058514398161037}
   - component: {fileID: 6247058514398161034}
   - component: {fileID: 6247058514398161035}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 6247058514654566828}
   - component: {fileID: 6247058514654566829}
   - component: {fileID: 6247058514654566826}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1075,7 @@ GameObject:
   - component: {fileID: 6247058514879698689}
   - component: {fileID: 6247058514879698702}
   - component: {fileID: 6247058514879698703}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1167,7 +1167,7 @@ GameObject:
   - component: {fileID: 6247058514977243689}
   - component: {fileID: 6247058514977243702}
   - component: {fileID: 6247058514977243703}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: RightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1261,7 +1261,7 @@ GameObject:
   - component: {fileID: 6247058514985484991}
   - component: {fileID: 6247058514985484988}
   - component: {fileID: 6247058514985484989}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -50,7 +50,8 @@ public class InfecteeCtrl : MonoBehaviour
     {
         target = GameObject.FindWithTag("Player").transform;
         anim = GetComponent<Animator>();
-        maxHp = hp;
+		rgbd = GetComponent<Rigidbody>();
+		maxHp = hp;
         myChange = GetComponentInParent<ChangeRagDoll>();
         nv = GetComponentInParent<NavMeshAgent>();
         toTargetDir = (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f))).normalized;
@@ -93,12 +94,12 @@ public class InfecteeCtrl : MonoBehaviour
 
     public IEnumerator MoveToTarget()
     {
-        //toTargetDir = (target.position - transform.position).normalized;
-        //Quaternion toTargetRot = Quaternion.LookRotation(new Vector3(toTargetDir.x , 0, toTargetDir.z));
+		//toTargetDir = (target.position - transform.position).normalized;
+		//Quaternion toTargetRot = Quaternion.LookRotation(new Vector3(toTargetDir.x , 0, toTargetDir.z));
 
-        //transform.rotation = Quaternion.Slerp(transform.rotation, toTargetRot, Time.deltaTime * rotSpeed);
+		//transform.rotation = Quaternion.Slerp(transform.rotation, toTargetRot, Time.deltaTime * rotSpeed);
 
-        anim.SetBool(hashWalk, true);
+		anim.SetBool(hashWalk, true);
         anim.SetFloat("moveSpeed", nv.velocity.magnitude);
 
         float distance = Vector3.Distance(target.position, transform.position);
@@ -120,9 +121,11 @@ public class InfecteeCtrl : MonoBehaviour
         }
     }
 
+	Rigidbody rgbd;
+
     private void Attack(GameObject hitPerson)
     {
-        int randomAttackPattern = Random.Range(0, 2);
+		int randomAttackPattern = Random.Range(0, 2);
         hitObject = hitPerson;
         if (randomAttackPattern == 0)
             anim.SetBool(hashAttack1, true);
