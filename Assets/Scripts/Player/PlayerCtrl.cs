@@ -38,6 +38,7 @@ public class PlayerCtrl : MonoBehaviour
     private float m_NextStep;
     private bool m_Jumping;
     private AudioSource m_AudioSource;
+    public static Transform myPos;
 
     // Animatiom
     private Animator m_Anim;
@@ -49,7 +50,6 @@ public class PlayerCtrl : MonoBehaviour
     // Crouch
     public float crouchSpeed;
     public float crouchHeight;
-    private bool isCrouching;
     private float playerHeight;
 
     // Use this for initialization
@@ -76,7 +76,7 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        isCrouching = Input.GetKey(KeyCode.LeftControl);
+        myPos = transform;
         RotateView();
         // the jump state needs to read here to make sure it is not missed
         if (!m_Jump)
@@ -97,19 +97,14 @@ public class PlayerCtrl : MonoBehaviour
         }
 
         m_PreviouslyGrounded = m_CharacterController.isGrounded;
-        
-        if (isCrouching)
-        {
-            m_CharacterController.height = Mathf.Lerp(m_CharacterController.height, crouchHeight, Time.deltaTime * 9f);
-        }
-        else
-        {
-            float lastHeight = m_CharacterController.height;
-            m_CharacterController.height = Mathf.Lerp(m_CharacterController.height, playerHeight, Time.deltaTime * 9f);
-            Vector3 tmpPos = transform.position;
-            //tmpPos.y += (m_CharacterController.height - lastHeight);
-            //transform.position = tmpPos;
-        }
+
+
+        float lastHeight = m_CharacterController.height;
+        m_CharacterController.height = Mathf.Lerp(m_CharacterController.height, playerHeight, Time.deltaTime * 9f);
+        Vector3 tmpPos = transform.position;
+        //tmpPos.y += (m_CharacterController.height - lastHeight);
+        //transform.position = tmpPos;
+
     }
 
 
@@ -252,8 +247,7 @@ public class PlayerCtrl : MonoBehaviour
 #endif
         // set the desired speed to be walking or running
         // Crouching Speed
-        if (isCrouching && !m_Jumping) speed = crouchSpeed;
-        else speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
+        speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
 
         m_Input = new Vector2(horizontal, vertical);
 
@@ -290,7 +284,7 @@ public class PlayerCtrl : MonoBehaviour
         }
 
         // running forward only
-        if (!m_IsWalking && !isCrouching)
+        if (!m_IsWalking )
         {
             speed = m_Input.y <= 0 ? m_WalkSpeed : m_RunSpeed;
             //if (transform.GetComponent<PlayerManager>().stamina <= 0) speed = m_WalkSpeed;

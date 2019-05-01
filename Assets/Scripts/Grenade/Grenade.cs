@@ -22,6 +22,7 @@ public class Grenade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("asdsads");
 		countdown -= Time.deltaTime;
 		if(countdown <= 0f && !hasExploded)
 		{

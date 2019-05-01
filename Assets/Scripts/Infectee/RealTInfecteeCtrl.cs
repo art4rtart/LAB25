@@ -80,8 +80,6 @@ public class RealTInfecteeCtrl : MonoBehaviour
 
     public IEnumerator MoveToTarget()
     {
-        //if (!spawnEffect.enabled)
-        //    spawnEffect.enabled = true;
         anim.SetBool(hashRun, true);
 
         float distance = Vector3.Distance(target.position, transform.position);

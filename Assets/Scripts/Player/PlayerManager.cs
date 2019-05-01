@@ -5,7 +5,6 @@ using UnityEngine.AI;
 public class PlayerManager : MonoBehaviour
 {
 	public ItemManager itemManager;
-    public static Transform myPos;
     // Player Specification
     public static float hp = 100f;
     public static float armor = 100;
@@ -35,11 +34,6 @@ public class PlayerManager : MonoBehaviour
         infecteeParent = GameObject.Find("Generator");
         
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void FixedUpdate()
-    {
-        myPos = transform;
     }
 
     public static void ApplyDamage(float damage)

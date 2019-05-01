@@ -16,13 +16,6 @@ public class ChangeRagDoll : MonoBehaviour
         myInfecteeCtrl = GetComponentInChildren<InfecteeCtrl>();
 
     }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            StartCoroutine(ChangeRagdoll());
-        }
-    }
 
     public IEnumerator ChangeRagdoll()
     {

@@ -524,22 +524,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Armature|Idle' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'def.arm.upper.l' has translation animation
-      that will be discarded.\n\t'def.arm.upper.r' has translation animation that
-      will be discarded.\n\nClip 'Armature|Reload' has import animation warnings that
-      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'def.forearm.lower.l' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'def.palm.01.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.palm.02.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.palm.03.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.palm.04.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|Shoot' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'def.arm.upper.l'
-      has translation animation that will be discarded.\n\t'def.arm.upper.r' has translation
-      animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -696,7 +681,7 @@ ModelImporter:
       name: 0123RunStart
       takeName: Armature|RunStart
       firstFrame: 0
-      lastFrame: 6
+      lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -749,37 +734,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Armature|Walk
-      takeName: Armature|Walk
-      firstFrame: 0
-      lastFrame: 29
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
       name: 0123Run
       takeName: Armature|RunStart
-      firstFrame: 6
+      firstFrame: 7.9000006
       lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
@@ -787,7 +744,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

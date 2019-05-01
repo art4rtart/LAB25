@@ -13,7 +13,7 @@ public class BezierCurve : MonoBehaviour
 
 	void LateUpdate()
 	{
-		var pointList = new List<Vector3>();
+        var pointList = new List<Vector3>();
 		for (float ratio = 0; ratio <= 1; ratio += 1.0f / vertexCount)
 		{
 			var tangentLineVertex1 = Vector3.Lerp(point1.position, point2.position, ratio);
@@ -28,7 +28,7 @@ public class BezierCurve : MonoBehaviour
 
 	void OnDrawGizmos()
 	{
-		Gizmos.color = Color.green;
+        Gizmos.color = Color.green;
 		Gizmos.DrawLine(point1.position, point2.position);
 
 		Gizmos.color = Color.cyan;
