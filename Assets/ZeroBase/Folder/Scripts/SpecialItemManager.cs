@@ -43,7 +43,7 @@ public class SpecialItemManager : MonoBehaviour
 	IEnumerator Glitch()
 	{
 		float lerpSpeed = 0;
-		float speed = 0.75f;
+		float speed = 0.35f;
 
 		while(glitch.scanLineJitter + glitch.horizontalShake + glitch.colorDrift >= 0)
 		{
