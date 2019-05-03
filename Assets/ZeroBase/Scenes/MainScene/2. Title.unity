@@ -581,7 +581,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 8487297
-  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -648,7 +648,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -2872,8 +2872,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 1, b: 1, a: 1}
-  m_Color2: {r: 1, g: 1, b: 1, a: 1}
+  m_Color1: {r: 0, g: 0.51214886, b: 1, a: 0}
+  m_Color2: {r: 0, g: 0, b: 0, a: 0.15686275}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0
@@ -3651,7 +3651,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3718,7 +3718,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -4171,8 +4171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 1, b: 1, a: 1}
-  m_Color2: {r: 1, g: 1, b: 1, a: 1}
+  m_Color1: {r: 0, g: 0.51214886, b: 1, a: 0}
+  m_Color2: {r: 0, g: 0, b: 0, a: 0.15686275}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0
@@ -9434,7 +9434,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 8487297
-  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9501,7 +9501,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -11228,8 +11228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 1, b: 1, a: 1}
-  m_Color2: {r: 1, g: 1, b: 1, a: 1}
+  m_Color1: {r: 0, g: 0.51214886, b: 1, a: 0}
+  m_Color2: {r: 0, g: 0, b: 0, a: 0.15686275}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0
@@ -11498,7 +11498,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11565,7 +11565,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -12019,8 +12019,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 1, b: 1, a: 1}
-  m_Color2: {r: 1, g: 1, b: 1, a: 1}
+  m_Color1: {r: 0, g: 0.51214886, b: 1, a: 0.043137256}
+  m_Color2: {r: 0, g: 0, b: 0, a: 0.37254903}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0
@@ -12408,7 +12408,7 @@ MonoBehaviour:
   m_EffectFactor: 0.5
   m_Width: 0.5
   m_Softness: 0.5
-  m_Color: {r: 0, g: 0.25, b: 1, a: 1}
+  m_Color: {r: 0.7924528, g: 0.054236963, b: 0, a: 1}
   m_ColorMode: 0
   m_NoiseTexture: {fileID: 2800000, guid: 3e04c247fb2604af186173fce0bc62de, type: 3}
   m_EffectArea: 0
@@ -12865,7 +12865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.83137256}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13999,7 +13999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.83137256}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14435,7 +14435,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14502,7 +14502,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -16171,7 +16171,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -16238,7 +16238,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -17039,7 +17039,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 8487297
-  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17106,7 +17106,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -17298,7 +17298,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 8487297
-  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17365,7 +17365,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -17665,7 +17665,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 8487297
-  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
+  m_fontColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17732,7 +17732,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -18199,8 +18199,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Direction: 0
-  m_Color1: {r: 1, g: 1, b: 1, a: 1}
-  m_Color2: {r: 1, g: 1, b: 1, a: 1}
+  m_Color1: {r: 0, g: 0.51214886, b: 1, a: 0}
+  m_Color2: {r: 0, g: 0, b: 0, a: 0.15686275}
   m_Color3: {r: 1, g: 1, b: 1, a: 1}
   m_Color4: {r: 1, g: 1, b: 1, a: 1}
   m_Rotation: 0
@@ -20373,7 +20373,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -20440,7 +20440,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
