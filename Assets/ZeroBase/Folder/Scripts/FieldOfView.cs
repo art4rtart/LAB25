@@ -8,7 +8,7 @@ public class FieldOfView : MonoBehaviour
 	[Header("Default")]
 	public bool isTargetLocked = false;
 
-	Boss boss;
+	// Boss boss;
 	[HideInInspector]
 	public GameObject target;
 	public bool isTargetFound = false;
@@ -32,7 +32,7 @@ public class FieldOfView : MonoBehaviour
 
 	void Start()
 	{
-		boss = GetComponent<Boss>();
+		// boss = GetComponent<Boss>();
 		target = GameObject.FindGameObjectWithTag("Player");
 
 		viewMesh = new Mesh();
@@ -96,7 +96,7 @@ public class FieldOfView : MonoBehaviour
 
 					else
 					{
-						StartCoroutine(boss.TurnToFace(target.position));
+						// StartCoroutine(boss.TurnToFace(target.position));
 
 						visibleTargets.Add(target);
 						isTargetLocked = true;
