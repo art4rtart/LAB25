@@ -31,7 +31,7 @@ public class ChangeRagDoll : MonoBehaviour
 
         myInfecteeCtrl.hp = myInfecteeCtrl.maxHp;
 
-        InfecteeGenerator.enemyPool.RemoveItem(transform.gameObject, InfecteeGenerator.enemy, InfecteeGenerator.parent);
+        InfecteeGenerator.enemyPool.RemoveItem(transform.gameObject, null,  InfecteeGenerator.parent);
     }
 
     private void CopyAnimCharacterTransformToRagdoll(Transform origin, Transform rag)

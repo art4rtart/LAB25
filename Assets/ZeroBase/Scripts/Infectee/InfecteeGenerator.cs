@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class InfecteeGenerator : MonoBehaviour
 {
-    public static GameObject enemy;
-    public static GameObject[] stage_EnemyZone;
+    public GameObject enemy;
+    public GameObject enemy2;
+    public GameObject enemy3;
+
+    public GameObject[] stage_EnemyZone;
     public static Transform parent;
     public int generateNum;
     public float generateTime;
@@ -15,19 +18,22 @@ public class InfecteeGenerator : MonoBehaviour
 	public string generatorName = "Generator";
 	public string spawnZoneTag = "SpawnZone";
 
-	private float generateOffset = 1.5f;
     //ObjectPool
     public static MemoryPool enemyPool = new MemoryPool();
- 
+    public static MemoryPool enemyPool2 = new MemoryPool();
+    public static MemoryPool enemyPool3 = new MemoryPool();
+
 
     private void Awake()
     {
-        enemy = GameObject.Find(infecteeName);
         parent = GameObject.Find(generatorName).transform;
     }
     void Start()
     {
         enemyPool.Create(enemy, generateNum, this.transform);
+        enemyPool2.Create(enemy2, generateNum, this.transform);
+        enemyPool3.Create(enemy3, generateNum, this.transform);
+
         stage_EnemyZone = GameObject.FindGameObjectsWithTag(spawnZoneTag);
         StartCoroutine(Generate());
         DontDestroyOnLoad(gameObject);
@@ -36,36 +42,29 @@ public class InfecteeGenerator : MonoBehaviour
     void OnApplicationQuit()
     {
         enemyPool.Dispose();
+        enemyPool2.Dispose();
+        enemyPool3.Dispose();
     }
 
     IEnumerator Generate()
     {
         GameObject infectee;
-        
-        //for (int i = 0; i < generateNum; i++)
-        //{
-        //    infectee = enemyPool.NewItem();
-        //    if (infectee)
-        //    {
-        //        infectee.transform.position = new Vector3(Random.Range(-stage1_EnemyZone[0].rangeX, stage1_EnemyZone[0].rangeX), 1f, Random.Range(-stage1_EnemyZone[0].rangeY, stage1_EnemyZone[0].rangeY)) + stage1_EnemyZone[0].transform.position;
-        //        infectee.transform.SetParent(parent);
-        //    }
-        //}
-
-        if(stage_EnemyZone[0] == null)
-            stage_EnemyZone = GameObject.FindGameObjectsWithTag("SpawnZone");
 
         for (int i = 0; i < stage_EnemyZone.Length; i++)
         {
-            InfecteeZone stageEnemyZone = stage_EnemyZone[i].GetComponent<InfecteeZone>();
-
-
-            infectee = enemyPool.NewItem();
+            int random = Random.Range(0, 3);
+            if (random == 0)
+                infectee = enemyPool.NewItem();
+            else if (random == 1)
+                infectee = enemyPool2.NewItem();
+            else 
+                infectee = enemyPool3.NewItem();
 
             if (infectee)
             {
-                infectee.transform.GetChild(0).position = new Vector3(Random.Range(-stageEnemyZone.rangeX + generateOffset, stageEnemyZone.rangeX - generateOffset), transform.position.y, Random.Range(-stageEnemyZone.rangeZ + generateOffset, stageEnemyZone.rangeZ - generateOffset)) + stageEnemyZone.transform.position + new Vector3(0, 0.4f, 0);
-                infectee.transform.SetParent(parent);
+                infectee.transform.GetChild(0).position = stage_EnemyZone[i].transform.position;
+                
+                //infectee.transform.SetParent(parent);
             }
 
         }

@@ -67,8 +67,8 @@ public class InfecteeCtrl : MonoBehaviour
         target = GameObject.FindWithTag("Player").transform;
         if (isStart)
         {
-            moveToTargetRoutine = StartCoroutine(MoveToTarget());
             anim.applyRootMotion = false;
+            moveToTargetRoutine = StartCoroutine(MoveToTarget());
         }
 
         isStart = true;

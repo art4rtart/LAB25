@@ -11,9 +11,6 @@ public class PlayerManager : MonoBehaviour
     private float maxHp;
     private float maxArmor = 100;
 
-    // Player Stage
-    public static stage currentStage;
-
     // Teleport Attribute
     public bool teleportFlag = false;
     public Vector3 TeleportPos = Vector3.zero;
@@ -29,7 +26,6 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
-        currentStage = stage.STAGE_1;
         maxHp = hp;
         infecteeParent = GameObject.Find("Generator");
         
