@@ -174,7 +174,7 @@ public class InfecteeCtrl : MonoBehaviour
     }
     private void Die()
     {
-        StartCoroutine(myChange.ChangeRagdoll());
+        myChange.StartCoroutine(myChange.ChangeRagdoll());
     }
 
     public void OnCollisionStay(Collision collision)
