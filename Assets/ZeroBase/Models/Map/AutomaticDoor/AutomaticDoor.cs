@@ -5,6 +5,7 @@ using UnityEngine;
 public class AutomaticDoor : MonoBehaviour
 {
 	Animator animator;
+	bool doorOpen;
 
 	void Awake()
 	{
@@ -22,10 +23,20 @@ public class AutomaticDoor : MonoBehaviour
 		else return;
 	}
 
+	void OnTriggerStay(Collider other)
+	{
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee"))
+		{
+			doorOpen = true;
+		}
+
+		else doorOpen = false;
+	}
+
 	float openTime;
 	void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject.CompareTag("Player"))
+		if ((other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee")) && !doorOpen)
 		{
 			StartCoroutine(CloseDoor());
 		}
