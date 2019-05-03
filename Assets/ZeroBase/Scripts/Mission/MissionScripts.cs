@@ -36,6 +36,13 @@ public class MissionScripts : MonoBehaviour
 		}
 	}
 
+	public void Type()
+	{
+		playerMessage.text = "";
+		TimerMessage.text = "";
+		animator.SetBool("Type", true);
+	}
+
 	IEnumerator TypeSentence(string sentence)
 	{
 		playerMessage.text = "";

@@ -33,6 +33,7 @@ TagManager:
   - badBanana
   - agent
   - LimpidB
+  - MissionObject
   layers:
   - Default
   - TransparentFX

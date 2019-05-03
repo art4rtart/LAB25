@@ -49,6 +49,10 @@ public class ItemManager : MonoBehaviour
 	[HideInInspector] public static bool takeDamage;
 	bool isInteracting = false;
 
+	// her0in new
+	public MissionScripts missionScript;
+	public Quest quest;
+
 	void Update()
 	{
 		// define player stat here ---------------------
@@ -123,6 +127,15 @@ public class ItemManager : MonoBehaviour
 
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
 		{
+			if (hit.transform.CompareTag("MissionObject") && quest.openGateMission)
+			{
+				if (hit.transform.name == "GateButton")
+				{
+					if (Input.GetKeyDown(KeyCode.F))
+						quest.OpenGate();
+				}
+			}
+
 			if (hit.transform.CompareTag("Item") && !isInteracting)
 			{
 				isInteracting = true;
@@ -220,5 +233,6 @@ public class ItemManager : MonoBehaviour
 		}
 
 		item.gameObject.SetActive(false);
+		missionScript.Type();
 	}
 }
