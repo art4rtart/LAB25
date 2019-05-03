@@ -125,8 +125,8 @@ SubShader {
 
 		#include "UnityCG.cginc"
 		#include "UnityUI.cginc"
-		#include "Assets/TextMesh Pro/Resources/Shaders/TMPro_Properties.cginc"
-		#include "Assets/TextMesh Pro/Resources/Shaders/TMPro.cginc"
+		#include "Assets/ZeroBase/Plugins/TextMesh Pro/Resources/Shaders/TMPro_Properties.cginc"
+		#include "Assets/ZeroBase/Plugins/TextMesh Pro/Resources/Shaders/TMPro.cginc"
 		
 		#include "Assets/Coffee/UIExtensions/UIEffect/Shaders/UI-Effect.cginc"
 		#pragma shader_feature __ ADD SUBTRACT FILL
