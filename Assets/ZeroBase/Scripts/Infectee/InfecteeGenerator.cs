@@ -11,6 +11,7 @@ public class InfecteeGenerator : MonoBehaviour
     public GameObject[] stage_EnemyZone;
     public static Transform parent;
     public int generateNum;
+    public int generate;
     public float generateTime;
 
     [Header("Names")]
@@ -23,6 +24,7 @@ public class InfecteeGenerator : MonoBehaviour
     public static MemoryPool enemyPool2 = new MemoryPool();
     public static MemoryPool enemyPool3 = new MemoryPool();
 
+    private bool asd = false;
 
     private void Awake()
     {
@@ -38,6 +40,17 @@ public class InfecteeGenerator : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (asd) asd = false;
+            else
+            {
+                asd = true;
+            }
+        }
+    }
     void OnApplicationQuit()
     {
         enemyPool.Dispose();
@@ -52,23 +65,29 @@ public class InfecteeGenerator : MonoBehaviour
         {
             if (stage_EnemyZone[i].activeSelf == true)
             {
-                int random = Random.Range(0, 3);
-                if (random == 0)
-                    infectee = enemyPool.NewItem();
-                else if (random == 1)
-                    infectee = enemyPool2.NewItem();
-                else
-                    infectee = enemyPool3.NewItem();
-
-                if (infectee)
+                for (int j = 0; j < generate; ++j)
                 {
-                    infectee.transform.GetChild(0).position = stage_EnemyZone[i].transform.position;
+                    int random = Random.Range(0, 3);
+                    if (random == 0)
+                        infectee = enemyPool.NewItem();
+                    else if (random == 1)
+                        infectee = enemyPool2.NewItem();
+                    else
+                        infectee = enemyPool3.NewItem();
 
-                    //infectee.transform.SetParent(parent);
+                    if (infectee)
+                    {
+                        infectee.transform.GetChild(0).position = stage_EnemyZone[i].transform.position;
+
+                        //infectee.transform.SetParent(parent);
+                    }
                 }
             }
         }
+
+
         yield return new WaitForSeconds(generateTime);
+
         StartCoroutine(Generate());
     }
 }
