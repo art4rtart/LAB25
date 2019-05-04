@@ -97,7 +97,6 @@ public class RagDollDIeCtrl : MonoBehaviour
         }
         else if (AttackedPos.y > 1.6)
         {
-            Debug.Log("Head");
             headRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
         }
     }

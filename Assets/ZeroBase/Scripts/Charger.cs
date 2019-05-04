@@ -70,7 +70,6 @@ public class Charger : MonoBehaviour
 
 	IEnumerator Fallback()
 	{
-		Debug.Log("I Hit Wall");
 		anim.SetTrigger("HitWall");
 		runSpeed = 0f;
 		runLerpSpeed = 0;
