@@ -118,6 +118,7 @@ public class WeaponCtrl : MonoBehaviour
 			// zemmer.UseZemmer();
         }
 
+		// her0in
         else if (Input.GetKeyDown(KeyCode.T) && itemManager.hasHearter)
         {
             if (anim.GetBool("useHarter"))

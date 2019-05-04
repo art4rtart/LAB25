@@ -5,84 +5,104 @@ using UnityEngine.AI;
 
 public class TInfecteeCtrl : MonoBehaviour
 {
-    //infectee attributes
-    public int hp;
-    public int maxHp;
-    public int damage;
-    public float attackRange;
-    public float recognitionRange;
+	//infectee attributes
+	public int hp;
+	public int maxHp;
+	public int damage;
+	//public float speed;
+	//public int rotSpeed;
+	public float attackRange;
+	public float recognitionRange;
 
-    //functional attributes
-    public bool isAttack;
-    private Transform target;
+	//functional attributes
+	public bool isAttack;
+	private Transform target;
 
-    //anim
-    private Animator anim;
-    private int hashAttack = Animator.StringToHash("isAttack");
-    private int hashRun = Animator.StringToHash("isRun");
-
-    //ref
-    private Coroutine moveToTargetRoutine;
-    private ChangeTRagDoll myChange;
-    private NavMeshAgent nv;
-
-    //enemy -> player directrion
-    private Vector3 toTargetDir = Vector3.zero;
-
-    //flag
-    private bool isStart = false;
-    //public bool nvEnableFlag = true;
-
-    //Idle ref
-    //private bool startTurn = false;
-
-	// her0in
 	public SpawnEffect spawnEffect;
 
+	//anim
+	private Animator anim;
+
+	private int hashAttack1 = Animator.StringToHash("isAttack1");
+	private int hashAttack2 = Animator.StringToHash("isAttack2");
+	private int hashWalk = Animator.StringToHash("isWalk");
+
+	//ref
+	private Coroutine moveToTargetRoutine;
+	private ChangeRagDoll myChange;
+	private NavMeshAgent nv;
+	public RagDollDIeCtrl myRagDollCtrl;
+
+	[HideInInspector]
+	public GameObject hitObject;
+	[HideInInspector]
+	public Vector3 hitPos;
+
+	//enemy -> player directrion
+	private Vector3 toTargetDir = Vector3.zero;
+	private Quaternion idleDir = Quaternion.identity;
+
+	//flag
+	private bool isStart = false;
+
+	//Idle ref
+	//private bool startTurn = false;
+
 	private void Awake()
-    {
-        target = GameObject.FindWithTag("Player").transform;
-        anim = GetComponent<Animator>();
-        maxHp = hp;
-        myChange = GetComponentInParent<ChangeTRagDoll>();
-        nv = GetComponentInParent<NavMeshAgent>();
-        toTargetDir = (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f))).normalized;
+	{
+		target = GameObject.FindWithTag("Player").transform;
+		anim = GetComponent<Animator>();
+		rgbd = GetComponent<Rigidbody>();
+		maxHp = hp;
+		myChange = GetComponentInParent<ChangeRagDoll>();
+		nv = GetComponentInParent<NavMeshAgent>();
+		toTargetDir = (new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f))).normalized;
+		Quaternion toTargetRot = Quaternion.LookRotation(new Vector3(toTargetDir.x, transform.position.y, toTargetDir.z));
+		//transform.rotation = Quaternion.Slerp(transform.rotation, toTargetRot, Time.deltaTime * rotSpeed);
 
-        StartCoroutine(Idle());
-    }
+		StartCoroutine(Idle());
+	}
 
-    private void OnEnable()
-    {
-        //nv.enabled = true;
-        target = GameObject.FindWithTag("Player").transform;
-        if (isStart)
-        {
-            moveToTargetRoutine = StartCoroutine(MoveToTarget());
-            anim.applyRootMotion = false;
-
+	private void OnEnable()
+	{
+		//nv.enabled = true;
+		target = GameObject.FindWithTag("Player").transform;
+		if (isStart)
+		{
+			anim.applyRootMotion = false;
+			moveToTargetRoutine = StartCoroutine(MoveToTarget());
 		}
 
-        isStart = true;
-    }
+		isStart = true;
+	}
 
-    private IEnumerator Idle()
-    {
-        float distance = Vector3.Distance(target.position, transform.position);
 
-        if (distance <= recognitionRange)
-            StartCoroutine(MoveToTarget());
-        else
-        {
-            yield return new WaitForSeconds(0.5f);
-            StartCoroutine(Idle());
-        }
-    }
+	private IEnumerator Idle()
+	{
+
+		float distance = Vector3.Distance(target.position, transform.position);
+
+		if (distance <= recognitionRange)
+		{
+			anim.applyRootMotion = false;
+			StartCoroutine(MoveToTarget());
+		}
+		else
+		{
+			yield return new WaitForSeconds(0.5f);
+			StartCoroutine(Idle());
+		}
+	}
 
 	public IEnumerator MoveToTarget()
 	{
-		if (!spawnEffect.enabled)
-			spawnEffect.enabled = true;
-		anim.SetBool(hashRun, true);
+		//toTargetDir = (target.position - transform.position).normalized;
+		//Quaternion toTargetRot = Quaternion.LookRotation(new Vector3(toTargetDir.x , 0, toTargetDir.z));
+
+		//transform.rotation = Quaternion.Slerp(transform.rotation, toTargetRot, Time.deltaTime * rotSpeed);
+
+		anim.SetBool(hashWalk, true);
+		anim.SetFloat("moveSpeed", nv.velocity.magnitude);
 
 		float distance = Vector3.Distance(target.position, transform.position);
 
@@ -103,62 +123,73 @@ public class TInfecteeCtrl : MonoBehaviour
 		}
 	}
 
-    private void Attack(GameObject hitPerson)
-    {
-        anim.SetBool(hashAttack, true);
+	Rigidbody rgbd;
 
-		StartCoroutine(AttackLoop());
-    }
+	private void Attack(GameObject hitPerson)
+	{
+		int randomAttackPattern = Random.Range(0, 2);
+		hitObject = hitPerson;
+		if (randomAttackPattern == 0)
+			anim.SetBool(hashAttack1, true);
+		else
+			anim.SetBool(hashAttack2, true);
+		anim.SetBool(hashWalk, false);
 
-    private IEnumerator AttackLoop()
-    {
-        yield return new WaitForSeconds(0.5f);
+		StartCoroutine(AttackLoop(hitPerson));
+	}
 
-        anim.SetBool(hashAttack, false);
+	private IEnumerator AttackLoop(GameObject hitPerson)
+	{
+		yield return new WaitForSeconds(1.5f);
 
-		anim.SetBool(hashRun, false);
+		anim.SetBool(hashAttack1, false);
+		anim.SetBool(hashAttack2, false);
 
 		yield return new WaitForSeconds(1.5f);
 
-        float distance = Vector3.Distance(target.position, transform.position);
+		float distance = Vector3.Distance(hitPerson.transform.position, transform.position);
 
-        if (distance <= attackRange && !isAttack)
-            Attack(target.gameObject);
-        else
-            moveToTargetRoutine = StartCoroutine(MoveToTarget());
-    }
+		if (distance <= attackRange && !isAttack)
+			Attack(hitPerson);
+		else
+			moveToTargetRoutine = StartCoroutine(MoveToTarget());
+	}
 
-    public void ApplyDamage(int damage)
-    {
+	public void ApplyDamage(int damage)
+	{
 
-        hp -= damage;
+		hp -= damage;
 
-        if (hp <= 0)
-        {
-            Die();
-            //gameObject.SetActive(false);
-            //hp = 100;
+		if (hp <= 0)
+		{
+			myRagDollCtrl.speed = nv.velocity.magnitude;
+			myRagDollCtrl.AttackedPos = hitPos;
+			Die();
+			//////////////////////////////////////////////////////////ML
+			//isAttack = false;
+			//transform.parent.gameObject.SetActive(false);
+			//hp = 100;
 
-            //////////////////////////////////////////////////////////ML
-            //TestPlayerAgent1.isKill = true;
-        }
-    }
-    private void Die()
-    {
-        myChange.StartCoroutine(myChange.ChangeRagdoll());
-    }
 
-    public void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            if (!isAttack)
-                Attack(collision.gameObject);
-        }
-        //if (collision.gameObject.CompareTag("PlayerAgent"))
-        //{
-        //    if (!isAttack)
-        //        StartCoroutine(Attack(collision.gameObject));
-        //}
-    }
+			//Healing.isKill = true;
+		}
+	}
+	private void Die()
+	{
+		myChange.StartCoroutine(myChange.ChangeRagdoll());
+	}
+
+	public void OnCollisionStay(Collision collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			if (!isAttack)
+				Attack(collision.gameObject);
+		}
+		if (collision.gameObject.CompareTag("PlayerAgent"))
+		{
+			if (!isAttack)
+				Attack(collision.gameObject);
+		}
+	}
 }

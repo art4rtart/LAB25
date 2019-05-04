@@ -345,6 +345,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: 2
+    second: {fileID: 2100000, guid: 0f929170b421b5f4e8ae359478e72aff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: 3
     second: {fileID: 2100000, guid: aeafa35d2794e9f4dbecc3d2ef891db8, type: 2}
   - first:
@@ -379,55 +384,9 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
-      in configuration does not match rotation in animation file:\n\t'def.thigh.lower.l'
-      : rotation error = 0.701867 deg\n\t'def.shin.lower.l' : rotation error = 0.424156
-      deg\n\t'def.thigh.lower.r' : rotation error = 0.701873 deg\n\t'def.shin.lower.r'
-      : rotation error = 0.424157 deg\n"
+    rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Armature|attack1' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'def.thigh.lower.l' is inbetween humanoid
-      transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.thigh.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|attack1_mirror' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'def.thigh.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.thigh.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|attack1_step' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'def.thigh.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.thigh.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|attack2' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'def.thigh.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.thigh.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|attack2_mirror' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'def.thigh.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.thigh.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|Run_forward' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'def.thigh.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.thigh.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
-      'Armature|Run_spot' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'def.thigh.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.l'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.thigh.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'def.shin.lower.r'
-      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
+    animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
