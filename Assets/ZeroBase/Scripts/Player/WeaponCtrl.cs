@@ -82,10 +82,7 @@ public class WeaponCtrl : MonoBehaviour
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         isReloading = info.IsName("Reload");
 
-        if (info.IsName("Reload") && info.normalizedTime >= 1f)
-            isReloaded = true;
-
-        if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
+		if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
             if (currentBullets > 0)
                 Fire();
@@ -285,7 +282,9 @@ public class WeaponCtrl : MonoBehaviour
 
 	public void Reload()
     {
-        bulletsToReload = bulletsPerMag - currentBullets;
+		// her0in
+		isReloaded = true;
+		bulletsToReload = bulletsPerMag - currentBullets;
         if (bulletsToReload > bulletsTotal)
         {
             bulletsToReload = bulletsTotal;

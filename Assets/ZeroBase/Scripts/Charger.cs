@@ -38,7 +38,6 @@ public class Charger : MonoBehaviour
 			{
 				if (islockTarget)
 				{
-					Debug.Log("HIO");
 					Vector3 dirToLookTarget = (target.transform.position - this.transform.position).normalized;
 					float targetAngle = 90 - Mathf.Atan2(dirToLookTarget.z, dirToLookTarget.x) * Mathf.Rad2Deg;
 

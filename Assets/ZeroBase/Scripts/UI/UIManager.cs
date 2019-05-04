@@ -148,6 +148,7 @@ public class UIManager : MonoBehaviour
     {
 		if (weaponController.isReloaded)
 		{
+			Debug.Log("Check");
 			WeaponCtrl.currentBullets += weaponController.bulletsToReload;
 			totalBullet = weaponController.bulletsTotal;
 			bulletProgressbar.value = 1f;
