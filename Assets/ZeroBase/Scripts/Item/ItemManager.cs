@@ -52,6 +52,7 @@ public class ItemManager : MonoBehaviour
 	// her0in new
 	public MissionScripts missionScript;
 	public Quest quest;
+	public bool hasHearter;
 
 	void Update()
 	{
@@ -130,14 +131,6 @@ public class ItemManager : MonoBehaviour
 			if (hit.transform.CompareTag("MissionObject") && quest.openGateMission)
 			{
 				if (hit.transform.name == "GateButton")
-				{
-					if (Input.GetKeyDown(KeyCode.F))
-					{
-						quest.OpenGate(hit.transform.GetChild(0).gameObject);
-					}
-				}
-
-				if (hit.transform.name == "GateButton1")
 				{
 					if (Input.GetKeyDown(KeyCode.F))
 					{
@@ -239,6 +232,10 @@ public class ItemManager : MonoBehaviour
 			case "Biometrics Goggle":
 				StartCoroutine(uiManager.FadeIn());
 				isWearingHelmet = true;
+				break;
+
+			case "Hearter":
+				hasHearter = true;
 				break;
 		}
 

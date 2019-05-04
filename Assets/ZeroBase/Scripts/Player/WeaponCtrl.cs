@@ -61,6 +61,7 @@ public class WeaponCtrl : MonoBehaviour
 	public int bulletsToReload;
 	public ZombieScanner scanner;
 	public Zemmer zemmer;
+	public ItemManager itemManager;
 
 	private void Awake()
     {
@@ -117,10 +118,11 @@ public class WeaponCtrl : MonoBehaviour
 			// zemmer.UseZemmer();
         }
 
-        else if (Input.GetKeyDown(KeyCode.T))
+        else if (Input.GetKeyDown(KeyCode.T) && itemManager.hasHearter)
         {
             if (anim.GetBool("useHarter"))
                 anim.SetBool("useHarter", false);
+
             else
                 anim.SetBool("useHarter", true);
         }

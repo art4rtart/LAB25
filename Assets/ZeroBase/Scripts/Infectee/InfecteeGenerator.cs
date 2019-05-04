@@ -28,6 +28,7 @@ public class InfecteeGenerator : MonoBehaviour
     {
         parent = GameObject.Find(generatorName).transform;
     }
+
     void Start()
     {
         enemyPool.Create(enemy, generateNum, this.transform);

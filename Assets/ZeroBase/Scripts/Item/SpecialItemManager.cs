@@ -8,6 +8,7 @@ public class SpecialItemManager : MonoBehaviour
 	public Animator heraterAnim;
 	public GameObject heaterScreen;
 	public AnalogGlitch glitch;
+	public bool hasHearter;
 
 	bool heraterActivateTrigger;
 	void Start()
