@@ -80,8 +80,7 @@ public class UIManager : MonoBehaviour
         {
             missionAnimator.SetBool("MissionStart", isMissionStart);
 
-            if (missionAnimator.GetCurrentAnimatorStateInfo(0).IsName("MissionStart")
-                && missionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f)
+            if (missionAnimator.GetCurrentAnimatorStateInfo(0).IsName("MissionStart") && missionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
                 missionTime -= Time.deltaTime;
         }
 
@@ -129,7 +128,6 @@ public class UIManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(missionTime / 60F);
         int seconds = Mathf.FloorToInt(missionTime - minutes * 60);
         string time = string.Format("{0:0}:{1:00}", minutes, seconds);
-
         missionTimeText.text = time.ToString();
         missionMesseageText.text = missionMessage;
     }
@@ -148,11 +146,10 @@ public class UIManager : MonoBehaviour
 
     void DeveloperMode()
     {
-		int usedBullet = (maxBullet - WeaponCtrl.currentBullets);
 		if (weaponController.isReloaded)
 		{
-			totalBullet -= usedBullet;
-			WeaponCtrl.currentBullets = maxBullet;
+			WeaponCtrl.currentBullets += weaponController.bulletsToReload;
+			totalBullet = weaponController.bulletsTotal;
 			bulletProgressbar.value = 1f;
 			weaponController.isReloaded = false;
 		}

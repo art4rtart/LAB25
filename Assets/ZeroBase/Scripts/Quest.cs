@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
-	public GameObject bioGoggle;
-	public GameObject ak47;
-	public GameObject adrenaline;
-	public GameObject vest;
-	public GameObject health;
-
-	public GameObject Gate;
-
 	public bool openGateMission = true;
 
-	public void OpenGate()
+	public void OpenGate(GameObject Gate)
 	{
 		Debug.Log("Open the Gate");
 		Gate.GetComponent<Animator>().SetTrigger("OpenAndClose");

@@ -20,19 +20,34 @@ public class Charger : MonoBehaviour
 		StartCoroutine(FindAndScream(target.transform.position));
 	}
 
+	bool islockTarget = true;
 	void Update()
 	{
 		AnimatorStateInfo animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
 		if (animStateInfo.IsName("Run"))
 		{
-			Vector3 dirToLookTarget = (target.transform.position - this.transform.position).normalized;
-			float targetAngle = 90 - Mathf.Atan2(dirToLookTarget.z, dirToLookTarget.x) * Mathf.Rad2Deg;
+			float distance = Vector3.Distance(this.transform.position, target.transform.position);
 
-			if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle)) > 0.05f)
+			if (distance < 8f)
 			{
-				float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetAngle, lookTurnSpeed * Time.deltaTime);
-				transform.eulerAngles = Vector3.up * angle;
+				islockTarget = false;
+			}
+
+			else
+			{
+				if (islockTarget)
+				{
+					Debug.Log("HIO");
+					Vector3 dirToLookTarget = (target.transform.position - this.transform.position).normalized;
+					float targetAngle = 90 - Mathf.Atan2(dirToLookTarget.z, dirToLookTarget.x) * Mathf.Rad2Deg;
+
+					if (Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.y, targetAngle)) > 0.05f)
+					{
+						float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetAngle, lookTurnSpeed * Time.deltaTime);
+						transform.eulerAngles = Vector3.up * angle;
+					}
+				}
 			}
 
 			runSpeed = Mathf.Lerp(0, 15f, runLerpSpeed);
@@ -104,6 +119,7 @@ public class Charger : MonoBehaviour
 	public IEnumerator TurnToFace(Vector3 lookTarget)
 	{
 		fallbackTrigger = false;
+		islockTarget = true;
 
 		Vector3 dirToLookTarget = (lookTarget - transform.position).normalized;
 		float targetAngle = 90 - Mathf.Atan2(dirToLookTarget.z, dirToLookTarget.x) * Mathf.Rad2Deg;

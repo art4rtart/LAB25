@@ -132,7 +132,17 @@ public class ItemManager : MonoBehaviour
 				if (hit.transform.name == "GateButton")
 				{
 					if (Input.GetKeyDown(KeyCode.F))
-						quest.OpenGate();
+					{
+						quest.OpenGate(hit.transform.GetChild(0).gameObject);
+					}
+				}
+
+				if (hit.transform.name == "GateButton1")
+				{
+					if (Input.GetKeyDown(KeyCode.F))
+					{
+						quest.OpenGate(hit.transform.GetChild(0).gameObject);
+					}
 				}
 			}
 
@@ -230,6 +240,26 @@ public class ItemManager : MonoBehaviour
 				StartCoroutine(uiManager.FadeIn());
 				isWearingHelmet = true;
 				break;
+		}
+
+		if(item.transform.name == "Biometrics Goggle")
+		{
+
+		}
+
+		else if (item.transform.name == "Biometrics Goggle")
+		{
+
+		}
+
+		else if (item.transform.name == "Biometrics Goggle")
+		{
+
+		}
+
+		else if (item.transform.name == "Gate Card Key")
+		{
+
 		}
 
 		item.gameObject.SetActive(false);

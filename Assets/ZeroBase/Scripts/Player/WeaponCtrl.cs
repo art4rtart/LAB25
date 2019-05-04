@@ -56,6 +56,9 @@ public class WeaponCtrl : MonoBehaviour
 
     private int useWard = 0;
     private Transform fireTraceParent;
+
+	// her0in
+	public int bulletsToReload;
 	public ZombieScanner scanner;
 	public Zemmer zemmer;
 
@@ -128,13 +131,13 @@ public class WeaponCtrl : MonoBehaviour
         else if ( useWard == 1 && Input.GetMouseButtonDown(1))
         {
             anim.SetInteger("useWard", 2);
+
+			// her0in
 			scanner.ScanDistance = 0;
 			scanner.scanning = true;
 
 			useWard = 0;
         }
-
-
 
         if (fireTimer < fireRate)
             fireTimer += Time.deltaTime;
@@ -280,14 +283,13 @@ public class WeaponCtrl : MonoBehaviour
         }
     }
 
-    public void Reload()
+	public void Reload()
     {
-        int bulletsToReload = bulletsPerMag - currentBullets;
+        bulletsToReload = bulletsPerMag - currentBullets;
         if (bulletsToReload > bulletsTotal)
         {
             bulletsToReload = bulletsTotal;
         }
-        currentBullets += bulletsToReload;
         bulletsTotal -= bulletsToReload;
     }
 
