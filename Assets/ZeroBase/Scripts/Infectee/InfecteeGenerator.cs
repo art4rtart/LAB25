@@ -67,7 +67,7 @@ public class InfecteeGenerator : MonoBehaviour
             {
                 for (int j = 0; j < generate; ++j)
                 {
-                    int random = Random.Range(0, 3);
+                    int random = 2;
                     if (random == 0)
                         infectee = enemyPool.NewItem();
                     else if (random == 1)

@@ -37,12 +37,12 @@ public class RagDollDIeCtrl : MonoBehaviour
         {
             if (AttackedPos.x <= 0)
             {
-                Debug.Log("LeftShit");
+                //Debug.Log("LeftShit");
                 leftShinRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
             else
             {
-                Debug.Log("RightShit");
+                //Debug.Log("RightShit");
                 rightShinRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
         }
@@ -50,12 +50,12 @@ public class RagDollDIeCtrl : MonoBehaviour
         {
             if (AttackedPos.x <= 0)
             {
-                Debug.Log("LeftThi");
+                //Debug.Log("LeftThi");
                 leftThighRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
             else
             {
-                Debug.Log("RightThi");
+                //Debug.Log("RightThi");
                 rightThighRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
         }
@@ -63,17 +63,17 @@ public class RagDollDIeCtrl : MonoBehaviour
         {
             if (AttackedPos.x <= -0.1)
             {
-                Debug.Log("LeftFore");
+                //Debug.Log("LeftFore");
                 leftForeArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
             else if (AttackedPos.x >= 0.1)
             {
-                Debug.Log("RightFore");
+                //Debug.Log("RightFore");
                 rightForeArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
             else
             {
-                Debug.Log("Hip");
+                //Debug.Log("Hip");
                 hipRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
         }
@@ -81,17 +81,17 @@ public class RagDollDIeCtrl : MonoBehaviour
         {
             if (AttackedPos.x <= -0.1)
             {
-                Debug.Log("LeftArm");
+                //Debug.Log("LeftArm");
                 leftArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
             else if (AttackedPos.x >= 0.1)
             {
-                Debug.Log("RightArm");
+                //Debug.Log("RightArm");
                 rightArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
             else
             {
-                Debug.Log("Spine");
+                //Debug.Log("Spine");
                 spineRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
         }
