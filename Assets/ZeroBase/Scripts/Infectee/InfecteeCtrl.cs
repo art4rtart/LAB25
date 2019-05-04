@@ -74,7 +74,7 @@ public class InfecteeCtrl : MonoBehaviour
         isStart = true;
     }
 
-
+	public SpawnEffect spawnEffect;
     private IEnumerator Idle()
     {
 
@@ -82,7 +82,10 @@ public class InfecteeCtrl : MonoBehaviour
 
         if (distance <= recognitionRange)
         {
-            anim.applyRootMotion = false;
+			if(this.transform.parent.name == "TInfectee")
+				spawnEffect.enabled = true;
+
+			anim.applyRootMotion = false;
             StartCoroutine(MoveToTarget());
         }
         else
@@ -104,10 +107,19 @@ public class InfecteeCtrl : MonoBehaviour
 
         float distance = Vector3.Distance(target.position, transform.position);
 
+		if (nv.enabled && nv.remainingDistance < 30f && nv.remainingDistance != 0)
+		{
+			Debug.Log(nv.remainingDistance);
+			if (this.transform.parent.name == "TInfectee(Clone)")
+			{
+				spawnEffect.enabled = true;
+			}
+		}
 
-        if (distance <= attackRange && !isAttack)
+		if (distance <= attackRange && !isAttack)
             Attack(target.gameObject);
-        else
+
+		else
         {
             if (nv.enabled)
                 nv.SetDestination(target.transform.position);

@@ -143,7 +143,15 @@ public class ItemManager : MonoBehaviour
 		{
 			if (hit.transform.CompareTag("MissionObject") && quest.openGateMission)
 			{
-				if (hit.transform.name == "GateButton")
+				if (hit.transform.name == "GateButtonTypeB")
+				{
+					if (Input.GetKeyDown(KeyCode.F))
+					{
+						quest.OpenAndCloseGate(hit.transform.GetChild(0).gameObject);
+					}
+				}
+
+				else	if (hit.transform.name == "GateButton")
 				{
                     if (Input.GetKeyDown(KeyCode.F))
                     {

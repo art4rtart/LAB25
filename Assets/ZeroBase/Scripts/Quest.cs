@@ -6,33 +6,37 @@ public class Quest : MonoBehaviour
 {
 	public bool openGateMission = true;
 
-	public void OpenGate(GameObject Gate)
+	public void OpenAndCloseGate(GameObject Gate)
 	{
-		Debug.Log("Open the Gate");
 		Gate.GetComponent<Animator>().SetTrigger("OpenAndClose");
 	}
 
-	void OnTriggerEnter(Collider other)
+	public void OpenGate(GameObject Gate)
 	{
-		if(other.gameObject.CompareTag("Player"))
-		{
-			Debug.Log("Enter");
-		}
+		Gate.GetComponent<Animator>().SetBool("GateOpen", true);
 	}
 
-	void OnTriggerStay(Collider other)
-	{
-		if (other.gameObject.CompareTag("Player"))
-		{
-			Debug.Log("Stay");
-		}
-	}
+	//void OnTriggerEnter(Collider other)
+	//{
+	//	if(other.gameObject.CompareTag("Player"))
+	//	{
+	//		Debug.Log("Enter");
+	//	}
+	//}
 
-	void OnTriggerExit(Collider other)
-	{
-		if (other.gameObject.CompareTag("Player"))
-		{
-			Debug.Log("Exit");
-		}
-	}
+	//void OnTriggerStay(Collider other)
+	//{
+	//	if (other.gameObject.CompareTag("Player"))
+	//	{
+	//		Debug.Log("Stay");
+	//	}
+	//}
+
+	//void OnTriggerExit(Collider other)
+	//{
+	//	if (other.gameObject.CompareTag("Player"))
+	//	{
+	//		Debug.Log("Exit");
+	//	}
+	//}
 }
