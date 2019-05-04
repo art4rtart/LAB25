@@ -71,11 +71,12 @@ public class Charger : MonoBehaviour
 	IEnumerator Fallback()
 	{
 		anim.SetTrigger("HitWall");
+		anim.SetBool("Run", false);
 		runSpeed = 0f;
 		runLerpSpeed = 0;
 
 		float tempSpeed = 4f;
-		float lerpSpeed = 1.4f;
+		float lerpSpeed = 1.25f;
 		float lerpTime = 0;
 
 		while (tempSpeed > 0f)
@@ -91,7 +92,7 @@ public class Charger : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 
 		rgbd.constraints = RigidbodyConstraints.None;
-		rgbd.constraints = RigidbodyConstraints.FreezePositionY;
+		rgbd.constraints = RigidbodyConstraints.FreezeRotation;
 
 		anim.SetTrigger("Turn");
 		StopAllCoroutines();
