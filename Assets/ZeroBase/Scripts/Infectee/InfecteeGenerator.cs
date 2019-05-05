@@ -9,22 +9,19 @@ public class InfecteeGenerator : MonoBehaviour
     public GameObject enemy3;
 
     public GameObject[] stage_EnemyZone;
-    public static Transform parent;
+    private Transform parent;
     public int generateNum;
     public int generate;
     public float generateTime;
 
-    [Header("Names")]
-    public string infecteeName = "Infectee";
     public string generatorName = "Generator";
-    public string spawnZoneTag = "SpawnZone";
 
     //ObjectPool
-    public static MemoryPool enemyPool = new MemoryPool();
-    public static MemoryPool enemyPool2 = new MemoryPool();
-    public static MemoryPool enemyPool3 = new MemoryPool();
+    public MemoryPool enemyPool = new MemoryPool();
+    public MemoryPool enemyPool2 = new MemoryPool();
+    public MemoryPool enemyPool3 = new MemoryPool();
 
-    private bool asd = false;
+    //private bool asd = false;
 
     private void Awake()
     {
@@ -40,17 +37,17 @@ public class InfecteeGenerator : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (asd) asd = false;
-            else
-            {
-                asd = true;
-            }
-        }
-    }
+    //private void Update() // 트리거용
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        if (asd) asd = false;
+    //        else
+    //        {
+    //            asd = true;
+    //        }
+    //    }
+    //}
     void OnApplicationQuit()
     {
         enemyPool.Dispose();
@@ -67,7 +64,8 @@ public class InfecteeGenerator : MonoBehaviour
             {
                 for (int j = 0; j < generate; ++j)
                 {
-                    int random = 2;
+                    int random = Random.Range(0,3);
+
                     if (random == 0)
                         infectee = enemyPool.NewItem();
                     else if (random == 1)
@@ -75,12 +73,9 @@ public class InfecteeGenerator : MonoBehaviour
                     else
                         infectee = enemyPool3.NewItem();
 
-                    if (infectee)
-                    {
-                        infectee.transform.GetChild(0).position = stage_EnemyZone[i].transform.position;
 
-                        //infectee.transform.SetParent(parent);
-                    }
+                    if (infectee)
+                        infectee.transform.GetChild(0).position = stage_EnemyZone[i].transform.position;
                 }
             }
         }

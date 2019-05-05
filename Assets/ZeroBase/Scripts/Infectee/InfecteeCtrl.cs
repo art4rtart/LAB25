@@ -109,7 +109,7 @@ public class InfecteeCtrl : MonoBehaviour
 
 		if (nv.enabled && nv.remainingDistance < 30f && nv.remainingDistance != 0)
 		{
-			Debug.Log(nv.remainingDistance);
+			//Debug.Log(nv.remainingDistance);
 			if (this.transform.parent.name == "TInfectee(Clone)")
 			{
 				spawnEffect.enabled = true;

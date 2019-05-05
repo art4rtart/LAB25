@@ -7,14 +7,14 @@ public class ChangeRagDoll : MonoBehaviour
 {
     public GameObject charObj;
     public GameObject ragdollObj;
-
+    private InfecteeGenerator generator;
 
     private InfecteeCtrl myInfecteeCtrl;
 
     private void Start()
     {
         myInfecteeCtrl = GetComponentInChildren<InfecteeCtrl>();
-
+        generator = GameObject.Find("Generator").GetComponent<InfecteeGenerator>();
     }
 
     public IEnumerator ChangeRagdoll()
@@ -30,8 +30,13 @@ public class ChangeRagDoll : MonoBehaviour
         ragdollObj.gameObject.SetActive(false);
 
         myInfecteeCtrl.hp = myInfecteeCtrl.maxHp;
-
-        InfecteeGenerator.enemyPool.RemoveItem(transform.gameObject, null,  InfecteeGenerator.parent);
+        
+        if( transform.name[0] == 'A')
+            generator.enemyPool.RemoveItem(transform.gameObject, null, generator.parent);
+        else if (transform.name[0] == 'B')
+            generator.enemyPool2.RemoveItem(transform.gameObject, null, generator.parent);
+        else if (transform.name[0] == 'T')
+            generator.enemyPool3.RemoveItem(transform.gameObject, null, generator.parent);
     }
 
     private void CopyAnimCharacterTransformToRagdoll(Transform origin, Transform rag)
