@@ -51,6 +51,7 @@ MonoBehaviour:
   myRagDollCtrl: {fileID: 1277160227011795841}
   hitObject: {fileID: 0}
   hitPos: {x: 0, y: 0, z: 0}
+  spawnEffect: {fileID: 0}
 --- !u!195 &1277160226830242189
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -60,7 +61,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1277160226580032627}
   m_Enabled: 0
   m_AgentTypeID: 0
-  m_Radius: 0.3
+  m_Radius: 1
   m_Speed: 7
   m_Acceleration: 10
   avoidancePriority: 50
@@ -84,7 +85,7 @@ GameObject:
   - component: {fileID: 1277160226867908890}
   - component: {fileID: 1277160226867908891}
   m_Layer: 0
-  m_Name: Infectee2
+  m_Name: BInfectee
   m_TagString: Infectee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

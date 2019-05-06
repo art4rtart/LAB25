@@ -53,6 +53,7 @@ public class ItemManager : MonoBehaviour
 	public MissionScripts missionScript;
 	public Quest quest;
 	public bool hasHearter;
+	public Elevator elevator;
 
     // reference Spawnzone
     private int flag = 0;
@@ -143,7 +144,23 @@ public class ItemManager : MonoBehaviour
 		{
 			if (hit.transform.CompareTag("MissionObject") && quest.openGateMission)
 			{
-				if (hit.transform.name == "GateButtonTypeB")
+				if (hit.transform.name == "ElevatorButton")
+				{
+					if (Input.GetKeyDown(KeyCode.F))
+					{
+						StartCoroutine(elevator.MoveElevator());
+					}
+				}
+
+				if (hit.transform.name == "ElevatorButtonTypeB")
+				{
+					if (Input.GetKeyDown(KeyCode.F))
+					{
+						StartCoroutine(elevator.CloseElevator());
+					}
+				}
+
+				else if (hit.transform.name == "GateButtonTypeB")
 				{
 					if (Input.GetKeyDown(KeyCode.F))
 					{
