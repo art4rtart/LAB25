@@ -66,6 +66,7 @@ public class TeamManager : MonoBehaviour
 
 		if (showTeamMateMessage)
 		{
+			Debug.Log(sliderTimeCount);
 			sliderTimeCount -= Time.deltaTime;
 			teamTimeCountSlider.value = sliderTimeCount * 0.33f;
 

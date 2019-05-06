@@ -32,11 +32,11 @@ public class ChangeRagDoll : MonoBehaviour
         myInfecteeCtrl.hp = myInfecteeCtrl.maxHp;
         
         if( transform.name[0] == 'A')
-            generator.enemyPool.RemoveItem(transform.gameObject, null, generator.parent);
+            generator.enemyPool.RemoveItem(transform.gameObject, null, generator.transform.parent);
         else if (transform.name[0] == 'B')
-            generator.enemyPool2.RemoveItem(transform.gameObject, null, generator.parent);
+            generator.enemyPool2.RemoveItem(transform.gameObject, null, generator.transform.parent);
         else if (transform.name[0] == 'T')
-            generator.enemyPool3.RemoveItem(transform.gameObject, null, generator.parent);
+            generator.enemyPool3.RemoveItem(transform.gameObject, null, generator.transform.parent);
     }
 
     private void CopyAnimCharacterTransformToRagdoll(Transform origin, Transform rag)

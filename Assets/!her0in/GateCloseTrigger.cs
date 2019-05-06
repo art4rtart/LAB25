@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class GateCloseTrigger : MonoBehaviour
 {
+	public string gateType;
 	public Animator gateAnimator;
+	public GameObject[] deactivateSectors;
+	public GameObject[] activateSectors;
+
+	public SetMaterialValue setMaterialValue;
+
 	bool closed = false;
-	public GameObject sector;
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.CompareTag("Player") && !closed)
 		{
-			gateAnimator.SetBool("GateOpen", false);
-			sector.SetActive(false);
+			if (gateType == "Dynamic")
+			{
+				gateAnimator.SetTrigger("Close");
+			}
+
+			else
+			{
+				gateAnimator.SetBool("GateOpen", false);
+			}
+
+			for (int i = 0; i < deactivateSectors.Length; i++)
+				deactivateSectors[i].SetActive(false);
+
+			for (int i = 0; i < activateSectors.Length; i++)
+				activateSectors[i].SetActive(true);
+
+			setMaterialValue.DefaultTrigger();
+
 			closed = true;
 		}
 	}

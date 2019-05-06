@@ -166,12 +166,21 @@ public class WeaponCtrl : MonoBehaviour
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
         {
             InfecteeCtrl enemyCtrl = hit.transform.GetComponent<InfecteeCtrl>();
-            Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+			Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
 
-            //Debug.Log(hit.transform.gameObject.name);
+			//Debug.Log(hit.transform.gameObject.name);
+
+			//her0in
+			Charger charger = hit.transform.GetComponent<Charger>();
+			if (hit.transform.gameObject.name == "BossZombie")
+			{
+				charger.ApplyDamage(damage);
+				StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
+			}
 
             if (hit.transform.gameObject.tag != "Infectee")
                 StartCoroutine(FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+
             else
             {
                 if (enemyCtrl && enemyCtrl.hp > 0)

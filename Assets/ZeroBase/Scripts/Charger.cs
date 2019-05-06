@@ -133,4 +133,26 @@ public class Charger : MonoBehaviour
 		anim.SetBool("Run", true);
 		yield return null;
 	}
+
+
+
+	public float hp;
+	[HideInInspector]
+	public Vector3 hitPos;
+
+	public void ApplyDamage(int damage)
+	{
+		hp -= damage;
+
+		if (hp <= 0)
+		{
+			Die();
+		}
+	}
+
+	private void Die()
+	{
+		Debug.Log("Die");
+		anim.SetTrigger("Die");
+	}
 }

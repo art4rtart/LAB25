@@ -17,12 +17,14 @@ public class SetMaterialValue : MonoBehaviour
 
 	public void TransparentTrigger()
     {
+		StopAllCoroutines();
 		TransParent = ChangeToTransparent();
 		StartCoroutine(TransParent);
     }
 
 	public void DefaultTrigger()
 	{
+		StopAllCoroutines();
 		Default = ChangeToDefault();
 		StartCoroutine(Default);
 	}
