@@ -5,7 +5,8 @@ Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: UI-Effect-HSV
   m_Shader: {fileID: 4800000, guid: 7fc74090480c84f8b977cfcd55cdfe82, type: 3}
   m_ShaderKeywords: 
