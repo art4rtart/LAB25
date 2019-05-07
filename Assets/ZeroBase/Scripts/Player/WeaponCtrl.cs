@@ -62,6 +62,9 @@ public class WeaponCtrl : MonoBehaviour
 	public ZombieScanner scanner;
 	public Zemmer zemmer;
 	public ItemManager itemManager;
+	public bool useAdrenaline;
+	public bool useMedicalKit;
+	int specialItemIndex;
 
 	private void Awake()
     {
@@ -95,50 +98,73 @@ public class WeaponCtrl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
             DoReload();
 
-        if (Input.GetKeyDown(KeyCode.H))
+		//her0in -------------------------------------------------------------------
+
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			anim.SetBool("Ward", false);
+			anim.SetBool("useHarter", false);
+			anim.SetTrigger("default");
+			specialItemIndex = 0;
+		}
+
+		else if (Input.GetKeyDown(KeyCode.Alpha2) && !useMedicalKit &&!useAdrenaline && itemManager.medicalKitCount > 0)
         {
+			anim.SetBool("Ward", false);
+			specialItemIndex = 0;
+			useMedicalKit = true;
             anim.CrossFadeInFixedTime("Heal", 0.01f);
-        }
-        else if (Input.GetKeyDown(KeyCode.Y))
+		}
+
+		else if (Input.GetKeyDown(KeyCode.Alpha3) && !useMedicalKit && !useAdrenaline && itemManager.adrenalineCount > 0)
+		{
+			useAdrenaline = true;
+			// please add adtrenaline animation
+			// anim.CrossFadeInFixedTime("Adrenaline", 0.01f);
+		}
+
+		else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if( useWard == 0 )
-            {
-                useWard = 1;
-                anim.SetInteger("useWard", 1);
-            }
-            else if ( useWard == 1)
-            {
-                useWard = 0;
-                anim.SetInteger("useWard", 0);
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.J))
+			specialItemIndex++;
+
+			if (specialItemIndex % 2 == 1)
+			{
+				anim.SetBool("useHarter", false);
+				anim.SetBool("Ward", true);
+			}
+
+			else if (specialItemIndex % 2 == 0)
+			{
+				if (itemManager.hasHearter)
+				{
+					anim.SetBool("Ward", false);
+					anim.SetTrigger("itemChange");
+					anim.SetBool("useHarter", true);
+				}
+
+				else
+					specialItemIndex--;
+			}
+		}
+
+		else if (Input.GetKeyDown(KeyCode.J))
         {
             anim.CrossFadeInFixedTime("Jammer", 0.01f);
 			// zemmer.UseZemmer();
         }
 
-		// her0in
-        else if (Input.GetKeyDown(KeyCode.T) && itemManager.hasHearter)
+        if ( anim.GetBool("Ward") && Input.GetMouseButtonDown(1))
         {
-            if (anim.GetBool("useHarter"))
-                anim.SetBool("useHarter", false);
+			anim.SetTrigger("useWard");
 
-            else
-                anim.SetBool("useHarter", true);
-        }
-
-        else if ( useWard == 1 && Input.GetMouseButtonDown(1))
-        {
-            anim.SetInteger("useWard", 2);
-
-			// her0in
 			scanner.ScanDistance = 0;
 			scanner.scanning = true;
+			anim.SetBool("Ward", false);
+			anim.SetTrigger("default");
+			specialItemIndex = 0;
+		}
 
-			useWard = 0;
-        }
-
+		// ----------------------------------------------------------------------
         if (fireTimer < fireRate)
             fireTimer += Time.deltaTime;
 

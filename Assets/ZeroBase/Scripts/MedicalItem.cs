@@ -32,6 +32,7 @@ public class MedicalItem : MonoBehaviour
 	public PostProcessingProfile ppProfile;
 	public Beat beat;
 	public PlayerCtrl playerCtrl;
+	public WeaponCtrl weaponController;
 
 	void Start()
     {
@@ -41,16 +42,18 @@ public class MedicalItem : MonoBehaviour
 
     void Update()
     {
-		if (Input.GetMouseButtonDown(0) && itemManager.readyToUseAdrenaline && itemManager.adrenalineCount > 0)
-		{
-			UseMedicalItem(adrenalineUseMessage, adrenalineUseTime);
-			itemManager.adrenalineCount--;
-		}
-
-		if (Input.GetMouseButtonDown(0) && itemManager.readyToUseKit && itemManager.medicalKitCount > 0)
+		// if (Input.GetMouseButtonDown(0) && itemManager.readyToUseAdrenaline && itemManager.adrenalineCount > 0)
+		if (weaponController.useMedicalKit && itemManager.medicalKitCount > 0)
 		{
 			UseMedicalItem(medicalKitUseMessage, medicalKitUseTime);
 			itemManager.medicalKitCount--;
+		}
+
+		//	if (Input.GetMouseButtonDown(0) && itemManager.readyToUseKit && itemManager.medicalKitCount > 0)
+		if (weaponController.useAdrenaline && itemManager.adrenalineCount > 0)
+		{
+			UseMedicalItem(adrenalineUseMessage, adrenalineUseTime);
+			itemManager.adrenalineCount--;
 		}
 
 		UseAnimation();
@@ -95,6 +98,8 @@ public class MedicalItem : MonoBehaviour
 
 			if (animator.GetCurrentAnimatorStateInfo(0).IsName("UseMedicalItemFadeOut") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.99f)
 			{
+				weaponController.useAdrenaline = false;
+				weaponController.useMedicalKit = false;
 				medicalItemActivateTime = 5f;
 				itemManager.isHoldingSomething = true;
 			}
