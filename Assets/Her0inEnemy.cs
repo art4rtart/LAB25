@@ -19,6 +19,7 @@ public class Her0inEnemy : MonoBehaviour
     {
 		anim = GetComponent<Animator>();
 		navMesh = GetComponent<NavMeshAgent>();
+		myChange = GetComponentInParent<ChangeRagDoll>();
 	}
 
 	Transform target;
@@ -75,27 +76,51 @@ public class Her0inEnemy : MonoBehaviour
 	}
 
 	bool m = false;
-
 	bool corTrigger;
 
 	IEnumerator Attack()
 	{
-		Debug.Log("HI");
 		anim.SetTrigger("Attack");
 		yield return new WaitForSeconds(1f);
 
 		navMesh.SetDestination(target.transform.position);
-		Debug.Log(navMesh.remainingDistance);
 
 		if (navMesh.remainingDistance <= navMesh.stoppingDistance)
 			StartCoroutine(Attack());
+
 		else
-			StopAllCoroutines();
+			yield return null;
+
+		yield return null;
 	}
 
-	private void OnDrawGizmosSelected()
+	//private void OnDrawGizmosSelected()
+	//{
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawWireSphere(transform.position, findRadius);
+	//}
+
+	//infectee attributes
+	public int hp;
+	public int maxHp;
+	private ChangeRagDoll myChange;
+	public RagDollDIeCtrl myRagDollCtrl;
+	public Vector3 hitPos;
+
+	public void ApplyDamage(int damage)
 	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, findRadius);
+		hp -= damage;
+
+		if (hp <= 0)
+		{
+			myRagDollCtrl.speed = navMesh.velocity.magnitude;
+			myRagDollCtrl.AttackedPos = hitPos;
+			Die();
+		}
+	}
+
+	private void Die()
+	{
+		myChange.StartCoroutine(myChange.ChangeRagdoll());
 	}
 }

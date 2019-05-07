@@ -58,13 +58,14 @@ public class InfecteeGenerator : MonoBehaviour
     IEnumerator Generate()
     {
         GameObject infectee;
+
         for (int i = 0; i < stage_EnemyZone.Length; i++)
         {
             if (stage_EnemyZone[i].activeSelf == true)
             {
                 for (int j = 0; j < generate; ++j)
                 {
-                    int random = Random.Range(0,3);
+					int random = 0; // Random.Range(0,3);
 
                     if (random == 0)
                         infectee = enemyPool.NewItem();
@@ -73,13 +74,11 @@ public class InfecteeGenerator : MonoBehaviour
                     else
                         infectee = enemyPool3.NewItem();
 
-
-                    if (infectee)
+					if (infectee)
                         infectee.transform.GetChild(0).position = stage_EnemyZone[i].transform.position;
                 }
             }
         }
-
 
         yield return new WaitForSeconds(generateTime);
 

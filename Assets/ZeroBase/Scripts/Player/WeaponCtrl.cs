@@ -197,10 +197,10 @@ public class WeaponCtrl : MonoBehaviour
 
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
         {
-            InfecteeCtrl enemyCtrl = hit.transform.GetComponent<InfecteeCtrl>();
+			Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
 			Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
 
-			//Debug.Log(hit.transform.gameObject.name);
+			Debug.Log(hit.transform.gameObject.tag);
 
 			//her0in
 			Charger charger = hit.transform.GetComponent<Charger>();

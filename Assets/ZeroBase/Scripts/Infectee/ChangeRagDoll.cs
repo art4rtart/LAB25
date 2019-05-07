@@ -9,11 +9,11 @@ public class ChangeRagDoll : MonoBehaviour
     public GameObject ragdollObj;
     private InfecteeGenerator generator;
 
-    private InfecteeCtrl myInfecteeCtrl;
+    private Her0inEnemy myInfecteeCtrl;
 
     private void Start()
     {
-        myInfecteeCtrl = GetComponentInChildren<InfecteeCtrl>();
+        myInfecteeCtrl = GetComponentInChildren<Her0inEnemy>();
         generator = GameObject.Find("Generator").GetComponent<InfecteeGenerator>();
     }
 
