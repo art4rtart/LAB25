@@ -119,8 +119,7 @@ public class WeaponCtrl : MonoBehaviour
 		else if (Input.GetKeyDown(KeyCode.Alpha3) && !useMedicalKit && !useAdrenaline && itemManager.adrenalineCount > 0)
 		{
 			useAdrenaline = true;
-			// please add adtrenaline animation
-			// anim.CrossFadeInFixedTime("Adrenaline", 0.01f);
+			anim.CrossFadeInFixedTime("Adrenaline", 0.01f);
 		}
 
 		else if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -152,11 +151,6 @@ public class WeaponCtrl : MonoBehaviour
             anim.CrossFadeInFixedTime("Jammer", 0.01f);
 
 			// zemmer.UseZemmer();
-        }
-        else if (Input.GetKeyDown(KeyCode.O))
-        {
-            anim.CrossFadeInFixedTime("Adrenaline", 0.01f);
-            // zemmer.UseZemmer();
         }
 
         if ( anim.GetBool("Ward") && Input.GetMouseButtonDown(1))
@@ -200,7 +194,7 @@ public class WeaponCtrl : MonoBehaviour
 			Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
 			Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
 
-			Debug.Log(hit.transform.gameObject.tag);
+			// Debug.Log(hit.transform.gameObject.Tag);
 
 			//her0in
 			Charger charger = hit.transform.GetComponent<Charger>();
