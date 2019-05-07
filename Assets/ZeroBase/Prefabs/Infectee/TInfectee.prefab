@@ -14080,6 +14080,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charObj: {fileID: 7944901134541773440}
   ragdollObj: {fileID: 7944901133888846057}
+  generator: {fileID: 1530928871882609134, guid: 7b5c8f43504c9914681c94837c5329e2,
+    type: 3}
 --- !u!1 &7944901133888845825
 GameObject:
   m_ObjectHideFlags: 0
@@ -15399,7 +15401,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7325d5d15ded70f4a9070d1bae2ddc33, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

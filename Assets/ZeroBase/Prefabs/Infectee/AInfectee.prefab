@@ -5315,6 +5315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charObj: {fileID: 7132744918049277882}
   ragdollObj: {fileID: 7132744917873426803}
+  generator: {fileID: 1530928871882609134, guid: 7b5c8f43504c9914681c94837c5329e2,
+    type: 3}
 --- !u!1 &7132744918310596276
 GameObject:
   m_ObjectHideFlags: 0

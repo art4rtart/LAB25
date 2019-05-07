@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
         maxHp = hp;
         infecteeParent = GameObject.Find("Generator");
         
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     public static void ApplyDamage(float damage)

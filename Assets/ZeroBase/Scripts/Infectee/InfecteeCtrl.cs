@@ -107,13 +107,17 @@ public class InfecteeCtrl : MonoBehaviour
 
         float distance = Vector3.Distance(target.position, transform.position);
 
-		if (nv.enabled && nv.remainingDistance < 30f && nv.remainingDistance != 0)
+		if (nv.enabled )
 		{
-			//Debug.Log(nv.remainingDistance);
-			if (this.transform.parent.name == "TInfectee(Clone)")
-			{
-				spawnEffect.enabled = true;
-			}
+            Debug.Log(nv.enabled);
+            if(nv.remainingDistance < 30f && nv.remainingDistance != 0)
+            {
+                //Debug.Log(nv.remainingDistance);
+                if (this.transform.parent.name == "TInfectee(Clone)")
+                {
+                    spawnEffect.enabled = true;
+                }
+            }
 		}
 
 		if (distance <= attackRange && !isAttack)

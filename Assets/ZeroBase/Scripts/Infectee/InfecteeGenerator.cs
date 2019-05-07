@@ -34,7 +34,7 @@ public class InfecteeGenerator : MonoBehaviour
         enemyPool3.Create(enemy3, generateNum, this.transform);
 
         StartCoroutine(Generate());
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     //private void Update() // 트리거용

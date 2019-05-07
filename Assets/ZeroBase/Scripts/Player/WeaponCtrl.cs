@@ -152,6 +152,11 @@ public class WeaponCtrl : MonoBehaviour
             anim.CrossFadeInFixedTime("Jammer", 0.01f);
 			// zemmer.UseZemmer();
         }
+        else if (Input.GetKeyDown(KeyCode.O))
+        {
+            anim.CrossFadeInFixedTime("Adrenaline", 0.01f);
+            // zemmer.UseZemmer();
+        }
 
         if ( anim.GetBool("Ward") && Input.GetMouseButtonDown(1))
         {
