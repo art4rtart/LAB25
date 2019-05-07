@@ -150,6 +150,7 @@ public class WeaponCtrl : MonoBehaviour
 		else if (Input.GetKeyDown(KeyCode.J))
         {
             anim.CrossFadeInFixedTime("Jammer", 0.01f);
+
 			// zemmer.UseZemmer();
         }
         else if (Input.GetKeyDown(KeyCode.O))
