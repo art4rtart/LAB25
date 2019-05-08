@@ -18,26 +18,29 @@ public class AutomaticDoor : MonoBehaviour
 		{
 			StopAllCoroutines();
 			animator.SetBool("Open", true);
+			doorOpen = true;
 		}
 
 		else return;
 	}
 
-	void OnTriggerStay(Collider other)
-	{
-		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee"))
-		{
-			doorOpen = true;
-		}
+	//void OnTriggerStay(Collider other)
+	//{
+	//	if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee"))
+	//	{
+	//		doorOpen = true;
+	//	}
 
-		else doorOpen = false;
-	}
+	//	else doorOpen = false;
+	//}
 
 	float openTime;
 	void OnTriggerExit(Collider other)
 	{
+		doorOpen = false;
 		if ((other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee")) && !doorOpen)
 		{
+			Debug.Log("2");
 			StartCoroutine(CloseDoor());
 		}
 
