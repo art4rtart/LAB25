@@ -74,8 +74,9 @@ public class InfecteeGenerator : MonoBehaviour
                     else
                         infectee = enemyPool3.NewItem();
 
+					Vector3 pos = stage_EnemyZone[i].transform.position + new Vector3(Random.Range(-3.0f,3.0f), 0, Random.Range(-3.0f, 3.0f));
 					if (infectee)
-                        infectee.transform.GetChild(0).position = stage_EnemyZone[i].transform.position;
+                        infectee.transform.GetChild(0).position = pos;
                 }
             }
         }

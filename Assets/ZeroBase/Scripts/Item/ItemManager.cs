@@ -94,7 +94,7 @@ public class ItemManager : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
-			Debug.Log("I am Holding a Gun");
+			// Debug.Log("I am Holding a Gun");
 
 			readyToUseGun = true;
 			readyToUseKit = false;
@@ -104,7 +104,7 @@ public class ItemManager : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.Alpha2) && isHoldingSomething)
 		{
-			Debug.Log("I am Holding a Kit");
+			// Debug.Log("I am Holding a Kit");
 
 			readyToUseGun = false;
 			readyToUseKit = true;

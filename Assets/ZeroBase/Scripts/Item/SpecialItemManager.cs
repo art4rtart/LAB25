@@ -28,13 +28,13 @@ public class SpecialItemManager : MonoBehaviour
 			heraterActivateTrigger = true;
 		}
 
-		else if (animStateInfo.IsName("New State") && animStateInfo.normalizedTime > 0.25f && heraterActivateTrigger)
+		else if (animStateInfo.IsName("endHearter") && animStateInfo.normalizedTime > 0.1f && heraterActivateTrigger)
 		{
 			heraterAnim.SetBool("activate", false);
 			heraterActivateTrigger = false;
 		}
 
-		else if (animStateInfo.IsName("New State") && animStateInfo.normalizedTime >= 1f)
+		else if (animStateInfo.IsName("endHearter") && animStateInfo.normalizedTime >= 1f)
 		{
 			StopAllCoroutines();
 			heaterScreen.SetActive(false);
