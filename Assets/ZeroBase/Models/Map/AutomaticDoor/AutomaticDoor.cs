@@ -40,7 +40,6 @@ public class AutomaticDoor : MonoBehaviour
 		doorOpen = false;
 		if ((other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee")) && !doorOpen)
 		{
-			Debug.Log("2");
 			StartCoroutine(CloseDoor());
 		}
 

@@ -1216,6 +1216,7 @@ MonoBehaviour:
     m_Bits: 65536
   findRadius: 4.5
   attackRadius: 0
+  isGenerated: 1
   hp: 100
   maxHp: 100
   myRagDollCtrl: {fileID: 5459034100856452639}

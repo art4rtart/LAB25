@@ -10,11 +10,20 @@ public class Her0inEnemy : MonoBehaviour
 
 	public LayerMask humanMask;
 	public float findRadius;
-
-
 	public float attackRadius;
 
 	NavMeshAgent navMesh;
+	Transform target;
+	bool followTarget;
+	public bool isGenerated = false;
+
+	void OnEnable()
+	{
+		if (isGenerated)
+		{
+			target = GameObject.FindWithTag("Player").transform;
+		}
+	}
 
 	void Awake()
     {
@@ -24,9 +33,6 @@ public class Her0inEnemy : MonoBehaviour
 		myChange = GetComponentInParent<ChangeRagDoll>();
 		csCollider = GetComponent<CapsuleCollider>();
 	}
-
-	Transform target;
-	bool followTarget;
 
 	void Update()
     {
@@ -127,20 +133,25 @@ public class Her0inEnemy : MonoBehaviour
 		myChange.StartCoroutine(myChange.ChangeRagdoll());
 	}
 
-
 	CapsuleCollider csCollider;
 	bool settingTrigger;
+
 	void OnCollisionEnter(Collision other)
 	{
-		if (other.gameObject.CompareTag("wall"))
+		if (other.gameObject.CompareTag("Wall"))
 		{
-			Debug.Log("d");
 			if (!settingTrigger)
 			{
-				Debug.Log("세팅 완료");
 				rgbd.constraints = RigidbodyConstraints.FreezePositionY;
 				csCollider.isTrigger = true;
 				navMesh.enabled = true;
+
+				if (isGenerated)
+				{
+					anim.SetBool("Run", true);
+					followTarget = true;
+				}
+
 				settingTrigger = true;
 			}
 

@@ -61,24 +61,25 @@ public class InfecteeGenerator : MonoBehaviour
 
         for (int i = 0; i < stage_EnemyZone.Length; i++)
         {
-            if (stage_EnemyZone[i].activeSelf == true)
-            {
-                for (int j = 0; j < generate; ++j)
-                {
+			if (stage_EnemyZone[i].activeSelf == true)
+			{
+				for (int j = 0; j < generate; ++j)
+				{
 					int random = 0; // Random.Range(0,3);
 
-                    if (random == 0)
-                        infectee = enemyPool.NewItem();
-                    else if (random == 1)
-                        infectee = enemyPool2.NewItem();
-                    else
-                        infectee = enemyPool3.NewItem();
+					if (random == 0)
+						infectee = enemyPool.NewItem();
+					else if (random == 1)
+						infectee = enemyPool2.NewItem();
+					else
+						infectee = enemyPool3.NewItem();
 
-					Vector3 pos = stage_EnemyZone[i].transform.position + new Vector3(Random.Range(-3.0f,3.0f), 0, Random.Range(-3.0f, 3.0f));
+					Vector3 pos = stage_EnemyZone[i].transform.position + new Vector3(Random.Range(-3.0f, 3.0f), 0, Random.Range(-3.0f, 3.0f));
+
 					if (infectee)
-                        infectee.transform.GetChild(0).position = pos;
-                }
-            }
+						infectee.transform.GetChild(0).position = pos;
+				}
+			}
         }
 
         yield return new WaitForSeconds(generateTime);
