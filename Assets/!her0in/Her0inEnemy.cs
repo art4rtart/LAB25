@@ -148,6 +148,7 @@ public class Her0inEnemy : MonoBehaviour
 
 				if (isGenerated)
 				{
+					rgbd.isKinematic = true;
 					anim.SetBool("Run", true);
 					followTarget = true;
 				}

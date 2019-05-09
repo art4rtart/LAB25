@@ -55,19 +55,6 @@ public class ItemManager : MonoBehaviour
 	public bool hasHearter;
 	public Elevator elevator;
 
-    // reference Spawnzone
-    private int flag = 0;
-    private int stage1SpawnzoneCount;
-    private int stage2SpawnzoneCount;
-    public GameObject stage1Spawnzone;
-    public GameObject stage2Spawnzone;
-
-    private void Start()
-    {
-        stage1SpawnzoneCount = stage1Spawnzone.transform.childCount;
-        stage2SpawnzoneCount = stage2Spawnzone.transform.childCount;
-    }
-
     void Update()
 	{
 		// define player stat here ---------------------
@@ -173,28 +160,6 @@ public class ItemManager : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.F))
                     {
                         quest.OpenGate(hit.transform.GetChild(0).gameObject);
-
-                        switch (flag)
-                        {
-                            case 0:
-
-                                for (int i = 0; i < stage1SpawnzoneCount; ++i)
-                                {
-                                    stage1Spawnzone.transform.GetChild(i).gameObject.SetActive(true);
-                                }
-                                flag = 1;
-                                break;
-                            case 1:
-                                for (int i = 0; i < stage1SpawnzoneCount; ++i)
-                                {
-                                    stage1Spawnzone.transform.GetChild(i).gameObject.SetActive(false);
-                                }
-                                for (int i = 0; i < stage2SpawnzoneCount; ++i)
-                                {
-                                    stage2Spawnzone.transform.GetChild(i).gameObject.SetActive(true);
-                                }
-                                break;
-                        }
                     }
                 }
 			}
