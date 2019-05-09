@@ -4,80 +4,69 @@ using UnityEngine;
 
 public class InfecteeGenerator : MonoBehaviour
 {
-    public GameObject enemy;
-    public GameObject enemy2;
-    public GameObject enemy3;
-
-    public GameObject[] stage_EnemyZone;
+	[Header("Spawn Settings")]
+	public GameObject[] infectee;
+    public GameObject[] spawnZone;
     private Transform parent;
-    public int generateNum;
-    public int generate;
+
+	[Header("Generate Settings")]
+	public string generatorName = "Generator";
+	public int GenerateTotal;
+	public int generate;
     public float generateTime;
+	float generatedZombieCount;
 
-    public string generatorName = "Generator";
-
-    //ObjectPool
-    public MemoryPool enemyPool = new MemoryPool();
-    public MemoryPool enemyPool2 = new MemoryPool();
-    public MemoryPool enemyPool3 = new MemoryPool();
-
-    //private bool asd = false;
+	public MemoryPool[] enemyPool = new MemoryPool[10];
 
     private void Awake()
     {
         parent = GameObject.Find(generatorName).transform;
-    }
+	}
+
     void Start()
     {
-        enemyPool.Create(enemy, generateNum, this.transform);
-        enemyPool2.Create(enemy2, generateNum, this.transform);
-        enemyPool3.Create(enemy3, generateNum, this.transform);
+		for (int i = 0; i < infectee.Length; i++)
+		{
+			enemyPool[i] = new MemoryPool();
+			enemyPool[i].Create(infectee[i], GenerateTotal, this.transform);
+		}
 
         StartCoroutine(Generate());
-        //DontDestroyOnLoad(gameObject);
     }
 
-    //private void Update() // 트리거용
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        if (asd) asd = false;
-    //        else
-    //        {
-    //            asd = true;
-    //        }
-    //    }
-    //}
     void OnApplicationQuit()
     {
-        enemyPool.Dispose();
-        enemyPool2.Dispose();
-        enemyPool3.Dispose();
+		for(int i = 0; i < infectee.Length; i++)
+		{
+			enemyPool[i].Dispose();
+		}
     }
 
     IEnumerator Generate()
     {
         GameObject infectee;
 
-        for (int i = 0; i < stage_EnemyZone.Length; i++)
+        for (int i = 0; i < spawnZone.Length; i++)
         {
-			if (stage_EnemyZone[i].activeSelf == true)
+			if (spawnZone[i].activeSelf == true)
 			{
 				for (int j = 0; j < generate; ++j)
 				{
-					int random = 0; // Random.Range(0,3);
+					infectee = enemyPool[Random.Range(0, 0)].NewItem();
 
-					if (random == 0)
-						infectee = enemyPool.NewItem();
-					else if (random == 1)
-						infectee = enemyPool2.NewItem();
-					else
-						infectee = enemyPool3.NewItem();
+					Vector3 pos = spawnZone[i].transform.position + new Vector3(Random.Range(-3.0f, 3.0f), 0, Random.Range(-3.0f, 3.0f));
 
-					Vector3 pos = stage_EnemyZone[i].transform.position + new Vector3(Random.Range(-3.0f, 3.0f), 0, Random.Range(-3.0f, 3.0f));
+					if ( infectee != null ) infectee.transform.GetChild(0).position = pos;
 
-					if (infectee)
-						infectee.transform.GetChild(0).position = pos;
+					generatedZombieCount++;
+
+					if (generatedZombieCount == GenerateTotal)
+					{
+						for(int k = 0; k < spawnZone.Length; k++)
+						{
+							spawnZone[k].SetActive(false);
+						}
+					}
 				}
 			}
         }

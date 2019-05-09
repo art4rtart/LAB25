@@ -188,6 +188,7 @@ public class InfecteeCtrl : MonoBehaviour
             //Healing.isKill = true;
         }
     }
+
     private void Die()
     {
         myChange.StartCoroutine(myChange.ChangeRagdoll());

@@ -10,6 +10,7 @@ public class ChangeRagDoll : MonoBehaviour
     private InfecteeGenerator generator;
 
     private Her0inEnemy myInfecteeCtrl;
+	public int InfecteeID;
 
     private void Start()
     {
@@ -31,12 +32,17 @@ public class ChangeRagDoll : MonoBehaviour
 
         myInfecteeCtrl.hp = myInfecteeCtrl.maxHp;
         
-        if( transform.name[0] == 'A')
-            generator.enemyPool.RemoveItem(transform.gameObject, null, generator.transform.parent);
-        else if (transform.name[0] == 'B')
-            generator.enemyPool2.RemoveItem(transform.gameObject, null, generator.transform.parent);
-        else if (transform.name[0] == 'T')
-            generator.enemyPool3.RemoveItem(transform.gameObject, null, generator.transform.parent);
+
+		generator.enemyPool[InfecteeID].RemoveItem(transform.gameObject, null, generator.transform.parent);
+
+        //if( transform.name[0] == 'h')
+        //    generator.enemyPool.RemoveItem(transform.gameObject, null, generator.transform.parent);
+
+        //else if (transform.name[0] == 'B')
+        //    generator.enemyPool2.RemoveItem(transform.gameObject, null, generator.transform.parent);
+
+        //else if (transform.name[0] == 'T')
+        //    generator.enemyPool3.RemoveItem(transform.gameObject, null, generator.transform.parent);
     }
 
     private void CopyAnimCharacterTransformToRagdoll(Transform origin, Transform rag)
