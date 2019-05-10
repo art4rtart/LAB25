@@ -97,7 +97,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 
             if (!hit.transform.gameObject.CompareTag("Infectee") && !hit.transform.gameObject.CompareTag("Player") && !hit.transform.gameObject.CompareTag("PlayerAgent"))
             {
-                Debug.Log("ShotMiss");
+                //Debug.Log("ShotMiss");
                 StartCoroutine(FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
                 //TestPlayerAgent4.isShotMiss = true;
             }
@@ -107,7 +107,7 @@ public class AgentWeaponCtrl : MonoBehaviour
         }
         else
         {
-            Debug.Log("Miss");
+            //Debug.Log("Miss");
             //TestPlayerAgent4.isShotMiss = true;
         }
         currentBullets--;

@@ -52,7 +52,7 @@ public class InfecteeGenerator : MonoBehaviour
 			{
 				for (int j = 0; j < generate; ++j)
 				{
-					infectee = enemyPool[Random.Range(0, 0)].NewItem();
+					infectee = enemyPool[Random.Range(0, 2)].NewItem();
 
 					Vector3 pos = spawnZone[i].transform.position + new Vector3(Random.Range(-3.0f, 3.0f), 0, Random.Range(-3.0f, 3.0f));
 

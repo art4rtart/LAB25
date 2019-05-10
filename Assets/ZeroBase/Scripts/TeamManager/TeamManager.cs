@@ -45,7 +45,7 @@ public class TeamManager : MonoBehaviour
 		{
 			for (int i = 0; i < teamInRadius.Length; i++)
 			{
-				if (!showTeamMateMessage && !timeOut && !teamInRadius[i].GetComponent<TeamPlayer>().isMyTeam)
+				if (!showTeamMateMessage && !timeOut && !teamInRadius[i].GetComponent<TeamCtrl>().isMyTeam)
 				{
 					animator.SetTrigger("Show");
 					showTeamMateMessage = true;

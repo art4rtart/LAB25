@@ -77,9 +77,9 @@ public class TeamCtrl : MonoBehaviour
         }
     }
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(this.transform.position, enemyFindRadius);
-    //}
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(this.transform.position, enemyFindRadius);
+	}
 }

@@ -18,7 +18,7 @@ public class AgentCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Screen.SetResolution(1920, 1080, true);
+        // Screen.SetResolution(1920, 1080, true);
 
         anim = GetComponent<Animator>();
         nv = GetComponent<NavMeshAgent>();

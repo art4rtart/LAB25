@@ -14,7 +14,6 @@ public class Her0inEnemy : MonoBehaviour
 	[Header("Infectee")]
 	public LayerMask humanMask;
 	public float findRadius;
-	public float attackRadius;
 	bool followTarget;
 	bool settingTrigger;
 	bool corTrigger;
@@ -61,20 +60,18 @@ public class Her0inEnemy : MonoBehaviour
 
 		if (navMesh.enabled && target != null) navMesh.SetDestination(target.transform.position);
 
-		if(info.IsName("Attack"))
+		if(info.IsName("Attack") || info.IsName("Run"))
 		{
 			Vector3 calcuatledtarget = new Vector3(target.transform.position.x, this.transform.position.y, target.transform.position.z);
 			transform.LookAt(calcuatledtarget);
 		}
 	}
-
+	public float moveSpeed;
 	IEnumerator Follow()
 	{
-		navMesh.speed = 3f;
+		//Debug.Log("Follow");
+		navMesh.speed = moveSpeed;
 		anim.SetBool("Run", true);
-
-		yield return new WaitForSeconds(0.2f);
-
 		navMesh.enabled = true;
 
 		while(navMesh.remainingDistance >= navMesh.stoppingDistance)
@@ -91,10 +88,13 @@ public class Her0inEnemy : MonoBehaviour
 	IEnumerator Attack()
 	{
 		anim.SetTrigger("Attack");
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(0.5f);
 
 		navMesh.speed = 0f;
 		navMesh.enabled = true;
+
+		while (navMesh.remainingDistance == 0)
+			yield return null;
 
 		if (navMesh.enabled && navMesh.remainingDistance >= navMesh.stoppingDistance)
 		{
@@ -158,7 +158,6 @@ public class Her0inEnemy : MonoBehaviour
 				}
 
 				settingTrigger = true;
-				Debug.Log("OK");
 			}
 
 			else return;
