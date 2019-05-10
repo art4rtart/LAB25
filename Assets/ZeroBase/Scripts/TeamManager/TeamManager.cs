@@ -83,8 +83,8 @@ public class TeamManager : MonoBehaviour
 		{
 			for (int i = 0; i < teamInRadius.Length; i++)
 			{
-				teamInRadius[i].GetComponent<TeamPlayer>().isMyTeam = true;
-				StartCoroutine(teamInRadius[i].GetComponent<TeamPlayer>().FollowPlayer());
+				teamInRadius[i].GetComponent<TeamCtrl>().isMyTeam = true;
+				StartCoroutine(teamInRadius[i].GetComponent<TeamCtrl>().FollowPlayer());
 			}
 
 			animator.SetTrigger("Hide");

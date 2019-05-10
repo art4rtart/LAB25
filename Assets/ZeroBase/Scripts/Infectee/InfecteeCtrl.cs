@@ -103,16 +103,14 @@ public class InfecteeCtrl : MonoBehaviour
 		//transform.rotation = Quaternion.Slerp(transform.rotation, toTargetRot, Time.deltaTime * rotSpeed);
 
 		anim.SetBool(hashWalk, true);
-        anim.SetFloat("moveSpeed", nv.velocity.magnitude);
+        anim.SetFloat("moveSpeed", 2);
 
         float distance = Vector3.Distance(target.position, transform.position);
 
 		if (nv.enabled )
 		{
-            Debug.Log(nv.enabled);
             if(nv.remainingDistance < 30f && nv.remainingDistance != 0)
             {
-                //Debug.Log(nv.remainingDistance);
                 if (this.transform.parent.name == "TInfectee(Clone)")
                 {
                     spawnEffect.enabled = true;
@@ -122,7 +120,6 @@ public class InfecteeCtrl : MonoBehaviour
 
 		if (distance <= attackRange && !isAttack)
             Attack(target.gameObject);
-
 		else
         {
             if (nv.enabled)

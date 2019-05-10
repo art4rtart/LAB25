@@ -205,8 +205,8 @@ public class WeaponCtrl : MonoBehaviour
 				StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
 			}
 
-			if (hit.transform.gameObject.tag != "Infectee")
-			{
+            if (!hit.transform.gameObject.CompareTag("Infectee") && !hit.transform.gameObject.CompareTag("Player") && !hit.transform.gameObject.CompareTag("PlayerAgent"))
+            {
 				StartCoroutine(FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 			}
 

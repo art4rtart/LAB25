@@ -26,6 +26,7 @@ public class TeamPlayer : MonoBehaviour
 		animator = GetComponent<Animator>();
 		navmesh = GetComponent<NavMeshAgent>();
 		Player = GameObject.FindGameObjectWithTag("Player");
+        // StartCoroutine(FollowPlayer());
     }
 
     void Update()
@@ -44,6 +45,7 @@ public class TeamPlayer : MonoBehaviour
 
 	public IEnumerator FollowPlayer()
 	{
+        Debug.Log("asd");
 		float refreshRate = .25f;
 		animator.SetBool("Walking", true);
 
