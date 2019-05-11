@@ -24,15 +24,15 @@ public class AutomaticDoor : MonoBehaviour
 		else return;
 	}
 
-	//void OnTriggerStay(Collider other)
-	//{
-	//	if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee"))
-	//	{
-	//		doorOpen = true;
-	//	}
+	void OnTriggerStay(Collider other)
+	{
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee"))
+		{
+			doorOpen = true;
+		}
 
-	//	else doorOpen = false;
-	//}
+		else doorOpen = false;
+	}
 
 	float openTime;
 	void OnTriggerExit(Collider other)
@@ -48,11 +48,11 @@ public class AutomaticDoor : MonoBehaviour
 
 	IEnumerator CloseDoor()
 	{
-		while (openTime < 2)
+		while (openTime < 1f)
 		{
 			openTime += Time.deltaTime;
 
-			if (openTime >= 2f)
+			if (openTime >= 1f)
 			{
 				animator.SetBool("Open", false);
 				openTime = 0;
