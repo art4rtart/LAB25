@@ -14,6 +14,12 @@ public class Title : MonoBehaviour
 	float glowValue;
 	float minValue = 0f;
 
+	void OnEnable()
+	{
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.None;
+	}
+
 	void Awake()
 	{
 		audioManager = FindObjectOfType<AudioManager>();

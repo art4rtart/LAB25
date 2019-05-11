@@ -14,7 +14,7 @@ public class AutomaticDoor : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee"))
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee") || other.gameObject.CompareTag("Medic"))
 		{
 			StopAllCoroutines();
 			animator.SetBool("Open", true);

@@ -55,7 +55,7 @@ public class ItemManager : MonoBehaviour
 	public Quest quest;
 	public bool hasHearter;
 	public Elevator elevator;
-
+	
     void Update()
 	{
 		// define player stat here ---------------------
@@ -161,6 +161,7 @@ public class ItemManager : MonoBehaviour
 
 					if (Input.GetKeyDown(KeyCode.F))
 					{
+						missionScript.GetComponent<Animator>().SetTrigger("Finish");
 						uiManager.missionTime = 40f;
 						uiManager.missionMessage = "VIRUS ROOM GATE IS CLOSING";
 						uiManager.isMissionStart = true;
@@ -172,6 +173,9 @@ public class ItemManager : MonoBehaviour
 
 				else	if (hit.transform.name == "GateButton")
 				{
+					missionScript.GetComponent<Animator>().SetTrigger("Finish");
+					missionScript.Type(); // need conditions
+
 					itemNameText.text = "CARD KEY SENSOR";
 
 					if (Input.GetKeyDown(KeyCode.F))
@@ -258,6 +262,7 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Adrenaline Syringe":
+				missionScript.GetComponent<Animator>().SetTrigger("Finish");
 				missionScript.Type();
 				adrenalineCount++;
 				break;

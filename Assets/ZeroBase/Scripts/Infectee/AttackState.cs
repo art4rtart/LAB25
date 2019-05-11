@@ -26,8 +26,7 @@ public class AttackState : StateMachineBehaviour
         {
             if (Vector3.Distance(PlayerCtrl.myPos.position, animator.transform.position) <= myInfectee.attackRange)
 			{
-          
-				//myInfectee.damagedEffect.Hit();
+				myInfectee.damagedEffect.Hit();
 				PlayerManager.ApplyDamage(10);
 			}
 

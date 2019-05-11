@@ -9,11 +9,15 @@ public class SpecialItemManager : MonoBehaviour
 	public GameObject heaterScreen;
 	public AnalogGlitch glitch;
 	public bool hasHearter;
+	public Material lightMaterial;
 
 	bool heraterActivateTrigger;
+	float alpha;
+
 	void Start()
     {
-
+		alpha = 0.45f;
+		lightMaterial.color = new Color(lightMaterial.color.r, lightMaterial.color.g, lightMaterial.color.b, 0);
 	}
 
 	void Update()
@@ -22,6 +26,8 @@ public class SpecialItemManager : MonoBehaviour
 
 		if (animStateInfo.IsName("useHarter") && animStateInfo.normalizedTime > 0.1f && !heraterActivateTrigger)
 		{
+			StopAllCoroutines();
+			StartCoroutine(LightOn());
 			heaterScreen.SetActive(true);
 			heraterAnim.SetBool("activate", true);
 			StartCoroutine(Glitch());
@@ -30,6 +36,8 @@ public class SpecialItemManager : MonoBehaviour
 
 		else if (animStateInfo.IsName("endHearter") && animStateInfo.normalizedTime > 0.1f && heraterActivateTrigger)
 		{
+			StopAllCoroutines();
+			StartCoroutine(LightOff());
 			heraterAnim.SetBool("activate", false);
 			heraterActivateTrigger = false;
 		}
@@ -38,6 +46,30 @@ public class SpecialItemManager : MonoBehaviour
 		{
 			StopAllCoroutines();
 			heaterScreen.SetActive(false);
+		}
+	}
+
+	IEnumerator LightOn()
+	{
+		float currentAlphaValue = 0;
+
+		while (currentAlphaValue <= alpha)
+		{
+			currentAlphaValue += 0.5f * Time.deltaTime;
+			lightMaterial.color = new Color(lightMaterial.color.r, lightMaterial.color.g, lightMaterial.color.b, currentAlphaValue);
+			yield return null;
+		}
+	}
+
+	IEnumerator LightOff()
+	{
+		float currentAlphaValue = alpha;
+
+		while (currentAlphaValue >= 0)
+		{
+			currentAlphaValue -= Time.deltaTime;
+			lightMaterial.color = new Color(lightMaterial.color.r, lightMaterial.color.g, lightMaterial.color.b, currentAlphaValue);
+			yield return null;
 		}
 	}
 

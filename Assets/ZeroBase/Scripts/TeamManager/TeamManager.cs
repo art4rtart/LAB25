@@ -79,7 +79,7 @@ public class TeamManager : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.F))
+		if (Input.GetKeyDown(KeyCode.F) && showTeamMateMessage)
 		{
 			for (int i = 0; i < teamInRadius.Length; i++)
 			{

@@ -15,6 +15,7 @@ public class MissionMessageTrigger : MonoBehaviour
 	{
 		if(other.gameObject.CompareTag("Player"))
 		{
+			missionScript.GetComponent<Animator>().SetTrigger("Finish");
 			missionScript.Type();
 			this.gameObject.SetActive(false);
 		}
