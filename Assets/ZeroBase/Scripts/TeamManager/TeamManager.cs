@@ -6,15 +6,16 @@ using UnityEngine.UI;
 public class TeamManager : MonoBehaviour
 {
 	[Header("Default")]
+	public MissionScripts missionScripts;
 	public GameObject player;
 	public Animator animator;
 	public Slider teamTimeCountSlider;
 	public LayerMask teamMask;
+	int teamCount;
 
 	[Header("Range")]
 	public float findRadius;
 	public float sliderTimeCount = 3f;
-
 
 	List<Transform> teamMate = new List<Transform>();
 	bool collideWithTeamMate;
@@ -34,7 +35,7 @@ public class TeamManager : MonoBehaviour
 		{
 			for (int i = 0; i < teamInRadius.Length; i++)
 			{
-				if (teamInRadius[i].transform.CompareTag("Medic") || teamInRadius[i].transform.CompareTag("Guard"))
+				if (teamInRadius[i].transform.CompareTag("PlayerAgent") || teamInRadius[i].transform.CompareTag("Guard"))
 				{
 					collideWithTeamMate = true;
 				}
@@ -83,8 +84,15 @@ public class TeamManager : MonoBehaviour
 		{
 			for (int i = 0; i < teamInRadius.Length; i++)
 			{
+				teamCount++;
 				teamInRadius[i].GetComponent<TeamCtrl>().isMyTeam = true;
 				StartCoroutine(teamInRadius[i].GetComponent<TeamCtrl>().FollowPlayer());
+			}
+
+			if (teamCount >= 2)
+			{
+				missionScripts.GetComponent<Animator>().SetTrigger("Finish");
+				missionScripts.Type();
 			}
 
 			animator.SetTrigger("Hide");

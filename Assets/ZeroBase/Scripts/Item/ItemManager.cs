@@ -17,7 +17,7 @@ public class ItemManager : MonoBehaviour
 	[HideInInspector] public int grenadeCount;
 
 	[Header("Interact Rage")]
-	public float range = 100f;
+	public float range = 10f;
 	public float itemGetRange = 5f;
 
 	[Header("Item Swap")]
@@ -138,6 +138,11 @@ public class ItemManager : MonoBehaviour
 					itemNameText.text = "ELEVATOR BUTTON";
 					if (Input.GetKeyDown(KeyCode.F))
 					{
+						missionScript.GetComponent<Animator>().SetTrigger("Finish");
+						uiManager.missionTime = 40f;
+						uiManager.missionMessage = "VIRUS ROOM GATE IS CLOSING";
+						uiManager.isMissionStart = true;
+
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
 						StartCoroutine(elevator.MoveElevator());
@@ -165,6 +170,7 @@ public class ItemManager : MonoBehaviour
 						uiManager.missionTime = 40f;
 						uiManager.missionMessage = "VIRUS ROOM GATE IS CLOSING";
 						uiManager.isMissionStart = true;
+
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
 						quest.OpenAndCloseGate(hit.transform.GetChild(0).gameObject);
@@ -173,13 +179,12 @@ public class ItemManager : MonoBehaviour
 
 				else	if (hit.transform.name == "GateButton")
 				{
-					missionScript.GetComponent<Animator>().SetTrigger("Finish");
-					missionScript.Type(); // need conditions
-
 					itemNameText.text = "CARD KEY SENSOR";
 
-					if (Input.GetKeyDown(KeyCode.F))
+					if (Input.GetKeyDown(KeyCode.F) && hasCardKey )
                     {
+						missionScript.GetComponent<Animator>().SetTrigger("Finish");
+						missionScript.Type(); // need conditions
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
 						quest.OpenGate(hit.transform.GetChild(0).gameObject);
@@ -281,11 +286,29 @@ public class ItemManager : MonoBehaviour
 				isWearingHelmet = true;
 				break;
 
+			case "Gate Card Key":
+				hasCardKey = true;
+				break;
+
 			case "Hearter":
 				hasHearter = true;
+				break;
+
+			case "Jammer":
+				missionScript.GetComponent<Animator>().SetTrigger("Finish");
+				missionScript.Type();
+				hasJammer = true;
+				break;
+
+			case "Ward":
+				hasWard = true;
 				break;
 		}
 
 		if(item.gameObject.CompareTag("Item")) item.gameObject.SetActive(false);
 	}
+
+	bool hasWard;
+	bool hasCardKey;
+	bool hasJammer;
 }

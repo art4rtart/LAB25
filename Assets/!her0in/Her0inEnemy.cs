@@ -170,7 +170,7 @@ public class Her0inEnemy : MonoBehaviour
 
 	void OnCollisionEnter(Collision other)
 	{
-		if (other.gameObject.CompareTag("Wall"))
+		if (other.gameObject.CompareTag("wall"))
 		{
 			if (!settingTrigger)
 			{

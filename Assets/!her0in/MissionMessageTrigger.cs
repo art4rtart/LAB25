@@ -5,6 +5,7 @@ using UnityEngine;
 public class MissionMessageTrigger : MonoBehaviour
 {
 	MissionScripts missionScript;
+	public bool setToDefault;
 
 	void Awake()
 	{
@@ -15,7 +16,8 @@ public class MissionMessageTrigger : MonoBehaviour
 	{
 		if(other.gameObject.CompareTag("Player"))
 		{
-			missionScript.GetComponent<Animator>().SetTrigger("Finish");
+			missionScript.GetComponent<Animator>().ResetTrigger("Finish");
+			if (setToDefault) missionScript.GetComponent<Animator>().SetTrigger("Finish");
 			missionScript.Type();
 			this.gameObject.SetActive(false);
 		}

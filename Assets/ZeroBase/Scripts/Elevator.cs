@@ -8,6 +8,7 @@ public class Elevator : MonoBehaviour
 	public GameObject gate;
 	public GameObject player;
 	public Animator fadeAnim;
+	public UIManager uiManager;
 	public string nextSceneName;
 
 	public IEnumerator CloseElevator()
@@ -16,9 +17,12 @@ public class Elevator : MonoBehaviour
 
 		gate.GetComponent<Animator>().SetBool("GateOpen", false);
 		player.transform.SetParent(this.gameObject.transform);
+
 		yield return new WaitForSeconds(2f);
+
 		player.GetComponent<CharacterController>().enabled = false;
 		fadeAnim.SetTrigger("SceneEnd");
+
 		while (this.transform.position.y < 15f)
 		{
 			this.transform.position = new Vector3(this.transform.position.x, Mathf.Lerp(this.transform.position.y, 20f, lerp), this.transform.position.z);
@@ -53,7 +57,7 @@ public class Elevator : MonoBehaviour
 		}
 
 		gate.GetComponent<Animator>().SetBool("GateOpen", true);
-
+		uiManager.isMissionComplete = true;
 		StopAllCoroutines();
 		yield return null;
 	}

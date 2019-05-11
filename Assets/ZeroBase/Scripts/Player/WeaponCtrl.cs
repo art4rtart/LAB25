@@ -65,6 +65,7 @@ public class WeaponCtrl : MonoBehaviour
 	public bool useAdrenaline;
 	public bool useMedicalKit;
 	int specialItemIndex;
+	public MissionScripts missionScripts;
 
 	private void Awake()
     {
@@ -158,8 +159,12 @@ public class WeaponCtrl : MonoBehaviour
         {
 			anim.SetTrigger("useWard");
 
+			//missionScripts.GetComponent<Animator>().SetTrigger("Finish");
+			//missionScripts.Type();
+
 			scanner.ScanDistance = 0;
 			scanner.scanning = true;
+
 			anim.SetBool("Ward", false);
 			anim.SetTrigger("default");
 			specialItemIndex = 0;

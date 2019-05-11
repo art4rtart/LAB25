@@ -38,7 +38,7 @@ public class AgentShoot : Agent
 
     public override void CollectObservations()
     {
-        var rayDistance = 30f;
+        var rayDistance = 1000f;
 
         //============================ 2-7 =======================
         //float[] rayAngles = { 0f, 15f, 30f, 45f, 60f, 75f, 90f, 105f, 120f, 135f, 150f, 165f, 180f };
@@ -173,19 +173,14 @@ public class AgentShoot : Agent
         RaycastHit hit;
         GameObject hitObject = null;
 
-        Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+        Vector3 forward = transform.TransformDirection(Vector3.forward) * 10f;
 
+		if (Physics.Raycast(shootPos.transform.position, forward, out hit, 100f))
+		{
+			hitObject = hit.transform.gameObject;
+		}
 
-
-        if (Physics.Raycast(shootPos.transform.position, forward, out hit, 100))
-        {
-            hitObject = hit.transform.gameObject;
-            //Debug.Log(hit.transform.name);
-        }
-        else
-            Debug.Log("Nothing");
-        
-        MoveAgent(vectorAction);
+		MoveAgent(vectorAction);
 
         if (hitObject)
         {
