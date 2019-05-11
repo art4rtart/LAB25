@@ -21,6 +21,8 @@ public class PlayerManager : MonoBehaviour
     private GameObject infecteeParent;
     //public NavMeshAgent _nvAgent;
 
+    private static Transform mycam;
+
     public static bool isHit = false;
 
     private void Start()
@@ -28,18 +30,21 @@ public class PlayerManager : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         maxHp = hp;
         infecteeParent = GameObject.Find("Generator");
-        
+        mycam = Camera.main.transform;
+   
         //DontDestroyOnLoad(gameObject);
     }
 
     public static void ApplyDamage(float damage)
     {
         isHit = true;
+
         if (armor <= 0)
         {
             if (hp <= 0)
             {
                 hp = 0;
+                
                 // Die;
                 //Debug.Log("You Died!");
             }
@@ -51,9 +56,12 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
+            Debug.Log(armor);
             armor -= damage;
             //UpdateArmor();
         }
+
+        //RecoilBack();
 		// 마크
         //UIManager.takeDamge = true;
     }
@@ -107,4 +115,5 @@ public class PlayerManager : MonoBehaviour
             //Destroy(hit.gameObject);
         }
     }
+
 }

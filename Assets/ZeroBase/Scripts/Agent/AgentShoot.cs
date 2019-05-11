@@ -279,7 +279,12 @@ public class AgentShoot : Agent
                     myWeaponCtrl.Fire();
                     isFire = true;
                 }
+                else
+                    myWeaponCtrl.DoReload();
                 break;
+            //case 2:
+            //    myWeaponCtrl.DoReload();
+            //    break;
         }
     }
 
