@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class InfecteeCtrl : MonoBehaviour
+public class her0inEnemy : MonoBehaviour
 {
     //infectee attributes
     public int hp;
@@ -120,6 +120,7 @@ public class InfecteeCtrl : MonoBehaviour
 
 		if (distance <= attackRange && !isAttack)
             Attack(target.gameObject);
+
 		else
         {
             if (nv.enabled)

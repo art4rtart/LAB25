@@ -13,6 +13,7 @@ public class PlayerDieRag : MonoBehaviour
 	public GameObject subCamera;
 
 	public Animator fadeAnim;
+	public GameObject gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -20,26 +21,39 @@ public class PlayerDieRag : MonoBehaviour
         
     }
 
+	bool gameOverTrigger;
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
-		{
+		if(ItemManager.currentHealth <= 0 && !gameOverTrigger) { 
 			fps.SetActive(false);
 			rag.SetActive(true);
-
+			Invoke("Die", 0.5f);
 			Invoke("FadeOut", 2f);
+			gameOverTrigger = true;
 		}
 
-		if(Input.GetKeyDown(KeyCode.P))
-		{
-			subCamera.SetActive(true);
-			SceneManager.LoadScene("2. Title");
-		}
+		//if(Input.GetKeyDown(KeyCode.P))
+		//{
+		//	subCamera.SetActive(true);
+		//	SceneManager.LoadScene("2. Title");
+		//}
     }
+
+	void Die()
+	{
+		gameOver.SetActive(true);
+	}
 
 	void FadeOut()
 	{
 		fadeAnim.SetTrigger("SceneEnd");
+		Invoke("GoToTitle", 3f);
+	}
+
+	void GoToTitle()
+	{
+		subCamera.SetActive(true);
+		SceneManager.LoadScene("2. Title");
 	}
 }

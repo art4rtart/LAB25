@@ -131,37 +131,55 @@ public class ItemManager : MonoBehaviour
 		{
 			if (hit.transform.CompareTag("MissionObject") && quest.openGateMission)
 			{
+				uiManager.isPointingItem = true;
+
 				if (hit.transform.name == "ElevatorButton")
 				{
+					itemNameText.text = "ELEVATOR BUTTON";
 					if (Input.GetKeyDown(KeyCode.F))
 					{
+						uiManager.isPointingItem = false;
+						pointTrigger = false;
 						StartCoroutine(elevator.MoveElevator());
 					}
 				}
 
 				if (hit.transform.name == "ElevatorButtonTypeB")
 				{
+					itemNameText.text = "CLOSE ELEVATOR";
 					if (Input.GetKeyDown(KeyCode.F))
 					{
+						uiManager.isPointingItem = false;
+						pointTrigger = false;
 						StartCoroutine(elevator.CloseElevator());
 					}
 				}
 
 				else if (hit.transform.name == "GateButtonTypeB")
 				{
+					itemNameText.text = "GATE SENSOR";
+
 					if (Input.GetKeyDown(KeyCode.F))
 					{
+						uiManager.isPointingItem = false;
+						pointTrigger = false;
 						quest.OpenAndCloseGate(hit.transform.GetChild(0).gameObject);
 					}
 				}
 
 				else	if (hit.transform.name == "GateButton")
 				{
-                    if (Input.GetKeyDown(KeyCode.F))
+					itemNameText.text = "CARD KEY SENSOR";
+
+					if (Input.GetKeyDown(KeyCode.F))
                     {
-                        quest.OpenGate(hit.transform.GetChild(0).gameObject);
+						uiManager.isPointingItem = false;
+						pointTrigger = false;
+						quest.OpenGate(hit.transform.GetChild(0).gameObject);
                     }
                 }
+
+				pointTrigger = true;
 			}
 
 			if (hit.transform.CompareTag("Item") && !isInteracting)
@@ -183,7 +201,7 @@ public class ItemManager : MonoBehaviour
 
 			else
 			{
-				if (!hit.transform.CompareTag("Item"))
+				if (!hit.transform.CompareTag("Item") && !hit.transform.CompareTag("MissionObject"))
 				{
 					if (item != null)
 					{
@@ -195,17 +213,6 @@ public class ItemManager : MonoBehaviour
 					uiManager.isPointingItem = false;
 					return;
 				}
-
-				//else if (item != null)
-				//{
-				//	Debug.Log("HI");
-				//	pointTrigger = false;
-				//	item.GetComponent<GlowObject>().ChangeToDefaultColor();
-				//	item = null;
-				//}
-
-				//uiManager.isPointingItem = false;
-				//isInteracting = false;
 			}
 		}
 
@@ -264,27 +271,6 @@ public class ItemManager : MonoBehaviour
 				break;
 		}
 
-		if(item.transform.name == "Biometrics Goggle")
-		{
-
-		}
-
-		else if (item.transform.name == "Biometrics Goggle")
-		{
-
-		}
-
-		else if (item.transform.name == "Biometrics Goggle")
-		{
-
-		}
-
-		else if (item.transform.name == "Gate Card Key")
-		{
-
-		}
-
-		item.gameObject.SetActive(false);
-		missionScript.Type();
+		if(item.gameObject.CompareTag("Item")) item.gameObject.SetActive(false);
 	}
 }

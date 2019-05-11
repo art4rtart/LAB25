@@ -5,15 +5,15 @@ using UnityEngine;
 public class AttackState : StateMachineBehaviour
 {
     public float attackTime = 0.7f;
-    private InfecteeCtrl myInfectee;
+    private Her0inEnemy myInfectee;
     private bool doAttack = false;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         doAttack = false;
-        myInfectee = animator.transform.GetComponent<InfecteeCtrl>();
-        myInfectee.isAttack = true;
+        myInfectee = animator.transform.GetComponent<Her0inEnemy>();
+		myInfectee.isAttack = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -24,10 +24,13 @@ public class AttackState : StateMachineBehaviour
 
         if (stateInfo.normalizedTime >= attackTime)
         {
-            if (Vector3.Distance(PlayerCtrl.myPos.position, animator.transform.position) <= myInfectee.attackRange)
-                PlayerManager.ApplyDamage(10);
+			if (Vector3.Distance(PlayerCtrl.myPos.position, animator.transform.position) <= myInfectee.attackRange)
+			{
+				myInfectee.damagedEffect.Hit();
+				PlayerManager.ApplyDamage(10);
+			}
 
-            doAttack = true;
+			doAttack = true;
             myInfectee.isAttack = false;
         }
     }

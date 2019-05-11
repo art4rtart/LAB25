@@ -15,20 +15,13 @@ public class DamagedEffect : MonoBehaviour
 		image = GetComponent<Image>();
 	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.H))
-		{
-			Hit();
-		}
-	}
-
-	void Hit()
+	public void Hit()
 	{
 		int index = Random.Range(0, sprites.Length);
-		if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >0.75f)
+
+		if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f)
 			image.sprite = sprites[index];
-		anim.SetTrigger("Hit");
+
+		if(ItemManager.currentHealth > 0) anim.SetTrigger("Hit");
 	}
 }

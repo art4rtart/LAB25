@@ -5,7 +5,7 @@ using UnityEngine;
 public class InfecteeGenerator : MonoBehaviour
 {
 	[Header("Spawn Settings")]
-	public GameObject[] infectee;
+	public GameObject[] infectees;
     public GameObject[] spawnZone;
     private Transform parent;
 
@@ -20,29 +20,27 @@ public class InfecteeGenerator : MonoBehaviour
 
     private void Awake()
     {
-        parent = GameObject.Find(generatorName).transform;
+	   parent = GameObject.Find(generatorName).transform;
 	}
 
     void Start()
     {
-		for (int i = 0; i < infectee.Length; i++)
+		for (int i = 0; i < infectees.Length; i++)
 		{
 			enemyPool[i] = new MemoryPool();
-			enemyPool[i].Create(infectee[i], GenerateTotal, this.transform);
+			enemyPool[i].Create(infectees[i], GenerateTotal, this.transform);
 		}
-
-        StartCoroutine(Generate());
     }
 
     void OnApplicationQuit()
     {
-		for(int i = 0; i < infectee.Length; i++)
+		for(int i = 0; i < infectees.Length; i++)
 		{
 			enemyPool[i].Dispose();
 		}
     }
 
-    IEnumerator Generate()
+    public IEnumerator Generate()
     {
         GameObject infectee;
 
@@ -52,7 +50,7 @@ public class InfecteeGenerator : MonoBehaviour
 			{
 				for (int j = 0; j < generate; ++j)
 				{
-					infectee = enemyPool[Random.Range(0, 2)].NewItem();
+					infectee = enemyPool[Random.Range(0, infectees.Length)].NewItem();
 
 					Vector3 pos = spawnZone[i].transform.position + new Vector3(Random.Range(-3.0f, 3.0f), 0, Random.Range(-3.0f, 3.0f));
 
