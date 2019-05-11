@@ -26,16 +26,6 @@ public class MissionScripts : MonoBehaviour
 		animator = GetComponent<Animator>();
 	}
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.G))
-		{
-			playerMessage.text = "";
-			TimerMessage.text = "";
-			animator.SetBool("Type", true);
-		}
-	}
-
 	public void Type()
 	{
 		playerMessage.text = "";

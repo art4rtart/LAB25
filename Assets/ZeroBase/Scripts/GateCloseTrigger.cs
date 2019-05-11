@@ -13,10 +13,20 @@ public class GateCloseTrigger : MonoBehaviour
 
 	bool closed = false;
 
+	UIManager uiManager;
+
+	void Awake()
+	{
+		uiManager = FindObjectOfType<UIManager>();
+	}
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.CompareTag("Player") && !closed)
 		{
+			if (uiManager.isMissionStart)
+				uiManager.isMissionComplete = true;
+
 			if (gateType == "Dynamic")
 			{
 				gateAnimator.SetTrigger("Close");

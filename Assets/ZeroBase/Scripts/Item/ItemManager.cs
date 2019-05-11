@@ -9,6 +9,7 @@ public class ItemManager : MonoBehaviour
 	public Camera fpsCam;
 	public GameObject player;
 	public UIManager uiManager;
+	public WeaponCtrl weaponController;
 
 	[Header("Item Count")]
 	[HideInInspector] public int medicalKitCount;
@@ -126,7 +127,6 @@ public class ItemManager : MonoBehaviour
 		}
 
 		RaycastHit hit;
-
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
 		{
 			if (hit.transform.CompareTag("MissionObject") && quest.openGateMission)
@@ -161,6 +161,9 @@ public class ItemManager : MonoBehaviour
 
 					if (Input.GetKeyDown(KeyCode.F))
 					{
+						uiManager.missionTime = 40f;
+						uiManager.missionMessage = "VIRUS ROOM GATE IS CLOSING";
+						uiManager.isMissionStart = true;
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
 						quest.OpenAndCloseGate(hit.transform.GetChild(0).gameObject);
@@ -208,6 +211,7 @@ public class ItemManager : MonoBehaviour
 						item.GetComponent<GlowObject>().ChangeToDefaultColor();
 						item = null;
 					}
+
 					pointTrigger = false;
 					isInteracting = false;
 					uiManager.isPointingItem = false;
@@ -246,7 +250,7 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Damage Protection Vest":
-				PlayerManager.armor += 40f;
+				PlayerManager.armor += 100f;
 				break;
 
 			case "Medical Kit":
@@ -254,11 +258,17 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Adrenaline Syringe":
+				missionScript.Type();
 				adrenalineCount++;
 				break;
 
 			case "Grenade":
 				grenadeCount += 100;
+				break;
+
+			case "7.76mm Bullet Crate":
+				uiManager.totalBullet += 30;
+				weaponController.bulletsTotal += 30;
 				break;
 
 			case "Biometrics Goggle":

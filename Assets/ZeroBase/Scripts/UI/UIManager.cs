@@ -44,7 +44,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Weapon UI")]
     int maxBullet = 30;
-    int totalBullet = 360;
+    public int totalBullet = 360;
     float bulletlerpTime;
     bool fired;
     public TextMeshProUGUI noWeaponText;

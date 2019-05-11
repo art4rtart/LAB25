@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 	public ItemManager itemManager;
     // Player Specification
     public static float hp = 100f;
-    public static float armor = 100;
+    public static float armor = 0;
     private float maxHp;
     private float maxArmor = 100;
 
