@@ -42,7 +42,7 @@ public class Her0inEnemy : MonoBehaviour
 	{
 		if (isGenerated)
 		{
-			target = GameObject.FindWithTag("Player").transform;
+			target = player.transform;
 		}
 	}
 

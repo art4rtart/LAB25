@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class PlayerManager : MonoBehaviour
 {
 	public ItemManager itemManager;
+	public static bool powerOverWhelming;
     // Player Specification
     public static float hp = 100f;
     public static float armor = 0;
@@ -39,27 +40,30 @@ public class PlayerManager : MonoBehaviour
     {
         isHit = true;
 
-        if (armor <= 0)
-        {
-            if (hp <= 0)
-            {
-                hp = 0;
-                
-                // Die;
-                //Debug.Log("You Died!");
-            }
-            else
-            {
-                hp -= damage;
-				//UpdateHP();
+		if (!powerOverWhelming) {
+			if (armor <= 0)
+			{
+				if (hp <= 0)
+				{
+					hp = 0;
+
+					// Die;
+					//Debug.Log("You Died!");
+				}
+				else
+				{
+					hp -= damage;
+					//UpdateHP();
+				}
 			}
-        }
-        else
-        {
-            Debug.Log(armor);
-            armor -= damage;
-            //UpdateArmor();
-        }
+
+			else
+			{
+				Debug.Log(armor);
+				armor -= damage;
+				//UpdateArmor();
+			}
+		}
 
         //RecoilBack();
 		// 마크

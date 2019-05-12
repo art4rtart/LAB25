@@ -76,6 +76,11 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			PlayerManager.powerOverWhelming = !PlayerManager.powerOverWhelming;
+		}
+
         myPos = transform;
         RotateView();
         // the jump state needs to read here to make sure it is not missed
