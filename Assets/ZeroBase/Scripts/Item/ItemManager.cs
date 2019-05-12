@@ -139,8 +139,8 @@ public class ItemManager : MonoBehaviour
 					if (Input.GetKeyDown(KeyCode.F))
 					{
 						missionScript.GetComponent<Animator>().SetTrigger("Finish");
-						uiManager.missionTime = 40f;
-						uiManager.missionMessage = "VIRUS ROOM GATE IS CLOSING";
+						uiManager.missionTime = 30f;
+						uiManager.missionMessage = "SURVIVE UNTIL ELEVATOR ARRIVES";
 						uiManager.isMissionStart = true;
 
 						uiManager.isPointingItem = false;

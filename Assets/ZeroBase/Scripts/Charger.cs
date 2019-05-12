@@ -17,6 +17,7 @@ public class Charger : MonoBehaviour
 	{
 		anim = GetComponent<Animator>();
 		rgbd = GetComponent<Rigidbody>();
+		csCollider = GetComponent<CapsuleCollider>();
 		StartCoroutine(FindAndScream(target.transform.position));
 	}
 
@@ -70,8 +71,21 @@ public class Charger : MonoBehaviour
 		}
 	}
 
+	CapsuleCollider csCollider;
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("wall"))
+		{
+			if (fallbackTrigger == false)
+			{
+				csCollider.isTrigger = false;
+			}
+		}
+	}
+
 	IEnumerator Fallback()
 	{
+		rgbd.isKinematic = true;
 		anim.SetTrigger("HitWall");
 		anim.SetBool("Run", false);
 		runSpeed = 0f;
@@ -121,6 +135,7 @@ public class Charger : MonoBehaviour
 	{
 		fallbackTrigger = false;
 		islockTarget = true;
+		csCollider.isTrigger = true;
 
 		Vector3 dirToLookTarget = (lookTarget - transform.position).normalized;
 		float targetAngle = 90 - Mathf.Atan2(dirToLookTarget.z, dirToLookTarget.x) * Mathf.Rad2Deg;
@@ -133,6 +148,7 @@ public class Charger : MonoBehaviour
 		}
 
 		anim.SetBool("Run", true);
+		rgbd.isKinematic = false;
 		yield return null;
 	}
 
@@ -156,5 +172,11 @@ public class Charger : MonoBehaviour
 	{
 		Debug.Log("Die");
 		anim.SetTrigger("Die");
+		Invoke("Destroy", 2f);
+	}
+
+	void Destroy()
+	{
+		this.gameObject.SetActive(false);
 	}
 }

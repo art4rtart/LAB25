@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class TeamCtrl : MonoBehaviour
 {
     NavMeshAgent navmesh;
-    GameObject Player;
+    public GameObject Player;
 	Rigidbody rgbd;
 
     public bool isMyTeam;
@@ -24,7 +24,7 @@ public class TeamCtrl : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         navmesh = GetComponent<NavMeshAgent>();
-        Player = GameObject.FindGameObjectWithTag("Player");
+        //Player = GameObject.FindGameObjectWithTag("Player");
 		rgbd = GetComponent<Rigidbody>();
 		agentShoot = GetComponent<AgentShoot>();
 	}
@@ -82,11 +82,11 @@ public class TeamCtrl : MonoBehaviour
         }
     }
 
-	//private void OnDrawGizmosSelected()
-	//{
-	//	Gizmos.color = Color.red;
-	//	Gizmos.DrawWireSphere(transform.position, enemyFindRadius);
-	//}
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(transform.position, enemyFindRadius);
+	}
 
 	bool enableTrigger;
 	void OnCollisionEnter(Collision other)

@@ -36,7 +36,7 @@ public class Elevator : MonoBehaviour
 
 	public IEnumerator MoveElevator()
 	{
-		float time = 2f;
+		float time = 28f;
 
 		while(time >= 0)
 		{

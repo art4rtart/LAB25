@@ -159,8 +159,8 @@ public class WeaponCtrl : MonoBehaviour
         {
 			anim.SetTrigger("useWard");
 
-			//missionScripts.GetComponent<Animator>().SetTrigger("Finish");
-			//missionScripts.Type();
+			missionScripts.GetComponent<Animator>().SetTrigger("Finish");
+			missionScripts.Type();
 
 			scanner.ScanDistance = 0;
 			scanner.scanning = true;
