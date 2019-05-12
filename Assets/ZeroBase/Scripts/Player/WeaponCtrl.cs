@@ -200,7 +200,7 @@ public class WeaponCtrl : MonoBehaviour
 			Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
 			Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
 
-			// Debug.Log(hit.transform.gameObject.Tag);
+			// Debug.Log(hit.transform.gameObject.name);
 
 			//her0in
 			Charger charger = hit.transform.GetComponent<Charger>();
@@ -210,7 +210,7 @@ public class WeaponCtrl : MonoBehaviour
 				StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
 			}
 
-            if (!hit.transform.gameObject.CompareTag("Infectee") && !hit.transform.gameObject.CompareTag("Player") && !hit.transform.gameObject.CompareTag("PlayerAgent"))
+            if (!hit.transform.gameObject.CompareTag("Infectee") && !hit.transform.gameObject.CompareTag("Player") && !hit.transform.gameObject.CompareTag("PlayerAgent") && !hit.transform.gameObject.CompareTag("Untagged"))
             {
 				StartCoroutine(FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 			}

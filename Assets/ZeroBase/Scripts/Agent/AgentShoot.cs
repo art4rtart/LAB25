@@ -22,6 +22,12 @@ public class AgentShoot : Agent
     private int count = 0;
     private bool isFire = false;
     public GameObject shootPos;
+
+	void OnEnable()
+	{
+		this.transform.SetParent(null);
+	}
+
     public override void InitializeAgent()
     {
         base.InitializeAgent();

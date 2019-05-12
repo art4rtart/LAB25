@@ -59,9 +59,11 @@ public class Charger : MonoBehaviour
 
 	void OnCollisionEnter(Collision other)
 	{
-		if (other.gameObject.CompareTag("Wall"))
+		if (other.gameObject.CompareTag("wall"))
 		{
 			if (fallbackTrigger == false) {
+				rgbd.mass = 100f;
+				rgbd.drag = 50f;
 				StartCoroutine(Fallback());
 				fallbackTrigger = true;
 			}
@@ -92,7 +94,7 @@ public class Charger : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 
 		rgbd.constraints = RigidbodyConstraints.None;
-		rgbd.constraints = RigidbodyConstraints.FreezeRotation;
+		rgbd.constraints = RigidbodyConstraints.FreezeAll;
 
 		anim.SetTrigger("Turn");
 		StopAllCoroutines();

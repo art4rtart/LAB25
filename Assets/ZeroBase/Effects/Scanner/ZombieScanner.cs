@@ -34,7 +34,8 @@ public class ZombieScanner : MonoBehaviour
 			{
 				if (Vector3.Distance(this.transform.position, zombieInRadius[i].transform.position) <= ScanDistance)
 				{
-					zombieInRadius[i].GetComponent<her0inEnemy>().spawnEffect.enabled = true;
+					if(!zombieInRadius[i].GetComponent<Her0inEnemy>().spawnEffect.enabled)
+						zombieInRadius[i].GetComponent<Her0inEnemy>().spawnEffect.enabled = true;
 				}
 			}
 		}
