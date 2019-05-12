@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI armorText;
     public TextMeshProUGUI heratRateText;
+    public TextMeshProUGUI placeText;
 
     [Header("Mission UI")]
     public TextMeshProUGUI missionTimeText;

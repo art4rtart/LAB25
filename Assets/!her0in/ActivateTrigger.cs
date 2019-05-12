@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class ActivateTrigger : MonoBehaviour
 {
-	public GameObject activateObject;
+    UIManager uiManager;
+    public GameObject activateObject;
+    public bool enableObject;
 
-	void OnTriggerEnter(Collider other)
+    public bool changePlaceName;
+    public string placeName;
+
+    private void Awake()
+    {
+        uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
+
+
+    }
+
+    void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
-			if(!activateObject.activeSelf) activateObject.SetActive(true);
-		}
+            if (enableObject && !activateObject.activeSelf) activateObject.SetActive(true);
+            if (changePlaceName) uiManager.placeText.text = placeName;
+        }
 	}
 }
