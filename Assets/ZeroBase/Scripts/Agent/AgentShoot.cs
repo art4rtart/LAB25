@@ -10,7 +10,7 @@ public class AgentShoot : Agent
     public Transform pivotTr;
     private bool isHealing = false;
     private RayPerception rayPer;
-    private AgentWeaponCtrl myWeaponCtrl;
+    public AgentWeaponCtrl myWeaponCtrl;
 
     private Transform playerTr;
     private PlayerManager _PlayerManager;
@@ -28,7 +28,7 @@ public class AgentShoot : Agent
         base.InitializeAgent();
         playerRb = GetComponent<Rigidbody>();
         Monitor.verticalOffset = 1f;
-        myWeaponCtrl = GetComponentInChildren<AgentWeaponCtrl>();
+        //myWeaponCtrl = GetComponentInChildren<AgentWeaponCtrl>();
 
         rayPer = GetComponent<RayPerception>();
 

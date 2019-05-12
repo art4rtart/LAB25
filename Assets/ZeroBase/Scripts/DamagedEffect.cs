@@ -9,12 +9,11 @@ public class DamagedEffect : MonoBehaviour
 	public Sprite[] sprites;
 	Image image;
 
-    void Awake()
+    void Start()
     {
 		anim = GetComponent<Animator>();
 		image = GetComponent<Image>();
 	}
-
 	public void Hit()
 	{
 		int index = Random.Range(0, sprites.Length);

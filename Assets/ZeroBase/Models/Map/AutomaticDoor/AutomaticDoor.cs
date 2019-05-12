@@ -14,7 +14,7 @@ public class AutomaticDoor : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee") || other.gameObject.CompareTag("Medic"))
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee") || other.gameObject.CompareTag("PlayerAgent"))
 		{
 			StopAllCoroutines();
 			animator.SetBool("Open", true);
@@ -26,7 +26,7 @@ public class AutomaticDoor : MonoBehaviour
 
 	void OnTriggerStay(Collider other)
 	{
-		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee"))
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee") || other.gameObject.CompareTag("PlayerAgent"))
 		{
 			doorOpen = true;
 		}
@@ -37,8 +37,7 @@ public class AutomaticDoor : MonoBehaviour
 	float openTime;
 	void OnTriggerExit(Collider other)
 	{
-		doorOpen = false;
-		if ((other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee")) && !doorOpen)
+		if ((other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee") || other.gameObject.CompareTag("PlayerAgent")) && !doorOpen)
 		{
 			StartCoroutine(CloseDoor());
 		}

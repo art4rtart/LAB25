@@ -1935,7 +1935,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1505894055700079061}
-  - screenRelativeHeight: 0.06315555
+  - screenRelativeHeight: 0
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 3986898501210147356}
@@ -4221,7 +4221,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1505894055703360017}
-  - screenRelativeHeight: 0.1471237
+  - screenRelativeHeight: 0
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 58850063246746127}
@@ -4323,7 +4323,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 1505894055703360023}
-  - screenRelativeHeight: 0.15481718
+  - screenRelativeHeight: 0
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5734024291914528043}
@@ -6086,6 +6086,7 @@ MonoBehaviour:
     numberOfActionsBetweenDecisions: 1
   targets: []
   pivotTr: {fileID: 0}
+  myWeaponCtrl: {fileID: 0}
   shootPos: {fileID: 5726437773283833735}
 --- !u!114 &5726437774349732558
 MonoBehaviour:
