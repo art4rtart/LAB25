@@ -53,8 +53,7 @@ public class Title : MonoBehaviour
 			pressAnyKey.fontSharedMaterial.SetFloat("_GlowPower", glowValue);
 		}
 
-		if (titleAnimator.isActiveAndEnabled &&
-			titleAnimator.GetCurrentAnimatorStateInfo(0).IsName("TitleAnimationFadeIn") &&
+		if (titleAnimator.GetCurrentAnimatorStateInfo(0).IsName("TitleAnimationFadeIn") &&
 			titleAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
 		{
 			if (Input.GetMouseButtonDown(0))

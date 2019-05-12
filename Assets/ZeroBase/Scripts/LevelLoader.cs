@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelLoader : MonoBehaviour
 {
 	public string sceneName;
+	public Slider slider;
 
 	void Start()
 	{
@@ -23,7 +25,8 @@ public class LevelLoader : MonoBehaviour
 		while (!operation.isDone)
 		{
 			float progress = Mathf.Clamp01(operation.progress / .9f);
-			Debug.Log(progress);
+
+			slider.value = progress;
 
 			yield return null;
 		}
