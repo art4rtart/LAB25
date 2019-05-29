@@ -5,6 +5,9 @@ using UnityEngine;
 public class PathDetect : MonoBehaviour
 {
 	public PathFinder pathFinder;
+	public FadeTrigger fadeTrigger;
+
+	bool checkOnce;
 
 	void Start()
 	{
@@ -20,10 +23,12 @@ public class PathDetect : MonoBehaviour
 				pathFinder.destinationsIndex++;
 				this.gameObject.transform.position = pathFinder.destinations[pathFinder.destinationsIndex] + Vector3.up * 1f;
 			}
+
 			else
 			{
-				this.gameObject.SetActive(false);
+				// this.gameObject.SetActive(false);
 				other.gameObject.GetComponent<Her0inAgent>().agentRunSpeed = 0;
+				fadeTrigger.fadeInOut();
 			}
 		}
 	}

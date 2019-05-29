@@ -7,8 +7,8 @@ public class FindBlockAgent : Agent
 {
 	Her0inAgent her0inAgent;
 
-	public GameObject ground;
-	public GameObject area;
+	//public GameObject ground;
+	//public GameObject area;
 
 	[HideInInspector]
 	public Bounds areaBounds;
@@ -29,11 +29,13 @@ public class FindBlockAgent : Agent
 	Renderer groundRenderer;
 
 	public GameObject[] triggers;
+	CheckAgent checkAgent;
 
 	void Awake()
 	{
 		her0inAgent = GetComponent<Her0inAgent>();
 		academy = FindObjectOfType<FindBlockAcademy>();
+		checkAgent = GetComponent<CheckAgent>();
 	}
 
 	public override void InitializeAgent()
@@ -49,8 +51,6 @@ public class FindBlockAgent : Agent
 		//areaBounds = ground.GetComponent<Collider>().bounds;
 		//groundRenderer = ground.GetComponent<Renderer>();
 		//groundMaterial = groundRenderer.material;
-
-		this.transform.position = new Vector3(transform.position.x, 1f, transform.position.z);
 	}
 
 	public override void CollectObservations()
@@ -60,8 +60,8 @@ public class FindBlockAgent : Agent
 			var rayDistance = 15f;
 			float[] rayAngles = { 0f, 45f, 90f, 135f, 180f, 110f, 70f };
 			var detectableObjects = new[] { "block", "goal", "wall" };
-			AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, 0f));
-			AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 1.5f, 0f));
+			AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 1.0f, 0f));
+			AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 2.5f, 0f));
 		}
 	}
 
