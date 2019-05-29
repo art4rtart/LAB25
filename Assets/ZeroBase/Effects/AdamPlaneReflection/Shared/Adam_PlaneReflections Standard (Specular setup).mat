@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Adam_PlaneReflections Standard (Specular setup)
   m_Shader: {fileID: 4800000, guid: 9ca0df34aaf0b794d8fd1a3271cd7415, type: 3}
-  m_ShaderKeywords: PLANE_REFLECTION _ALPHATEST_ON _NORMALMAP _SPECGLOSSMAP
+  m_ShaderKeywords: _ALPHATEST_ON _NORMALMAP _SPECGLOSSMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

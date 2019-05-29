@@ -171,13 +171,17 @@ public class WeaponCtrl : MonoBehaviour
 		}
 
 		// ----------------------------------------------------------------------
-        if (fireTimer < fireRate)
-            fireTimer += Time.deltaTime;
+       
 
         RecoilBack();
         Run();
     }
 
+    private void FixedUpdate()
+    {
+        if (fireTimer < fireRate)
+            fireTimer += Time.fixedDeltaTime;
+    }
     private void Run()
     {
         anim.SetBool("isRun", Input.GetKey(KeyCode.LeftShift));
@@ -194,6 +198,7 @@ public class WeaponCtrl : MonoBehaviour
         }
 
         RaycastHit hit;
+
 
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
         {

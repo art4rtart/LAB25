@@ -37,13 +37,14 @@ public class TeamCtrl : MonoBehaviour
         {
             if (enemyInRadius[i].transform.CompareTag("Infectee"))
             {
-                targetToInfectee = true;
-                Vector3 enemyPos = new Vector3(enemyInRadius[i].transform.position.x, this.transform.position.y, enemyInRadius[i].transform.position.z);
+                //targetToInfectee = true;
+                //Vector3 enemyPos = new Vector3(enemyInRadius[i].transform.position.x, this.transform.position.y, enemyInRadius[i].transform.position.z);
 
-                Vector3 dirToTarget = enemyPos - transform.position;
-                Vector3 look = Vector3.Slerp(transform.forward, dirToTarget.normalized, Time.deltaTime * 10);
-                //Debug.Log("LootInfectee");
-                transform.rotation = Quaternion.LookRotation(look, Vector3.up);
+                //Vector3 dirToTarget = enemyPos - transform.position;
+                //Vector3 look = Vector3.Slerp(transform.forward, dirToTarget.normalized, Time.deltaTime * 10);
+                ////Debug.Log("LootInfectee");
+                //transform.rotation = Quaternion.LookRotation(look, Vector3.up);
+                transform.LookAt(enemyInRadius[i].transform.position);
             }
         }
 

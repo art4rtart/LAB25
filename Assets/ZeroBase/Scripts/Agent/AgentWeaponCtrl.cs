@@ -77,11 +77,15 @@ public class AgentWeaponCtrl : MonoBehaviour
 
 		// Debug.DrawLine(shootPos.position, transform.forward * 10, Color.blue);
 
-		if (fireTimer < fireRate)
-			fireTimer += Time.deltaTime;
 	}
 
-	public void Fire()
+    private void FixedUpdate()
+    {
+        if (fireTimer < fireRate)
+            fireTimer += Time.fixedDeltaTime;
+    }
+
+    public void Fire()
 	{
 		if (fireTimer < fireRate || isReloading || isHealing)
 		{
@@ -90,42 +94,45 @@ public class AgentWeaponCtrl : MonoBehaviour
 
 		RaycastHit hit;
 
-		if (Physics.Raycast(shootPos.position, transform.forward, out hit, range))
-		{
-			Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
-			Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+        for (int i = 0; i < 5; ++i)
+        {
+            if(Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
+            {
+                Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
+                Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
 
 
-			//her0in
-			Charger charger = hit.transform.GetComponent<Charger>();
-			if (hit.transform.gameObject.name == "BossZombie")
-			{
-				charger.ApplyDamage(damage);
-				StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
-			}
+                //her0in
+                Charger charger = hit.transform.GetComponent<Charger>();
+                if (hit.transform.gameObject.name == "BossZombie")
+                {
+                    charger.ApplyDamage(damage);
+                    StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
+                }
 
-			if (!hit.transform.gameObject.CompareTag("Infectee") && !hit.transform.gameObject.CompareTag("Player") && !hit.transform.gameObject.CompareTag("PlayerAgent"))
-			{
-				//Debug.Log("ShotMiss");
-				StartCoroutine(FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-				//TestPlayerAgent4.isShotMiss = true;
-			}
-			else
-			{
-				if (enemyCtrl && enemyCtrl.hp > 0)
-				{
-					enemyCtrl.hitPos = hit.transform.InverseTransformPoint(hit.point);
-					enemyCtrl.ApplyDamage(damage);
-					StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
-				}
+                if (!hit.transform.gameObject.CompareTag("Infectee") && !hit.transform.gameObject.CompareTag("Player") && !hit.transform.gameObject.CompareTag("PlayerAgent"))
+                {
+                    //Debug.Log("ShotMiss");
+                    StartCoroutine(FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                    //TestPlayerAgent4.isShotMiss = true;
+                }
+                else
+                {
+                    if (enemyCtrl && enemyCtrl.hp > 0)
+                    {
+                        enemyCtrl.hitPos = hit.transform.InverseTransformPoint(hit.point);
+                        enemyCtrl.ApplyDamage(damage);
+                        StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
+                    }
 
-			}
-		}
-		else
-		{
-			//Debug.Log("Miss");
-			//TestPlayerAgent4.isShotMiss = true;
-		}
+                }
+            }
+            else
+            {
+                //Debug.Log("Miss");
+                //TestPlayerAgent4.isShotMiss = true;
+            }
+        }
 		currentBullets--;
 		fireTimer = 0.0f;
 		anim.CrossFadeInFixedTime("Shoot", 0.01f);
