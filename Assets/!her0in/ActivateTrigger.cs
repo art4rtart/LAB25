@@ -14,8 +14,6 @@ public class ActivateTrigger : MonoBehaviour
     private void Awake()
     {
         uiManager = FindObjectOfType<UIManager>().GetComponent<UIManager>();
-
-
     }
 
     void OnTriggerEnter(Collider other)

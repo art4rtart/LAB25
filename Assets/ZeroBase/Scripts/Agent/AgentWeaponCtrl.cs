@@ -66,7 +66,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 		bloodParticlePool.Create(bloodParticlePrefab, 100, fireTraceParent);
 		characterController = GetComponentInParent<CharacterController>();
 
-		anim = GameObject.Find("Agent").GetComponent<Animator>();
+		anim = GameObject.Find("Agent(ARMED)").GetComponent<Animator>();
 	}
 
 	private void Update()

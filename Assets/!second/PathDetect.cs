@@ -6,11 +6,13 @@ public class PathDetect : MonoBehaviour
 {
 	public PathFinder pathFinder;
 	public FadeTrigger fadeTrigger;
+	public Her0inAgent her0inAgent;
 
 	bool checkOnce;
 
 	void Start()
 	{
+		her0inAgent = GetComponent<Her0inAgent>();
 		this.gameObject.transform.position = pathFinder.destinations[pathFinder.destinationsIndex] + Vector3.up * 1f;
 	}
 

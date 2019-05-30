@@ -7,7 +7,13 @@ public class FadeTrigger : MonoBehaviour
 	public Animator fadeAnimator;
 
 	public GameObject noWeaponModel;
-	public GameObject swapModel;
+	public GameObject shotgunModel;
+	public GameObject playerCamera;
+	public GameObject quaterViewCamera;
+	public GameObject gameManger;
+	public GameObject HUD;
+	public GameObject pointer;
+
 	public bool checkOnce;
 
 	float eTime;
@@ -24,7 +30,15 @@ public class FadeTrigger : MonoBehaviour
 			if (eTime >= 1f)
 			{
 				noWeaponModel.SetActive(false);
-				swapModel.SetActive(true);
+				shotgunModel.SetActive(true);
+
+				quaterViewCamera.SetActive(false);
+				playerCamera.SetActive(true);
+
+
+				gameManger.SetActive(true);
+				pointer.SetActive(true);
+				HUD.SetActive(true);
 				this.gameObject.SetActive(false);
 			}
 		}

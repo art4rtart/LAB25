@@ -10,6 +10,8 @@ public class FindBlockAgent : Agent
 	//public GameObject ground;
 	//public GameObject area;
 
+	private Animator animator;
+
 	[HideInInspector]
 	public Bounds areaBounds;
 	FindBlockAcademy academy;
@@ -33,6 +35,7 @@ public class FindBlockAgent : Agent
 
 	void Awake()
 	{
+		animator = GetComponent<Animator>();
 		her0inAgent = GetComponent<Her0inAgent>();
 		academy = FindObjectOfType<FindBlockAcademy>();
 		checkAgent = GetComponent<CheckAgent>();
@@ -86,6 +89,7 @@ public class FindBlockAgent : Agent
 	//	return randomSpawnPos;
 	//}
 
+	private CapsuleCollider capsuleCollider;
 	public void IScoredAGoal()
 	{
 		AddReward(5f);
@@ -98,7 +102,6 @@ public class FindBlockAgent : Agent
 		}
 
 		this.enabled = false;
-
 		// Learning
 		//Done();
 		//StartCoroutine(GoalScoredSwapGroundMaterial(academy.goalScoredMaterial, 0.5f));
@@ -123,15 +126,19 @@ public class FindBlockAgent : Agent
 		{
 			case 1:
 				dirToGo = transform.forward * 1f;
+				//animator.SetBool("isRun", true);
 				break;
 			case 2:
 				dirToGo = transform.forward * -1f;
+				//animator.SetBool("isRun", true);
 				break;
 			case 3:
 				rotateDir = transform.up * 1f;
+				//animator.SetBool("isRun", false);
 				break;
 			case 4:
 				rotateDir = transform.up * -1f;
+				//animator.SetBool("isRun", false);
 				break;
 			case 5:
 				dirToGo = transform.right * -0.75f;

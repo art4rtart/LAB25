@@ -28,7 +28,7 @@ public class InvisibleWall : MonoBehaviour
 			if(twice)
 			{
 				count++;
-				if (count > 2)
+				if (count >= 2)
 				{
 					this.gameObject.tag = "wall";
 					bxCollider.isTrigger = false;

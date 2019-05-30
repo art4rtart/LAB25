@@ -5,6 +5,7 @@ using MLAgents;
 
 public class Her0inAgent : Agent
 {
+	private Animator animator;
 	private Rigidbody agentRB;
 
 	public Transform pivotTransform;
@@ -18,6 +19,7 @@ public class Her0inAgent : Agent
 
 	public override void InitializeAgent()
 	{
+		animator = GetComponent<Animator>();
 		pathFinder = GetComponent<PathFinder>();
 		pathFinder.enabled = true;
 
@@ -91,7 +93,7 @@ public class Her0inAgent : Agent
 		if (other.gameObject.CompareTag("wall"))
 		{
 			// after learning
-			// agentRB.AddForce(Vector3.back * 10f, ForceMode.VelocityChange);
+			//agentRB.AddForce(Vector3.back * 5f, ForceMode.VelocityChange);
 
 			// dead = true;
 		}
