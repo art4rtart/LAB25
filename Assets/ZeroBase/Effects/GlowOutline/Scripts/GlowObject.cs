@@ -32,7 +32,7 @@ public class GlowObject : MonoBehaviour
 			_materials.AddRange(renderer.materials);
 		}
 
-		ChangeToTargetColor();
+		//ChangeToTargetColor();
 	}
 
 	//private void OnMouseEnter()
