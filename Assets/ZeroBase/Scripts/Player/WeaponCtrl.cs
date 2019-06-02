@@ -203,7 +203,8 @@ public class WeaponCtrl : MonoBehaviour
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
         {
 			Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
-			Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+            InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
+            Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
 
 			// Debug.Log(hit.transform.gameObject.name);
 
@@ -228,8 +229,14 @@ public class WeaponCtrl : MonoBehaviour
 					enemyCtrl.ApplyDamage(damage);
 					StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
 				}
-				//var bP = (GameObject)Instantiate(bloodParticlePrefab, hit.transform.position + Vector3.up * 1.2f, hit.transform.rotation);
-			}
+                else if (enemyGirlCtrl && enemyGirlCtrl.hp > 0)
+                {
+                    enemyGirlCtrl.ApplyDamage(damage);
+                    enemyGirlCtrl.isAttacked = true;
+                    StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
+                }
+                //var bP = (GameObject)Instantiate(bloodParticlePrefab, hit.transform.position + Vector3.up * 1.2f, hit.transform.rotation);
+            }
         }
         currentBullets--;
         fireTimer = 0.0f;
