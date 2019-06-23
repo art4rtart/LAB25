@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a2a6af270027f014da648a829575aecd
+guid: ef142fd5566731b4ca7a69638aef7981
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -23,22 +23,7 @@ ModelImporter:
     4300000: right
     4300002: left
     4300004: Cube
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: down
-    second: {fileID: 2100000, guid: 8fb97edf07ff1f844aa7017e845ccc9e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: side
-    second: {fileID: 2100000, guid: 666445a0a55e33f42a799d3f9df850ce, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: up
-    second: {fileID: 2100000, guid: bf94060cf0da49647bcda1accbc5400e, type: 2}
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
