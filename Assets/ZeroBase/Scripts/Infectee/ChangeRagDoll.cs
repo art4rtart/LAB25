@@ -9,12 +9,12 @@ public class ChangeRagDoll : MonoBehaviour
     public GameObject ragdollObj;
     private InfecteeGenerator generator;
 
-    private Her0inEnemy myInfecteeCtrl;
+    private Health infectee;
 	public int InfecteeID;
 
     private void Start()
     {
-        myInfecteeCtrl = GetComponentInChildren<Her0inEnemy>();
+        infectee = GetComponentInChildren<Health>();
         generator = GameObject.Find("Generator").GetComponent<InfecteeGenerator>();
     }
 
@@ -30,7 +30,7 @@ public class ChangeRagDoll : MonoBehaviour
         charObj.gameObject.SetActive(true);
         ragdollObj.gameObject.SetActive(false);
 
-        myInfecteeCtrl.hp = myInfecteeCtrl.maxHp;
+        infectee.hp = infectee.maxHp;
         
 
 		generator.enemyPool[InfecteeID].RemoveItem(transform.gameObject, null, generator.transform.parent);

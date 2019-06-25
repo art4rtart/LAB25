@@ -2205,6 +2205,7 @@ GameObject:
   - component: {fileID: 7399323020782380673}
   - component: {fileID: 7399323020782380675}
   - component: {fileID: 7399323020782380677}
+  - component: {fileID: 1801720486}
   m_Layer: 21
   m_Name: BossZombie
   m_TagString: Infectee
@@ -2219,7 +2220,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7399323020782380674}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2236,7 +2237,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7399323020782380674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: 7e7ec6c7ccd85df45be0c900f3e84b8e, type: 3}
   m_Controller: {fileID: 9100000, guid: 1c1b29248cc4b50478d0048b00b35d3e, type: 2}
   m_CullingMode: 1
@@ -2263,8 +2264,6 @@ MonoBehaviour:
   runSpeed: 10
   turnSpeed: 330
   lookTurnSpeed: 40
-  hp: 180
-  hitPos: {x: 0, y: 0, z: 0}
 --- !u!54 &7399323020782380673
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2311,6 +2310,36 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1801720486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399323020782380674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e10c73cf75e3f489df4119eaa0a0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  maxHp: 100
+  died:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7399323020782380679}
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &7399323020782380676
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,10 +7,11 @@ public class InfecteeGirlCtrl : MonoBehaviour
     public float recognizeRange;
     public Transform target;
     public SkinnedMeshRenderer[] mySkin;
-    public int hp;
     public bool isAttacked = false;
 
     private bool wasBoom = false;
+    Health info;
+
     [HideInInspector]
     private Animator anim;
 
@@ -18,6 +19,8 @@ public class InfecteeGirlCtrl : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        info = GetComponent<Health>();
+        info.damaged.AddListener(SetAttackTrigger);
     }
 
     // Update is called once per frame
@@ -40,12 +43,8 @@ public class InfecteeGirlCtrl : MonoBehaviour
         mySkin[1].material.color = mySkin[0].material.color + new Color(0.01f, 0, 0);
     }
 
-    public void ApplyDamage(int damage)
+    public void SetAttackTrigger(Vector3 tmp)
     {
-        hp -= damage;
-
-        if (hp <= 0)
-            Destroy(gameObject);
-
+        isAttacked = true;
     }
 }

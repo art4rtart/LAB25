@@ -96,41 +96,27 @@ public class AgentWeaponCtrl : MonoBehaviour
 
         for (int i = 0; i < 5; ++i)
         {
-            if(Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
+            if (Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
             {
-                Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
+                //Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
+                InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
                 Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+                Health health = hit.transform.GetComponent<Health>();
 
+                // Debug.Log(hit.transform.gameObject.name);
 
-                //her0in
-                Charger charger = hit.transform.GetComponent<Charger>();
-                if (hit.transform.gameObject.name == "BossZombie")
+                if (!hit.transform.gameObject.CompareTag("Infectee") && !hit.transform.gameObject.CompareTag("Player") && !hit.transform.gameObject.CompareTag("PlayerAgent") && !hit.transform.gameObject.CompareTag("Untagged"))
                 {
-                    charger.ApplyDamage(damage);
-                    StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
-                }
-
-                if (!hit.transform.gameObject.CompareTag("Infectee") && !hit.transform.gameObject.CompareTag("Player") && !hit.transform.gameObject.CompareTag("PlayerAgent"))
-                {
-                    //Debug.Log("ShotMiss");
                     StartCoroutine(FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-                    //TestPlayerAgent4.isShotMiss = true;
                 }
                 else
                 {
-                    if (enemyCtrl && enemyCtrl.hp > 0)
+                    if (health && health.hp > 0)
                     {
-                        enemyCtrl.hitPos = hit.transform.InverseTransformPoint(hit.point);
-                        enemyCtrl.ApplyDamage(damage);
+                        health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
                         StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
                     }
-
                 }
-            }
-            else
-            {
-                //Debug.Log("Miss");
-                //TestPlayerAgent4.isShotMiss = true;
             }
         }
 		currentBullets--;
