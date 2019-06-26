@@ -114,7 +114,7 @@ public class AgentWeaponCtrl : MonoBehaviour
                     if (health && health.hp > 0)
                     {
                         health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
-                        StartCoroutine(BloodEffect(hit.transform.position + Vector3.up * 1.2f));
+                        StartCoroutine(BloodEffect(hit.point));
                     }
                 }
             }

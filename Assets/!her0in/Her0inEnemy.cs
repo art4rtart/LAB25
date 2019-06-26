@@ -54,7 +54,6 @@ public class Her0inEnemy : MonoBehaviour
         myChange = GetComponentInParent<ChangeRagDoll>();
         csCollider = GetComponent<CapsuleCollider>();
         info = GetComponent<Health>();
-        Debug.Log(info);
         info.damaged.AddListener(SetHitPos);
     }
 

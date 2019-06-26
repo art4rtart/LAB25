@@ -154,7 +154,6 @@ public class Charger : MonoBehaviour
 
 	public void Die()
 	{
-		Debug.Log("Die");
 		anim.SetTrigger("Die");
 		Invoke("Destroy", 2f);
 	}

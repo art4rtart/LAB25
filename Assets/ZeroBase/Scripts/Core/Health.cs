@@ -7,8 +7,6 @@ public class EventVector3 : UnityEvent<Vector3> { }
 
 public class Health : MonoBehaviour
 {
-    //infectee attributes
-    [HideInInspector]
     public int hp;
     public int maxHp;
 

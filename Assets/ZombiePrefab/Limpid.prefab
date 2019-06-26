@@ -14636,6 +14636,7 @@ GameObject:
   - component: {fileID: 2268108221646343722}
   - component: {fileID: 3989096147856049819}
   - component: {fileID: 7713368123224176505}
+  - component: {fileID: 243637832}
   m_Layer: 17
   m_Name: AnimatorInfectee
   m_TagString: Infectee
@@ -14759,8 +14760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef9cc6dcd1eaa043b8238db025820d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 50
-  maxHp: 50
   isAttack: 0
   findRadius: 8
   attackRange: 3
@@ -14778,6 +14777,36 @@ MonoBehaviour:
   hitPos: {x: 0, y: 0, z: 0}
   player: {fileID: 0}
   attackSpeed: 1
+--- !u!114 &243637832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4953623282176056800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e10c73cf75e3f489df4119eaa0a0bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  maxHp: 100
+  died:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7713368123224176505}
+        m_MethodName: AfterDie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &4963124390649886477
 GameObject:
   m_ObjectHideFlags: 0
