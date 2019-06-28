@@ -21,7 +21,7 @@ public class CheckAgent : MonoBehaviour
 		{
 			if (!check)
 			{
-				transform.position = new Vector3(transform.position.x, 3.5f, transform.position.z);
+				transform.position = new Vector3(this.transform.position.x, 3.5f, this.transform.position.z);
 				rgbd.constraints = RigidbodyConstraints.FreezeRotation;
 				findBlockAgent.enabled = true;
 				check = true;
