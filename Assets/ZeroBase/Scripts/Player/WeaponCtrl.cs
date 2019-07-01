@@ -34,14 +34,20 @@ public class WeaponCtrl : MonoBehaviour
 
     // References
     public Transform shootPoint;
+    public Transform pickingPoint;
     private Animator anim;
     public ParticleSystem muzzleFlash;
     private CharacterController characterController;
 
     private int useWard = 0;
 
-	// her0in
-	public int bulletsToReload;
+    // Pickup
+    private bool isPick = false;
+    RaycastHit pick;
+
+
+    // her0in
+    public int bulletsToReload;
 	public ZombieScanner scanner;
 	public Zemmer zemmer;
 	public ItemManager itemManager;
@@ -65,19 +71,39 @@ public class WeaponCtrl : MonoBehaviour
 
 		if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
-            if (currentBullets > 0)
-                Fire();
+            if (!isPick)
+            {
+                if (currentBullets > 0)
+                    Fire();
+                else
+                {
+                    DoReload();
+                }
+            }
             else
             {
-                DoReload();
+                Pickup();
             }
         }
         if (Input.GetKeyDown(KeyCode.R))
             DoReload();
 
-		//her0in -------------------------------------------------------------------
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            isPick = !isPick;
+            if (!isPick)
+            {
+                if (pick.transform)
+                {
+                    pick.transform.SetParent(null);
+                    pick.transform.GetComponent<Rigidbody>().useGravity = true;
+                }
+            }
+        }
 
-		if (Input.GetKeyDown(KeyCode.Alpha1))
+        //her0in -------------------------------------------------------------------
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
 		{
 			anim.SetBool("Ward", false);
 			anim.SetBool("useHarter", false);
@@ -207,6 +233,18 @@ public class WeaponCtrl : MonoBehaviour
         StartCoroutine(Particle.Instance.BulletEffect());
     }
 
+    public void Pickup()
+    {
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out pick, range))
+        {
+            if (pick.transform.CompareTag("Moveable"))
+            {
+                Debug.Log(pick.transform.name);
+                pick.transform.GetComponent<Rigidbody>().useGravity = false;
+                pick.transform.SetParent(pickingPoint.transform);
+            }
+        }
+    }
     private void Recoil()
     {
         Vector3 recoilVector = new Vector3(Random.Range(-recoilKickback.x, recoilKickback.x), recoilKickback.y, recoilKickback.z);

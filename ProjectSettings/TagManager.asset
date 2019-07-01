@@ -34,6 +34,10 @@ TagManager:
   - agent
   - LimpidB
   - MissionObject
+  - ground
+  - block
+  - goal
+  - Moveable
   layers:
   - Default
   - TransparentFX

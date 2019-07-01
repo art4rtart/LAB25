@@ -17,6 +17,9 @@ public class Particle : MonoBehaviour
 
     private static Particle instance;
 
+    // Reference
+    public Transform PlayerTr;
+
     // Prefabs
     public GameObject hitSparkPrefab;
     public GameObject hitHolePrefab;
@@ -48,19 +51,28 @@ public class Particle : MonoBehaviour
     {
         GameObject bulletCasingObject;
         bulletCasingObject = bulletCasingPool.NewItem();
-        Quaternion randomQuaternion = new Quaternion(Random.Range(0, 360f), Random.Range(0, 360f), Random.Range(180, 360f), 1);
+        bulletCasingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
 
         if (bulletCasingObject)
         {
-            bulletCasingObject.transform.position = transform.TransformPoint(transform.InverseTransformPoint(bulletCasingPoint.position) + new Vector3(0.4f, 0, 0.3f));
-            bulletCasingObject.transform.localScale = new Vector3(2, 2, 2);
-            bulletCasingObject.transform.SetParent(fireTraceParent);
-            bulletCasingObject.transform.localRotation = randomQuaternion;
-            //bulletCasingObject.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(Random.Range(0.01f, 0.05f), Random.Range(0.01f, 0.05f), Random.Range(-0.03f, 0.03f)));
-            bulletCasingObject.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(Random.Range(50f, 100f), Random.Range(50f, 100f), Random.Range(-30f, 30f)));
+            Rigidbody bulletRigid = bulletCasingObject.GetComponent<Rigidbody>();
+
+            bulletCasingObject.transform.position = bulletCasingPoint.position;
+            bulletCasingObject.transform.rotation = PlayerTr.rotation;
+            bulletCasingObject.transform.Rotate(Random.Range(-45, 45), Random.Range(-90, 30), 0);
+            bulletRigid.velocity = Vector3.zero;
+            bulletRigid.AddForce((PlayerTr.transform.up * 0.5f + PlayerTr.transform.right) * 5);
+
+            //Debug.Log(bulletCasingObject.GetComponent<Rigidbody>().velocity);
+            //bulletCasingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            //Debug.Log(bulletCasingObject.GetComponent<Rigidbody>().velocity);
+            //bulletCasingObject.GetComponent<Rigidbody>().AddRelativeForce(bulletCasingObject.transform.right * 10);
+
         }
         yield return new WaitForSeconds(1f);
 
+        bulletCasingObject.transform.SetParent(fireTraceParent);
         bulletCasingPool.RemoveItem(bulletCasingObject, bulletCasingPrefab, fireTraceParent);
     }
 
