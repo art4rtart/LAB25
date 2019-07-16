@@ -36,13 +36,13 @@ public class InfecteeGirlCtrl : MonoBehaviour
         {
             anim.SetBool("isBoom", true);
             wasBoom = true;
-            Invoke("Boom", 3.5f);
+            Invoke("Boom", 3.2f);
         }
     }
 
     public void ChangeSkinColor()
     {
-        mySkin.material.color = mySkin.material.color+ new Color(0.01f, 0, 0, 0);
+        //mySkin.sharedMaterial.color = mySkin.sharedMaterial.color + new Color(1.5f, 0, 0, 0);
         //Debug.Log(mySkin.material.color);
     }
 
@@ -54,6 +54,6 @@ public class InfecteeGirlCtrl : MonoBehaviour
     void Boom()
     {
         info.died.Invoke();
-        Instantiate(boomParticle, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
+        Instantiate(boomParticle, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), transform.rotation);
     }
 }

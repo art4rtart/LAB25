@@ -21,12 +21,12 @@ public class ChangeRagDoll : MonoBehaviour
     public IEnumerator ChangeRagdoll()
     {
         CopyAnimCharacterTransformToRagdoll(charObj.transform, ragdollObj.transform);
-
+    
         charObj.gameObject.SetActive(false);
         ragdollObj.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(2.5f);
-
+      
         charObj.gameObject.SetActive(true);
         ragdollObj.gameObject.SetActive(false);
 
