@@ -201,27 +201,21 @@ public class WeaponCtrl : MonoBehaviour
 
         RaycastHit hit;
 
-
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
         {
-			//Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
-            InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
-            Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
             Health health = hit.transform.GetComponent<Health>();
 
-			// Debug.Log(hit.transform.gameObject.name);
-
-            if (!hit.transform.gameObject.CompareTag("Infectee") && !hit.transform.gameObject.CompareTag("Player") && !hit.transform.gameObject.CompareTag("PlayerAgent") && !hit.transform.gameObject.CompareTag("Untagged"))
+            if (health && health.hp > 0)
             {
-				StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-			}
-			else
-			{
-				if (health && health.hp > 0)
-				{
-                    health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
-					StartCoroutine(Particle.Instance.BloodEffect(hit.point));
-				}
+                health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
+                if (!hit.transform.CompareTag("Breakable"))
+                    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+                else
+                    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+            }
+            else
+            {
+                StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
         }
         currentBullets--;

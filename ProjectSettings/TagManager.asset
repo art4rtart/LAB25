@@ -38,6 +38,7 @@ TagManager:
   - block
   - goal
   - Moveable
+  - Breakable
   layers:
   - Default
   - TransparentFX

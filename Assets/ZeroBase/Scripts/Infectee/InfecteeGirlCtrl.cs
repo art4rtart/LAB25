@@ -36,7 +36,7 @@ public class InfecteeGirlCtrl : MonoBehaviour
         {
             anim.SetBool("isBoom", true);
             wasBoom = true;
-            Invoke("Boom", 3.2f);
+            Invoke("Boom", 3.0f);
         }
     }
 
