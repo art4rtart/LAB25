@@ -10,6 +10,8 @@ public class InfecteeGirlCtrl : MonoBehaviour
     public bool isAttacked = false;
 
     private bool wasBoom = false;
+    private AudioSource audiosrc;
+    public AudioClip[] soundClips;
     public GameObject boomParticle;
     Health info;
 
@@ -20,6 +22,7 @@ public class InfecteeGirlCtrl : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        audiosrc = GetComponent<AudioSource>();
         info = GetComponent<Health>();
         info.damaged.AddListener(SetAttackTrigger);
     }
@@ -36,14 +39,14 @@ public class InfecteeGirlCtrl : MonoBehaviour
         {
             anim.SetBool("isBoom", true);
             wasBoom = true;
-            Invoke("Boom", 3.0f);
+            Invoke("ScreamSoundPlay", 1.8f);
+            Invoke("Boom", 2.5f);
         }
     }
 
     public void ChangeSkinColor()
     {
-        //mySkin.sharedMaterial.color = mySkin.sharedMaterial.color + new Color(1.5f, 0, 0, 0);
-        //Debug.Log(mySkin.material.color);
+        mySkin.material.color += new Color(0.01f, 0, 0);
     }
 
     public void SetAttackTrigger(Vector3 tmp)
@@ -53,7 +56,27 @@ public class InfecteeGirlCtrl : MonoBehaviour
 
     void Boom()
     {
-        info.died.Invoke();
-        Instantiate(boomParticle, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), transform.rotation);
+        if (gameObject.activeSelf)
+        {
+            Instantiate(boomParticle, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), transform.rotation);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+    }
+
+    private void ScreamSoundPlay()
+    {
+        if (gameObject.activeSelf)
+        {
+            audiosrc.clip = soundClips[0];
+            audiosrc.Play();
+        }
+    }
+
+    public void AfterDie()
+    {
+        if (gameObject.activeSelf)
+            Boom();
+
     }
 }
