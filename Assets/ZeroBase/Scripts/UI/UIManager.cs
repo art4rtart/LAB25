@@ -62,7 +62,20 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public bool isPointingItem;
     [HideInInspector] public bool changeWeaponImage;
 
-	void Start()
+    public static Particle Instance
+    {
+        get
+        {
+            if (instance != null)
+                return instance;
+            instance = FindObjectOfType<Particle>();
+            return instance;
+        }
+    }
+
+    private static Particle instance;
+
+    void Start()
     {
         currentWeaponImage.sprite = weaponImage[0];
     }
@@ -75,7 +88,7 @@ public class UIManager : MonoBehaviour
         MissionUpdate();
     }
 
-    void MissionUpdate()
+    public void MissionUpdate()
     {
         if (isMissionStart)
         {
@@ -100,7 +113,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void TextUpdate()
+    public void TextUpdate()
     {
 		healthProgressbar.value = ItemManager.currentHealth / 100f;
         armorProgressbar.value = ItemManager.currentArmor / 100f;
@@ -127,7 +140,7 @@ public class UIManager : MonoBehaviour
         missionMesseageText.text = missionMessage;
     }
 
-    void SpriteUpdate()
+    public void SpriteUpdate()
     {
         if (itemManager.isHoldingWeapon && changeWeaponImage)
         {
@@ -139,7 +152,7 @@ public class UIManager : MonoBehaviour
         interactAnimator.SetBool("FadeIn", isPointingItem);     // f key update
     }
 
-    void DeveloperMode()
+    public void DeveloperMode()
     {
 		if (weaponController.isReloaded)
 		{
