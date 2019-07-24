@@ -146,6 +146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: 2. Logo
+  isTrigger: 0
+  changeTime: 0
 --- !u!95 &111338438
 Animator:
   serializedVersion: 3

@@ -30,7 +30,8 @@ public class Hover : MonoBehaviour
 	public TextMeshProUGUI[] achievementSubMenu;
 	public TextMeshProUGUI[] optionSubMenu;
 
-	public string levelName = "Loading";
+	public string[] loadingNames = { "Loading1", "Loading2", "Loading3", "Loading4", "Loading5" };
+	public string[] stageNames = { "Stage1", "Stage2", "Stage3", "Stage4", "Stage5" };
 
 	void Awake()
 	{
@@ -57,7 +58,9 @@ public class Hover : MonoBehaviour
 		if (lobby.menuAnimator.GetCurrentAnimatorStateInfo(0).IsName("MenuAnimationFadeOut") &&
 			lobby.menuAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
 		{
-			SceneManager.LoadScene(levelName);
+
+			SceneManager.LoadScene(loadingNames[Random.Range(0, loadingNames.Length)]);
+			LevelLoader.sceneName = stageNames[Mathf.Abs(Lobby.spriteIndex)];
 		}
 
 		if (lobby.highlightMenuAnimator.isActiveAndEnabled &&

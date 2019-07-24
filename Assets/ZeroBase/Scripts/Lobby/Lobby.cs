@@ -28,7 +28,7 @@ public class Lobby : MonoBehaviour
 
 	[Header("Index")]
 	int[] index = new int[5];
-	int spriteIndex;
+	public static int spriteIndex;
 	bool glowText = true;
 
 	public GameObject blurRenderer;
@@ -71,6 +71,12 @@ public class Lobby : MonoBehaviour
 
 	void RefreshMenu()
 	{
+		if (Mathf.Abs(spriteIndex) == 0) leftButton.enabled = false;
+		else leftButton.enabled = true;
+
+		if (Mathf.Abs(spriteIndex) == 4) rightButton.enabled = false;
+		else rightButton.enabled = true;
+
 		for (int i = 0; i < stageRawImage.Length; i++)
 		{
 			index[i] = Mathf.Abs(spriteIndex) + i;

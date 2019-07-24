@@ -11,7 +11,7 @@ public class CompanyLogo : MonoBehaviour
     void Start()
     {
 		blurRenderer.GetComponent<Renderer>().sharedMaterial.SetFloat("_Size", 0);
-		Invoke("FadeOut", 3.5f);
+		Invoke("FadeOut", 4.5f);
 	}
 
 	void FadeOut()
@@ -22,7 +22,7 @@ public class CompanyLogo : MonoBehaviour
 	IEnumerator FadeOutScene()
 	{
 		float alpha = 0;
-		float fadeSpeed = 0.005f;
+		float fadeSpeed = 0.01f;
 
 		while(fadeImage.color.a <= 1)
 		{

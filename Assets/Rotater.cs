@@ -15,7 +15,7 @@ public class Rotater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(this.transform.position.z <= 4.5)
+		if(this.transform.position.z <= 6.5f)
 			transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 
 		transform.Rotate(Vector3.back * rotateSpeed * Time.deltaTime);

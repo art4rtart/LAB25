@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LevelLoader : MonoBehaviour
 {
-	public string sceneName;
+	public static string sceneName;
 	public Slider slider;
 
 	void Start()

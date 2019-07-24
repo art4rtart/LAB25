@@ -57,6 +57,9 @@ public class ItemManager : MonoBehaviour
 	public bool hasHearter;
 	public Elevator elevator;
 
+	[Header("Cross Hair")]
+	public TextMeshProUGUI zombieNameText;
+	public TextMeshProUGUI zombieHealthText;
 	bool isTargetLocked;
 
     void Update()
@@ -134,6 +137,9 @@ public class ItemManager : MonoBehaviour
 		{
 			if(hit.transform.CompareTag("Infectee"))
 			{
+				zombieNameText.text = hit.transform.name;
+				zombieHealthText.text = Mathf.Clamp(hit.transform.GetComponent<Health>().hp, 0, hit.transform.GetComponent<Health>().hp).ToString();
+
 				if(!isTargetLocked)
 				{
 					crosshair.LockCrosshair();
