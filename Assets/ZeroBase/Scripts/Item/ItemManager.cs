@@ -9,6 +9,7 @@ public class ItemManager : MonoBehaviour
 	public Camera fpsCam;
 	public GameObject player;
 	public UIManager uiManager;
+	public Crosshair crosshair;
 	public WeaponCtrl weaponController;
 
 	[Header("Item Count")]
@@ -55,7 +56,9 @@ public class ItemManager : MonoBehaviour
 	public Quest quest;
 	public bool hasHearter;
 	public Elevator elevator;
-	
+
+	bool isTargetLocked;
+
     void Update()
 	{
 		// define player stat here ---------------------
@@ -129,6 +132,24 @@ public class ItemManager : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
 		{
+			if(hit.transform.CompareTag("Infectee"))
+			{
+				if(!isTargetLocked)
+				{
+					crosshair.LockCrosshair();
+					isTargetLocked = true;
+				}
+			}
+
+			else
+			{
+				if (isTargetLocked)
+				{
+					crosshair.LockCrosshair();
+					isTargetLocked = false;
+				}
+			}
+
 			if (hit.transform.CompareTag("MissionObject") && quest.openGateMission)
 			{
 				uiManager.isPointingItem = true;

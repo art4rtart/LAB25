@@ -55,7 +55,6 @@ public class WeaponCtrl : MonoBehaviour
 	public bool useMedicalKit;
 	int specialItemIndex;
 	public MissionScripts missionScripts;
-
 	
     private void Start()
     {
@@ -208,10 +207,14 @@ public class WeaponCtrl : MonoBehaviour
             if (health && health.hp > 0)
             {
                 health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
-                if (!hit.transform.CompareTag("Breakable"))
-                    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
-                else
-                    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+				if (!hit.transform.CompareTag("Breakable"))
+				{
+					StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+
+				}
+
+				else
+					StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
             else
             {
