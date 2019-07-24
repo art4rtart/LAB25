@@ -6,7 +6,7 @@ Shader "Custom/BLUR" {
 		_BumpAmt("Distortion", Range(0,128)) = 10
 		_MainTex("Tint Color (RGB)", 2D) = "white" {}
 		_BumpMap("Normalmap", 2D) = "bump" {}
-		_Size("Size", Range(0, 20)) = 1
+		_Size("Size", Range(0, 50)) = 1
 	}
 
 		Category{
