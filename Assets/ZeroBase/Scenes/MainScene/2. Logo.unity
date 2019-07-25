@@ -23929,9 +23929,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e5a8331885267f46a50caf3d6433eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: 3. Title
+  nextSceneName: GameIntro
   isTrigger: 1
-  changeTime: 6.5
+  changeTime: 7
 --- !u!114 &569427871
 MonoBehaviour:
   m_ObjectHideFlags: 0

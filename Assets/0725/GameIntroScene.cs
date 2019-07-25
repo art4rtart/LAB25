@@ -21,16 +21,11 @@ public class GameIntroScene : MonoBehaviour
 
 
 	public Animator fadeAnimator;
-	MoveToNextScene moveToNextScene;
+	public MoveToNextScene moveToNextScene;
 
 	public PostProcessingProfile ppProfile;
 	public float blinkStartSecond;
 	bool isBlinkEnd;
-
-	void Awake()
-	{
-		moveToNextScene = GetComponent<MoveToNextScene>();
-	}
 
 	void Start()
 	{
@@ -51,7 +46,7 @@ public class GameIntroScene : MonoBehaviour
 		}
 	}
 
-	void LoadScene()
+	public void LoadScene()
 	{
 		moveToNextScene.LoadSceneTrigger();
 	}
@@ -65,12 +60,10 @@ public class GameIntroScene : MonoBehaviour
 
 	IEnumerator Blink()
 	{
-		yield return new WaitForSeconds(blinkStartSecond);
-
 		while(!isBlinkEnd)
 		{
+			yield return new WaitForSeconds(blinkStartSecond);
 			SetPostprocessing();
-			yield return null;
 		}
 
 		StopAllCoroutines();
@@ -82,5 +75,12 @@ public class GameIntroScene : MonoBehaviour
 		sentenceIndex = Mathf.Clamp(sentenceIndex += 1, 0, mainTitleSentences.Length);
 		mainTitleText.text = mainTitleSentences[sentenceIndex];
 		subTitleText.text = subTitleSentences[sentenceIndex];
+	}
+
+	public CameraShake.Properties testProperties;
+
+	public void CameraShake()
+	{
+		FindObjectOfType<CameraShake>().StartShake(testProperties);
 	}
 }

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/ZeroBase/Scenes/MainScene/2. Logo.unity
     guid: 3053e24c457033a4db58811b029fd160
   - enabled: 1
+    path: Assets/0725/GameIntro.unity
+    guid: a191ce9d60916b3468dfab37d22fd12c
+  - enabled: 1
     path: Assets/ZeroBase/Scenes/MainScene/3. Title.unity
     guid: fc29c0eb013635248a63184af7394bd0
   - enabled: 1

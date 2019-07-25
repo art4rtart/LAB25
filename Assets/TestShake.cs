@@ -8,7 +8,7 @@ public class TestShake : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Z))
 		{
 			FindObjectOfType<CameraShake>().StartShake(testProperties);
 		}
