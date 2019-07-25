@@ -9,10 +9,12 @@ public class TypeSentence : MonoBehaviour
 	public float speed;
 	public string sentence;
 	public bool isStarted;
+	public bool justTypeIt;
 
 	void Start()
 	{
-		this.enabled = false;
+		if(justTypeIt) StartCoroutine(Type(text.text));
+		else this.enabled = false;
 	}
 
 	public IEnumerator Type(string sentence)
