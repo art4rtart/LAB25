@@ -62,18 +62,18 @@ public class UIManager : MonoBehaviour
     [HideInInspector] public bool isPointingItem;
     [HideInInspector] public bool changeWeaponImage;
 
-    public static Particle Instance
+    public static UIManager Instance
     {
         get
         {
             if (instance != null)
                 return instance;
-            instance = FindObjectOfType<Particle>();
+            instance = FindObjectOfType<UIManager>();
             return instance;
         }
     }
 
-    private static Particle instance;
+    private static UIManager instance;
 
     void Start()
     {
@@ -82,10 +82,16 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        TextUpdate();
+        //TextUpdate();
         SpriteUpdate();
-        DeveloperMode();
+        //DeveloperMode();
         MissionUpdate();
+
+        if (Input.GetKeyDown(KeyCode.M))
+            isMissionStart = true;
+
+        if (Input.GetKeyDown(KeyCode.C))
+            isMissionComplete = true;
     }
 
     public void MissionUpdate()
@@ -111,6 +117,13 @@ public class UIManager : MonoBehaviour
                 isMissionComplete = false;
             }
         }
+
+        // mission Update
+        int minutes = Mathf.FloorToInt(missionTime / 60F);
+        int seconds = Mathf.FloorToInt(missionTime - minutes * 60);
+        string time = string.Format("{0:0}:{1:00}", minutes, seconds);
+        missionTimeText.text = time.ToString();
+        missionMesseageText.text = missionMessage;
     }
 
     public void TextUpdate()
@@ -131,13 +144,6 @@ public class UIManager : MonoBehaviour
         kitCountText.text = itemManager.medicalKitCount.ToString();
         adrenalineCountText.text = itemManager.adrenalineCount.ToString();
         grenadeCountText.text = itemManager.grenadeCount.ToString();
-
-        // mission Update
-        int minutes = Mathf.FloorToInt(missionTime / 60F);
-        int seconds = Mathf.FloorToInt(missionTime - minutes * 60);
-        string time = string.Format("{0:0}:{1:00}", minutes, seconds);
-        missionTimeText.text = time.ToString();
-        missionMesseageText.text = missionMessage;
     }
 
     public void SpriteUpdate()
@@ -154,19 +160,12 @@ public class UIManager : MonoBehaviour
 
     public void DeveloperMode()
     {
-		if (weaponController.isReloaded)
-		{
-			WeaponCtrl.currentBullets += weaponController.bulletsToReload;
-			totalBullet = weaponController.bulletsTotal;
-			bulletProgressbar.value = 1f;
-			weaponController.isReloaded = false;
-		}
 
-		if (Input.GetKeyDown(KeyCode.M))
-            isMissionStart = true;
+        WeaponCtrl.currentBullets += weaponController.bulletsToReload;
+        totalBullet = weaponController.bulletsTotal;
+        bulletProgressbar.value = 1f;
 
-        if (Input.GetKeyDown(KeyCode.C))
-            isMissionComplete = true;
+
     }
 
     public IEnumerator FadeIn()

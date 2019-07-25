@@ -62,11 +62,13 @@ public class ItemManager : MonoBehaviour
 	public TextMeshProUGUI zombieHealthText;
 	bool isTargetLocked;
 
+    public static void SetPlayerStat()
+    {
+        currentHealth = PlayerManager.hp;
+        currentArmor = PlayerManager.armor;
+    }
     void Update()
 	{
-		// define player stat here ---------------------
-		currentHealth = PlayerManager.hp;
-		currentArmor = PlayerManager.armor;
 		//currentHeartRate =
 	   // -----------------------------------------------
 
@@ -331,8 +333,8 @@ public class ItemManager : MonoBehaviour
 				hasWard = true;
 				break;
 		}
-
-		if(item.gameObject.CompareTag("Item")) item.gameObject.SetActive(false);
+        UIManager.Instance.TextUpdate();
+        if (item.gameObject.CompareTag("Item")) item.gameObject.SetActive(false);
 	}
 
 	bool hasWard;

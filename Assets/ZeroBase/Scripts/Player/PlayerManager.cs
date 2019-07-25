@@ -41,32 +41,22 @@ public class PlayerManager : MonoBehaviour
         isHit = true;
 
 		if (!powerOverWhelming) {
-			if (armor <= 0)
-			{
-				if (hp <= 0)
-				{
-					hp = 0;
-
-					// Die;
-					//Debug.Log("You Died!");
-				}
-				else
-				{
-					hp -= damage;
-					//UpdateHP();
-				}
-			}
-
-			else
-			{
-				Debug.Log(armor);
-				armor -= damage;
-				//UpdateArmor();
-			}
+            if (armor <= 0)
+            {
+                if (hp <= 0)
+                    hp = 0;
+                else
+                    hp -= damage;
+            }
+            else
+            {
+                armor -= damage;
+            }
 		}
-
+        ItemManager.SetPlayerStat();
+        UIManager.Instance.TextUpdate();
         //RecoilBack();
-		// 마크
+        // 마크
         //UIManager.takeDamge = true;
     }
 

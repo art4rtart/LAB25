@@ -4766,6 +4766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400012}
   - component: {fileID: 8333468030585390033}
+  - component: {fileID: 1496632273189065175}
   m_Layer: 0
   m_Name: Exploson9
   m_TagString: Untagged
@@ -4802,6 +4803,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cf7317de4fb48940bbc39f29d2a3690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &1496632273189065175
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100012}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.2
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &100014
 GameObject:
   m_ObjectHideFlags: 0

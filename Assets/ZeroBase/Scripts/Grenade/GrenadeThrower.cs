@@ -51,7 +51,8 @@ public class GrenadeThrower : MonoBehaviour
 	void ThrowGrenade()
 	{
 		itemManager.grenadeCount--;
-		GameObject grenade = Instantiate(grenadePrefab, grenadeThrowPos.position, transform.rotation);
+        UIManager.Instance.TextUpdate();
+        GameObject grenade = Instantiate(grenadePrefab, grenadeThrowPos.position, transform.rotation);
 		Rigidbody rb = grenade.GetComponent<Rigidbody>();
 		rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
 		rb.AddForce(transform.up * throwForce / 8, ForceMode.VelocityChange);

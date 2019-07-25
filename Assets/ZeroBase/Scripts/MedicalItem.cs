@@ -47,14 +47,17 @@ public class MedicalItem : MonoBehaviour
 		{
 			UseMedicalItem(medicalKitUseMessage, medicalKitUseTime);
 			itemManager.medicalKitCount--;
-		}
+            UIManager.Instance.TextUpdate();
+
+        }
 
 		//	if (Input.GetMouseButtonDown(0) && itemManager.readyToUseKit && itemManager.medicalKitCount > 0)
 		if (weaponController.useAdrenaline && itemManager.adrenalineCount > 0)
 		{
 			UseMedicalItem(adrenalineUseMessage, adrenalineUseTime);
 			itemManager.adrenalineCount--;
-		}
+            UIManager.Instance.TextUpdate();
+        }
 
 		UseAnimation();
 		UseAdrenaline(adrenalineEffect);

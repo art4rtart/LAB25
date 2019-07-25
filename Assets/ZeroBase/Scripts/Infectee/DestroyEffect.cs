@@ -3,11 +3,21 @@ using System.Collections;
 
 public class DestroyEffect : MonoBehaviour {
 
-	void Update ()
-	{
+    private bool isBoom = false;
+    private void OnEnable()
+    {
+        Invoke("DestroyParticle", 1.5f);
+    }
 
-		if(Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.C))
-		   Destroy(transform.gameObject);
-	
-	}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isBoom)
+            PlayerManager.ApplyDamage(25);
+        isBoom = true;
+    }
+
+    void DestroyParticle()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -17,7 +17,6 @@ public class WeaponCtrl : MonoBehaviour
 
     // Parameters
     private float fireTimer;
-    public bool isReloaded;
     private bool isReloading;
     private bool isRunning;
 
@@ -38,7 +37,6 @@ public class WeaponCtrl : MonoBehaviour
     private Animator anim;
     public ParticleSystem muzzleFlash;
     private CharacterController characterController;
-
     private int useWard = 0;
 
     // Pickup
@@ -59,7 +57,6 @@ public class WeaponCtrl : MonoBehaviour
     private void Start()
     {
         characterController = GetComponentInParent<CharacterController>();
-
         anim = GameObject.Find("Player").GetComponent<Animator>();
     }
 
@@ -228,6 +225,7 @@ public class WeaponCtrl : MonoBehaviour
         muzzleFlash.Play();
         Recoil();
         StartCoroutine(Particle.Instance.BulletEffect());
+        UIManager.Instance.TextUpdate();
     }
 
     public void Pickup()
@@ -269,7 +267,6 @@ public class WeaponCtrl : MonoBehaviour
 	public void Reload()
     {
 		// her0in
-		isReloaded = true;
 		bulletsToReload = bulletsPerMag - currentBullets;
         if (bulletsToReload > bulletsTotal)
         {

@@ -30,6 +30,7 @@ public class HealState : StateMachineBehaviour
             //    Healing.hpGapBetterThan50 = false;
 
             PlayerManager.hp += 70;
+            UIManager.Instance.TextUpdate();
             isHeal = true;
         }
     }

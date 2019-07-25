@@ -28,7 +28,7 @@ public class AttackState : StateMachineBehaviour
 			{
 				myInfectee.damagedEffect.Hit();
 				PlayerManager.ApplyDamage(10);
-			}
+            }
 
 			doAttack = true;
             myInfectee.isAttack = false;

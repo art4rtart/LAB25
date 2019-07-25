@@ -18,7 +18,6 @@ public class AgentReloadState : StateMachineBehaviour
             return;
         if (stateInfo.normalizedTime >= reloadTime)
         {
-			Debug.Log("asdad");
             animator.GetComponentInChildren<AgentWeaponCtrl>().Reload();
             reloaded = true;
         }

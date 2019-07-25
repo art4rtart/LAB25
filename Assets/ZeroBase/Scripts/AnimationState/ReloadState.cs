@@ -6,10 +6,11 @@ public class ReloadState : StateMachineBehaviour
     public float reloadTime = 0.7f;
     private bool reloaded = false;
 
-	// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-	//override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-	//
-	//}
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+
+    //}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,6 +21,7 @@ public class ReloadState : StateMachineBehaviour
         {
             animator.GetComponentInChildren<WeaponCtrl>().Reload();
             reloaded = true;
+            UIManager.Instance.DeveloperMode();
         }
     }
 
