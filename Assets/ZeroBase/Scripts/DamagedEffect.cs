@@ -18,8 +18,7 @@ public class DamagedEffect : MonoBehaviour
 	{
 		int index = Random.Range(0, sprites.Length);
 
-		if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f)
-			image.sprite = sprites[index];
+		image.sprite = sprites[index];
 
 		if(ItemManager.currentHealth > 0) anim.SetTrigger("Hit");
 	}

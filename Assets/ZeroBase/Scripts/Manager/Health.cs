@@ -12,10 +12,14 @@ public class Health : MonoBehaviour
 
     public EventVector3 damaged;
     public UnityEvent died;
+
+	ItemDrop itemDrop;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        hp = maxHp;
+		itemDrop = GetComponent<ItemDrop>();
+		hp = maxHp;
 
         if (damaged == null)
             damaged = new EventVector3();
@@ -26,7 +30,10 @@ public class Health : MonoBehaviour
         hp -= damage;
         damaged.Invoke(hitpos);
 
-        if (hp <= 0)
-            died.Invoke();
-    }
+		if (hp <= 0)
+		{
+			died.Invoke();
+			itemDrop.DropItem();
+		}
+	}
 }

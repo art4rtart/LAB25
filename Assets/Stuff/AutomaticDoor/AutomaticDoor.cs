@@ -11,6 +11,7 @@ public class AutomaticDoor : MonoBehaviour
 	public AudioClip closeSound;
 
 	bool isOpened;
+	public bool isColliding;
 
 	void Start()
 	{
@@ -31,9 +32,32 @@ public class AutomaticDoor : MonoBehaviour
 		}
 	}
 
+	void OnTriggerStay(Collider other)
+	{
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee"))
+		{
+			isColliding = true;
+		}
+	}
+
+	void OnTriggerExit(Collider other)
+	{
+		if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee"))
+		{
+			isColliding = false;
+		}
+	}
+
 	IEnumerator OpenTime()
 	{
-		yield return new WaitForSeconds(5.0f);
+		yield return new WaitForSeconds(1.0f);
+
+		while (isColliding)
+		{
+			yield return null;
+		}
+
+		yield return new WaitForSeconds(2.0f);
 		isOpened = false;
 		audioSource.Stop();
 		animator.SetBool("DoorOpen", false);

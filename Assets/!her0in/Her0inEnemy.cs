@@ -44,7 +44,7 @@ public class Her0inEnemy : MonoBehaviour
             if( player )
                 target = player.transform;
         }
-    }
+	}
 
     void Start()
     {
@@ -54,7 +54,7 @@ public class Her0inEnemy : MonoBehaviour
         myChange = GetComponentInParent<ChangeRagDoll>();
         csCollider = GetComponent<CapsuleCollider>();
         info = GetComponent<Health>();
-        info.damaged.AddListener(SetHitPos);
+		info.damaged.AddListener(SetHitPos);
     }
 
     void Update()
@@ -177,7 +177,7 @@ public class Her0inEnemy : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("wall"))
+        if (other.gameObject.CompareTag("Floor"))
         {
             if (!settingTrigger)
             {

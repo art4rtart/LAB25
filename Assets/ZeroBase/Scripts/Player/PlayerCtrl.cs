@@ -47,6 +47,9 @@ public class PlayerCtrl : MonoBehaviour
 
     // Ref
     PlayerManager m_PlayerManager;
+	public Animator flashLightAnimator;
+	bool flashLightOn;
+
     // Crouch
     public float crouchSpeed;
     public float crouchHeight;
@@ -76,12 +79,20 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+		// Power Over Whelming
 		if(Input.GetKeyDown(KeyCode.P))
 		{
 			PlayerManager.powerOverWhelming = !PlayerManager.powerOverWhelming;
 		}
 
-        myPos = transform;
+		// Flash Light
+		if (Input.GetKeyDown(KeyCode.F))
+		{
+			flashLightOn = !flashLightOn;
+			flashLightAnimator.SetBool("LightOn", flashLightOn);
+		}
+
+		myPos = transform;
         RotateView();
         // the jump state needs to read here to make sure it is not missed
         if (!m_Jump)

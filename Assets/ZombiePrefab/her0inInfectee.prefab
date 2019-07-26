@@ -2886,6 +2886,7 @@ GameObject:
   - component: {fileID: 5930316955461421814}
   - component: {fileID: 8136328504309683614}
   - component: {fileID: 1463777604605522373}
+  - component: {fileID: 221878874}
   m_Layer: 21
   m_Name: AnimatorInfectee
   m_TagString: Infectee
@@ -2901,7 +2902,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3372380545461173407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 12.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1327357919675568276}
@@ -3056,6 +3057,22 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &221878874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372380545461173407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c154cf2ac0e0b04eac1a161f8c70317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItem: {fileID: 5142520573439195900, guid: df9a4e4f0ee0b234a9f7b07d9a6eda69,
+    type: 3}
+  parent: {fileID: 5009833869241692385}
+  percentage: 100
 --- !u!1 &3519322336369519273
 GameObject:
   m_ObjectHideFlags: 0
@@ -4205,7 +4222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5009833869241692385}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.3, y: 0, z: 13.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6595281706682482683}
@@ -7720,7 +7737,7 @@ GameObject:
   - component: {fileID: 5849295416226380727}
   - component: {fileID: 4555918279677651505}
   - component: {fileID: 1681812108255423857}
-  m_Layer: 21
+  m_Layer: 5
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -39,6 +39,7 @@ TagManager:
   - goal
   - Moveable
   - Breakable
+  - Floor
   layers:
   - Default
   - TransparentFX

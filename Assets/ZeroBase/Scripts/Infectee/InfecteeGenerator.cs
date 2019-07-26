@@ -32,6 +32,14 @@ public class InfecteeGenerator : MonoBehaviour
 		}
     }
 
+	void Update()
+	{
+		if(Input.GetKeyDown(KeyCode.Space))
+		{
+			StartCoroutine(Generate());
+		}
+	}
+
     void OnApplicationQuit()
     {
 		for(int i = 0; i < infectees.Length; i++)
