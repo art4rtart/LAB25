@@ -58,9 +58,9 @@ public class Hover : MonoBehaviour
 		if (lobby.menuAnimator.GetCurrentAnimatorStateInfo(0).IsName("MenuAnimationFadeOut") &&
 			lobby.menuAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
 		{
-
+			int index = Mathf.Abs(Lobby.spriteIndex);
 			SceneManager.LoadScene(loadingNames[Random.Range(0, loadingNames.Length)]);
-			LevelLoader.sceneName = stageNames[Mathf.Abs(Lobby.spriteIndex)];
+			LevelLoader.sceneName = stageNames[index];
 		}
 
 		if (lobby.highlightMenuAnimator.isActiveAndEnabled &&
@@ -382,6 +382,14 @@ public class Hover : MonoBehaviour
 		StartCoroutine(FadeVolume());
 	}
 
+	public void CreditLoad()
+	{
+		audioManager.Play("DefaultClickSound");
+		lobby.menuAnimator.SetTrigger("FadeOut");
+		lobby.highlightMenuAnimator.SetTrigger("Fade");
+		SceneManager.LoadScene("Credit");
+	}
+
 	IEnumerator FadeVolume()
 	{
 		while (bgm.volume >= 0f)
@@ -390,5 +398,4 @@ public class Hover : MonoBehaviour
 			yield return null;
 		}
 	}
-
 }

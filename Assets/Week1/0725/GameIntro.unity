@@ -16654,6 +16654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openSound: {fileID: 8300000, guid: 9ca3df88d248e8f42a6a0eac282dc4ef, type: 3}
   closeSound: {fileID: 8300000, guid: 424dec37231db9042ada63979a573c11, type: 3}
+  isColliding: 0
 --- !u!82 &1114286981
 AudioSource:
   m_ObjectHideFlags: 0
@@ -27128,6 +27129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openSound: {fileID: 8300000, guid: 9ca3df88d248e8f42a6a0eac282dc4ef, type: 3}
   closeSound: {fileID: 8300000, guid: 424dec37231db9042ada63979a573c11, type: 3}
+  isColliding: 0
 --- !u!82 &1800238241
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31055,7 +31057,7 @@ GameObject:
   - component: {fileID: 2134121745}
   - component: {fileID: 2134121744}
   m_Layer: 5
-  m_Name: ProjectName
+  m_Name: ProjectType
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31101,7 +31103,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: PROJECT NAME
+  m_text: PROJECT TYPE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0c3cbb1c96d056c42b2d9f6b36bf1cf3, type: 2}
   m_sharedMaterial: {fileID: 21954235800886222, guid: 0c3cbb1c96d056c42b2d9f6b36bf1cf3,
