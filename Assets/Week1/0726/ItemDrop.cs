@@ -24,6 +24,7 @@ public class ItemDrop : MonoBehaviour
 	public void DropItem()
 	{
 		if (item == null) return;
+		item.transform.position = this.gameObject.transform.position;
 		item.SetActive(true);
 		item.transform.SetParent(null);
 	}
