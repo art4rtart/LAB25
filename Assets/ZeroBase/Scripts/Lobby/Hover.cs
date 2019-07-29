@@ -32,11 +32,17 @@ public class Hover : MonoBehaviour
 
 	public string[] loadingNames = { "Loading1", "Loading2", "Loading3", "Loading4", "Loading5" };
 	public string[] stageNames = { "Stage1", "Stage2", "Stage3", "Stage4", "Stage5" };
+	public static bool loadCredit;
 
 	void Awake()
 	{
 		audioManager = FindObjectOfType<AudioManager>();
 		lobby = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Lobby>();
+	}
+
+	void Start()
+	{
+		loadCredit = false;
 	}
 
 	void Update()
@@ -58,9 +64,11 @@ public class Hover : MonoBehaviour
 		if (lobby.menuAnimator.GetCurrentAnimatorStateInfo(0).IsName("MenuAnimationFadeOut") &&
 			lobby.menuAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
 		{
+			if (loadCredit) return;
+
 			int index = Mathf.Abs(Lobby.spriteIndex);
-			SceneManager.LoadScene(loadingNames[Random.Range(0, loadingNames.Length)]);
 			LevelLoader.sceneName = stageNames[index];
+			SceneManager.LoadScene(loadingNames[Random.Range(0, loadingNames.Length)]);
 		}
 
 		if (lobby.highlightMenuAnimator.isActiveAndEnabled &&
@@ -309,6 +317,32 @@ public class Hover : MonoBehaviour
 		backText.font = glowFont;
 	}
 
+	public void SettingsHoverEnter()
+	{
+		audioManager.Play("HoverSound");
+		optionSubMenu[0].color = highlightTextColor;
+		optionSubMenu[0].font = glowFont;
+	}
+
+	public void SettingsHoverExit()
+	{
+		optionSubMenu[0].color = defaultTextColor;
+		optionSubMenu[0].font = defaultFont;
+	}
+
+	public void CreditHoverEnter()
+	{
+		audioManager.Play("HoverSound");
+		optionSubMenu[1].color = highlightTextColor;
+		optionSubMenu[1].font = glowFont;
+	}
+
+	public void CreditHoverExit()
+	{
+		optionSubMenu[1].color = defaultTextColor;
+		optionSubMenu[1].font = defaultFont;
+	}
+
 	public void BackHoverExit()
 	{
 		backText.color = defaultTextColor;
@@ -384,10 +418,14 @@ public class Hover : MonoBehaviour
 
 	public void CreditLoad()
 	{
+		loadCredit = true;
+		SceneMaster.SaveCurrentSceneName();
+
 		audioManager.Play("DefaultClickSound");
 		lobby.menuAnimator.SetTrigger("FadeOut");
 		lobby.highlightMenuAnimator.SetTrigger("Fade");
-		SceneManager.LoadScene("Credit");
+
+		StartCoroutine(FadeVolume());
 	}
 
 	IEnumerator FadeVolume()
@@ -395,6 +433,8 @@ public class Hover : MonoBehaviour
 		while (bgm.volume >= 0f)
 		{
 			bgm.volume -= Time.deltaTime;
+
+			if (bgm.volume <= 0.3f && loadCredit) SceneManager.LoadScene("Credit");
 			yield return null;
 		}
 	}
