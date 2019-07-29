@@ -32,7 +32,8 @@ public class Hover : MonoBehaviour
 
 	public string[] loadingNames = { "Loading1", "Loading2", "Loading3", "Loading4", "Loading5" };
 	public string[] stageNames = { "Stage1", "Stage2", "Stage3", "Stage4", "Stage5" };
-	public static bool loadCredit;
+	public static bool loadUtilScene;
+	public static string utilSceneName;
 
 	void Awake()
 	{
@@ -42,7 +43,7 @@ public class Hover : MonoBehaviour
 
 	void Start()
 	{
-		loadCredit = false;
+		loadUtilScene = false;
 	}
 
 	void Update()
@@ -64,7 +65,7 @@ public class Hover : MonoBehaviour
 		if (lobby.menuAnimator.GetCurrentAnimatorStateInfo(0).IsName("MenuAnimationFadeOut") &&
 			lobby.menuAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f)
 		{
-			if (loadCredit) return;
+			if (loadUtilScene) return;
 
 			int index = Mathf.Abs(Lobby.spriteIndex);
 			LevelLoader.sceneName = stageNames[index];
@@ -176,7 +177,6 @@ public class Hover : MonoBehaviour
 		if (!lobby.isSomethingClicked)
 		{
 			lobby.menuIndex = 3;
-			print(textMeshProText.Length);
 
 			audioManager.Play("DefaultClickSound");
 			highlightMenu.SetActive(true);
@@ -343,6 +343,31 @@ public class Hover : MonoBehaviour
 		optionSubMenu[1].font = defaultFont;
 	}
 
+	public void MissionHoverEnter()
+	{
+		audioManager.Play("HoverSound");
+		achievementSubMenu[0].color = highlightTextColor;
+		achievementSubMenu[0].font = glowFont;
+	}
+
+	public void MissionHoverExit()
+	{
+		achievementSubMenu[0].color = defaultTextColor;
+		achievementSubMenu[0].font = defaultFont;
+	}
+
+	public void RankingHoverEnter()
+	{
+		audioManager.Play("HoverSound");
+		achievementSubMenu[1].color = highlightTextColor;
+		achievementSubMenu[1].font = glowFont;
+	}
+
+	public void RankingHoverExit()
+	{
+		achievementSubMenu[1].color = defaultTextColor;
+		achievementSubMenu[1].font = defaultFont;
+	}
 	public void BackHoverExit()
 	{
 		backText.color = defaultTextColor;
@@ -418,8 +443,48 @@ public class Hover : MonoBehaviour
 
 	public void CreditLoad()
 	{
-		loadCredit = true;
+		loadUtilScene = true;
 		SceneMaster.SaveCurrentSceneName();
+		utilSceneName = "Credit";
+
+		audioManager.Play("DefaultClickSound");
+		lobby.menuAnimator.SetTrigger("FadeOut");
+		lobby.highlightMenuAnimator.SetTrigger("Fade");
+
+		StartCoroutine(FadeVolume());
+	}
+
+	public void RankingLoad()
+	{
+		loadUtilScene = true;
+		SceneMaster.SaveCurrentSceneName();
+		utilSceneName = "Ranking";
+
+		audioManager.Play("DefaultClickSound");
+		lobby.menuAnimator.SetTrigger("FadeOut");
+		lobby.highlightMenuAnimator.SetTrigger("Fade");
+
+		StartCoroutine(FadeVolume());
+	}
+
+	public void MissionLoad()
+	{
+		loadUtilScene = true;
+		SceneMaster.SaveCurrentSceneName();
+		utilSceneName = "MissionCleared";
+
+		audioManager.Play("DefaultClickSound");
+		lobby.menuAnimator.SetTrigger("FadeOut");
+		lobby.highlightMenuAnimator.SetTrigger("Fade");
+
+		StartCoroutine(FadeVolume());
+	}
+
+	public void SettingLoad()
+	{
+		loadUtilScene = true;
+		SceneMaster.SaveCurrentSceneName();
+		utilSceneName = "Settings";
 
 		audioManager.Play("DefaultClickSound");
 		lobby.menuAnimator.SetTrigger("FadeOut");
@@ -434,7 +499,7 @@ public class Hover : MonoBehaviour
 		{
 			bgm.volume -= Time.deltaTime;
 
-			if (bgm.volume <= 0.3f && loadCredit) SceneManager.LoadScene("Credit");
+			if (bgm.volume <= 0.3f && loadUtilScene) SceneManager.LoadScene(utilSceneName);
 			yield return null;
 		}
 	}

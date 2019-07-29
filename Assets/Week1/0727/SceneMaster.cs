@@ -50,18 +50,19 @@ public class SceneMaster : MonoBehaviour
 
 	IEnumerator FadeIn()
 	{
-		float alpha = 0;
 		fadeInImage.enabled = true;
 
-		while(alpha <= 1f)
+		for (float alpha = 0; alpha <= 1f; alpha += Time.deltaTime)
 		{
 			fadeInImage.color = new Color(fadeInImage.color.r, fadeInImage.color.g, fadeInImage.color.b, alpha);
-			alpha += Time.deltaTime * 2f;
 			yield return null;
 		}
+		fadeInImage.color = new Color(fadeInImage.color.r, fadeInImage.color.g, fadeInImage.color.b, 1);
+		yield return new WaitForSeconds(.5f);
 		SceneManager.LoadScene(sceneName);
 
-		yield return new WaitForSeconds(2f);			// scene loading time
+		while(sceneName == SceneManager.GetActiveScene().name) yield return null;
+		yield return new WaitForSeconds(.5f);
 		fadeInImage.enabled = false;
 
 		StopAllCoroutines();
