@@ -43,17 +43,19 @@ public class WeaponCtrl : MonoBehaviour
     private bool isPick = false;
     RaycastHit pick;
 
+    //WeaponChange
+    private bool hasAK = true;
 
     // her0in
     public int bulletsToReload;
-	public ZombieScanner scanner;
-	public Zemmer zemmer;
-	public ItemManager itemManager;
-	public bool useAdrenaline;
-	public bool useMedicalKit;
-	int specialItemIndex;
-	public MissionScripts missionScripts;
-	
+    public ZombieScanner scanner;
+    public Zemmer zemmer;
+    public ItemManager itemManager;
+    public bool useAdrenaline;
+    public bool useMedicalKit;
+    int specialItemIndex;
+    public MissionScripts missionScripts;
+
     private void Start()
     {
         characterController = GetComponentInParent<CharacterController>();
@@ -65,25 +67,25 @@ public class WeaponCtrl : MonoBehaviour
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         isReloading = info.IsName("Reload");
 
-		if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
             if (!isPick)
             {
-                if (currentBullets > 0)
-                    Fire();
-                else
+                if (hasAK)
                 {
-                    DoReload();
+                    if (currentBullets > 0)
+                        Fire();
+                    else
+                        DoReload();
                 }
+                else
+                    AxeAttack();
             }
             else
             {
                 Pickup();
             }
         }
-        if (Input.GetKeyDown(KeyCode.R))
-            DoReload();
-
         if (Input.GetKeyDown(KeyCode.T))
         {
             isPick = !isPick;
@@ -96,82 +98,109 @@ public class WeaponCtrl : MonoBehaviour
                 }
             }
         }
-
-        //her0in -------------------------------------------------------------------
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			anim.SetBool("Ward", false);
-			anim.SetBool("useHarter", false);
-			anim.SetTrigger("default");
-			specialItemIndex = 0;
-		}
-
-		else if (Input.GetKeyDown(KeyCode.Alpha2) && !useMedicalKit &&!useAdrenaline && itemManager.medicalKitCount > 0)
+        if (hasAK)
         {
-			anim.SetBool("Ward", false);
-			specialItemIndex = 0;
-			useMedicalKit = true;
-            anim.CrossFadeInFixedTime("Heal", 0.01f);
-		}
+            if (Input.GetKeyDown(KeyCode.R))
+                DoReload();
+            //her0in -------------------------------------------------------------------
 
-		else if (Input.GetKeyDown(KeyCode.Alpha3) && !useMedicalKit && !useAdrenaline && itemManager.adrenalineCount > 0)
-		{
-			useAdrenaline = true;
-			anim.CrossFadeInFixedTime("Adrenaline", 0.01f);
-		}
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                anim.SetBool("Ward", false);
+                anim.SetBool("useHarter", false);
+                anim.SetTrigger("default");
+                specialItemIndex = 0;
+            }
 
-		else if (Input.GetKeyDown(KeyCode.Alpha4))
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && !useMedicalKit && !useAdrenaline && itemManager.medicalKitCount > 0)
+            {
+                anim.SetBool("Ward", false);
+                specialItemIndex = 0;
+                useMedicalKit = true;
+                anim.CrossFadeInFixedTime("Heal", 0.01f);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && !useMedicalKit && !useAdrenaline && itemManager.adrenalineCount > 0)
+            {
+                useAdrenaline = true;
+                anim.CrossFadeInFixedTime("Adrenaline", 0.01f);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                specialItemIndex++;
+
+                if (specialItemIndex % 2 == 1)
+                {
+                    anim.SetBool("useHarter", false);
+                    anim.SetBool("Ward", true);
+                }
+
+                else if (specialItemIndex % 2 == 0)
+                {
+                    if (itemManager.hasHearter)
+                    {
+                        anim.SetBool("Ward", false);
+                        anim.SetTrigger("itemChange");
+                        anim.SetBool("useHarter", true);
+                    }
+
+                    else
+                        specialItemIndex--;
+                }
+            }
+
+            else if (Input.GetKeyDown(KeyCode.J))
+            {
+                anim.CrossFadeInFixedTime("Jammer", 0.01f);
+
+
+                // zemmer.UseZemmer();
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                if (info.IsName("Idle"))
+                {
+                    anim.SetTrigger("toAxe");
+                    hasAK = false;
+                }
+            }
+
+            if (anim.GetBool("Ward") && Input.GetMouseButtonDown(1))
+            {
+                anim.SetTrigger("useWard");
+
+                missionScripts.GetComponent<Animator>().SetTrigger("Finish");
+                missionScripts.Type();
+
+                scanner.ScanDistance = 0;
+                scanner.scanning = true;
+
+                anim.SetBool("Ward", false);
+                anim.SetTrigger("default");
+                specialItemIndex = 0;
+            }
+            RecoilBack();
+        }
+        else
         {
-			specialItemIndex++;
-
-			if (specialItemIndex % 2 == 1)
-			{
-				anim.SetBool("useHarter", false);
-				anim.SetBool("Ward", true);
-			}
-
-			else if (specialItemIndex % 2 == 0)
-			{
-				if (itemManager.hasHearter)
-				{
-					anim.SetBool("Ward", false);
-					anim.SetTrigger("itemChange");
-					anim.SetBool("useHarter", true);
-				}
-
-				else
-					specialItemIndex--;
-			}
-		}
-
-		else if (Input.GetKeyDown(KeyCode.J))
-        {
-            anim.CrossFadeInFixedTime("Jammer", 0.01f);
-
-       
-            // zemmer.UseZemmer();
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                if (info.IsName("IDLE(axe)"))
+                {
+                    anim.SetTrigger("toAK");
+                    hasAK = true;
+                }
+                else if (info.IsName("Idle"))
+                {
+                    anim.SetTrigger("toAxe");
+                    hasAK = false;
+                }
+            }
         }
 
-        if ( anim.GetBool("Ward") && Input.GetMouseButtonDown(1))
-        {
-			anim.SetTrigger("useWard");
+        // ----------------------------------------------------------------------
 
-			missionScripts.GetComponent<Animator>().SetTrigger("Finish");
-			missionScripts.Type();
-
-			scanner.ScanDistance = 0;
-			scanner.scanning = true;
-
-			anim.SetBool("Ward", false);
-			anim.SetTrigger("default");
-			specialItemIndex = 0;
-		}
-
-		// ----------------------------------------------------------------------
-       
-
-        RecoilBack();
         Run();
     }
 
@@ -179,6 +208,10 @@ public class WeaponCtrl : MonoBehaviour
     {
         if (fireTimer < fireRate)
             fireTimer += Time.fixedDeltaTime;
+    }
+    private void AxeAttack()
+    {
+        anim.CrossFadeInFixedTime("attackAxe", 0.01f);
     }
     private void Run()
     {
@@ -204,14 +237,14 @@ public class WeaponCtrl : MonoBehaviour
             if (health && health.hp > 0)
             {
                 health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
-				if (!hit.transform.CompareTag("Breakable"))
-				{
-					StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+                if (!hit.transform.CompareTag("Breakable"))
+                {
+                    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
 
-				}
+                }
 
-				else
-					StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                else
+                    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
             else
             {
@@ -264,10 +297,10 @@ public class WeaponCtrl : MonoBehaviour
         }
     }
 
-	public void Reload()
+    public void Reload()
     {
-		// her0in
-		bulletsToReload = bulletsPerMag - currentBullets;
+        // her0in
+        bulletsToReload = bulletsPerMag - currentBullets;
         if (bulletsToReload > bulletsTotal)
         {
             bulletsToReload = bulletsTotal;
