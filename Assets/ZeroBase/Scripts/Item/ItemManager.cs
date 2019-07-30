@@ -55,7 +55,8 @@ public class ItemManager : MonoBehaviour
 	public MissionScripts missionScript;
 	public Quest quest;
 	public bool hasHearter;
-	public Elevator elevator;
+	public GameObject elevator;
+	public ScriptController scriptController;
 
 	[Header("Cross Hair")]
 	public TextMeshProUGUI zombieNameText;
@@ -67,6 +68,7 @@ public class ItemManager : MonoBehaviour
         currentHealth = PlayerManager.hp;
         currentArmor = PlayerManager.armor;
     }
+
     void Update()
 	{
 		//currentHeartRate =
@@ -162,30 +164,34 @@ public class ItemManager : MonoBehaviour
 			{
 				uiManager.isPointingItem = true;
 
-				if (hit.transform.name == "ElevatorButton")
+				if (hit.transform.name == "Sensor")
 				{
 					itemNameText.text = "ELEVATOR BUTTON";
+
 					if (Input.GetKeyDown(KeyCode.F))
 					{
+						if (uiManager.isMissionStart) return;
+
 						missionScript.GetComponent<Animator>().SetTrigger("Finish");
-						uiManager.missionTime = 30f;
+						uiManager.missionTime = 40f;
 						uiManager.missionMessage = "SURVIVE UNTIL ELEVATOR ARRIVES";
 						uiManager.isMissionStart = true;
 
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
-						StartCoroutine(elevator.MoveElevator());
+						elevator.GetComponent<Animator>().SetTrigger("PressElevator");
+						scriptController.startGenerator = true;
 					}
 				}
 
-				if (hit.transform.name == "ElevatorButtonTypeB")
+				if (hit.transform.name == "ElevatorCloseButton")
 				{
 					itemNameText.text = "CLOSE ELEVATOR";
 					if (Input.GetKeyDown(KeyCode.F))
 					{
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
-						StartCoroutine(elevator.CloseElevator());
+						elevator.GetComponent<Animator>().SetTrigger("CloseElevator");
 					}
 				}
 

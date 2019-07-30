@@ -86,7 +86,7 @@ public class PlayerCtrl : MonoBehaviour
 		}
 
 		// Flash Light
-		if (Input.GetKeyDown(KeyCode.F))
+		if (Input.GetKeyDown(KeyCode.V))
 		{
 			flashLightOn = !flashLightOn;
 			flashLightAnimator.SetBool("LightOn", flashLightOn);

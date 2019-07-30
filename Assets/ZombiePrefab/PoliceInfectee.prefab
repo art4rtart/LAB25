@@ -2158,6 +2158,7 @@ GameObject:
   - component: {fileID: 1715910568633344930}
   - component: {fileID: 1715910568633344932}
   - component: {fileID: 1715910568633344934}
+  - component: {fileID: 6004683476390642990}
   m_Layer: 0
   m_Name: AnimatorInfectee
   m_TagString: Infectee
@@ -2311,6 +2312,22 @@ MonoBehaviour:
         m_CallState: 1
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &6004683476390642990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715910568633344935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c154cf2ac0e0b04eac1a161f8c70317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItem: {fileID: 5142520573439195900, guid: df9a4e4f0ee0b234a9f7b07d9a6eda69,
+    type: 3}
+  parent: {fileID: 2022273141404645383}
+  percentage: 100
 --- !u!1 &1715910568633344961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4526,7 +4543,7 @@ GameObject:
   - component: {fileID: 2022273141404645381}
   m_Layer: 0
   m_Name: PoliceInfectee
-  m_TagString: Untagged
+  m_TagString: Infectee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

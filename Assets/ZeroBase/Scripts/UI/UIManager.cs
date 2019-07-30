@@ -101,7 +101,7 @@ public class UIManager : MonoBehaviour
             missionAnimator.SetBool("MissionStart", isMissionStart);
 
             if (missionAnimator.GetCurrentAnimatorStateInfo(0).IsName("MissionStart") && missionAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.95f)
-                missionTime -= Time.deltaTime;
+                missionTime = Mathf.Clamp(missionTime-= Time.deltaTime, 0f, 100f);
         }
 
         if (isMissionComplete)
