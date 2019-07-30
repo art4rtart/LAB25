@@ -2156,12 +2156,11 @@ GameObject:
   - component: {fileID: 1715910568633344928}
   - component: {fileID: 1715910568633344929}
   - component: {fileID: 1715910568633344930}
-  - component: {fileID: 1715910568633344931}
   - component: {fileID: 1715910568633344932}
   - component: {fileID: 1715910568633344934}
   m_Layer: 0
   m_Name: AnimatorInfectee
-  m_TagString: Untagged
+  m_TagString: Infectee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2234,7 +2233,7 @@ MonoBehaviour:
   humanMask:
     serializedVersion: 2
     m_Bits: 4259840
-  myRagDollCtrl: {fileID: 0}
+  myRagDollCtrl: {fileID: 2022273142267587103}
   isGenerated: 1
   isLimpid: 0
   isDissolved: 0
@@ -2266,35 +2265,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1715910568633344931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1715910568633344935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ef9cc6dcd1eaa043b8238db025820d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAttack: 0
-  findRadius: 15
-  attackRange: 3
-  moveSpeed: 3
-  humanMask:
-    serializedVersion: 2
-    m_Bits: 4259840
-  myRagDollCtrl: {fileID: 0}
-  isGenerated: 1
-  isLimpid: 0
-  isDissolved: 0
-  dissolveDistance: 0
-  spawnEffect: {fileID: 0}
-  damagedEffect: {fileID: 0}
-  hitPos: {x: 0, y: 0, z: 0}
-  player: {fileID: 0}
-  attackSpeed: 1
 --- !u!54 &1715910568633344932
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3840,7 +3810,7 @@ GameObject:
   - component: {fileID: 2022273140950865401}
   m_Layer: 0
   m_Name: def.foot.r
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3905,7 +3875,7 @@ GameObject:
   - component: {fileID: 2022273141027415697}
   m_Layer: 0
   m_Name: def.arm.upper.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4200,7 +4170,7 @@ GameObject:
   - component: {fileID: 2022273141209009570}
   m_Layer: 0
   m_Name: def.arm.upper.r
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4591,7 +4561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charObj: {fileID: 1715910568633344935}
   ragdollObj: {fileID: 2022273142267587105}
-  InfecteeID: 0
+  InfecteeID: 3
 --- !u!1 &2022273141406745132
 GameObject:
   m_ObjectHideFlags: 0
@@ -4606,7 +4576,7 @@ GameObject:
   - component: {fileID: 2022273141406745130}
   m_Layer: 0
   m_Name: def.shin.upper.r
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4840,7 +4810,7 @@ GameObject:
   - component: {fileID: 2022273141548683334}
   m_Layer: 0
   m_Name: def.spine
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5134,7 +5104,7 @@ GameObject:
   - component: {fileID: 2022273141694660663}
   m_Layer: 0
   m_Name: def.shin.upper.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5240,7 +5210,7 @@ GameObject:
   - component: {fileID: 2022273141748901611}
   m_Layer: 0
   m_Name: def.foot.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5737,7 +5707,7 @@ GameObject:
   - component: {fileID: 2022273142175867402}
   m_Layer: 0
   m_Name: def.head
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5847,7 +5817,7 @@ GameObject:
   - component: {fileID: 2022273142178559519}
   m_Layer: 0
   m_Name: def.forearm.upper.r
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6199,7 +6169,7 @@ GameObject:
   - component: {fileID: 2022273142271216265}
   m_Layer: 0
   m_Name: def.thigh.upper.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6896,7 +6866,7 @@ GameObject:
   - component: {fileID: 2022273142525283562}
   m_Layer: 0
   m_Name: def.forearm.upper.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7199,7 +7169,7 @@ GameObject:
   - component: {fileID: 2022273142577603415}
   m_Layer: 0
   m_Name: def.thigh.upper.r
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7492,7 +7462,7 @@ GameObject:
   - component: {fileID: 2022273142683298643}
   m_Layer: 0
   m_Name: def.hips
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

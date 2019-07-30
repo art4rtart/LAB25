@@ -16,7 +16,11 @@ public class InfecteeGenerator : MonoBehaviour
     public float generateTime;
 	float generatedZombieCount;
 
-	public MemoryPool[] enemyPool = new MemoryPool[10];
+    //Spacial spawn
+    public int Stage;
+    private int AddEnemy = 2;
+
+    public MemoryPool[] enemyPool = new MemoryPool[10];
 
     private void Awake()
     {
@@ -78,6 +82,9 @@ public class InfecteeGenerator : MonoBehaviour
         }
 
         yield return new WaitForSeconds(generateTime);
+
+        if (Stage == 4)
+            generate += AddEnemy;
 
         StartCoroutine(Generate());
     }

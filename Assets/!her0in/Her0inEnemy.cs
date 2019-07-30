@@ -39,10 +39,16 @@ public class Her0inEnemy : MonoBehaviour
     Health info;
     void OnEnable()
     {
+        Debug.Log("ASDASD");
         if (isGenerated)
         {
-            if( player )
+            Debug.Log("isGenmer");
+            if (player)
+            {
+                Debug.Log("asd");
                 target = player.transform;
+                Debug.Log(target);
+            }
         }
 	}
 
