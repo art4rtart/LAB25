@@ -6975,7 +6975,7 @@ ParticleSystem:
 --- !u!199 &4496217079376028217
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11700,7 +11700,7 @@ ParticleSystem:
 --- !u!199 &8285959779671177355
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -16612,7 +16612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charObj: {fileID: 4953623282176056800}
   ragdollObj: {fileID: 7993950437311711833}
-  InfecteeID: 0
+  InfecteeID: 2
 --- !u!1 &6503232418698637954
 GameObject:
   m_ObjectHideFlags: 0
@@ -21263,7 +21263,7 @@ ParticleSystem:
 --- !u!199 &2067688782735498459
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
