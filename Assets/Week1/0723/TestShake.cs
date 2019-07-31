@@ -13,4 +13,9 @@ public class TestShake : MonoBehaviour
 			FindObjectOfType<CameraShake>().StartShake(testProperties);
 		}
 	}
+
+	public void Shake()
+	{
+		FindObjectOfType<CameraShake>().StartShake(testProperties);
+	}
 }

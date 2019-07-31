@@ -62,6 +62,7 @@ public class ItemManager : MonoBehaviour
 	public TextMeshProUGUI zombieNameText;
 	public TextMeshProUGUI zombieHealthText;
 	bool isTargetLocked;
+	public CoreExploder coreExploder;
 
     public static void SetPlayerStat()
     {
@@ -184,6 +185,12 @@ public class ItemManager : MonoBehaviour
 					}
 				}
 
+				else if (hit.transform.name == "PowerButton")
+				{
+					itemNameText.text = "POWER GENERATER";
+					coreExploder.isReadyToOverPower = true;
+				}
+
 				else if (hit.transform.name == "AutomaticSensor")
 				{
 					itemNameText.text = "GATE SENSOR";
@@ -235,7 +242,6 @@ public class ItemManager : MonoBehaviour
 						quest.OpenGate(hit.transform.GetChild(0).gameObject);
                     }
                 }
-
 				pointTrigger = true;
 			}
 
@@ -268,6 +274,7 @@ public class ItemManager : MonoBehaviour
 
 					pointTrigger = false;
 					isInteracting = false;
+					coreExploder.isReadyToOverPower = false;
 					uiManager.isPointingItem = false;
 					return;
 				}
