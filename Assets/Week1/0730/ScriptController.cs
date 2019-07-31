@@ -8,11 +8,13 @@ public class ScriptController : MonoBehaviour
 	Animator missionAnimator;
 	InfecteeGenerator generator;
 	public bool startGenerator;
-
+	public bool isGeneratorExist;
 	void Awake()
 	{
 		missionScript = GetComponent<MissionScripts>();
 		missionAnimator = GetComponent<Animator>();
+
+		if (!isGeneratorExist) return;
 		generator = FindObjectOfType<InfecteeGenerator>().GetComponent<InfecteeGenerator>();
 	}
 

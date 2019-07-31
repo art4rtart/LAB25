@@ -13,6 +13,15 @@ public class AutomaticDoor : MonoBehaviour
 	bool isOpened;
 	public bool isColliding;
 
+	[Header("NoOpen Gate Only")]
+	public bool isTriggerGate;
+	public Sensor sensor;
+	public Renderer[] rend;
+	public Color currentColor;
+	public Color targetColor;
+	float duration = 5; // This will be your time in seconds.
+	float smoothness = 0.02f;
+
 	void Start()
 	{
 		animator = GetComponent<Animator>();
@@ -23,12 +32,7 @@ public class AutomaticDoor : MonoBehaviour
 	{
 		if(!isOpened && (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee")))
 		{
-			audioSource.Stop();
-			animator.SetBool("DoorOpen", true);
-			audioSource.clip = openSound;
-			audioSource.Play();
-			StartCoroutine(OpenTime());
-			isOpened = true;
+			OpenDoor();
 		}
 	}
 
@@ -48,11 +52,24 @@ public class AutomaticDoor : MonoBehaviour
 		}
 	}
 
+	public void OpenDoor()
+	{
+		audioSource.Stop();
+		animator.SetBool("DoorOpen", true);
+		audioSource.clip = openSound;
+		audioSource.Play();
+		StartCoroutine(OpenTime());
+		isOpened = true;
+
+		if (!isTriggerGate) return;
+		StartCoroutine(LerpColor(currentColor, targetColor));
+	}
+
 	IEnumerator OpenTime()
 	{
 		yield return new WaitForSeconds(1.0f);
 
-		while (isColliding)
+		while (isColliding && !isTriggerGate)
 		{
 			yield return null;
 		}
@@ -63,5 +80,26 @@ public class AutomaticDoor : MonoBehaviour
 		animator.SetBool("DoorOpen", false);
 		audioSource.clip = closeSound;
 		audioSource.Play();
+		if (isTriggerGate) StartCoroutine(LerpColor(targetColor, currentColor));
+		sensor.isOpend = false;
+	}
+
+	IEnumerator LerpColor(Color current, Color target)
+	{
+		MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+
+		float progress = 0;
+		float increment = smoothness / duration;
+
+		while (progress < 1)
+		{
+			currentColor = Color.Lerp(current, target, progress);
+			mpb.SetColor(Shader.PropertyToID("_Color"), currentColor);
+			for (int i = 0; i < rend.Length; i++) rend[i].SetPropertyBlock(mpb);
+			progress += increment;
+			yield return new WaitForSeconds(smoothness);
+		}
+
+		yield return null;
 	}
 }

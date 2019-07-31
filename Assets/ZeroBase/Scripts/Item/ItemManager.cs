@@ -179,12 +179,22 @@ public class ItemManager : MonoBehaviour
 
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
-						elevator.GetComponent<Animator>().SetTrigger("PressElevator");
+						// elevator.GetComponent<Animator>().SetTrigger("PressElevator");
 						scriptController.startGenerator = true;
 					}
 				}
 
-				if (hit.transform.name == "ElevatorCloseButton")
+				else if (hit.transform.name == "AutomaticSensor")
+				{
+					itemNameText.text = "GATE SENSOR";
+
+					if (Input.GetKeyDown(KeyCode.F))
+					{
+						hit.transform.GetComponent<Sensor>().OpenGate();
+					}
+				}
+
+				else if (hit.transform.name == "ElevatorCloseButton")
 				{
 					itemNameText.text = "CLOSE ELEVATOR";
 					if (Input.GetKeyDown(KeyCode.F))
