@@ -133,8 +133,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8116064587151513693}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef1cea8bb11527e4086e919ab8c949fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f4cbea5994a0c7439a8741d7d890256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerTr: {fileID: 0}
+  hitSparkPrefab: {fileID: 0}
+  hitHolePrefab: {fileID: 0}
+  bulletCasingPrefab: {fileID: 0}
+  bloodParticlePrefab: {fileID: 0}
+  bulletCasingPoint: {fileID: 0}

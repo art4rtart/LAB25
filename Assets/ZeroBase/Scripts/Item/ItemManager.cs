@@ -38,7 +38,7 @@ public class ItemManager : MonoBehaviour
 	[HideInInspector] public bool isUsingHearter;
 
 	[Header("Player Stat")]
-	public static float currentHealth = 30f;
+	public static float currentHealth = 100f;
 	public float totalHealth = 100f;
 	public static float currentArmor = 100f;
 	public float totalArmor = 100f;
@@ -69,6 +69,11 @@ public class ItemManager : MonoBehaviour
         currentHealth = PlayerManager.hp;
         currentArmor = PlayerManager.armor;
     }
+
+	void Awake()
+	{
+		initializeData();
+	}
 
     void Update()
 	{
@@ -188,7 +193,7 @@ public class ItemManager : MonoBehaviour
 				else if (hit.transform.name == "PowerButton")
 				{
 					itemNameText.text = "POWER GENERATER";
-					coreExploder.isReadyToOverPower = true;
+					if(coreExploder != null) coreExploder.isReadyToOverPower = true;
 				}
 
 				else if (hit.transform.name == "AutomaticSensor")
@@ -274,7 +279,7 @@ public class ItemManager : MonoBehaviour
 
 					pointTrigger = false;
 					isInteracting = false;
-					coreExploder.isReadyToOverPower = false;
+					if(coreExploder != null) coreExploder.isReadyToOverPower = false;
 					uiManager.isPointingItem = false;
 					return;
 				}
@@ -358,6 +363,18 @@ public class ItemManager : MonoBehaviour
 		}
         UIManager.Instance.TextUpdate();
         if (item.gameObject.CompareTag("Item")) item.gameObject.SetActive(false);
+	}
+
+	void initializeData()
+	{
+		medicalKitCount = 0;
+		adrenalineCount = 0;
+		grenadeCount = 0;
+		isUsingWard = false;
+		isUsingHearter = false;
+		currentHealth = 100f;
+		currentArmor = 100f;
+		currentHeartRate = 90f;
 	}
 
 	bool hasWard;

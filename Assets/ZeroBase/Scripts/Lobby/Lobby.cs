@@ -48,6 +48,8 @@ public class Lobby : MonoBehaviour
 	void Awake()
 	{
 		audioManager = FindObjectOfType<AudioManager>();
+		spriteIndex = 0;
+		menuIndex = 0;
 	}
 
 	void Start()

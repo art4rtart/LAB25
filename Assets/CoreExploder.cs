@@ -40,8 +40,9 @@ public class CoreExploder : MonoBehaviour
 	void Update()
 	{
 		if (!isReadyToOverPower) return;
+		if (isReadyToOverPower) explodeRateText.text = currentExplodeRate.ToString("N2");
 
-		if (Input.GetKey(KeyCode.F))
+		if (Input.GetKey(KeyCode.F) && !isExploded)
 		{
 			currentExplodeRate = Mathf.Clamp(currentExplodeRate +=Time.deltaTime * 1.7f, 0, maxExplodeRate);
 			isOverPowering = true;
@@ -49,7 +50,7 @@ public class CoreExploder : MonoBehaviour
 			if (!audioSource[0].GetComponent<AudioSource>().isPlaying) audioSource[0].GetComponent<AudioSource>().Play();
 		}
 
-		if(Input.GetKeyUp(KeyCode.F))
+		if(Input.GetKeyUp(KeyCode.F) && !isExploded)
 		{
 			if(!isExploded) currentExplodeRate = 0;
 			isOverPowering = false;
@@ -61,8 +62,6 @@ public class CoreExploder : MonoBehaviour
 			StartCoroutine(Explode());
 			isExploded = true;
 		}
-
-		explodeRateText.text = currentExplodeRate.ToString("N2");
 
 		EffectUpdate();
 		SoundControl();
@@ -121,15 +120,15 @@ public class CoreExploder : MonoBehaviour
 		for (int i = 0; i < glassBreaker.Length; i++) glassBreaker[i].Break();
 
 		audioSource[0].GetComponent<AudioSource>().Stop();
-		StartCoroutine(soundPlay());
+		if (!audioSource[2].GetComponent<AudioSource>().isPlaying) audioSource[2].GetComponent<AudioSource>().Play();
+		if (!audioSource[3].GetComponent<AudioSource>().isPlaying) audioSource[3].GetComponent<AudioSource>().Play();
 		StartCoroutine(cameraShake());
-
-		explodeRateText.text = "0";
+		currentExplodeRate = 0;
+		explodeRateText.text = "0.00";
+		isReadyToOverPower = false;
 
 		explanationText.color = new Color(explanationText.color.r, explanationText.color.g, explanationText.color.b, 0.2f);
 		explodeRateText.color = new Color(explodeRateText.color.r, explodeRateText.color.g, explodeRateText.color.b, 0.2f);
-
-		isReadyToOverPower = false;
 
 		yield return null;
 	}
@@ -152,14 +151,13 @@ public class CoreExploder : MonoBehaviour
 		yield return null;
 	}
 
-	IEnumerator soundPlay()
-	{
-		// explode sound play
-		if (!audioSource[2].GetComponent<AudioSource>().isPlaying) audioSource[2].GetComponent<AudioSource>().Play();
-		yield return new WaitForSeconds(.2f);
-		if (!audioSource[3].GetComponent<AudioSource>().isPlaying) audioSource[3].GetComponent<AudioSource>().Play();
-		yield return null;
-	}
+	//IEnumerator soundPlay()
+	//{
+	//	// explode sound play
+	//	if (!audioSource[2].GetComponent<AudioSource>().isPlaying) audioSource[2].GetComponent<AudioSource>().Play();
+	//	if (!audioSource[3].GetComponent<AudioSource>().isPlaying) audioSource[3].GetComponent<AudioSource>().Play();
+	//	yield return null;
+	//}
 
 	IEnumerator cameraShake()
 	{

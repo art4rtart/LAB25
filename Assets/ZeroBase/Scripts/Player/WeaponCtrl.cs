@@ -56,6 +56,12 @@ public class WeaponCtrl : MonoBehaviour
     int specialItemIndex;
     public MissionScripts missionScripts;
 
+	void Awake()
+	{
+		bulletsTotal = 360;
+		currentBullets = 30;
+	}
+
     private void Start()
     {
         characterController = GetComponentInParent<CharacterController>();
@@ -289,7 +295,6 @@ public class WeaponCtrl : MonoBehaviour
 
     private void DoReload()
     {
-
         if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
         {
             anim.CrossFadeInFixedTime("Reload", 0.01f); // Reloading
@@ -307,6 +312,5 @@ public class WeaponCtrl : MonoBehaviour
         }
         bulletsTotal -= bulletsToReload;
     }
-
 }
 

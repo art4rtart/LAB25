@@ -22,7 +22,8 @@ public class ReloadState : StateMachineBehaviour
             animator.GetComponentInChildren<WeaponCtrl>().Reload();
             reloaded = true;
             UIManager.Instance.DeveloperMode();
-        }
+			UIManager.Instance.TextUpdate();
+		}
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

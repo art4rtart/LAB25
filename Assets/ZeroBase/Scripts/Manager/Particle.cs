@@ -53,7 +53,6 @@ public class Particle : MonoBehaviour
         bulletCasingObject = bulletCasingPool.NewItem();
         bulletCasingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
-
         if (bulletCasingObject)
         {
             Rigidbody bulletRigid = bulletCasingObject.GetComponent<Rigidbody>();
