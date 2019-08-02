@@ -33,13 +33,15 @@ public class CoreExploder : MonoBehaviour
 	IEnumerator volumeController;
 
 	bool isPowerdOnFirst;
+    ExplosionEffect explosioneffect;
 
-	void Awake() {
+    void Awake() {
 		spartkPs = sparkParticle;
 		explodePs = explodeParticle;
 		for (int i = 0; i < explodePs.Length; i++) explodePs[i].Stop();
 		testShake = GetComponent<TestShake>();
-	}
+        explosioneffect = GetComponent<ExplosionEffect>();
+    }
 
 	void Update()
 	{
@@ -148,9 +150,9 @@ public class CoreExploder : MonoBehaviour
 	IEnumerator Explode()
 	{
 		yield return new WaitForSeconds(1f);
-
-		// light go down
-		StartCoroutine(LightChanger());
+        explosioneffect.AfterExplosion();
+        // light go down
+        StartCoroutine(LightChanger());
 
 		for (int i = 0; i < explodePs.Length; i++) explodePs[i].Play();
 		for (int i = 0; i < spartkPs.Length; i++) spartkPs[i].Stop();
@@ -201,7 +203,7 @@ public class CoreExploder : MonoBehaviour
 		// cameraShake
 		testShake.Shake();
 		yield return new WaitForSeconds(.2f);
-		testShake.Shake();
+        testShake.Shake();
 		yield return null;
 	}
 

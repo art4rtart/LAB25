@@ -37,6 +37,7 @@ public class Her0inEnemy : MonoBehaviour
     public GameObject player;
 
     Health info;
+
     void OnEnable()
     {
         if (isGenerated)
@@ -46,7 +47,7 @@ public class Her0inEnemy : MonoBehaviour
                 target = player.transform;
             }
         }
-	}
+    }
 
     void Start()
     {
@@ -56,12 +57,12 @@ public class Her0inEnemy : MonoBehaviour
         myChange = GetComponentInParent<ChangeRagDoll>();
         csCollider = GetComponent<CapsuleCollider>();
         info = GetComponent<Health>();
-		info.damaged.AddListener(SetHitPos);
+        info.diedByBullet.AddListener(AfterDie);
     }
 
     void Update()
     {
-        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo info2 = anim.GetCurrentAnimatorStateInfo(0);
 
         if (!followTarget && !isGenerated)
         {
@@ -81,7 +82,7 @@ public class Her0inEnemy : MonoBehaviour
 
         if (navMesh.enabled && target != null) navMesh.SetDestination(target.transform.position);
 
-        if (info.IsName("Attack") || info.IsName("Run"))
+        if (info2.IsName("Attack") || info2.IsName("Run"))
         {
             Vector3 calcuatledtarget = new Vector3(target.transform.position.x, this.transform.position.y, target.transform.position.z);
             transform.LookAt(calcuatledtarget);
@@ -153,10 +154,10 @@ public class Her0inEnemy : MonoBehaviour
         }
     }
 
-    public void SetHitPos(Vector3 pos)
-    {
-        hitPos = pos;
-    }
+    //public void SetHitPos(Vector3 pos)
+    //{
+    //    hitPos = pos;
+    //}
 
     private void OnDrawGizmosSelected()
     {
@@ -169,10 +170,22 @@ public class Her0inEnemy : MonoBehaviour
         else return;
     }
 
+    public void AfterDie(Vector3 pos)
+    {
+        hitPos = pos;
+
+        myRagDollCtrl.speed = navMesh.velocity.magnitude;
+        myRagDollCtrl.AttackedPos = hitPos;
+        myRagDollCtrl.hitByBullet = true;
+
+        myChange.StartCoroutine(myChange.ChangeRagdoll());
+    }
+
     public void AfterDie()
     {
         myRagDollCtrl.speed = navMesh.velocity.magnitude;
         myRagDollCtrl.AttackedPos = hitPos;
+        myRagDollCtrl.hitByBullet = false;
 
         myChange.StartCoroutine(myChange.ChangeRagdoll());
     }

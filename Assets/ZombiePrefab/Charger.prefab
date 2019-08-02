@@ -82,7 +82,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1475112126635175020
 Transform:
   m_ObjectHideFlags: 0
@@ -179,10 +179,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   maxHp: 100
+  damaged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   died:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1475112126043316379}
         m_MethodName: Die
         m_Mode: 1
         m_Arguments:

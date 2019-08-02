@@ -24,7 +24,6 @@ public class InfecteeGirlCtrl : MonoBehaviour
         anim = GetComponent<Animator>();
         audiosrc = GetComponent<AudioSource>();
         info = GetComponent<Health>();
-        info.damaged.AddListener(SetAttackTrigger);
     }
 
     // Update is called once per frame
@@ -49,7 +48,7 @@ public class InfecteeGirlCtrl : MonoBehaviour
         mySkin.material.color += new Color(0.01f, 0, 0);
     }
 
-    public void SetAttackTrigger(Vector3 tmp)
+    public void SetAttackTrigger()
     {
         isAttacked = true;
     }

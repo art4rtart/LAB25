@@ -18,11 +18,16 @@ public class RagDollDIeCtrl : MonoBehaviour
     public Rigidbody leftShinRigid;
     public Rigidbody rightShinRigid;
 
-    private Transform targetTr;
+
     [HideInInspector]
     public float speed;
     [HideInInspector]
     public Vector3 AttackedPos;
+    [HideInInspector]
+    public Transform targetTr;
+    [HideInInspector]
+    public bool hitByBullet;
+
     private void Awake()
     {
         targetTr = GameObject.FindWithTag("Player").transform;
@@ -30,76 +35,81 @@ public class RagDollDIeCtrl : MonoBehaviour
 
     private void OnEnable()
     {
-        Vector3 AttackedDir = (transform.position - targetTr.position).normalized;
-        AttackedDir = (AttackedDir + transform.forward * speed).normalized;
+        if (hitByBullet)
+        {
+            Vector3 AttackedDir = (transform.position - targetTr.position).normalized;
+            AttackedDir = (AttackedDir + transform.forward * speed).normalized;
 
-        if (AttackedPos.y <= 0.6)
-        {
-            if (AttackedPos.x <= 0)
+            if (AttackedPos.y <= 0.6)
             {
-                //Debug.Log("LeftShit");
-                leftShinRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                if (AttackedPos.x <= 0)
+                {
+                    //Debug.Log("LeftShit");
+                    leftShinRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
+                else
+                {
+                    //Debug.Log("RightShit");
+                    rightShinRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
             }
-            else
+            else if (AttackedPos.y <= 1)
             {
-                //Debug.Log("RightShit");
-                rightShinRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                if (AttackedPos.x <= 0)
+                {
+                    //Debug.Log("LeftThi");
+                    leftThighRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
+                else
+                {
+                    //Debug.Log("RightThi");
+                    rightThighRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
+            }
+            else if (AttackedPos.y <= 1.3)
+            {
+                if (AttackedPos.x <= -0.1)
+                {
+                    //Debug.Log("LeftFore");
+                    leftForeArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
+                else if (AttackedPos.x >= 0.1)
+                {
+                    //Debug.Log("RightFore");
+                    rightForeArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
+                else
+                {
+                    //Debug.Log("Hip");
+                    hipRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
+            }
+            else if (AttackedPos.y <= 1.6)
+            {
+                if (AttackedPos.x <= -0.1)
+                {
+                    //Debug.Log("LeftArm");
+                    leftArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
+                else if (AttackedPos.x >= 0.1)
+                {
+                    //Debug.Log("RightArm");
+                    rightArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
+                else
+                {
+                    //Debug.Log("Spine");
+                    spineRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+                }
+            }
+            else if (AttackedPos.y > 1.6)
+            {
+                headRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
             }
         }
-        else if (AttackedPos.y <= 1)
+        else
         {
-            if (AttackedPos.x <= 0)
-            {
-                //Debug.Log("LeftThi");
-                leftThighRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
-            }
-            else
-            {
-                //Debug.Log("RightThi");
-                rightThighRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
-            }
-        }
-        else if (AttackedPos.y <= 1.3)
-        {
-            if (AttackedPos.x <= -0.1)
-            {
-                //Debug.Log("LeftFore");
-                leftForeArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
-            }
-            else if (AttackedPos.x >= 0.1)
-            {
-                //Debug.Log("RightFore");
-                rightForeArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
-            }
-            else
-            {
-                //Debug.Log("Hip");
-                hipRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
-            }
-        }
-        else if (AttackedPos.y <= 1.6)
-        {
-            if (AttackedPos.x <= -0.1)
-            {
-                //Debug.Log("LeftArm");
-                leftArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
-            }
-            else if (AttackedPos.x >= 0.1)
-            {
-                //Debug.Log("RightArm");
-                rightArmRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
-            }
-            else
-            {
-                //Debug.Log("Spine");
-                spineRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
-            }
-        }
-        else if (AttackedPos.y > 1.6)
-        {
-            headRigid.AddForce(AttackedDir * 150f, ForceMode.Impulse);
+            spineRigid.AddForce(transform.forward * -1000f + transform.up * 100, ForceMode.Impulse);
         }
     }
-
-
 }

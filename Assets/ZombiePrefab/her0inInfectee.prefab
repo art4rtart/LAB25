@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 713409203804878444}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.toe.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 585563863289240409}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.toe.l_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6875214704357335710}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.arm.lower.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3899352236106138683}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8584570378795350951}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.02.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6207601032386477079}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.toe.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6729067860663683014}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.02.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5760968953887520395}
   - component: {fileID: 8598795892430916465}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: RagDollInfectee
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -275,6 +275,8 @@ MonoBehaviour:
   rightShinRigid: {fileID: 1491103933472171268}
   speed: 0
   AttackedPos: {x: 0, y: 0, z: 0}
+  targetTr: {fileID: 0}
+  hitByBullet: 0
 --- !u!1 &630272049788046112
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3995206170701243454}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9186236383877750181}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.eye.l_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -345,7 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7183331931538841044}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -376,7 +378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3652341525583234909}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -414,7 +416,7 @@ GameObject:
   - component: {fileID: 7222275849260869627}
   - component: {fileID: 112744240389388576}
   - component: {fileID: 7086172044864003324}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shin.upper.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -520,7 +522,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3944557735222242833}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.01.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -551,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2912019059854895901}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.04.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -582,7 +584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3192973588878593061}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.01.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -613,7 +615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8648522139850397259}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.jaw_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -643,7 +645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6478392199590331357}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.forearm.lower.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -675,7 +677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 554906661789904013}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.fix.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -706,7 +708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9189057166916308643}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.toe.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -737,7 +739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4730110642956551390}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.03.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8420802805592369520}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -798,7 +800,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3045205798692680875}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.jaw
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -829,7 +831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7217719840596127945}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -860,7 +862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 506517760170184405}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.01.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -891,7 +893,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2310607212497702917}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips.fix.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -923,7 +925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1463777603780016887}
   - component: {fileID: 1463777603780016884}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +981,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1463777603941626636}
   - component: {fileID: 1463777603941626637}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: Shoes (1)
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -1142,7 +1144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1463777603997592614}
   - component: {fileID: 1463777603997592615}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1197,7 +1199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7462157806921104115}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.01.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1228,7 +1230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7645543314614969268}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.arm.upper.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1259,7 +1261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4899330411694209119}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1290,7 +1292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1997476386080911718}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.01.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1320,7 +1322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418499165899685464}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.01.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -1351,7 +1353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1055417000621858184}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1382,7 +1384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1926762663778526435}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.forearm.lower.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1414,7 +1416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8748366449187604202}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1444,7 +1446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5975390682083605108}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hand.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1479,7 +1481,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3926113600626723051}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1510,7 +1512,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 210967498424589271}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.01.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1540,7 +1542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6420160720514520938}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.01.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -1571,7 +1573,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3430329461669668157}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.02.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1602,7 +1604,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7622556809562833369}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.thigh.lower.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -1634,7 +1636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1841562080991892441}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -1665,7 +1667,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7623986901463749704}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shoulder.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -1696,7 +1698,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2665187802263903584}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.02.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -1729,7 +1731,7 @@ GameObject:
   - component: {fileID: 3055318736842755152}
   - component: {fileID: 755903636629555305}
   - component: {fileID: 248361773947506265}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1793,7 +1795,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7795513512021626983}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips.fix.l_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -1823,7 +1825,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8020912800897163601}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.forearm.lower.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1855,7 +1857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9075109937412793782}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.01.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1885,7 +1887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2279309898010885914}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.eye.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -1918,7 +1920,7 @@ GameObject:
   - component: {fileID: 7141845780389806412}
   - component: {fileID: 945812934860852254}
   - component: {fileID: 4568687585716936954}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.thigh.upper.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2024,7 +2026,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3254311941514617776}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.toe.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2054,7 +2056,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3352196415506188285}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2085,7 +2087,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6576984545934801550}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2115,7 +2117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2796432198636047595}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.arm.lower.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2147,7 +2149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6751987217949037414}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2178,7 +2180,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 199810483668830827}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2209,7 +2211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1969306778231177333}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.arm.lower.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2241,7 +2243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8754628750746946617}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.02.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2272,7 +2274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6692645861549589080}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shin.lower.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2304,7 +2306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2978119538951583688}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips.fix.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2335,7 +2337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6088325579067199487}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.01.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2365,7 +2367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5568181054692543327}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.01.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2395,7 +2397,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9149469633151694551}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips.fix.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2428,7 +2430,7 @@ GameObject:
   - component: {fileID: 8442739021558309956}
   - component: {fileID: 3203064515159699382}
   - component: {fileID: 5118397830308225544}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.arm.upper.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2534,7 +2536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1059831587950950377}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.02.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2565,7 +2567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9159064994657271617}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.01.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2596,7 +2598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3037703204389359398}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.upper
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2629,7 +2631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4047708048454704208}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2660,7 +2662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867363766675299810}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips.fix.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2690,7 +2692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1702107595851659593}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2721,7 +2723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5780506611010774450}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.eye.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2751,7 +2753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1944329190782644525}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: root
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2782,7 +2784,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1558205259204696803}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hand.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2817,7 +2819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4285209430207980801}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -2848,7 +2850,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5787498154177889223}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2887,7 +2889,7 @@ GameObject:
   - component: {fileID: 8136328504309683614}
   - component: {fileID: 1463777604605522373}
   - component: {fileID: 221878874}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: AnimatorInfectee
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -3041,6 +3043,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   maxHp: 100
+  damaged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   died:
     m_PersistentCalls:
       m_Calls:
@@ -3082,7 +3089,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6866077917588893756}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.toe.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3112,7 +3119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5641727047487709980}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3143,7 +3150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7909063703907296082}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.thigh.lower.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -3175,7 +3182,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 849306601415981016}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.neck
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -3206,7 +3213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3588979336110650347}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3237,7 +3244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1912843364302158492}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.eye.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3267,7 +3274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7234402777894151491}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.thigh.upper.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3298,7 +3305,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4375731084545779341}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3332,7 +3339,7 @@ GameObject:
   - component: {fileID: 1531604358549786022}
   - component: {fileID: 2501455494844562469}
   - component: {fileID: 3276186449241989918}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.spine
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3437,7 +3444,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4716212421139494741}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3471,7 +3478,7 @@ GameObject:
   - component: {fileID: 7863872627908034365}
   - component: {fileID: 1474594412534835627}
   - component: {fileID: 1321543313885834456}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.thigh.upper.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3577,7 +3584,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3675889534870833197}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.01.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3608,7 +3615,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5399215778745866351}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.fix.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -3639,7 +3646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2921531315593096575}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.fix.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -3670,7 +3677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286556143354422633}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.01.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3701,7 +3708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7836847800002201283}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3732,7 +3739,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 407732162788910282}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3763,7 +3770,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6258179457033880982}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.lower
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -3796,7 +3803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7508433247868658991}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.fix.l_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -3826,7 +3833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2020404736593362440}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: Armature
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -3857,7 +3864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3241851180471647135}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.jaw_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3887,7 +3894,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5901710233693725542}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3919,7 +3926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3827117156328197097}
   - component: {fileID: 956492330442789207}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: Shoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4081,7 +4088,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 609909836914828900}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4112,7 +4119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8039276269386363194}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.head
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4145,7 +4152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4736567304132078783}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shin.upper.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4176,7 +4183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2166485285326186992}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.01.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4254,7 +4261,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6679031597635190101}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4284,7 +4291,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6918323226252639989}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.02.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4318,7 +4325,7 @@ GameObject:
   - component: {fileID: 1251436492384018688}
   - component: {fileID: 1259251984002685386}
   - component: {fileID: 6209164798687196100}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.arm.upper.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4424,7 +4431,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7810791991497259469}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.forearm.upper.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4455,7 +4462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7950819115893072133}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.fix.l_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -4485,7 +4492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7493722215509590785}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shoulder.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -4516,7 +4523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7899324683173881720}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.01.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -4547,7 +4554,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8597873833657494112}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.thigh.lower.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -4579,7 +4586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6013124131276507115}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.eye.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -4610,7 +4617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2658988365136544684}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hand.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -4645,7 +4652,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2641865945463522044}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shin.upper.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4676,7 +4683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 290631390494439543}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4707,7 +4714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 510594896990294859}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.01.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -4738,7 +4745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1327357919675568276}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: Armature
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -4770,7 +4777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 651657073962220452}
   - component: {fileID: 3801183487391006093}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: Shoes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4932,7 +4939,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6634534828141644074}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4963,7 +4970,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2415156229088839245}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4994,7 +5001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3473207129745021601}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5025,7 +5032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 179146056239294703}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5055,7 +5062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8735178612291638962}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.fix.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5086,7 +5093,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5883794747733610087}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.02.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5117,7 +5124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6066340662751587505}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5148,7 +5155,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5691288272995001463}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5178,7 +5185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7830671764812279860}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.jaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5209,7 +5216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8827107074070251351}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.foot.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5240,7 +5247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2895910672150308014}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5270,7 +5277,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4587837648788027745}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5301,7 +5308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2086608564552885663}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips.fix.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5332,7 +5339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2485562577054366159}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5363,7 +5370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6410486968773312641}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5394,7 +5401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2498150167435850173}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.thigh.upper.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5425,7 +5432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 531352958534768543}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.foot.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5456,7 +5463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1537024099628194321}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shin.lower.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5488,7 +5495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7429688329414507435}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shoulder.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5519,7 +5526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2971935652606844692}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5553,7 +5560,7 @@ GameObject:
   - component: {fileID: 5396922495050182703}
   - component: {fileID: 9042524875240465735}
   - component: {fileID: 5712787257963856429}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.forearm.upper.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -5659,7 +5666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2364537266339524121}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.02.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5690,7 +5697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6885192069178489617}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.02.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5721,7 +5728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5820700699920113345}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5751,7 +5758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5873368516902357944}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips.fix.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5782,7 +5789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1620050714997458429}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: root
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5813,7 +5820,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9074426913107146262}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shoulder.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5844,7 +5851,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5096172708177915142}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shin.lower.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5876,7 +5883,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7791791374841422876}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hips.fix.l_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5906,7 +5913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 438271669405838467}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.01.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5936,7 +5943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5073197052638313156}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.foot.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -5967,7 +5974,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8696887621593725058}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5998,7 +6005,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5652676078264597321}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6029,7 +6036,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400278579183682642}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shin.lower.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6061,7 +6068,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 305726548858580847}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.neck
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6092,7 +6099,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 521777648352682657}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.eye.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6123,7 +6130,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7982599151557749516}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.fix.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6153,7 +6160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1530676993157896836}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6185,7 +6192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6350483168271838528}
   - component: {fileID: 8046687309206779141}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: Shoes
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6347,7 +6354,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2775876001440847867}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6378,7 +6385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5423965344155795679}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.upper
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6414,7 +6421,7 @@ GameObject:
   - component: {fileID: 6022287036259811468}
   - component: {fileID: 195993581507261087}
   - component: {fileID: 3369837460804756601}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.forearm.upper.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6520,7 +6527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9179899151167090846}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.thigh.lower.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6552,7 +6559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2676833053295250536}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6582,7 +6589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2181145733839932282}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.forearm.lower.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6614,7 +6621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5036628504743468865}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.middle.01.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6644,7 +6651,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4288513952630361550}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.arm.lower.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6676,7 +6683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6145479949799061109}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.04.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6707,7 +6714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4102915166528517218}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.01.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6738,7 +6745,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 434595368171192943}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.arm.upper.l
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -6769,7 +6776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4456979524596834599}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.03.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6800,7 +6807,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2500199230043115514}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6831,7 +6838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4565236151545279728}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.eye.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6862,7 +6869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5275354022407646069}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.eye.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6893,7 +6900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 603905371848427318}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.foot.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6924,7 +6931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6172812568902113627}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6955,7 +6962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5500303548408931696}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.fix.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -6985,7 +6992,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7550486242152384231}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.01.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7016,7 +7023,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2349090906872335761}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7047,7 +7054,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 816885297907487257}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.hand.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7085,7 +7092,7 @@ GameObject:
   - component: {fileID: 5444927319110978637}
   - component: {fileID: 6244191586163397879}
   - component: {fileID: 1039302193945005806}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.head
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7195,7 +7202,7 @@ GameObject:
   - component: {fileID: 1491103933472171268}
   - component: {fileID: 3061402990023713258}
   - component: {fileID: 7271231721237565497}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.shin.upper.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7301,7 +7308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8487734145286130216}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.04.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7332,7 +7339,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1742950398514224338}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.spine
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7363,7 +7370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4161610036959609753}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.02.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7394,7 +7401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9050948515842455100}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.04.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7425,7 +7432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3632154472794600579}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.01.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7455,7 +7462,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1221859855315722814}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.02.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7486,7 +7493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6488385389857167329}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.toe.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7517,7 +7524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1487242702702197631}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.03.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7548,7 +7555,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1937506858459299958}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.pinky.02.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7579,7 +7586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3970561593319997394}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.index.01.r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7610,7 +7617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8720042383388343080}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.forearm.upper.r
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7641,7 +7648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9211563261507538698}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.palm.03.l
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7672,7 +7679,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8969573071536763889}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.chest.lower
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7705,7 +7712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7754927745946349262}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.toe.r_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7737,7 +7744,7 @@ GameObject:
   - component: {fileID: 5849295416226380727}
   - component: {fileID: 4555918279677651505}
   - component: {fileID: 1681812108255423857}
-  m_Layer: 30
+  m_Layer: 17
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7812,7 +7819,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1707246407391980099}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.01.r_end
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7842,7 +7849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1145734163867966056}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.03.l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7873,7 +7880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 30334463404852291}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.thumb.02.r
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -7904,7 +7911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 275160396136193167}
-  m_Layer: 21
+  m_Layer: 17
   m_Name: def.f.ring.01.l_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
