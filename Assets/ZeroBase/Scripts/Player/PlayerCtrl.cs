@@ -48,7 +48,7 @@ public class PlayerCtrl : MonoBehaviour
     // Ref
     PlayerManager m_PlayerManager;
 	public Animator flashLightAnimator;
-	bool flashLightOn;
+	public static bool flashLightOn;
 
     // Crouch
     public float crouchSpeed;

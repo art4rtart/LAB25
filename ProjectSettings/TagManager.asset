@@ -55,13 +55,9 @@ TagManager:
   - Grenade
   - HUD
   - Enviroment
-  - Celling
-  - 
   - Player
   - universeA
   - universeB
-  - 
-  - UnWalkable
   - Enemy
   - Team
   - Human
@@ -70,7 +66,11 @@ TagManager:
   - Herater
   - Wall
   - Distance
-  - Light
+  - Minimap
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   m_SortingLayers:

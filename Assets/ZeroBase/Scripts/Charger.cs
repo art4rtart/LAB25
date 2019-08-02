@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Charger : MonoBehaviour
 {
-	Animator anim;
+	public Animator anim;
 	Rigidbody rgbd;
 
 	public Transform target;
@@ -15,7 +15,7 @@ public class Charger : MonoBehaviour
 
 	void Awake()
 	{
-		anim = GetComponent<Animator>();
+		// anim = GetComponent<Animator>();
 		rgbd = GetComponent<Rigidbody>();
 		csCollider = GetComponent<CapsuleCollider>();
 		StartCoroutine(FindAndScream(target.transform.position));
@@ -60,7 +60,7 @@ public class Charger : MonoBehaviour
 
 	void OnCollisionEnter(Collision other)
 	{
-		if (other.gameObject.CompareTag("wall"))
+		if (other.gameObject.CompareTag("Wall"))
 		{
 			if (fallbackTrigger == false) {
 				rgbd.mass = 100f;
@@ -74,7 +74,7 @@ public class Charger : MonoBehaviour
 	CapsuleCollider csCollider;
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("wall"))
+		if (other.gameObject.CompareTag("Floor"))
 		{
 			if (fallbackTrigger == false)
 			{

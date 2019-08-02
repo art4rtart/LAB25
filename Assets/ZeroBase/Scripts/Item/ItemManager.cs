@@ -378,6 +378,6 @@ public class ItemManager : MonoBehaviour
 	}
 
 	bool hasWard;
-	bool hasCardKey = true;
+	public static bool hasCardKey = true;
 	bool hasJammer;
 }

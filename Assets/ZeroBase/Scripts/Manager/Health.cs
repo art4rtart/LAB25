@@ -14,11 +14,13 @@ public class Health : MonoBehaviour
     public UnityEvent died;
 
 	ItemDrop itemDrop;
-
+	Charger charger;
     // Start is called before the first frame update
     void Awake()
     {
 		itemDrop = GetComponent<ItemDrop>();
+		charger = GetComponent<Charger>();
+
 		hp = maxHp;
 
         if (damaged == null)
@@ -34,6 +36,7 @@ public class Health : MonoBehaviour
 		{
 			died.Invoke();
 			itemDrop.DropItem();
+			if (charger != null) charger.Die();
 		}
 	}
 }

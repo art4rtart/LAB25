@@ -87,7 +87,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3716497725278987555}
   - component: {fileID: 4255921683934806164}
-  - component: {fileID: 1747573902835653834}
   m_Layer: 0
   m_Name: 7_62_casing
   m_TagString: Untagged
@@ -126,21 +125,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1747573902835653834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8116064587151513693}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4cbea5994a0c7439a8741d7d890256, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerTr: {fileID: 0}
-  hitSparkPrefab: {fileID: 0}
-  hitHolePrefab: {fileID: 0}
-  bulletCasingPrefab: {fileID: 0}
-  bloodParticlePrefab: {fileID: 0}
-  bulletCasingPoint: {fileID: 0}

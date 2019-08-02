@@ -19,20 +19,25 @@ public class AutomaticDoor : MonoBehaviour
 	public Renderer[] rend;
 	public Color currentColor;
 	public Color targetColor;
-	float duration = 5; // This will be your time in seconds.
-	float smoothness = 0.02f;
+	float duration = 2; // This will be your time in seconds.
+	float smoothness = 0.05f;
+
+	IEnumerator colorLerpBlue;
+	IEnumerator colorLerpRed;
 
 	void Start()
 	{
 		animator = GetComponent<Animator>();
 		audioSource = GetComponent<AudioSource>();
+		colorLerpBlue = LerpColor(currentColor, targetColor);
+		colorLerpRed = LerpColor(targetColor, currentColor);
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
 		if(!isOpened && (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Infectee")))
 		{
-			OpenDoor();
+			if(!isTriggerGate) OpenDoor();
 		}
 	}
 
@@ -62,7 +67,8 @@ public class AutomaticDoor : MonoBehaviour
 		isOpened = true;
 
 		if (!isTriggerGate) return;
-		StartCoroutine(LerpColor(currentColor, targetColor));
+		StopCoroutine(colorLerpRed);
+		StartCoroutine(colorLerpBlue);
 	}
 
 	IEnumerator OpenTime()
@@ -80,8 +86,8 @@ public class AutomaticDoor : MonoBehaviour
 		animator.SetBool("DoorOpen", false);
 		audioSource.clip = closeSound;
 		audioSource.Play();
-		if (isTriggerGate) StartCoroutine(LerpColor(targetColor, currentColor));
-		sensor.isOpend = false;
+		if (isTriggerGate) { StopCoroutine(colorLerpBlue); StartCoroutine(colorLerpRed); }
+		if (sensor != null) sensor.isOpend = false;
 	}
 
 	IEnumerator LerpColor(Color current, Color target)

@@ -16,8 +16,9 @@ public class ItemDrop : MonoBehaviour
     void Start()
     {
 		item = ((Random.Range(0, 100) <= percentage) ? Instantiate(dropItem, this.transform.position + Vector3.up * 1.5f, Quaternion.identity) : null);
-		item.SetActive(false);
+		if(item != null) item.SetActive(false);
 		if (item == null) return;
+		item.transform.name = dropItem.transform.name;
 		item.transform.SetParent(parent.transform);
 	}
 

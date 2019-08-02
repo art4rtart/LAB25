@@ -7,6 +7,8 @@ public class MissionScripts : MonoBehaviour
 {
 	[TextArea(3, 10)]
 	public string[] sentences;
+	[TextArea(3, 10)]
+	public string[] subSentences;
 	public int[] width;
 	public int[] timerHeight;
 
@@ -59,7 +61,7 @@ public class MissionScripts : MonoBehaviour
 
 			if (count <= 0) {
 				animator.SetBool("Type", false);
-				subMessage.text = sentences[index];
+				// subMessage.text = sentences[index];
 				index++;
 				StopAllCoroutines();
 			}
