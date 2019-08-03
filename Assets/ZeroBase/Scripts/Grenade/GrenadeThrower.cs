@@ -17,19 +17,27 @@ public class GrenadeThrower : MonoBehaviour
 	bool readyToThrow;
 	float alpha;
 
+	public Animator playerAnim;
+	public WeaponCtrl myWeapon;
+	//&& itemManager.grenadeCount > 0
 	void Update()
 	{
 		material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
 
-		if (Input.GetMouseButtonDown(0) && itemManager.readyToUseGrenade && itemManager.grenadeCount > 0)
+		if (itemManager.readyToUseGrenade)
 		{
+			playerAnim.SetTrigger("ReadyToThrow");
+			myWeapon.hasAK = false;
 			readyToThrow = lineRenderer.enabled = true;
 		}
-
-		if (Input.GetMouseButtonUp(0) && readyToThrow)
+	    if (Input.GetMouseButtonUp(0) && readyToThrow)
 		{
 			ThrowGrenade();
 			readyToThrow = false;
+			StartCoroutine("ThrowCup");
+			alpha = 0;
+			itemManager.readyToUseGrenade = false;
+			playerAnim.ResetTrigger("ReadyToThrow");
 		}
 
 		if (readyToThrow)
@@ -56,5 +64,13 @@ public class GrenadeThrower : MonoBehaviour
 		Rigidbody rb = grenade.GetComponent<Rigidbody>();
 		rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
 		rb.AddForce(transform.up * throwForce / 8, ForceMode.VelocityChange);
+	}
+	
+	IEnumerator ThrowCup()
+	{
+		playerAnim.SetBool("isThrow", true);
+		yield return new WaitForSeconds(1.0f);
+		playerAnim.SetBool("isThrow", false);
+		myWeapon.hasAK = true;
 	}
 }

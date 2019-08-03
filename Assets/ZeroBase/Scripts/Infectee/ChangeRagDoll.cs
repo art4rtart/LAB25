@@ -11,7 +11,7 @@ public class ChangeRagDoll : MonoBehaviour
 
     private Health infectee;
 	public int InfecteeID;
-
+	public float dieTime = 2.5f;
     private void Start()
     {
         infectee = GetComponentInChildren<Health>();
@@ -25,7 +25,7 @@ public class ChangeRagDoll : MonoBehaviour
         charObj.gameObject.SetActive(false);
         ragdollObj.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(dieTime);
       
         charObj.gameObject.SetActive(true);
         ragdollObj.gameObject.SetActive(false);

@@ -130,7 +130,7 @@ public class ItemManager : MonoBehaviour
 			isHoldingSomething = true;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Alpha4))
+		if (Input.GetKeyDown(KeyCode.Alpha6))
 		{
 			// Debug.Log("I am Holding a Grenade");
 

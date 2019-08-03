@@ -44,7 +44,7 @@ public class WeaponCtrl : MonoBehaviour
     RaycastHit pick;
 
     //WeaponChange
-    private bool hasAK = true;
+    public bool hasAK = true;
 
     // her0in
     public int bulletsToReload;
@@ -77,15 +77,18 @@ public class WeaponCtrl : MonoBehaviour
         {
             if (!isPick)
             {
-                if (hasAK)
-                {
-                    if (currentBullets > 0)
-                        Fire();
-                    else
-                        DoReload();
-                }
-                else
-                    AxeAttack();
+				if (hasAK)
+				{
+					if (currentBullets > 0)
+						Fire();
+					else
+						DoReload();
+				}
+				else
+				{
+					if (!itemManager.readyToUseGrenade)
+						AxeAttack();
+				}
             }
             else
             {

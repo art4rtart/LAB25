@@ -22,7 +22,7 @@ public class Grenade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("asdsads");
+     
 		countdown -= Time.deltaTime;
 		if(countdown <= 0f && !hasExploded)
 		{
@@ -33,7 +33,7 @@ public class Grenade : MonoBehaviour
 
 	void Explode()
 	{
-		Debug.Log("Exlpode");
+	
 		Instantiate(explosionEffect, this.transform.position, explosionEffect.transform.rotation);
 
 		Collider[] collidersToDestroy = Physics.OverlapSphere(transform.position, radius);

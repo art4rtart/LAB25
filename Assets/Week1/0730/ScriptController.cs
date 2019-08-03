@@ -29,7 +29,6 @@ public class ScriptController : MonoBehaviour
 		typeNextScript = false;
 
 		if (!isGeneratorExist) return;
-		generator = FindObjectOfType<InfecteeGenerator>().GetComponent<InfecteeGenerator>();
 	}
 
 	void Start()
@@ -79,7 +78,10 @@ public class ScriptController : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		missionScript.Type();
 
+		print("1");
 		while (!startGenerator) yield return new WaitForSeconds(.5f);
+		generator = FindObjectOfType<InfecteeGenerator>().GetComponent<InfecteeGenerator>();
+		print(generator);
 		StartCoroutine(generator.Generate());
 	}
 }

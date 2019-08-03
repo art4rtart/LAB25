@@ -6134,17 +6134,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acccec6847903a408fda696a1f16716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hipRigid: {fileID: 0}
-  spineRigid: {fileID: 0}
-  leftThighRigid: {fileID: 0}
-  rightThighRigid: {fileID: 0}
-  headRigid: {fileID: 0}
-  leftArmRigid: {fileID: 0}
-  rightArmRigid: {fileID: 0}
-  leftForeArmRigid: {fileID: 0}
-  rightForeArmRigid: {fileID: 0}
-  leftShinRigid: {fileID: 0}
-  rightShinRigid: {fileID: 0}
+  hipRigid: {fileID: 2022273142683298643}
+  spineRigid: {fileID: 2022273141548683335}
+  leftThighRigid: {fileID: 2022273142271216266}
+  rightThighRigid: {fileID: 2022273142577603416}
+  headRigid: {fileID: 2022273142175867401}
+  leftArmRigid: {fileID: 2022273141027415698}
+  rightArmRigid: {fileID: 2022273141209009571}
+  leftForeArmRigid: {fileID: 2022273142525283561}
+  rightForeArmRigid: {fileID: 2022273142178559518}
+  leftShinRigid: {fileID: 2022273141694660662}
+  rightShinRigid: {fileID: 2022273141406745129}
   speed: 0
   AttackedPos: {x: 0, y: 0, z: 0}
   targetTr: {fileID: 0}
