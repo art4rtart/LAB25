@@ -53,24 +53,7 @@ public class BombGage : MonoBehaviour
 		}
 	}
 
-	bool canInstall;
-
-	void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.CompareTag("Player"))
-		{
-			canInstall = true;
-		}
-	}
-
-	void OnTriggerExit(Collider other)
-	{
-		if (other.gameObject.CompareTag("Player"))
-		{
-			canInstall = false;
-		}
-	}
-
+	public static bool canInstall;
 	IEnumerator BombInstall()
 	{
 		float correctCount = 0;
@@ -111,11 +94,14 @@ public class BombGage : MonoBehaviour
 				}
 			}
 
-			if (correctCount >= 3f && slider.value == 100) break;
+			if (correctCount >= 3f && slider.value == 100)
+			{
+				BombIsInstalled(); break;
+			}
+
 			yield return null;
 		}
 
-		BombIsInstalled();
 		isCoroutineStarted = false;
 		slider.GetComponent<Animator>().SetBool("BombGageFade", false);
 
@@ -150,6 +136,7 @@ public class BombGage : MonoBehaviour
 	}
 
 	public static int installedBombCount = 0;
+
 	void BombIsInstalled()
 	{
 		if (installedBombCount < 4)

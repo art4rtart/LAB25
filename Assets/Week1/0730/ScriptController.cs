@@ -18,6 +18,7 @@ public class ScriptController : MonoBehaviour
 	int subIndex = 0;
 
 	[Header("Stage4")]
+	public GameObject[] bombPlace;
 	public BombGage bombGage;
 	public bool startGenerator;
 	public bool isGeneratorExist;
@@ -83,6 +84,18 @@ public class ScriptController : MonoBehaviour
 
 		yield return new WaitForSeconds(5f);
 		bombGage.stageAnimator.SetBool(("FadeIn"), true);
+
+		// 10, 10, -10,10     -10, -10,  10,-10
+
+		bombPlace[0].transform.position = new Vector3(10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, 10 + Random.Range(-5f,5f));
+		bombPlace[1].transform.position = new Vector3(-10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, 10 + Random.Range(-5f, 5f));
+		bombPlace[2].transform.position = new Vector3(-10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, -10 + Random.Range(-5f, 5f));
+		bombPlace[3].transform.position = new Vector3(10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, -10 + Random.Range(-5f, 5f));
+
+		for (int i = 0; i < bombPlace.Length; i++)
+		{
+			bombPlace[i].SetActive(true);
+		}
 
 		yield return new WaitForSeconds(2f);
 		missionScript.GetComponent<Animator>().SetTrigger("Finish");

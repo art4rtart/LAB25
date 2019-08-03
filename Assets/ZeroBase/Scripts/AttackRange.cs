@@ -9,6 +9,8 @@ public class AttackRange : MonoBehaviour
 
 	public float speed = 5f;
 	public float viewRadius;
+	public float circleSize;
+	public bool isUseable;
 	public LayerMask playerMask;
 
 	void Awake()
@@ -20,12 +22,12 @@ public class AttackRange : MonoBehaviour
 
 	IEnumerator Init()
 	{
-		while (projector.orthographicSize < 7f)
+		while (projector.orthographicSize < circleSize)
 		{
 			projector.orthographicSize = Mathf.Clamp(projector.orthographicSize += speed * Time.deltaTime, 0f, 7f);
 			yield return null;
 		}
-		StartCoroutine(ZemmerUpdate());
+		if(isUseable) StartCoroutine(ZemmerUpdate());
 		yield return null;
 	}
 
@@ -33,6 +35,8 @@ public class AttackRange : MonoBehaviour
 	{
 		while (true)
 		{
+			if (zemmer == null) break;
+
 			if (!zemmer.activate)
 			{
 				projector.orthographicSize = Mathf.Clamp(projector.orthographicSize += speed * Time.deltaTime, 3f, 7f);
@@ -61,9 +65,9 @@ public class AttackRange : MonoBehaviour
 		}
 	}
 
-	//private void OnDrawGizmosSelected()
-	//{
-	//	Gizmos.color = Color.red;
-	//	Gizmos.DrawWireSphere(this.transform.position, viewRadius);
-	//}
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(this.transform.position, viewRadius);
+	}
 }
