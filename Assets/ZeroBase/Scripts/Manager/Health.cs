@@ -26,28 +26,19 @@ public class Health : MonoBehaviour
             diedByBullet = new EventVector3();
     }
 
-    public void ApplyDamage(int damage, Vector3 hitpos)
-    {
-        hp -= damage;
+	public void ApplyDamage(int damage, Vector3 hitpos)
+	{
+		hp -= damage;
 
-        if (died.GetPersistentEventCount() + damaged.GetPersistentEventCount() == 1)
-        {
-            if (hp <= 0)
-            {
-                diedByBullet.Invoke(hitpos);
-                itemDrop.DropItem();
-            }
-        }
-        else
-        {
-            damaged.Invoke();
-            if (hp <= 0)
-            {
-                died.Invoke();
-                itemDrop.DropItem();
-            }
-        }
-    }
+		damaged.Invoke();
+
+		if (hp <= 0)
+		{
+			diedByBullet.Invoke(hitpos);
+			died.Invoke();
+			if (itemDrop != null) itemDrop.DropItem();
+		}
+	}
 
     //public void ApplyDamage(int damage)
     //{
@@ -66,6 +57,6 @@ public class Health : MonoBehaviour
         hp = 0;
 
         died.Invoke();
-        itemDrop.DropItem();
+		if (itemDrop != null) itemDrop.DropItem();
     }
 }

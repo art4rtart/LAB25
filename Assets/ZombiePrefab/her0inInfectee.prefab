@@ -2959,14 +2959,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttack: 0
-  findRadius: 15
+  findRadius: 3.98
   attackRange: 3
   moveSpeed: 3
   humanMask:
     serializedVersion: 2
     m_Bits: 4259840
   myRagDollCtrl: {fileID: 8598795892430916465}
-  isGenerated: 1
+  isGenerated: 0
   isLimpid: 0
   isDissolved: 0
   dissolveDistance: 0
@@ -4214,7 +4214,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2522085196828755808}
   - component: {fileID: 1626764612567723804}
-  m_Layer: 21
+  - component: {fileID: 1575818982}
+  m_Layer: 17
   m_Name: her0inInfectee
   m_TagString: Infectee
   m_Icon: {fileID: 0}
@@ -4252,6 +4253,18 @@ MonoBehaviour:
   charObj: {fileID: 3372380545461173407}
   ragdollObj: {fileID: 569418168568487037}
   InfecteeID: 0
+--- !u!114 &1575818982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5009833869241692385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce9db417fbc92049bcd295bc3fed06b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5017819877125547886
 GameObject:
   m_ObjectHideFlags: 0
@@ -7744,7 +7757,7 @@ GameObject:
   - component: {fileID: 5849295416226380727}
   - component: {fileID: 4555918279677651505}
   - component: {fileID: 1681812108255423857}
-  m_Layer: 17
+  m_Layer: 25
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

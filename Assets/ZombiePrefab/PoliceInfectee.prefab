@@ -2297,6 +2297,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   maxHp: 100
+  damaged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   died:
     m_PersistentCalls:
       m_Calls:
@@ -6142,6 +6147,8 @@ MonoBehaviour:
   rightShinRigid: {fileID: 0}
   speed: 0
   AttackedPos: {x: 0, y: 0, z: 0}
+  targetTr: {fileID: 0}
+  hitByBullet: 0
 --- !u!1 &2022273142268138952
 GameObject:
   m_ObjectHideFlags: 0
@@ -7791,7 +7798,7 @@ GameObject:
   - component: {fileID: 7558715457167106814}
   - component: {fileID: 8847476345104212620}
   - component: {fileID: 7143946017238355781}
-  m_Layer: 30
+  m_Layer: 25
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

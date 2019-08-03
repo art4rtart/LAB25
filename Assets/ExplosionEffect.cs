@@ -18,7 +18,6 @@ public class ExplosionEffect : MonoBehaviour
 
             if (health.hp > 0)
                 health.DeathByBomb();
-
         }
     }
 }

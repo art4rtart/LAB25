@@ -4919,7 +4919,7 @@ GameObject:
   - component: {fileID: 5289074230969631210}
   - component: {fileID: 3245195368882323912}
   - component: {fileID: 8747618657896699717}
-  m_Layer: 30
+  m_Layer: 25
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

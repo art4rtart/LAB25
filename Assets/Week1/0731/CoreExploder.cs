@@ -8,6 +8,8 @@ public class CoreExploder : MonoBehaviour
 	public Transform player;
 	public GameObject pushPlayerBlock;
 	public float pushForce = 10f;
+	public Light blueLight;
+	public Light directionalLight;
 
 	public AudioSource[] audioSource; // run, stop, spark, explode, glass
 
@@ -22,6 +24,7 @@ public class CoreExploder : MonoBehaviour
 	public ParticleSystem[] sparkParticle;
 	public ParticleSystem[] explodeParticle;
 
+	MotionBlur motionBlur;
 	ParticleSystem[] spartkPs;
 	ParticleSystem[] explodePs;
 
@@ -41,19 +44,22 @@ public class CoreExploder : MonoBehaviour
 		for (int i = 0; i < explodePs.Length; i++) explodePs[i].Stop();
 		testShake = GetComponent<TestShake>();
         explosioneffect = GetComponent<ExplosionEffect>();
-    }
+		motionBlur = GetComponent<MotionBlur>();
+
+	}
 
 	void Update()
 	{
-
 		if (!isReadyToOverPower) return;
 		if (isReadyToOverPower) explodeRateText.text = currentExplodeRate.ToString("N2");
 
 		if (Input.GetKey(KeyCode.F) && !isExploded)
 		{
 			currentExplodeRate = Mathf.Clamp(currentExplodeRate +=Time.deltaTime * 1.7f, 0, maxExplodeRate);
+			blueLight.intensity += Time.deltaTime * 10f;
 			isOverPowering = true;
 			isPowerdOnFirst = true;
+			lightOff = false;
 			if (!audioSource[0].GetComponent<AudioSource>().isPlaying) audioSource[0].GetComponent<AudioSource>().Play();
 		}
 
@@ -62,19 +68,19 @@ public class CoreExploder : MonoBehaviour
 			if(!isExploded) currentExplodeRate = 0;
 			isOverPowering = false;
 			isTurnOff = true;
+			lightOff = true;
 		}
 
 		if (!isExploded && currentExplodeRate >= maxExplodeRate)
 		{
 			StartCoroutine(Explode());
 			isExploded = true;
-			move = true;
 		}
 
 		EffectUpdate();
 		SoundControl();
 	}
-	bool move;
+	bool lightOff;
 	void FixedUpdate()
 	{
 		Push();
@@ -153,6 +159,7 @@ public class CoreExploder : MonoBehaviour
         explosioneffect.AfterExplosion();
         // light go down
         StartCoroutine(LightChanger());
+		motionBlur.DoMotionBlur(4f);
 
 		for (int i = 0; i < explodePs.Length; i++) explodePs[i].Play();
 		for (int i = 0; i < spartkPs.Length; i++) spartkPs[i].Stop();
@@ -161,6 +168,7 @@ public class CoreExploder : MonoBehaviour
 		audioSource[0].GetComponent<AudioSource>().Stop();
 		if (!audioSource[2].GetComponent<AudioSource>().isPlaying) audioSource[2].GetComponent<AudioSource>().Play();
 		if (!audioSource[3].GetComponent<AudioSource>().isPlaying) audioSource[3].GetComponent<AudioSource>().Play();
+
 		StartCoroutine(cameraShake());
 		currentExplodeRate = 0;
 		explodeRateText.text = "0.00";
@@ -169,10 +177,12 @@ public class CoreExploder : MonoBehaviour
 		explanationText.color = new Color(explanationText.color.r, explanationText.color.g, explanationText.color.b, 0.2f);
 		explodeRateText.color = new Color(explodeRateText.color.r, explodeRateText.color.g, explodeRateText.color.b, 0.2f);
 
+		yield return new WaitForSeconds(.2f);
+		motionBlur.DoMotionBlur(5f);
+		if (!audioSource[4].GetComponent<AudioSource>().isPlaying) audioSource[4].GetComponent<AudioSource>().Play();
+
 		yield return null;
 	}
-
-	public Light pointLight;
 
 	IEnumerator LightChanger()
 	{
@@ -180,12 +190,18 @@ public class CoreExploder : MonoBehaviour
 
 		while(alpha <= 1f)
 		{
-			pointLight.intensity = Random.Range(0.5f, 2f);
+			blueLight.intensity = Random.Range(1f, 15f);
 			alpha += Time.deltaTime;
 			yield return null;
 		}
 
-		pointLight.intensity = 0.1f;
+		while (directionalLight.intensity >= 0.1f)
+		{
+			directionalLight.intensity -= Time.deltaTime * 2f;
+			yield return null;
+		}
+
+		blueLight.intensity = 2f;
 
 		yield return null;
 	}
@@ -209,6 +225,7 @@ public class CoreExploder : MonoBehaviour
 
 	void EffectUpdate()
 	{
+		if (lightOff && blueLight.intensity > 5) blueLight.intensity -= Time.deltaTime * 5f;
 		if (isOverPowering)
 		{
 			for (int i = 0; i < spartkPs.Length; i++)
