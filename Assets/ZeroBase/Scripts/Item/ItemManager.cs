@@ -170,7 +170,7 @@ public class ItemManager : MonoBehaviour
 			{
 				uiManager.isPointingItem = true;
 
-				if (hit.transform.name == "Sensor")
+				if (hit.transform.name == "ElevatorSensor")
 				{
 					itemNameText.text = "ELEVATOR BUTTON";
 
@@ -185,8 +185,8 @@ public class ItemManager : MonoBehaviour
 
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
-						// elevator.GetComponent<Animator>().SetTrigger("PressElevator");
-						scriptController.startGenerator = true;
+						if(elevator != null) elevator.GetComponent<Animator>().SetTrigger("PressElevator");
+						// scriptController.startGenerator = true;
 					}
 				}
 
@@ -213,7 +213,19 @@ public class ItemManager : MonoBehaviour
 					{
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
-						elevator.GetComponent<Animator>().SetTrigger("CloseElevator");
+
+
+						if (elevator != null)
+						{
+							if (BombGage.installedBombCount == 4)
+							{
+								elevator.GetComponent<Animator>().SetTrigger("CloseElevator");
+								player.transform.SetParent(elevator.GetComponent<Elevator>().elevator.transform);
+								player.GetComponent<CharacterController>().enabled = false;
+							}
+							else
+								Debug.Log("You have to install a bomb!!");
+						}
 					}
 				}
 

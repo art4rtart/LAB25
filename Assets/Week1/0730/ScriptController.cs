@@ -18,6 +18,7 @@ public class ScriptController : MonoBehaviour
 	int subIndex = 0;
 
 	[Header("Stage4")]
+	public BombGage bombGage;
 	public bool startGenerator;
 	public bool isGeneratorExist;
 
@@ -77,11 +78,30 @@ public class ScriptController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.5f);
 		missionScript.Type();
+		subText.text = missionScript.subSentences[subIndex];
+		subIndex++;
 
-		print("1");
-		while (!startGenerator) yield return new WaitForSeconds(.5f);
+		yield return new WaitForSeconds(5f);
+		bombGage.stageAnimator.SetBool(("FadeIn"), true);
+
+		yield return new WaitForSeconds(2f);
+		missionScript.GetComponent<Animator>().SetTrigger("Finish");
+
+		yield return new WaitForSeconds(8f);
+		// play zombie comming sound
+
+		yield return new WaitForSeconds(2f);
+		if (BombGage.installedBombCount < 4)
+		{
+			missionScript.Type();
+			subText.text = missionScript.subSentences[subIndex];
+			subIndex++;
+		}
+
+		yield return new WaitForSeconds(7f);
+		missionScript.GetComponent<Animator>().SetTrigger("Finish");
+
 		generator = FindObjectOfType<InfecteeGenerator>().GetComponent<InfecteeGenerator>();
-		print(generator);
 		StartCoroutine(generator.Generate());
 	}
 }

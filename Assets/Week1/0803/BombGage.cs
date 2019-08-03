@@ -2,29 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BombGage : MonoBehaviour
 {
 	public Slider slider;
 	public RectTransform[] handle;
 	public RectTransform gageHandler;
+	public Animator stageAnimator;
+	public TextMeshProUGUI BombInstallText;
 	float number;
 
 	float currentGage;
-
-	float[] randomNum = new float[3];
-	IEnumerator BombGageCoroutine;
-
-	void Awake()
-	{
-		BombGageCoroutine = BombInstall();
-	}
-
-	void Start()
-	{
-		GenerateRandomPos();
-	}
-
 	bool isStart = false;
 	int randomNumIndex = 0;
 
@@ -33,14 +22,25 @@ public class BombGage : MonoBehaviour
 	bool printMessage = true;
 	float addSpeed = 0.5f;
 
-
-	int bKeyCount;
-
 	bool isCoroutineStarted;
+	float[] randomNum = new float[3];
+	IEnumerator BombGageCoroutine;
+
+	void Awake()
+	{
+		BombGageCoroutine = BombInstall();
+		installedBombCount = 0;
+		BombInstallText.text = installedBombCount + " / 4 \ninstalled bomb";
+	}
+
+	void Start()
+	{
+		GenerateRandomPos();
+	}
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.B) && !isCoroutineStarted)
+		if(canInstall && Input.GetKeyDown(KeyCode.B) && !isCoroutineStarted)
 		{
 			// player Anim
 
@@ -51,12 +51,24 @@ public class BombGage : MonoBehaviour
 			StartCoroutine(BombGageCoroutine);
 			isCoroutineStarted = true;
 		}
+	}
 
+	bool canInstall;
 
-		//if (PlayerManager.isHit) return;
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("Player"))
+		{
+			canInstall = true;
+		}
+	}
 
-		//if (Input.GetKeyDown(KeyCode.Y)) { isStart = true; }
-		//if (!isStart) return;
+	void OnTriggerExit(Collider other)
+	{
+		if (other.gameObject.CompareTag("Player"))
+		{
+			canInstall = false;
+		}
 	}
 
 	IEnumerator BombInstall()
@@ -103,6 +115,7 @@ public class BombGage : MonoBehaviour
 			yield return null;
 		}
 
+		BombIsInstalled();
 		isCoroutineStarted = false;
 		slider.GetComponent<Animator>().SetBool("BombGageFade", false);
 
@@ -134,5 +147,15 @@ public class BombGage : MonoBehaviour
 
 		slider.handleRect = gageHandler;
 		slider.value = 0;
+	}
+
+	public static int installedBombCount = 0;
+	void BombIsInstalled()
+	{
+		if (installedBombCount < 4)
+		{
+			installedBombCount++;
+			BombInstallText.text = installedBombCount + " / 4 \ninstalled bomb";
+		}
 	}
 }

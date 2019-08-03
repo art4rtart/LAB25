@@ -10,7 +10,7 @@ public class Elevator : MonoBehaviour
 	public GameObject elevator;
 	public UIManager uiManager;
 	public string nextSceneName;
-
+	string[] loadingNames = { "Loading1", "Loading2", "Loading3", "Loading4", "Loading5" };
 	public void CloseElevator()
 	{
 		player.transform.SetParent(elevator.transform);
@@ -18,7 +18,8 @@ public class Elevator : MonoBehaviour
 		player.GetComponent<CharacterController>().enabled = false;
 		fadeAnim.SetTrigger("SceneEnd");
 
-		SceneManager.LoadScene(nextSceneName);
+		LevelLoader.sceneName = nextSceneName;
+		SceneManager.LoadScene(loadingNames[Random.Range(0, loadingNames.Length)]);
 	}
 
 	public void DoorOpen()
