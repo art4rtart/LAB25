@@ -7,9 +7,12 @@ public class AttackRange : MonoBehaviour
 	Projector projector;
 	Zemmer zemmer;
 
+	[Header("Default Settings")]
 	public float speed = 5f;
 	public float viewRadius;
 	public float circleSize;
+
+	[Header("Zemmer")]
 	public bool isUseable;
 	public LayerMask playerMask;
 
@@ -65,9 +68,18 @@ public class AttackRange : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmosSelected()
+	public IEnumerator DecreaseCircle()
 	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(this.transform.position, viewRadius);
+		while (projector.orthographicSize > 0f)
+		{
+			projector.orthographicSize = Mathf.Clamp(projector.orthographicSize -= speed * Time.deltaTime, 0f, 7f);
+			yield return null;
+		}
 	}
+
+	//private void OnDrawGizmosSelected()
+	//{
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawWireSphere(this.transform.position, viewRadius);
+	//}
 }

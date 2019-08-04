@@ -58,7 +58,7 @@ public class BombGage : MonoBehaviour
 	{
 		float correctCount = 0;
 		slider.GetComponent<Animator>().SetBool("BombGageFade", true);
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(.5f);
 		
 		// install sound play
 
@@ -66,13 +66,14 @@ public class BombGage : MonoBehaviour
 		{
 			if (PlayerManager.isHit) break;
 
-			currentGage = Mathf.Clamp(currentGage += Time.deltaTime * addSpeed, 0, 4);
+			currentGage = Mathf.Clamp(currentGage += Time.deltaTime * 1.5f * addSpeed, 0, 4);
 			addSpeed += Time.deltaTime;
 
 			slider.value = Mathf.Floor(currentGage * 100f) * 0.25f;
 
 			if (slider.value > randomNum[randomNumIndex] + 5 && correctCount < 3)
 			{
+				slider.GetComponent<Animator>().SetBool("BombGageFade", false);
 				break;
 			}
 
@@ -90,6 +91,7 @@ public class BombGage : MonoBehaviour
 
 				else
 				{
+					slider.GetComponent<Animator>().SetBool("BombGageFade", false);
 					break;
 				}
 			}
@@ -136,6 +138,7 @@ public class BombGage : MonoBehaviour
 	}
 
 	public static int installedBombCount = 0;
+	public ZoneTriggers[] zoneTriggers;
 
 	void BombIsInstalled()
 	{
@@ -143,6 +146,15 @@ public class BombGage : MonoBehaviour
 		{
 			installedBombCount++;
 			BombInstallText.text = installedBombCount + " / 4 \ninstalled bomb";
+		}
+
+		for(int i = 0; i < zoneTriggers.Length; i++)
+		{
+			if (zoneTriggers[i].isColliding)
+			{
+				zoneTriggers[i].changeZoneCircleRange();
+				break;
+			}
 		}
 	}
 }

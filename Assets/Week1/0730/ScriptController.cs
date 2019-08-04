@@ -83,9 +83,9 @@ public class ScriptController : MonoBehaviour
 		subIndex++;
 
 		yield return new WaitForSeconds(5f);
-		bombGage.stageAnimator.SetBool(("FadeIn"), true);
 
-		// 10, 10, -10,10     -10, -10,  10,-10
+		bombGage = FindObjectOfType<BombGage>();
+		bombGage.stageAnimator.SetBool("FadeIn", true);
 
 		bombPlace[0].transform.position = new Vector3(10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, 10 + Random.Range(-5f,5f));
 		bombPlace[1].transform.position = new Vector3(-10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, 10 + Random.Range(-5f, 5f));
@@ -97,10 +97,10 @@ public class ScriptController : MonoBehaviour
 			bombPlace[i].SetActive(true);
 		}
 
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(3f);
 		missionScript.GetComponent<Animator>().SetTrigger("Finish");
 
-		yield return new WaitForSeconds(8f);
+		yield return new WaitForSeconds(7f);
 		// play zombie comming sound
 
 		yield return new WaitForSeconds(2f);
