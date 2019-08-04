@@ -29,6 +29,8 @@ public class BombGage : MonoBehaviour
     public Animator playerAnim;
     public bool hasBomb = false;
     public GameObject ScifiBomb;
+    public WeaponCtrl myWeapon;
+
 
 	void Awake()
 	{
@@ -46,14 +48,31 @@ public class BombGage : MonoBehaviour
 	{
 		if(canInstall && Input.GetKeyDown(KeyCode.B) && !isCoroutineStarted)
 		{
-            // player Anim
-            playerAnim.SetTrigger("ReadyToBombSet");
-            // ui active
+            AnimatorStateInfo info = playerAnim.GetCurrentAnimatorStateInfo(0);
 
-            // startCorutine
-            BombGageCoroutine = BombInstall();
-			StartCoroutine(BombGageCoroutine);
-			isCoroutineStarted = true;
+            if (info.IsName("Idle") )
+            {
+                // player Anim
+                playerAnim.SetTrigger("ReadyToBombSet");
+                myWeapon.hasAK = false;
+                myWeapon.hasAxe = false;
+                // ui active
+
+                // startCorutine
+                BombGageCoroutine = BombInstall();
+                StartCoroutine(BombGageCoroutine);
+                isCoroutineStarted = true;
+            }
+            else
+            {
+                 if( info.IsName("weaponChange(AKtoBomb)"))
+                {
+                    // startCorutine
+                    BombGageCoroutine = BombInstall();
+                    StartCoroutine(BombGageCoroutine);
+                    isCoroutineStarted = true;
+                }
+            }
 		}
 	}
 

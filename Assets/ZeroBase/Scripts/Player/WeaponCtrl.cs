@@ -45,6 +45,7 @@ public class WeaponCtrl : MonoBehaviour
 
     //WeaponChange
     public bool hasAK = true;
+    public bool hasAxe = false;
 
     // her0in
     public int bulletsToReload;
@@ -86,7 +87,7 @@ public class WeaponCtrl : MonoBehaviour
 				}
 				else
 				{
-					if (!itemManager.readyToUseGrenade)
+					if (!itemManager.readyToUseGrenade && hasAxe )
 						AxeAttack();
 				}
             }
@@ -172,6 +173,7 @@ public class WeaponCtrl : MonoBehaviour
                 {
                     anim.SetTrigger("toAxe");
                     hasAK = false;
+                    hasAxe = true;
                 }
             }
 
@@ -199,11 +201,14 @@ public class WeaponCtrl : MonoBehaviour
                 {
                     anim.SetTrigger("toAK");
                     hasAK = true;
+                    hasAxe = false;
+
                 }
                 else if (info.IsName("Idle"))
                 {
                     anim.SetTrigger("toAxe");
                     hasAK = false;
+                    hasAxe = true;
                 }
             }
         }
