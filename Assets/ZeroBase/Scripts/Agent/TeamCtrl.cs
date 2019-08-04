@@ -92,7 +92,7 @@ public class TeamCtrl : MonoBehaviour
 	bool enableTrigger;
 	void OnCollisionEnter(Collision other)
 	{
-		if(other.gameObject.CompareTag("wall"))
+		if(other.gameObject.CompareTag("Floor"))
 		{
 			if(!enableTrigger)
 			{

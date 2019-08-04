@@ -16,6 +16,7 @@ public class ItemManager : MonoBehaviour
 	[HideInInspector] public int medicalKitCount;
 	[HideInInspector] public int adrenalineCount;
 	[HideInInspector] public int grenadeCount;
+	[HideInInspector] public int beakerCount;
 
 	[Header("Interact Rage")]
 	public float range = 10f;
@@ -372,6 +373,10 @@ public class ItemManager : MonoBehaviour
 			case "Ward":
 				hasWard = true;
 				break;
+
+			case "Beaker":
+				beakerCount += 1;
+				break;
 		}
         UIManager.Instance.TextUpdate();
         if (item.gameObject.CompareTag("Item")) item.gameObject.SetActive(false);
@@ -382,6 +387,7 @@ public class ItemManager : MonoBehaviour
 		medicalKitCount = 0;
 		adrenalineCount = 0;
 		grenadeCount = 0;
+		beakerCount = 0;
 		isUsingWard = false;
 		isUsingHearter = false;
 		currentHealth = 100f;

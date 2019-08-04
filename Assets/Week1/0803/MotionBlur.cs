@@ -9,6 +9,11 @@ public class MotionBlur : MonoBehaviour
 
 	IEnumerator motionBlur;
 
+	void Awake()
+	{
+		ppProfile.motionBlur.enabled = false;
+	}
+
 	IEnumerator StartMotionBlur(float time)
 	{
 		float blurValue = time;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActTrigger : MonoBehaviour
 {
-	[Header("Generate/Script/Finish/ChangeScene")]
+	[Header("Generate/Script/Finish/ChangeScene/BossPlayerLock")]
 	public string triggerType;
 
 	[Header("GenerateTriggerSettings")]
@@ -21,6 +21,10 @@ public class ActTrigger : MonoBehaviour
 	public MoveToNextScene moveToNextScene;
 	public string nextSceneName;
 
+	[Header("BossPlayerLockTriggerSettings")]
+	public Charger[] charger;
+	public GameObject Player;
+
 	void OnTriggerEnter(Collider other)
 	{
 		if(other.gameObject.CompareTag("Player"))
@@ -29,6 +33,7 @@ public class ActTrigger : MonoBehaviour
 			else if (triggerType == "Script") scriptController.typeNextScript = true;
 			else if (triggerType == "Finish") missionScript.GetComponent<Animator>().SetTrigger("Finish");
 			else if (triggerType == "ChangeScene") ChangeScene();
+			else if (triggerType == "BossPlayerLock") BossLock();
 			this.gameObject.SetActive(false);
 		}
 	}
@@ -38,5 +43,14 @@ public class ActTrigger : MonoBehaviour
 		sceneFadeAnimator.SetTrigger("SceneEnd");
 		StartCoroutine(moveToNextScene.LoadSceneAfterTime(3f));
 		LevelLoader.sceneName = nextSceneName;
+	}
+
+	void BossLock()
+	{
+		for(int i = 0; i < charger.Length; i++)
+		{
+			charger[i].target = Player.transform;
+			charger[i].gameObject.SetActive(true);
+		}
 	}
 }

@@ -15,7 +15,6 @@ public class ScriptController : MonoBehaviour
 
 	[Header("Stage3")]
 	public TextMeshProUGUI subText;
-	int subIndex = 0;
 
 	[Header("Stage4")]
 	public GameObject[] bombPlace;
@@ -27,7 +26,6 @@ public class ScriptController : MonoBehaviour
 	{
 		missionScript = GetComponent<MissionScripts>();
 		missionAnimator = GetComponent<Animator>();
-		subIndex = 0;
 		typeNextScript = false;
 
 		if (!isGeneratorExist) return;
@@ -43,8 +41,8 @@ public class ScriptController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.5f);
 		missionScript.Type();
-		subText.text = missionScript.subSentences[subIndex];
-		subIndex++;
+		subText.text = missionScript.subSentences[missionScript.subIndex];
+		missionScript.subIndex++;
 
 		typeNextScript = false;
 		while (!typeNextScript)
@@ -79,8 +77,8 @@ public class ScriptController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(0.5f);
 		missionScript.Type();
-		subText.text = missionScript.subSentences[subIndex];
-		subIndex++;
+		subText.text = missionScript.subSentences[missionScript.subIndex];
+		missionScript.subIndex++;
 
 		yield return new WaitForSeconds(5f);
 
@@ -107,8 +105,8 @@ public class ScriptController : MonoBehaviour
 		if (BombGage.installedBombCount < 4)
 		{
 			missionScript.Type();
-			subText.text = missionScript.subSentences[subIndex];
-			subIndex++;
+			subText.text = missionScript.subSentences[missionScript.subIndex];
+			missionScript.subIndex++;
 		}
 
 		yield return new WaitForSeconds(7f);

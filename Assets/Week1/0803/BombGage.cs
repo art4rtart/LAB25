@@ -61,6 +61,8 @@ public class BombGage : MonoBehaviour
 	IEnumerator BombInstall()
 	{
 		float correctCount = 0;
+		PlayerManager.isHit = false;
+
 		slider.GetComponent<Animator>().SetBool("BombGageFade", true);
 		yield return new WaitForSeconds(.5f);
 		

@@ -18,16 +18,18 @@ public class Sensor : MonoBehaviour
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.B))
-		{
-			ItemManager.hasCardKey = !ItemManager.hasCardKey;
-		}
+		//if(Input.GetKeyDown(KeyCode.B))
+		//{
+		//	ItemManager.hasCardKey = !ItemManager.hasCardKey;
+		//}
 	}
 
 	public void OpenGate()
 	{
 		if(!ItemManager.hasCardKey){
 			audiosource.clip = sounds[0];
+			if(!audiosource.isPlaying) audiosource.Play();
+			return;
 		}
 
 		else{

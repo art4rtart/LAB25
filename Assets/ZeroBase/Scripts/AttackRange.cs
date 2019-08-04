@@ -70,7 +70,7 @@ public class AttackRange : MonoBehaviour
 
 	public IEnumerator DecreaseCircle()
 	{
-		while (projector.orthographicSize > 0f)
+		while (projector.orthographicSize >= 0f)
 		{
 			projector.orthographicSize = Mathf.Clamp(projector.orthographicSize -= speed * Time.deltaTime, 0f, 7f);
 			yield return null;

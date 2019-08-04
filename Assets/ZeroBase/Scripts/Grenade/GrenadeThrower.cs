@@ -24,12 +24,13 @@ public class GrenadeThrower : MonoBehaviour
 	{
 		material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
 
-		if (itemManager.readyToUseGrenade)
+		if (itemManager.readyToUseGrenade && itemManager.beakerCount > 0)
 		{
 			playerAnim.SetTrigger("ReadyToThrow");
 			myWeapon.hasAK = false;
 			readyToThrow = lineRenderer.enabled = true;
 		}
+
 	    if (Input.GetMouseButtonUp(0) && readyToThrow)
 		{
 			ThrowGrenade();

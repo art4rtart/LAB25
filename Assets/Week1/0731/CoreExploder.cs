@@ -7,6 +7,8 @@ public class CoreExploder : MonoBehaviour
 {
 	public Transform player;
 	public GameObject pushPlayerBlock;
+	public GameObject[] computers;
+
 	public float pushForce = 10f;
 	public Light blueLight;
 	public Light directionalLight;
@@ -47,7 +49,7 @@ public class CoreExploder : MonoBehaviour
 		motionBlur = GetComponent<MotionBlur>();
 
 	}
-
+	float lockY;
 	void Update()
 	{
 		if (!isReadyToOverPower) return;
@@ -65,7 +67,7 @@ public class CoreExploder : MonoBehaviour
 
 		if(Input.GetKeyUp(KeyCode.F) && !isExploded)
 		{
-			if(!isExploded) currentExplodeRate = 0;
+			if (!isExploded) currentExplodeRate = 0;
 			isOverPowering = false;
 			isTurnOff = true;
 			lightOff = true;
@@ -157,7 +159,12 @@ public class CoreExploder : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1f);
         explosioneffect.AfterExplosion();
-        // light go down
+
+		for(int i = 0; i < computers.Length; i++)
+		{
+			computers[i].GetComponent<Rigidbody>().useGravity = true;
+		}
+
         StartCoroutine(LightChanger());
 		motionBlur.DoMotionBlur(4f);
 
@@ -240,6 +247,24 @@ public class CoreExploder : MonoBehaviour
 			{
 				spartkPs[i].startLifetime = Mathf.Clamp(spartkPs[i].startLifetime -= 0.1f, 0, 1.5f);
 			}
+		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if(other.gameObject.CompareTag("Player"))
+		{
+			StartCoroutine(IncreaseLight());
+			this.gameObject.GetComponent<BoxCollider>().enabled = false;
+		}
+	}
+
+	IEnumerator IncreaseLight()
+	{
+		while(directionalLight.intensity < 0.4f)
+		{
+			directionalLight.intensity += Time.deltaTime;
+			yield return null;
 		}
 	}
 }

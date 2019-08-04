@@ -13273,6 +13273,38 @@ Transform:
   m_Father: {fileID: 2099931161}
   m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!84 &521672425
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &521894625
 GameObject:
   m_ObjectHideFlags: 0
@@ -13635,38 +13667,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529664125}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!84 &530399089
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &531381440
 GameObject:
   m_ObjectHideFlags: 0
@@ -14454,7 +14454,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300010, guid: 975570a90d56c477582e12d440dc9931, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 490a1b5e0f6a17b4f9187a71e98694d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20656,7 +20656,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300030, guid: feda0c18015b3284cabbc0da85254f9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf9a435a10e156c4c8ab421567e17bc5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21262,6 +21262,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843571981}
   m_CullTransparentMesh: 0
+--- !u!84 &856024336
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 4
+  m_DepthFormat: 2
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &857077045
 GameObject:
   m_ObjectHideFlags: 0
@@ -26693,7 +26725,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2041910545}
     - target: {fileID: 7713368123224176505, guid: 44d95c229e5062046a9152ae7ed509a1,
         type: 3}
       propertyPath: humanMask.m_Bits
@@ -38167,7 +38199,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300030, guid: feda0c18015b3284cabbc0da85254f9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf9a435a10e156c4c8ab421567e17bc5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -38184,38 +38216,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399175796}
   m_CullTransparentMesh: 0
---- !u!84 &1403512411
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 4
-  m_DepthFormat: 2
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1403884907
 GameObject:
   m_ObjectHideFlags: 0
@@ -39396,7 +39396,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2041910545}
     - target: {fileID: 1715910568633344929, guid: b62a613bcea93a1439fdf715a452dd90,
         type: 3}
       propertyPath: humanMask.m_Bits
@@ -41230,14 +41230,14 @@ RectTransform:
   m_GameObject: {fileID: 1453659219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 1824209075}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 770, y: -110}
+  m_AnchoredPosition: {x: 780, y: -110}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1453659221
@@ -41260,7 +41260,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 490a1b5e0f6a17b4f9187a71e98694d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca3620f9ba1c22842bdc9b90770030fa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -41536,7 +41536,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2041910545}
     - target: {fileID: 6424942259736094119, guid: e080602c18f89854783c37f01c6c14bf,
         type: 3}
       propertyPath: damagedEffect
@@ -48155,7 +48155,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2041910545}
     - target: {fileID: 4829273576177986871, guid: d88cb9c16daef07498bd0ce786562367,
         type: 3}
       propertyPath: damagedEffect
@@ -49483,6 +49483,8 @@ MonoBehaviour:
   timerRec: {fileID: 384601919}
   timerCount: 2
   typeSpeed: 0
+  index: 0
+  subIndex: 0
   TimerMessage: {fileID: 384601917}
 --- !u!224 &1703170282
 RectTransform:
@@ -52454,6 +52456,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1245026342125976797, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
+        type: 3}
+      propertyPath: itemManager
+      value: 
+      objectReference: {fileID: 1612263006}
+    - target: {fileID: 1245026342125976797, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
+        type: 3}
+      propertyPath: missionScripts
+      value: 
+      objectReference: {fileID: 1703170281}
+    - target: {fileID: 1245026342125976797, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
+        type: 3}
+      propertyPath: zemmer
+      value: 
+      objectReference: {fileID: 970091421}
+    - target: {fileID: 1245026342412403937, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
+        type: 3}
+      propertyPath: playerAnim
+      value: 
+      objectReference: {fileID: 2041910548}
+    - target: {fileID: 1245026342412403937, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
+        type: 3}
+      propertyPath: myWeapon
+      value: 
+      objectReference: {fileID: 1633347104}
+    - target: {fileID: 1245026342412403937, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
+        type: 3}
+      propertyPath: itemManager
+      value: 
+      objectReference: {fileID: 1612263006}
     - target: {fileID: 1245026343597144479, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -52509,41 +52541,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1245026342125976797, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
-        type: 3}
-      propertyPath: itemManager
-      value: 
-      objectReference: {fileID: 1612263006}
-    - target: {fileID: 1245026342125976797, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
-        type: 3}
-      propertyPath: missionScripts
-      value: 
-      objectReference: {fileID: 1703170281}
-    - target: {fileID: 1245026342125976797, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
-        type: 3}
-      propertyPath: zemmer
-      value: 
-      objectReference: {fileID: 970091421}
-    - target: {fileID: 1245026342412403937, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
-        type: 3}
-      propertyPath: playerAnim
-      value: 
-      objectReference: {fileID: 2041910548}
-    - target: {fileID: 1245026342412403937, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
-        type: 3}
-      propertyPath: myWeapon
-      value: 
-      objectReference: {fileID: 1633347104}
-    - target: {fileID: 1245026342412403937, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
-        type: 3}
-      propertyPath: itemManager
-      value: 
-      objectReference: {fileID: 1612263006}
     - target: {fileID: 1245026343727559839, guid: 525de7bbfd477424aa2e85bc46fa6e1c,
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 530399089}
+      objectReference: {fileID: 521672425}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525de7bbfd477424aa2e85bc46fa6e1c, type: 3}
 --- !u!1 &1872502768
@@ -54586,7 +54588,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300030, guid: feda0c18015b3284cabbc0da85254f9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf9a435a10e156c4c8ab421567e17bc5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

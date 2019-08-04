@@ -26,11 +26,11 @@ public class Her0inEnemy : MonoBehaviour
     Animator anim;
     Rigidbody rgbd;
     NavMeshAgent navMesh;
-    Transform target;
+    [HideInInspector] public Transform target;
     CapsuleCollider csCollider;
     private ChangeRagDoll myChange;
     [HideInInspector] public Vector3 hitPos;
-    bool followTarget;
+    public bool followTarget;
     bool settingTrigger;
     bool corTrigger;
     bool foundTarget;
@@ -104,12 +104,11 @@ public class Her0inEnemy : MonoBehaviour
         }
     }
 
-    IEnumerator Follow()
+    public IEnumerator Follow()
     {
         navMesh.speed = moveSpeed;
         anim.SetBool("Run", true);
         navMesh.enabled = true;
-
         while (navMesh.remainingDistance >= navMesh.stoppingDistance)
         {
             yield return null;
@@ -118,12 +117,12 @@ public class Her0inEnemy : MonoBehaviour
         navMesh.enabled = false;
         anim.SetBool("Run", false);
 
-        StartCoroutine(Attack());
+		StartCoroutine(Attack());
     }
 
     public float attackSpeed;
 
-    IEnumerator Attack()
+    public IEnumerator Attack()
     {
         if (!foundTarget)
         {
@@ -132,7 +131,7 @@ public class Her0inEnemy : MonoBehaviour
 
         else
         {
-            anim.SetTrigger("Attack");
+			if (player.transform.name == "Player") anim.SetTrigger("Attack");
         }
 
         yield return new WaitForSeconds(attackSpeed);

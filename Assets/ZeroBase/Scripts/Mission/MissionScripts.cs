@@ -20,7 +20,10 @@ public class MissionScripts : MonoBehaviour
 
 	public float timerCount = 5f;
 	public float typeSpeed = 0f;
-	int index = 0;
+	[HideInInspector]
+	public int index = 0;
+	[HideInInspector]
+	public int subIndex = 0;
 	Animator animator;
 
 	void Awake()
@@ -61,7 +64,6 @@ public class MissionScripts : MonoBehaviour
 
 			if (count <= 0) {
 				animator.SetBool("Type", false);
-				// subMessage.text = sentences[index];
 				index++;
 				StopAllCoroutines();
 			}
