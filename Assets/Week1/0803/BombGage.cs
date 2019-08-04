@@ -26,6 +26,10 @@ public class BombGage : MonoBehaviour
 	float[] randomNum = new float[3];
 	IEnumerator BombGageCoroutine;
 
+    public Animator playerAnim;
+    public bool hasBomb = false;
+    public GameObject ScifiBomb;
+
 	void Awake()
 	{
 		BombGageCoroutine = BombInstall();
@@ -42,12 +46,12 @@ public class BombGage : MonoBehaviour
 	{
 		if(canInstall && Input.GetKeyDown(KeyCode.B) && !isCoroutineStarted)
 		{
-			// player Anim
+            // player Anim
+            playerAnim.SetTrigger("ReadyToBombSet");
+            // ui active
 
-			// ui active
-
-			// startCorutine
-			BombGageCoroutine = BombInstall();
+            // startCorutine
+            BombGageCoroutine = BombInstall();
 			StartCoroutine(BombGageCoroutine);
 			isCoroutineStarted = true;
 		}
@@ -98,7 +102,10 @@ public class BombGage : MonoBehaviour
 
 			if (correctCount >= 3f && slider.value == 100)
 			{
-				BombIsInstalled(); break;
+				BombIsInstalled();
+                playerAnim.SetTrigger("SucessBombSet");
+                Instantiate(ScifiBomb, playerAnim.transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation, null);
+                break;
 			}
 
 			yield return null;
@@ -113,7 +120,9 @@ public class BombGage : MonoBehaviour
 			handle[i].GetComponent<Image>().color = Color.white;
 		}
 
-		randomNumIndex = 0;
+        playerAnim.ResetTrigger("ReadyToBombSet");
+        playerAnim.ResetTrigger("SucessBombSet");
+        randomNumIndex = 0;
 		slider.value = 0;
 		addSpeed = 0;
 		currentGage = 0;
