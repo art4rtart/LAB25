@@ -124,7 +124,7 @@ public class BombGage : MonoBehaviour
 			if (correctCount >= 3f && slider.value == 100)
 			{
 				BombIsInstalled();
-                playerAnim.SetTrigger("SucessBombSet");
+                playerAnim.SetTrigger("SuccesBombSet");
                 Instantiate(ScifiBomb, playerAnim.transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation, null);
                 break;
 			}
@@ -142,7 +142,7 @@ public class BombGage : MonoBehaviour
 		}
 
         playerAnim.ResetTrigger("ReadyToBombSet");
-        playerAnim.ResetTrigger("SucessBombSet");
+        playerAnim.ResetTrigger("SuccesBombSet");
         randomNumIndex = 0;
 		slider.value = 0;
 		addSpeed = 0;
