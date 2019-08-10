@@ -20,6 +20,7 @@ public class TeamCtrl : MonoBehaviour
     Animator animator;
 	AgentShoot agentShoot;
 
+	public LabAgent labAgent;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -33,22 +34,25 @@ public class TeamCtrl : MonoBehaviour
     {
         Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, enemyFindRadius, enemyMask);
         targetToInfectee = false;
-        for (int i = 0; i < enemyInRadius.Length; i++)
-        {
-            if (enemyInRadius[i].transform.CompareTag("Infectee"))
-            {
-                //targetToInfectee = true;
-                //Vector3 enemyPos = new Vector3(enemyInRadius[i].transform.position.x, this.transform.position.y, enemyInRadius[i].transform.position.z);
 
-                //Vector3 dirToTarget = enemyPos - transform.position;
-                //Vector3 look = Vector3.Slerp(transform.forward, dirToTarget.normalized, Time.deltaTime * 10);
-                ////Debug.Log("LootInfectee");
-                //transform.rotation = Quaternion.LookRotation(look, Vector3.up);
-                transform.LookAt(enemyInRadius[i].transform.position);
-            }
-        }
+		if (enemyInRadius.Length == 0)
+		{
+			labAgent.enabled = false;
+		}
 
-		if (isMyTeam) agentShoot.enabled = true;
+		else
+		{
+			for (int i = 0; i < enemyInRadius.Length; ++i)
+			{
+				transform.LookAt(enemyInRadius[i].transform.position);
+				labAgent.target = enemyInRadius[i].transform.gameObject;
+				labAgent.feature = enemyInRadius[i].GetComponent<Feature>();
+				if (labAgent.target != null && labAgent.feature != null) labAgent.enabled = true;
+				else labAgent.enabled = false;
+			}
+		}
+
+		//if (isMyTeam) agentShoot.enabled = true;
 		//Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, enemyFindRadius, enemyMask);
 
 			//for (int i = 0; i < enemyInRadius.Length; i++)

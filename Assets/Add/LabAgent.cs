@@ -20,7 +20,7 @@ public class LabAgent : Agent
 
 
 	public Feature feature;
-	public GenerateZombie generateZombie;
+	// public GenerateZombie generateZombie;
 	public AgentWeaponCtrl agentWeaponCtrl;
 	public GameObject target;
 
@@ -42,45 +42,58 @@ public class LabAgent : Agent
 
 	public override void InitializeAgent()
 	{
-		StartCoroutine(ClearConsole());
+		//StartCoroutine(ClearConsole());
 		base.InitializeAgent();
+	}
+
+	void Update()
+	{
+
 	}
 
 	public override void CollectObservations()
 	{
-        if (target != null && !startObservation)
-        {
-            feature = target.GetComponent<Feature>();
-            feature.GetCurrentClipName();
-
-            if (feature.animationName != "NULL" && feature.animationName != "")
-            {
-                startObservation = true;
+		if (target != null && !startObservation)
+		{
+			if (feature.animationName != "NULL" && feature.animationName != "")
+			{
 				PrintTargetInfo();
-            }
-        }
-       
-		AddVectorObs(feature.nameHash);
-		AddVectorObs(feature.eyeColor.r);
-		AddVectorObs(feature.eyeColor.g);
-		AddVectorObs(feature.eyeColor.b);
-		AddVectorObs(isUsingGun);
-		AddVectorObs(isUsingShotGun);
-		AddVectorObs(isUsingFlame);
-		AddVectorObs(foundWhat);
-        AddVectorObs(foundWho);
-		AddVectorObs(target.GetComponent<Health>().hp);
+				startObservation = true;
+			}
+		}
 
-        for (int i = 0; i < feature.Ankles.Length; i++)
-        {
-            AddVectorObs(feature.Ankles[i].localPosition);
-            AddVectorObs(feature.Ankles[i].localRotation);
-        }
-    }
+		if(feature != null) feature.GetCurrentClipName();
+		if (feature == null || target == null) { this.enabled = false; }
+
+		if (feature == null) {
+			for(int i = 0; i < 668; i++)
+				AddVectorObs(0f);
+		}
+
+		else
+		{
+			AddVectorObs(feature.nameHash);
+			AddVectorObs(feature.eyeColor.r);
+			AddVectorObs(feature.eyeColor.g);
+			AddVectorObs(feature.eyeColor.b);
+			AddVectorObs(isUsingGun);
+			AddVectorObs(isUsingShotGun);
+			AddVectorObs(isUsingFlame);
+			AddVectorObs(foundWhat);
+			AddVectorObs(foundWho);
+			AddVectorObs(target.GetComponent<Health>().hp);
+
+			for (int i = 0; i < feature.Ankles.Length; i++)
+			{
+				AddVectorObs(feature.Ankles[i].localPosition);
+				AddVectorObs(feature.Ankles[i].localRotation);
+			}
+		}
+	}
 
 	public void MoveAgent(float[] act)
 	{
-        int who = Mathf.FloorToInt(act[0]);
+		int who = Mathf.FloorToInt(act[0]);
 		int what = Mathf.FloorToInt(act[1]);
 		int how = Mathf.FloorToInt(act[2]);
 
@@ -230,11 +243,11 @@ public class LabAgent : Agent
 		if (feature == null) return;
 		if (targetName == targetNames[feature.nameHash - 1]) { foundWho = true; }
 		if (targetBehavior == feature.animationName) { foundWhat = true; }
-		if(foundWho && foundWhat && !giveReward) { AddReward(1f); giveReward = true; }
+		if (foundWho && foundWhat && !giveReward) { AddReward(1f); giveReward = true; }
 
 
-		episodeTimeCount = Mathf.Clamp(episodeTimeCount += Time.deltaTime,0,episodeTotalTime);
-		if (episodeTimeCount >= episodeTotalTime) { AddReward(-5f); AgentReset(); episodeTimeCount = 0; }
+		// episodeTimeCount = Mathf.Clamp(episodeTimeCount += Time.deltaTime, 0, episodeTotalTime);
+		// if (episodeTimeCount >= episodeTotalTime) { AddReward(-5f); AgentReset(); episodeTimeCount = 0; }
 	}
 
 	public float episodeTimeCount;
@@ -310,7 +323,7 @@ public class LabAgent : Agent
 		if (!startObservation) return;
 
 		MoveAgent(vectorAction);
-	
+
 		AddReward(-1f / agentParameters.maxStep);
 	}
 
@@ -321,7 +334,7 @@ public class LabAgent : Agent
 		foundWho = foundWhat = false;
 		targetName = targetBehavior = "";
 		startObservation = false;
-		generateZombie.ActivateZombie();
+		//generateZombie.ActivateZombie();
 
 		rescuing = false;
 		rescuingOKTemp = false;
@@ -343,7 +356,7 @@ public class LabAgent : Agent
 		foundWho = foundWhat = false;
 		targetName = targetBehavior = "";
 		startObservation = false;
-		generateZombie.ActivateZombie();
+		//generateZombie.ActivateZombie();
 
 		rescuing = false;
 		rescuingOKTemp = false;
@@ -368,20 +381,20 @@ public class LabAgent : Agent
 		}
 	}
 
-	IEnumerator ClearConsole()
-	{
-		while (true)
-		{
-			ClearLog();
-			yield return new WaitForSeconds(30f);
-		}
-	}
+	//IEnumerator ClearConsole()
+	//{
+	//	while (true)
+	//	{
+	//		ClearLog();
+	//		yield return new WaitForSeconds(30f);
+	//	}
+	//}
 
-	public void ClearLog()
-	{
-		var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-		var type = assembly.GetType("UnityEditor.LogEntries");
-		var method = type.GetMethod("Clear");
-		method.Invoke(new object(), null);
-	}
+	//public void ClearLog()
+	//{
+	//	var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+	//	var type = assembly.GetType("UnityEditor.LogEntries");
+	//	var method = type.GetMethod("Clear");
+	//	method.Invoke(new object(), null);
+	//}
 }

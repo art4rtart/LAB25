@@ -26,7 +26,7 @@ public class Charger : MonoBehaviour
 	{
 		AnimatorStateInfo animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
-		if (animStateInfo.IsName("Run"))
+		if (animStateInfo.IsName("Run_2"))
 		{
 			float distance = Vector3.Distance(this.transform.position, target.transform.position);
 
@@ -155,6 +155,7 @@ public class Charger : MonoBehaviour
 	public void Die()
 	{
 		anim.SetTrigger("Die");
+		this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
 		Invoke("Destroy", 2f);
 	}
 

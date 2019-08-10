@@ -2889,6 +2889,7 @@ GameObject:
   - component: {fileID: 8136328504309683614}
   - component: {fileID: 1463777604605522373}
   - component: {fileID: 221878874}
+  - component: {fileID: 5278010338680602995}
   m_Layer: 17
   m_Name: AnimatorInfectee
   m_TagString: Infectee
@@ -2972,7 +2973,9 @@ MonoBehaviour:
   dissolveDistance: 0
   spawnEffect: {fileID: 0}
   damagedEffect: {fileID: 0}
+  target: {fileID: 0}
   hitPos: {x: 0, y: 0, z: 0}
+  followTarget: 0
   player: {fileID: 0}
   attackSpeed: 1
 --- !u!195 &963199285455059109
@@ -3080,6 +3083,126 @@ MonoBehaviour:
     type: 3}
   parent: {fileID: 5009833869241692385}
   percentage: 100
+--- !u!114 &5278010338680602995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372380545461173407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3a52c3e70084b418e8759fbccfabc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMeshRenderer: {fileID: 0}
+  gameObjectName: 
+  gameObjectTag: 
+  type: 
+  department: 
+  eyeColor: {r: 0, g: 0, b: 0, a: 0}
+  moveSpeed: 0
+  bodyMaintainence: 0
+  currentPolygon: 0
+  Ankles:
+  - {fileID: 3652341525583234909}
+  - {fileID: 2086608564552885663}
+  - {fileID: 7795513512021626983}
+  - {fileID: 2978119538951583688}
+  - {fileID: 867363766675299810}
+  - {fileID: 1742950398514224338}
+  - {fileID: 6258179457033880982}
+  - {fileID: 8735178612291638962}
+  - {fileID: 7508433247868658991}
+  - {fileID: 2921531315593096575}
+  - {fileID: 7982599151557749516}
+  - {fileID: 3037703204389359398}
+  - {fileID: 305726548858580847}
+  - {fileID: 8039276269386363194}
+  - {fileID: 521777648352682657}
+  - {fileID: 5780506611010774450}
+  - {fileID: 5275354022407646069}
+  - {fileID: 1912843364302158492}
+  - {fileID: 7830671764812279860}
+  - {fileID: 3241851180471647135}
+  - {fileID: 7623986901463749704}
+  - {fileID: 434595368171192943}
+  - {fileID: 4288513952630361550}
+  - {fileID: 7810791991497259469}
+  - {fileID: 6478392199590331357}
+  - {fileID: 816885297907487257}
+  - {fileID: 4456979524596834599}
+  - {fileID: 3588979336110650347}
+  - {fileID: 3473207129745021601}
+  - {fileID: 5691288272995001463}
+  - {fileID: 9159064994657271617}
+  - {fileID: 5901710233693725542}
+  - {fileID: 609909836914828900}
+  - {fileID: 1530676993157896836}
+  - {fileID: 8420802805592369520}
+  - {fileID: 8584570378795350951}
+  - {fileID: 7217719840596127945}
+  - {fileID: 4899330411694209119}
+  - {fileID: 290631390494439543}
+  - {fileID: 5820700699920113345}
+  - {fileID: 9211563261507538698}
+  - {fileID: 2971935652606844692}
+  - {fileID: 1055417000621858184}
+  - {fileID: 6751987217949037414}
+  - {fileID: 275160396136193167}
+  - {fileID: 9050948515842455100}
+  - {fileID: 5652676078264597321}
+  - {fileID: 4161610036959609753}
+  - {fileID: 5641727047487709980}
+  - {fileID: 179146056239294703}
+  - {fileID: 7429688329414507435}
+  - {fileID: 7645543314614969268}
+  - {fileID: 6875214704357335710}
+  - {fileID: 8720042383388343080}
+  - {fileID: 2181145733839932282}
+  - {fileID: 1558205259204696803}
+  - {fileID: 6172812568902113627}
+  - {fileID: 30334463404852291}
+  - {fileID: 3675889534870833197}
+  - {fileID: 2166485285326186992}
+  - {fileID: 7550486242152384231}
+  - {fileID: 6066340662751587505}
+  - {fileID: 1059831587950950377}
+  - {fileID: 3970561593319997394}
+  - {fileID: 1997476386080911718}
+  - {fileID: 6729067860663683014}
+  - {fileID: 1702107595851659593}
+  - {fileID: 6918323226252639989}
+  - {fileID: 7462157806921104115}
+  - {fileID: 5036628504743468865}
+  - {fileID: 3899352236106138683}
+  - {fileID: 4730110642956551390}
+  - {fileID: 3430329461669668157}
+  - {fileID: 1286556143354422633}
+  - {fileID: 210967498424589271}
+  - {fileID: 6145479949799061109}
+  - {fileID: 7183331931538841044}
+  - {fileID: 5883794747733610087}
+  - {fileID: 506517760170184405}
+  - {fileID: 9075109937412793782}
+  - {fileID: 2498150167435850173}
+  - {fileID: 8597873833657494112}
+  - {fileID: 4736567304132078783}
+  - {fileID: 6692645861549589080}
+  - {fileID: 603905371848427318}
+  - {fileID: 9189057166916308643}
+  - {fileID: 6866077917588893756}
+  - {fileID: 7234402777894151491}
+  - {fileID: 7909063703907296082}
+  - {fileID: 2641865945463522044}
+  - {fileID: 5096172708177915142}
+  - {fileID: 531352958534768543}
+  - {fileID: 6207601032386477079}
+  - {fileID: 7754927745946349262}
+  distance: 0
+  animationName: 
+  nameHash: 0
+  maxSpeedValue: 0
 --- !u!1 &3519322336369519273
 GameObject:
   m_ObjectHideFlags: 0
@@ -4253,6 +4376,7 @@ MonoBehaviour:
   charObj: {fileID: 3372380545461173407}
   ragdollObj: {fileID: 569418168568487037}
   InfecteeID: 0
+  dieTime: 2.5
 --- !u!114 &1575818982
 MonoBehaviour:
   m_ObjectHideFlags: 0

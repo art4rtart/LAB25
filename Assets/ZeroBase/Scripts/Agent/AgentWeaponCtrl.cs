@@ -92,7 +92,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 
         for (int i = 0; i < 1; ++i)
         {
-            if (Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
+			if (Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
             {
                 //Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
                 //InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
@@ -104,7 +104,7 @@ public class AgentWeaponCtrl : MonoBehaviour
                 if (health && health.hp > 0)
                 {
                     health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
-                    if (labAgent.target.GetComponent<Feature>().nameHash != 4 && labAgent.target.GetComponent<Feature>().nameHash != 5 && labAgent.target.GetComponent<Feature>().nameHash != 5)
+                    if (labAgent.target.GetComponent<Feature>().nameHash != 4 && labAgent.target.GetComponent<Feature>().nameHash != 5 && labAgent.target.GetComponent<Feature>().nameHash != 1)
                     {
                         labAgent.AddReward(1f);
                         Debug.Log("Good Shot Normal and Boss, I Used Normal Gun");
@@ -274,6 +274,4 @@ public class AgentWeaponCtrl : MonoBehaviour
         currentBullets += bulletsToReload;
         bulletsTotal -= bulletsToReload;
     }
-
-
 }

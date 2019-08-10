@@ -31,7 +31,6 @@ public class ChangeRagDoll : MonoBehaviour
         ragdollObj.gameObject.SetActive(false);
 
         infectee.hp = infectee.maxHp;
-        
 
 		generator.enemyPool[InfecteeID].RemoveItem(transform.gameObject, null, generator.transform.parent);
 

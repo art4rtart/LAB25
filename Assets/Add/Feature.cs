@@ -54,7 +54,9 @@ public class Feature : MonoBehaviour
 	void OnEnable()
 	{
 		GetComponent<Health>().hp = 100;
+		GenerateFeatures();
 	}
+
 	public void GenerateFeatures()
 	{
 		// get tag
@@ -62,7 +64,6 @@ public class Feature : MonoBehaviour
 
 		// common features
 		distance = Random.Range(0f, 30f);
-
 		gameObjectName = lastName[Random.Range(0, lastName.Length)] + middleName[Random.Range(0, middleName.Length)] + firstName[Random.Range(0, firstName.Length)];
 		type = GetZombieType(this.gameObject.name);
 		department = departments[Random.Range(0, departments.Length)];
@@ -71,9 +72,9 @@ public class Feature : MonoBehaviour
 		// zombie animation features
 		if (initTrigger) { animator.SetBool(triggerNum.ToString(), false); initTrigger = false; };
 		triggerNum = Random.Range(1, GetTriggerLength(type));
-
 		animator.SetBool(triggerNum.ToString(), true);
-        //GetCurrentClipName();
+
+        GetCurrentClipName();
         //
         // zombie features
         if (gameObjectTag == "Infectee") {
@@ -120,7 +121,6 @@ public class Feature : MonoBehaviour
 	string GetZombieType(string name)
 	{
 		string zombieType = "";
-
 		switch (name)
 		{
 			case "Human":
@@ -128,27 +128,27 @@ public class Feature : MonoBehaviour
 				nameHash = 1;
 				break;
 
-			case "Zombie_1":
+			case "KnitInfectee":
 				zombieType = "Zombie_1";
 				nameHash = 2;
 				break;
 
-			case "Zombie_2":
+			case "MedicInfectee":
 				zombieType = "Zombie_2";
 				nameHash = 3;
 				break;
 
-			case "Zombie_3":
+			case "Limpid":
 				zombieType = "Transparent";
 				nameHash = 4;
 				break;
 
-			case "Zombie_4":
+			case "GuardInfectee":
 				zombieType = "Police";
 				nameHash = 5;
 				break;
 
-			case "Zombie_5":
+			case "Charger":
 				zombieType = "Boss";
 				nameHash = 6;
 				break;
@@ -183,7 +183,7 @@ public class Feature : MonoBehaviour
 				triggerLength = 10;
 				break;
 
-			case "Boss":
+			case "Zombie_5":
 				triggerLength = 8;
 				break;
 		}
