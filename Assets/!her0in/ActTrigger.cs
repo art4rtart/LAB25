@@ -41,7 +41,7 @@ public class ActTrigger : MonoBehaviour
 	void ChangeScene()
 	{
 		sceneFadeAnimator.SetTrigger("SceneEnd");
-		StartCoroutine(moveToNextScene.LoadSceneAfterTime(3f));
+		StartCoroutine(moveToNextScene.LoadSceneAfterTime(2f));
 		LevelLoader.sceneName = nextSceneName;
 	}
 

@@ -23,6 +23,7 @@ public class BombGage : MonoBehaviour
 	float addSpeed = 0.5f;
 
 	bool isCoroutineStarted;
+
 	float[] randomNum = new float[3];
 	IEnumerator BombGageCoroutine;
 
@@ -46,36 +47,57 @@ public class BombGage : MonoBehaviour
 
 	void Update()
 	{
-		if(canInstall && Input.GetKeyDown(KeyCode.B) && !isCoroutineStarted)
+		if (canInstall && Input.GetKeyDown(KeyCode.B) && !isCoroutineStarted)
 		{
-            AnimatorStateInfo info = playerAnim.GetCurrentAnimatorStateInfo(0);
+			AnimatorStateInfo info = playerAnim.GetCurrentAnimatorStateInfo(0);
 
-            if (info.IsName("Idle") )
-            {
-                // player Anim
-                playerAnim.SetTrigger("ReadyToBombSet");
-                myWeapon.hasAK = false;
-                myWeapon.hasAxe = false;
-                // ui active
+			if (info.IsName("Idle"))
+			{
+				if (!isCoroutineStarted)
+				{
+					// player Anim
+					playerAnim.SetBool("ReadyToBombSet", true);
+					myWeapon.hasAK = false;
+					myWeapon.hasAxe = false;
+					// ui active
 
-                // startCorutine
-                BombGageCoroutine = BombInstall();
-                StartCoroutine(BombGageCoroutine);
-                isCoroutineStarted = true;
-            }
-            else
-            {
-                 if( info.IsName("weaponChange(AKtoBomb)"))
-                {
-                    // startCorutine
-                    BombGageCoroutine = BombInstall();
-                    StartCoroutine(BombGageCoroutine);
-                    isCoroutineStarted = true;
-                }
-            }
+					// startCorutine
+					//BombGageCoroutine = BombInstall();
+					StartCoroutine("BombInstall");
+					isCoroutineStarted = true;
+				}
+			}
+			else
+			{
+				if (!isCoroutineStarted)
+				{
+					if (info.IsName("weaponChange(AKtoBomb)"))
+					{
+						// startCorutine
+						//BombGageCoroutine = BombInstall();
+						playerAnim.SetBool("ReadyToBombSet", true);
+						myWeapon.hasAK = false;
+						myWeapon.hasAxe = false;
+						StartCoroutine("BombInstall");
+						isCoroutineStarted = true;
+					}
+					else if (info.IsName("RunFinish"))
+					{
+						playerAnim.SetBool("ReadyToBombSet", true);
+						myWeapon.hasAK = false;
+						myWeapon.hasAxe = false;
+						StartCoroutine("BombInstall");
+						isCoroutineStarted = true;
+					}
+				}
+			}
+		}
+		else if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			if (playerAnim.GetBool("ReadyToBombSet"))
+				playerAnim.SetBool("ReadyToBombSet", false);
 		}
 	}
-
 	public static bool canInstall;
 	IEnumerator BombInstall()
 	{
@@ -84,16 +106,14 @@ public class BombGage : MonoBehaviour
 
 		slider.GetComponent<Animator>().SetBool("BombGageFade", true);
 		yield return new WaitForSeconds(.5f);
-		
-		// install sound play
 
+		// install sound play
 		while (currentGage <= 4)
 		{
 			if (PlayerManager.isHit) break;
 
-			currentGage = Mathf.Clamp(currentGage += Time.deltaTime * 1.5f * addSpeed, 0, 4);
 			addSpeed += Time.deltaTime;
-
+			currentGage = Mathf.Clamp(currentGage += Time.deltaTime * 1.5f * addSpeed, 0, 4);
 			slider.value = Mathf.Floor(currentGage * 100f) * 0.25f;
 
 			if (slider.value > randomNum[randomNumIndex] + 5 && correctCount < 3)
@@ -103,17 +123,18 @@ public class BombGage : MonoBehaviour
 			}
 
 			if (Input.GetKeyDown(KeyCode.B))
-			{
+			{ 
 				if (randomNum[randomNumIndex] - 5 < slider.value && slider.value < randomNum[randomNumIndex] + 5)
 				{
 					// change color
 					handle[randomNumIndex].GetComponent<Image>().color = Color.red;
 
 					// correct sound play
-					if (randomNumIndex < randomNum.Length - 1) randomNumIndex++;
+					randomNumIndex++;
+					if (randomNumIndex >= 3)
+						randomNumIndex = 0;
 					correctCount++;
 				}
-
 				else
 				{
 					slider.GetComponent<Animator>().SetBool("BombGageFade", false);
@@ -124,15 +145,14 @@ public class BombGage : MonoBehaviour
 			if (correctCount >= 3f && slider.value == 100)
 			{
 				BombIsInstalled();
-                playerAnim.SetTrigger("SuccesBombSet");
-                Instantiate(ScifiBomb, playerAnim.transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation, null);
-                break;
+				playerAnim.SetTrigger("SuccesBombSet");
+				playerAnim.SetBool("ReadyToBombSet", false);
+				myWeapon.hasAK = true;
+				Instantiate(ScifiBomb, playerAnim.transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation, null);
+				break;
 			}
-
 			yield return null;
 		}
-
-		isCoroutineStarted = false;
 		slider.GetComponent<Animator>().SetBool("BombGageFade", false);
 
 		yield return new WaitForSeconds(.5f);
@@ -140,22 +160,22 @@ public class BombGage : MonoBehaviour
 		{
 			handle[i].GetComponent<Image>().color = Color.white;
 		}
-
-        playerAnim.ResetTrigger("ReadyToBombSet");
+        
         playerAnim.ResetTrigger("SuccesBombSet");
         randomNumIndex = 0;
 		slider.value = 0;
 		addSpeed = 0;
 		currentGage = 0;
 		GenerateRandomPos();
-		StopCoroutine(BombGageCoroutine);
+		isCoroutineStarted = false;
+		//StopCoroutine(BombGageCoroutine);
 	}
 
 	void GenerateRandomPos()
 	{
 		for (int i = 0; i < randomNum.Length; i++)
 		{
-			randomNum[i] = Random.Range(5 + (i * 30), 35 + (i * 30));
+			randomNum[i] = Random.Range(5 + (i * 25), 35 + (i * 25));
 			slider.handleRect = handle[i];
 			handle[i].anchoredPosition = new Vector2(0, 0);
 			handle[i].sizeDelta = new Vector2(20, 0);

@@ -21,30 +21,15 @@ EditorBuildSettings:
     path: Assets/Week1/0727/Credit.unity
     guid: bfee5f67454f59049964f3fabdce8d2a
   - enabled: 0
-    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading1.unity
-    guid: 5f3b2f075035c9c40b9eadc0d70a11e7
-  - enabled: 0
-    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading2.unity
-    guid: 436b08a0155e81f4dbb3d7d5e250e0d8
-  - enabled: 0
-    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading3.unity
-    guid: 2f31fe40accb8ad43a59b2aa4f87f568
-  - enabled: 0
-    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading4.unity
-    guid: f7b4726a0ee194e4eb8d3a71799e2af0
-  - enabled: 0
-    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading5.unity
-    guid: 051fa7ca8e55144418e63a3bcd3b94ef
-  - enabled: 0
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage1.unity
     guid: 19afca36228b0f14dba3bad64d328a1e
   - enabled: 0
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage2.unity
     guid: 71d618eede34d9442b9fe7ba021ece31
-  - enabled: 1
+  - enabled: 0
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage3.unity
     guid: bee655112fe179048866d25ed72e0a37
-  - enabled: 0
+  - enabled: 1
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage4.unity
     guid: 5ed43463887c1d648be1e423dbdf6a02
   - enabled: 0
@@ -56,6 +41,21 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage5-2.unity
     guid: aba1496d67f1d2f429b9e63d9ec11cb3
+  - enabled: 1
+    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading1.unity
+    guid: 5f3b2f075035c9c40b9eadc0d70a11e7
+  - enabled: 1
+    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading2.unity
+    guid: 436b08a0155e81f4dbb3d7d5e250e0d8
+  - enabled: 1
+    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading3.unity
+    guid: 2f31fe40accb8ad43a59b2aa4f87f568
+  - enabled: 1
+    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading4.unity
+    guid: f7b4726a0ee194e4eb8d3a71799e2af0
+  - enabled: 1
+    path: Assets/ZeroBase/Scenes/GUI/Loadings/Loading5.unity
+    guid: 051fa7ca8e55144418e63a3bcd3b94ef
   - enabled: 0
     path: Assets/Week1/0727/MissionCleared.unity
     guid: c6f5b1def188735409c958c2e11d92ce

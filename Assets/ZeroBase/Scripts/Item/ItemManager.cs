@@ -179,7 +179,7 @@ public class ItemManager : MonoBehaviour
 					{
 						if (uiManager.isMissionStart) return;
 
-						missionScript.GetComponent<Animator>().SetTrigger("Finish");
+						// missionScript.GetComponent<Animator>().SetTrigger("Finish");
 						uiManager.missionTime = 40f;
 						uiManager.missionMessage = "SURVIVE UNTIL ELEVATOR ARRIVES";
 						uiManager.isMissionStart = true;
@@ -396,6 +396,6 @@ public class ItemManager : MonoBehaviour
 	}
 
 	bool hasWard;
-	public static bool hasCardKey = true;
+	public static bool hasCardKey = false;
 	bool hasJammer;
 }
