@@ -307,14 +307,9 @@ public class PlayerCtrl : MonoBehaviour
         }
     }
 
-
-    public GameObject leftArm;
-    //public GameObject rightArm;
-
     private void RotateView()
     {
         m_MouseLook.LookRotation (transform, m_Camera.transform);
-        //Debug.Log(leftArm.transform.position);
     }
 
 

@@ -66,16 +66,6 @@ public class AgentWeaponCtrl : MonoBehaviour
         //anim = GameObject.Find("Agent(ARMED)").GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-        isReloading = info.IsName("Reload");
-        isHealing = info.IsName("Heal");
-
-        // Debug.DrawLine(shootPos.position, transform.forward * 10, Color.blue);
-
-    }
-
     private void FixedUpdate()
     {
         if (fireTimer < fireRate)

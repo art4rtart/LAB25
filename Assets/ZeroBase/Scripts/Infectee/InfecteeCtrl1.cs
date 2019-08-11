@@ -133,7 +133,7 @@ public class InfecteeCtrl1 : MonoBehaviour
             anim.SetBool(hashAttack1, true);
             yield return new WaitForSeconds(0.7f);
             if (hitPerson.CompareTag("Player"))
-                PlayerManager.ApplyDamage(damage);
+                PlayerManager.Instance.ApplyDamage(damage);
             //////////////////////////////////////////////////////////ML
             //else if (hitPerson.CompareTag("PlayerAgent"))
             //    AgentManager.ApplyDamage(damage);
@@ -143,7 +143,7 @@ public class InfecteeCtrl1 : MonoBehaviour
             anim.SetBool(hashAttack2, true);
             yield return new WaitForSeconds(0.7f);
             if (hitPerson.CompareTag("Player"))
-                PlayerManager.ApplyDamage(damage);
+                PlayerManager.Instance.ApplyDamage(damage);
             //////////////////////////////////////////////////////////ML
             //else if (hitPerson.CompareTag("PlayerAgent"))
             //    AgentManager.ApplyDamage(damage);

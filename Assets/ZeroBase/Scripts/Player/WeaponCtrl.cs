@@ -15,10 +15,13 @@ public class WeaponCtrl : MonoBehaviour
     public float accuracy;
     public int damage;
 
+    // Axe
+    private float AxeRate = 0.25f;
     // Parameters
     private float fireTimer;
     private bool isReloading;
     private bool isRunning;
+    private float AxeTimer;
 
     // Sounds
     public AudioSource audioSource;
@@ -43,10 +46,6 @@ public class WeaponCtrl : MonoBehaviour
     private bool isPick = false;
     RaycastHit pick;
 
-    //WeaponChange
-    public bool hasAK = true;
-    public bool hasAxe = false;
-
     // her0in
     public int bulletsToReload;
     public ZombieScanner scanner;
@@ -57,11 +56,14 @@ public class WeaponCtrl : MonoBehaviour
     int specialItemIndex;
     public MissionScripts missionScripts;
 
-	void Awake()
-	{
-		bulletsTotal = 360;
-		currentBullets = 30;
-	}
+    public enum WEAPON { AKM, SCI_FI, AXE, CUP, PICK, BOMB };
+    public WEAPON myWeapnType;
+
+    void Awake()
+    {
+        bulletsTotal = 360;
+        currentBullets = 30;
+    }
 
     private void Start()
     {
@@ -76,39 +78,47 @@ public class WeaponCtrl : MonoBehaviour
 
         if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
-            if (!isPick)
+            if (myWeapnType == WEAPON.AKM)
             {
-				if (hasAK)
-				{
-					if (currentBullets > 0)
-						Fire();
-					else
-						DoReload();
-				}
-				else
-				{
-					if (!itemManager.readyToUseGrenade && hasAxe )
-						AxeAttack();
-				}
+                if (currentBullets > 0)
+                    Fire();
+                else
+                    DoReload();
             }
-            else
+            else if (myWeapnType == WEAPON.AXE)
+            {
+                AxeAttack();
+            }
+            else if (myWeapnType == WEAPON.CUP)
+            {
+
+            }
+            else if (myWeapnType == WEAPON.SCI_FI)
+            {
+
+            }
+            else if (myWeapnType == WEAPON.BOMB)
+            {
+
+            }
+            else if (myWeapnType == WEAPON.PICK)
             {
                 Pickup();
             }
         }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            isPick = !isPick;
-            if (!isPick)
-            {
-                if (pick.transform)
-                {
-                    pick.transform.SetParent(null);
-                    pick.transform.GetComponent<Rigidbody>().useGravity = true;
-                }
-            }
-        }
-        if (hasAK)
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    isPick = !isPick;
+        //    if (myWeapnType != WEAPON.PICK)
+        //    {
+        //        if (pick.transform)
+        //        {
+        //            pick.transform.SetParent(null);
+        //            pick.transform.GetComponent<Rigidbody>().useGravity = true;
+        //        }
+        //    }
+        //}
+        if (myWeapnType == WEAPON.AKM )
         {
             if (Input.GetKeyDown(KeyCode.R))
                 DoReload();
@@ -172,8 +182,7 @@ public class WeaponCtrl : MonoBehaviour
                 if (info.IsName("Idle"))
                 {
                     anim.SetTrigger("toAxe");
-                    hasAK = false;
-                    hasAxe = true;
+                    myWeapnType = WEAPON.AXE;
                 }
             }
 
@@ -195,22 +204,23 @@ public class WeaponCtrl : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Alpha5))
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 if (info.IsName("IDLE(axe)"))
                 {
                     anim.SetTrigger("toAK");
-                    hasAK = true;
-                    hasAxe = false;
-
-                }
-                else if (info.IsName("Idle"))
-                {
-                    anim.SetTrigger("toAxe");
-                    hasAK = false;
-                    hasAxe = true;
+                    myWeapnType = WEAPON.AKM;
                 }
             }
+            //else if (Input.GetKeyDown(KeyCode.Alpha5))
+            //{
+                
+            //    if (info.IsName("Idle"))
+            //    {
+            //        anim.SetTrigger("toAxe");
+            //        myWeapnType = WEAPON.AXE;
+            //    }
+            //}
         }
 
         // ----------------------------------------------------------------------
@@ -222,9 +232,43 @@ public class WeaponCtrl : MonoBehaviour
     {
         if (fireTimer < fireRate)
             fireTimer += Time.fixedDeltaTime;
+        if (AxeTimer < AxeRate)
+            AxeTimer += Time.fixedDeltaTime;
     }
     private void AxeAttack()
     {
+        if (AxeTimer < AxeRate )
+        {
+            return;
+        }
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward , out hit, 1.5f))
+        {
+            Health health = hit.transform.GetComponent<Health>();
+
+            if (health && health.hp > 0)
+            {
+                health.ApplyDamage(damage * 5, hit.transform.InverseTransformPoint(hit.point));
+                //if (!hit.transform.CompareTag("Breakable"))
+                //{
+                //    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+
+                //}
+
+                //else
+                //    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+            }
+        }
+        //    else
+        //    {
+        //        StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+        //    }
+        //}
+        AxeTimer = 0.0f;
+        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        //audioSource.PlayOneShot(shootSound);    //shoot sound
         anim.CrossFadeInFixedTime("attackAxe", 0.01f);
     }
     private void Run()
@@ -299,6 +343,15 @@ public class WeaponCtrl : MonoBehaviour
     private void RecoilBack()
     {
         camRecoil.localRotation = Quaternion.Slerp(camRecoil.localRotation, Quaternion.identity, Time.deltaTime * 8f);
+    }
+
+    public void DamageRecoil()
+    {
+        //Vector3 recoilVector = new Vector3(Random.Range(-0.25f, 0.25f), -200, 0);
+        Vector3 recoilCamVector = new Vector3(-200, Random.Range(-0.25f, 0.25f) * 200f, 0);
+
+        //transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition + recoilVector, recoilAmount / 2f); // position recoil
+        camRecoil.localRotation = Quaternion.Slerp(camRecoil.localRotation, Quaternion.Euler(camRecoil.localEulerAngles + recoilCamVector), recoilAmount); // cam recoil
     }
 
     private void DoReload()

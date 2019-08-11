@@ -47,56 +47,57 @@ public class BombGage : MonoBehaviour
 
 	void Update()
 	{
-		if (canInstall && Input.GetKeyDown(KeyCode.B) && !isCoroutineStarted)
-		{
-			AnimatorStateInfo info = playerAnim.GetCurrentAnimatorStateInfo(0);
+        if (canInstall && Input.GetKeyDown(KeyCode.B) && !isCoroutineStarted)
+        {
+            AnimatorStateInfo info = playerAnim.GetCurrentAnimatorStateInfo(0);
 
-			if (info.IsName("Idle"))
-			{
-				if (!isCoroutineStarted)
-				{
-					// player Anim
-					playerAnim.SetBool("ReadyToBombSet", true);
-					myWeapon.hasAK = false;
-					myWeapon.hasAxe = false;
-					// ui active
+            if (info.IsName("Idle"))
+            {
+                if (!isCoroutineStarted)
+                {
+                    // player Anim
+                    playerAnim.SetBool("ReadyToBombSet", true);
+                    myWeapon.myWeapnType = WeaponCtrl.WEAPON.BOMB;
 
-					// startCorutine
-					//BombGageCoroutine = BombInstall();
-					StartCoroutine("BombInstall");
-					isCoroutineStarted = true;
-				}
-			}
-			else
-			{
-				if (!isCoroutineStarted)
-				{
-					if (info.IsName("weaponChange(AKtoBomb)"))
-					{
-						// startCorutine
-						//BombGageCoroutine = BombInstall();
-						playerAnim.SetBool("ReadyToBombSet", true);
-						myWeapon.hasAK = false;
-						myWeapon.hasAxe = false;
-						StartCoroutine("BombInstall");
-						isCoroutineStarted = true;
-					}
-					else if (info.IsName("RunFinish"))
-					{
-						playerAnim.SetBool("ReadyToBombSet", true);
-						myWeapon.hasAK = false;
-						myWeapon.hasAxe = false;
-						StartCoroutine("BombInstall");
-						isCoroutineStarted = true;
-					}
-				}
-			}
-		}
-		else if (Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			if (playerAnim.GetBool("ReadyToBombSet"))
-				playerAnim.SetBool("ReadyToBombSet", false);
-		}
+                    // ui active
+
+                    // startCorutine
+                    //BombGageCoroutine = BombInstall();
+                    StartCoroutine("BombInstall");
+                    isCoroutineStarted = true;
+                }
+            }
+            else
+            {
+                if (!isCoroutineStarted)
+                {
+                    if (info.IsName("weaponChange(AKtoBomb)"))
+                    {
+                        // startCorutine
+                        //BombGageCoroutine = BombInstall();
+                        playerAnim.SetBool("ReadyToBombSet", true);
+                        myWeapon.myWeapnType = WeaponCtrl.WEAPON.BOMB;
+                        StartCoroutine("BombInstall");
+                        isCoroutineStarted = true;
+                    }
+                    else if (info.IsName("RunFinish"))
+                    {
+                        playerAnim.SetBool("ReadyToBombSet", true);
+                        myWeapon.myWeapnType = WeaponCtrl.WEAPON.BOMB;
+                        StartCoroutine("BombInstall");
+                        isCoroutineStarted = true;
+                    }
+                }
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (playerAnim.GetBool("ReadyToBombSet"))
+            {
+                playerAnim.SetBool("ReadyToBombSet", false);
+                myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
+            }
+        }
 	}
 	public static bool canInstall;
 	IEnumerator BombInstall()
@@ -147,8 +148,8 @@ public class BombGage : MonoBehaviour
 				BombIsInstalled();
 				playerAnim.SetTrigger("SuccesBombSet");
 				playerAnim.SetBool("ReadyToBombSet", false);
-				myWeapon.hasAK = true;
-				Instantiate(ScifiBomb, playerAnim.transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation, null);
+                myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
+                Instantiate(ScifiBomb, playerAnim.transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation, null);
 				break;
 			}
 			yield return null;

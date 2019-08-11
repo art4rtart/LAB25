@@ -27,7 +27,7 @@ public class GrenadeThrower : MonoBehaviour
 		if (itemManager.readyToUseGrenade && itemManager.beakerCount > 0)
 		{
 			playerAnim.SetTrigger("ReadyToThrow");
-			myWeapon.hasAK = false;
+            myWeapon.myWeapnType = WeaponCtrl.WEAPON.CUP;
 			readyToThrow = lineRenderer.enabled = true;
 		}
 
@@ -72,6 +72,6 @@ public class GrenadeThrower : MonoBehaviour
 		playerAnim.SetBool("isThrow", true);
 		yield return new WaitForSeconds(1.0f);
 		playerAnim.SetBool("isThrow", false);
-		myWeapon.hasAK = true;
-	}
+        myWeapon.myWeapnType = WeaponCtrl.WEAPON.CUP;
+    }
 }

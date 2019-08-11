@@ -25,7 +25,7 @@ public class TAttackState : StateMachineBehaviour
         if (stateInfo.normalizedTime >= attackTime)
         {
             if (Vector3.Distance(PlayerCtrl.myPos.position, animator.transform.position) <= myInfectee.attackRange)
-                PlayerManager.ApplyDamage(10);
+                PlayerManager.Instance.ApplyDamage(10);
 
             doAttack = true;
             myInfectee.isAttack = false;

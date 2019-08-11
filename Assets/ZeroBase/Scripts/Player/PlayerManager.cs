@@ -4,7 +4,20 @@ using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour
 {
-	public ItemManager itemManager;
+    public static PlayerManager Instance
+    {
+        get
+        {
+            if (instance != null)
+                return instance;
+            instance = FindObjectOfType<PlayerManager>();
+            return instance;
+        }
+    }
+
+    private static PlayerManager instance;
+
+    public ItemManager itemManager;
 	public static bool powerOverWhelming;
     // Player Specification
     public static float hp = 100f;
@@ -25,6 +38,7 @@ public class PlayerManager : MonoBehaviour
     private static Transform mycam;
 
     public static bool isHit = false;
+    public WeaponCtrl myWeaponCtrl;
 
     private void Start()
     {
@@ -36,7 +50,7 @@ public class PlayerManager : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
     }
 
-    public static void ApplyDamage(float damage)
+    public void ApplyDamage(float damage)
     {
         isHit = true;
 
@@ -55,6 +69,7 @@ public class PlayerManager : MonoBehaviour
 		}
         ItemManager.SetPlayerStat();
         UIManager.Instance.TextUpdate();
+        myWeaponCtrl.DamageRecoil();
         //RecoilBack();
         // 마크
         //UIManager.takeDamge = true;

@@ -12,7 +12,7 @@ public class DestroyEffect : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (!isBoom)
-            PlayerManager.ApplyDamage(25);
+            PlayerManager.Instance.ApplyDamage(25);
         isBoom = true;
     }
 
