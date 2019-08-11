@@ -105,7 +105,8 @@ public class ItemManager : MonoBehaviour
 			readyToUseKit = false;
 			readyToUseAdrenaline = false;
 			readyToUseGrenade = false;
-		}
+            weaponController.myWeapnType = WeaponCtrl.WEAPON.AKM;
+        }
 
 		if (Input.GetKeyDown(KeyCode.Alpha2) && isHoldingSomething)
 		{
@@ -139,7 +140,7 @@ public class ItemManager : MonoBehaviour
 			readyToUseKit = false;
 			readyToUseAdrenaline = false;
 			readyToUseGrenade = true;
-
+            weaponController.myWeapnType = WeaponCtrl.WEAPON.CUP;
 			isHoldingSomething = true;
 		}
 
@@ -387,7 +388,7 @@ public class ItemManager : MonoBehaviour
 		medicalKitCount = 0;
 		adrenalineCount = 0;
 		grenadeCount = 0;
-		beakerCount = 0;
+		beakerCount = 5;
 		isUsingWard = false;
 		isUsingHearter = false;
 		currentHealth = 100f;

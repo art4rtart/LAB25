@@ -383,7 +383,7 @@ ModelImporter:
     7400020: Reload
     7400022: Reload(scifi)
     7400024: RunStart
-    7400026: RunStart(scifi)
+    7400026: Running(scifi)
     7400028: heal
     7400030: RunFinish
     7400032: RunFinish(scifi)
@@ -437,6 +437,8 @@ ModelImporter:
     7400128: RunStart(scifi)
     7400130: UpHand
     7400132: DownHand
+    7400134: DownHand(Scifi)
+    7400136: UpHand(Scifi)
     9500000: //RootNode
     13700000: arms
     13700002: clothe
@@ -938,7 +940,7 @@ ModelImporter:
     - serializedVersion: 16
       name: RunStart(scifi)
       takeName: RunStart(scifi)
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
@@ -1078,7 +1080,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Shoot(scifi)
       takeName: Shoot(scifi)
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
@@ -1134,7 +1136,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk(scifi)
       takeName: Walk(scifi)
-      firstFrame: 0
+      firstFrame: 1
       lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
@@ -1664,7 +1666,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: RunStart(scifi)
+      name: Running(scifi)
       takeName: RunStart(scifi)
       firstFrame: 7.9000006
       lastFrame: 8
@@ -1724,6 +1726,62 @@ ModelImporter:
       takeName: Harter
       firstFrame: 0
       lastFrame: 5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: DownHand(Scifi)
+      takeName: weaponChange(ScifitoAK)
+      firstFrame: 0
+      lastFrame: 5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: UpHand(Scifi)
+      takeName: weaponChange(AKtoScifi)
+      firstFrame: 4
+      lastFrame: 9
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

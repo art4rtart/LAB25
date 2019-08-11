@@ -70,9 +70,9 @@ public class Feature : MonoBehaviour
 		totalPolygon = skinnedMeshRenderer.sharedMesh.triangles.Length * 0.3f;  //? 설마 점의 개수?
 
 		// zombie animation features
-		if (initTrigger) { animator.SetBool(triggerNum.ToString(), false); initTrigger = false; };
-		triggerNum = Random.Range(1, GetTriggerLength(type));
-		animator.SetBool(triggerNum.ToString(), true);
+		//if (initTrigger) { animator.SetBool(triggerNum.ToString(), false); initTrigger = false; };
+		//triggerNum = Random.Range(1, GetTriggerLength(type));
+		//animator.SetBool(triggerNum.ToString(), true);
 
         GetCurrentClipName();
         //

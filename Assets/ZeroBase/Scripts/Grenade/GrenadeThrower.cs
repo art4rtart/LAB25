@@ -24,8 +24,10 @@ public class GrenadeThrower : MonoBehaviour
 	{
 		material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
 
-		if (itemManager.readyToUseGrenade && itemManager.beakerCount > 0)
+        //Debug.Log(itemManager.readyToUseGrenade + " " + itemManager.beakerCount);
+        if (itemManager.readyToUseGrenade && itemManager.beakerCount > 0)
 		{
+            
 			playerAnim.SetTrigger("ReadyToThrow");
             myWeapon.myWeapnType = WeaponCtrl.WEAPON.CUP;
 			readyToThrow = lineRenderer.enabled = true;
@@ -70,8 +72,8 @@ public class GrenadeThrower : MonoBehaviour
 	IEnumerator ThrowCup()
 	{
 		playerAnim.SetBool("isThrow", true);
-		yield return new WaitForSeconds(1.0f);
+        myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
+        yield return new WaitForSeconds(1.0f);
 		playerAnim.SetBool("isThrow", false);
-        myWeapon.myWeapnType = WeaponCtrl.WEAPON.CUP;
     }
 }

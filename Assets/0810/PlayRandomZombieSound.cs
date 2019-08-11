@@ -15,7 +15,7 @@ public class PlayRandomZombieSound : MonoBehaviour
 	void Awake()
 	{
 		var listener = GameObject.FindObjectOfType<AudioListener>();
-		Debug.Log(listener.transform.name);
+		//Debug.Log(listener.transform.name);
 
 		audioSource = GetComponent<AudioSource>();
 	}

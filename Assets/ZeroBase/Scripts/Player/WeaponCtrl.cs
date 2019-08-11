@@ -74,12 +74,13 @@ public class WeaponCtrl : MonoBehaviour
     private void Update()
     {
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-        isReloading = info.IsName("Reload");
+       
 
         if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
             if (myWeapnType == WEAPON.AKM)
             {
+                isReloading = info.IsName("Reload");
                 if (currentBullets > 0)
                     Fire();
                 else
@@ -95,7 +96,11 @@ public class WeaponCtrl : MonoBehaviour
             }
             else if (myWeapnType == WEAPON.SCI_FI)
             {
-
+                isReloading = info.IsName("Reload");
+                if (currentBullets > 0)
+                    Scifi_Fire();
+                else
+                    DoReload();
             }
             else if (myWeapnType == WEAPON.BOMB)
             {
@@ -185,7 +190,14 @@ public class WeaponCtrl : MonoBehaviour
                     myWeapnType = WEAPON.AXE;
                 }
             }
-
+            else if (Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                if (info.IsName("Idle"))
+                {
+                    anim.SetBool("toScifi", true);
+                    myWeapnType = WEAPON.SCI_FI;
+                }
+            }
             if (anim.GetBool("Ward") && Input.GetMouseButtonDown(1))
             {
                 anim.SetTrigger("useWard");
@@ -200,7 +212,7 @@ public class WeaponCtrl : MonoBehaviour
                 anim.SetTrigger("default");
                 specialItemIndex = 0;
             }
-            RecoilBack();
+            //RecoilBack();
         }
         else
         {
@@ -211,6 +223,17 @@ public class WeaponCtrl : MonoBehaviour
                     anim.SetTrigger("toAK");
                     myWeapnType = WEAPON.AKM;
                 }
+                else if(info.IsName("Walk(scifi)"))
+                {
+                    anim.SetBool("toScifi", false);
+                    myWeapnType = WEAPON.AKM;
+                }
+            }
+            else if( Input.GetKeyDown(KeyCode.R))
+            {
+                if (myWeapnType == WEAPON.SCI_FI)
+                    DoReload();
+
             }
             //else if (Input.GetKeyDown(KeyCode.Alpha5))
             //{
@@ -224,7 +247,7 @@ public class WeaponCtrl : MonoBehaviour
         }
 
         // ----------------------------------------------------------------------
-
+        RecoilBack();
         Run();
     }
 
@@ -234,6 +257,7 @@ public class WeaponCtrl : MonoBehaviour
             fireTimer += Time.fixedDeltaTime;
         if (AxeTimer < AxeRate)
             AxeTimer += Time.fixedDeltaTime;
+
     }
     private void AxeAttack()
     {
@@ -281,6 +305,8 @@ public class WeaponCtrl : MonoBehaviour
 
     public void Fire()
     {
+        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+        isReloading = info.IsName("Reload");
         if (fireTimer < fireRate || isReloading || isRunning)
         {
             return;
@@ -312,6 +338,51 @@ public class WeaponCtrl : MonoBehaviour
         currentBullets--;
         fireTimer = 0.0f;
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        audioSource.PlayOneShot(shootSound);    //shoot sound
+        muzzleFlash.Play();
+        Recoil();
+        StartCoroutine(Particle.Instance.BulletEffect());
+        UIManager.Instance.TextUpdate();
+    }
+
+    public void Scifi_Fire()
+    {
+        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+        isReloading = info.IsName("Reload");
+        if (fireTimer < fireRate * 0.5f || isReloading || isRunning)
+        {
+            return;
+        }
+
+        RaycastHit hit;
+
+        for (int i = 0; i < 3; ++i)
+        {
+            if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
+            {
+                Health health = hit.transform.GetComponent<Health>();
+
+                if (health && health.hp > 0)
+                {
+                    health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
+                    if (!hit.transform.CompareTag("Breakable"))
+                    {
+                        StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+
+                    }
+
+                    else
+                        StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                }
+                else
+                {
+                    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                }
+            }
+        }
+        currentBullets--;
+        fireTimer = 0.0f;
+        anim.CrossFadeInFixedTime("Shoot(scifi)", 0.01f);
         audioSource.PlayOneShot(shootSound);    //shoot sound
         muzzleFlash.Play();
         Recoil();
@@ -356,10 +427,21 @@ public class WeaponCtrl : MonoBehaviour
 
     private void DoReload()
     {
-        if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
+        if (myWeapnType == WEAPON.AKM)
         {
-            anim.CrossFadeInFixedTime("Reload", 0.01f); // Reloading
-            audioSource.PlayOneShot(reloadSound);
+            if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
+            {
+                anim.CrossFadeInFixedTime("Reload", 0.01f); // Reloading
+                audioSource.PlayOneShot(reloadSound);
+            }
+        }
+        else if (myWeapnType == WEAPON.SCI_FI)
+        {
+            if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
+            {
+                anim.CrossFadeInFixedTime("Reload(scifi)", 0.01f); // Reloading
+                audioSource.PlayOneShot(reloadSound);
+            }
         }
     }
 
