@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
+    path: Assets/0810/New Scene.unity
+    guid: 3e278c7363092b84e914d92ff34b4202
+  - enabled: 0
     path: Assets/ZeroBase/Scenes/MainScene/1. KPU.unity
     guid: 2be44c505d62bd94f8a0eb0b89dfe16c
   - enabled: 0
@@ -14,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Week1/0725/GameIntro.unity
     guid: a191ce9d60916b3468dfab37d22fd12c
-  - enabled: 1
+  - enabled: 0
     path: Assets/ZeroBase/Scenes/MainScene/3. Title.unity
     guid: fc29c0eb013635248a63184af7394bd0
   - enabled: 0
@@ -26,7 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage2.unity
     guid: 71d618eede34d9442b9fe7ba021ece31
-  - enabled: 0
+  - enabled: 1
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage3.unity
     guid: bee655112fe179048866d25ed72e0a37
   - enabled: 0
