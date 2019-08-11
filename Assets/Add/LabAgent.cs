@@ -46,11 +46,6 @@ public class LabAgent : Agent
 		base.InitializeAgent();
 	}
 
-	void Update()
-	{
-
-	}
-
 	public override void CollectObservations()
 	{
 		if (target != null && !startObservation)

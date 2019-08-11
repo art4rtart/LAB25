@@ -15,6 +15,8 @@ public class Lobby : MonoBehaviour
 	public GameObject menuCanvas;
 	bool glowTrigger = false;
 
+	public bool[] isSceneLocked;
+
 	[Header("UI")]
 	public Button[] menu;
 	public Button leftButton;
@@ -22,6 +24,8 @@ public class Lobby : MonoBehaviour
 
 	public Texture[] stageSprites;
 	public RawImage[] stageRawImage;
+	public Texture[] stageLockSprites;
+	public RawImage[] stageLockRawImage;
 
 	public TextMeshProUGUI[] stageNameTextMeshPro;
 	public string[] stagename;
@@ -83,6 +87,7 @@ public class Lobby : MonoBehaviour
 		{
 			index[i] = Mathf.Abs(spriteIndex) + i;
 			stageRawImage[i].texture = stageSprites[index[i] % 5];
+			stageLockRawImage[i].texture = stageLockSprites[index[i] % 5];
 			stageNameTextMeshPro[i].text = stagename[index[i] % 5];
 		}
 	}

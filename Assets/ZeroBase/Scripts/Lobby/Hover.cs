@@ -68,6 +68,9 @@ public class Hover : MonoBehaviour
 			if (loadUtilScene) return;
 
 			int index = Mathf.Abs(Lobby.spriteIndex);
+
+			if (lobby.isSceneLocked[index]) return;
+
 			LevelLoader.sceneName = stageNames[index];
 			SceneManager.LoadScene(loadingNames[Random.Range(0, loadingNames.Length)]);
 		}
@@ -425,6 +428,7 @@ public class Hover : MonoBehaviour
 
 	public void NewGameLoad()
 	{
+		if (lobby.isSceneLocked[Mathf.Abs(Lobby.spriteIndex)]) return;
 		audioManager.Play("DefaultClickSound");
 		lobby.menuAnimator.SetTrigger("FadeOut");
 		lobby.highlightMenuAnimator.SetTrigger("Fade");
@@ -434,6 +438,7 @@ public class Hover : MonoBehaviour
 
 	public void ContinueGameLoad()
 	{
+		if (lobby.isSceneLocked[Mathf.Abs(Lobby.spriteIndex)]) return;
 		audioManager.Play("DefaultClickSound");
 		lobby.menuAnimator.SetTrigger("FadeOut");
 		lobby.highlightMenuAnimator.SetTrigger("Fade");
