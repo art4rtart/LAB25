@@ -11,12 +11,11 @@ public class PlayRandomZombieSound : MonoBehaviour
 
 	[Range(0,100)]
 	public float percentage;
+	public bool isLooping;
 
 	void Awake()
 	{
 		var listener = GameObject.FindObjectOfType<AudioListener>();
-		//Debug.Log(listener.transform.name);
-
 		audioSource = GetComponent<AudioSource>();
 	}
 
@@ -37,7 +36,7 @@ public class PlayRandomZombieSound : MonoBehaviour
 		float waitUntilNextSoundPlay = 0;
 		float soundPlayWaitTime = Random.Range(0f, 1f);
 
-		yield return new WaitForSeconds(soundPlayWaitTime);
+		if(isLooping) yield return new WaitForSeconds(soundPlayWaitTime);
 
 		while (this.gameObject.activeSelf)
 		{
@@ -48,13 +47,9 @@ public class PlayRandomZombieSound : MonoBehaviour
 				audioSource.Play();
 			}
 
-			//if (!zombieModel.activeSelf)
-			//	break;
+			if (!isLooping) break;
 
 			yield return new WaitForSeconds(waitUntilNextSoundPlay);
 		}
-		//audioSource.loop = false;
-		//while (audioSource.isPlaying) yield return null;
-		//audioSource.enabled = false;
 	}
 }

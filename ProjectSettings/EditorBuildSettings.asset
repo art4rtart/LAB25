@@ -29,10 +29,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage2.unity
     guid: 71d618eede34d9442b9fe7ba021ece31
-  - enabled: 1
+  - enabled: 0
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage3.unity
     guid: bee655112fe179048866d25ed72e0a37
-  - enabled: 0
+  - enabled: 1
     path: Assets/ZeroBase/Scenes/GUI/Stage/Stage4.unity
     guid: 5ed43463887c1d648be1e423dbdf6a02
   - enabled: 0

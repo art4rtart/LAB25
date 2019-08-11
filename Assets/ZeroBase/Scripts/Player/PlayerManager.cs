@@ -69,11 +69,11 @@ public class PlayerManager : MonoBehaviour
 		}
         ItemManager.SetPlayerStat();
         UIManager.Instance.TextUpdate();
-        myWeaponCtrl.DamageRecoil();
-        //RecoilBack();
-        // 마크
-        //UIManager.takeDamge = true;
-    }
+		GetComponent<TestShake>().Shake();
+		//RecoilBack();
+		// 마크
+		//UIManager.takeDamge = true;
+	}
 
     private void recoverArmorGage(int recoverGage)
     {

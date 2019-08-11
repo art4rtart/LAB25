@@ -9,12 +9,29 @@ public class MoveToNextScene : MonoBehaviour
 	public bool isTrigger;
 	public float changeTime;
 	string[] loadingNames = { "Loading1", "Loading2", "Loading3", "Loading4", "Loading5" };
+	public AudioSource audioSource;
+	bool fadeOutAudio;
 
 	void Start()
 	{
 		if(isTrigger)
 		{
 			Invoke("LoadSceneTrigger", changeTime);
+		}
+	}
+
+	void Update()
+	{
+		if (!fadeOutAudio) return;
+		if (audioSource.volume >= 0)
+		{
+			audioSource.volume -= Time.deltaTime * 0.25f;
+		}
+		else
+		{
+			audioSource.Stop();
+			audioSource.volume = 1f;
+			fadeOutAudio = false;
 		}
 	}
 
@@ -25,6 +42,7 @@ public class MoveToNextScene : MonoBehaviour
 
 	public IEnumerator LoadSceneAfterTime(float time)
 	{
+		fadeOutAudio = true;
 		LoadLoadingScene();
 		Invoke("LoadSceneTrigger", time);
 		yield return null;

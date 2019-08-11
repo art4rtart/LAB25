@@ -50,6 +50,7 @@ public class WeaponCtrl : MonoBehaviour
     public int bulletsToReload;
     public ZombieScanner scanner;
     public Zemmer zemmer;
+	public UIManager uiManager;
     public ItemManager itemManager;
     public bool useAdrenaline;
     public bool useMedicalKit;
@@ -135,7 +136,9 @@ public class WeaponCtrl : MonoBehaviour
                 anim.SetBool("useHarter", false);
                 anim.SetTrigger("default");
                 specialItemIndex = 0;
-            }
+				uiManager.currentWeaponImage.sprite = uiManager.weaponImage[0];
+				uiManager.TextUpdate();
+			}
 
             else if (Input.GetKeyDown(KeyCode.Alpha2) && !useMedicalKit && !useAdrenaline && itemManager.medicalKitCount > 0)
             {
@@ -188,7 +191,10 @@ public class WeaponCtrl : MonoBehaviour
                 {
                     anim.SetTrigger("toAxe");
                     myWeapnType = WEAPON.AXE;
-                }
+					uiManager.currentWeaponImage.sprite = uiManager.weaponImage[2];
+					uiManager.bulletCountText.text = "1";
+					uiManager.totalBulletText.text = "1";
+				}
             }
             else if (Input.GetKeyDown(KeyCode.Alpha9))
             {
@@ -222,18 +228,20 @@ public class WeaponCtrl : MonoBehaviour
                 {
                     anim.SetTrigger("toAK");
                     myWeapnType = WEAPON.AKM;
-                }
+					uiManager.currentWeaponImage.sprite = uiManager.weaponImage[0];
+					uiManager.TextUpdate();
+				}
+
                 else if(info.IsName("Walk(scifi)"))
                 {
                     anim.SetBool("toScifi", false);
                     myWeapnType = WEAPON.AKM;
-                }
+				}
             }
             else if( Input.GetKeyDown(KeyCode.R))
             {
                 if (myWeapnType == WEAPON.SCI_FI)
                     DoReload();
-
             }
             //else if (Input.GetKeyDown(KeyCode.Alpha5))
             //{
