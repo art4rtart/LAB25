@@ -45,7 +45,7 @@ public class InfecteeGenerator : MonoBehaviour
 			enemyPool[i].Dispose();
 		}
     }
-
+	int wave = 0;
     public IEnumerator Generate()
     {
         GameObject infectee;
@@ -56,7 +56,13 @@ public class InfecteeGenerator : MonoBehaviour
 			{
 				for (int j = 0; j < generate; ++j)
 				{
-					infectee = enemyPool[Random.Range(0, infectees.Length)].NewItem();
+					if (Stage == 4 && wave == 0)
+					{
+						infectee = enemyPool[Random.Range(2, infectees.Length)].NewItem();
+					}
+
+					else
+						infectee = enemyPool[Random.Range(0, infectees.Length)].NewItem();
 
 					Vector3 pos = spawnZone[i].transform.position + new Vector3(Random.Range(-3.0f, 3.0f), 0, Random.Range(-3.0f, 3.0f));
 
@@ -76,10 +82,7 @@ public class InfecteeGenerator : MonoBehaviour
         }
 
         yield return new WaitForSeconds(generateTime);
-
-        if (Stage == 4)
-            generate += AddEnemy;
-
-        StartCoroutine(Generate());
+		wave++;
+		StartCoroutine(Generate());
     }
 }

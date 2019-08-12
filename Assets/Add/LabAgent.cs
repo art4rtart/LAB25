@@ -216,7 +216,7 @@ public class LabAgent : Agent
 			if (target.GetComponent<Health>().hp <= 0 && target.GetComponent<Feature>().nameHash != 1) // && feature.distance < recognizeDistance
 			{
 				AddReward(1f);
-				Debug.Log("Good, You Killed Zombie");
+				//Debug.Log("Good, You Killed Zombie");
 				Done();
 			}
 
@@ -230,7 +230,7 @@ public class LabAgent : Agent
 			else if (target.GetComponent<Health>().hp <= 0 && target.GetComponent<Feature>().nameHash == 1)
 			{
 				AddReward(-5f);
-				Debug.Log("Bad (Killed Human)");
+				//Debug.Log("Bad (Killed Human)");
 				Done();
 			}
 		}
@@ -342,6 +342,8 @@ public class LabAgent : Agent
 		episodeTimeCount = 0;
 		printData = false;
 		totalStep++;
+
+		isUsingFlame = isUsingGun = isUsingShotGun = false;
 	}
 
 	void ResetValues()
@@ -363,6 +365,8 @@ public class LabAgent : Agent
 
 		episodeTimeCount = 0;
 		printData = false;
+
+		isUsingFlame = isUsingGun = isUsingShotGun = false;
 	}
 
 
@@ -371,7 +375,7 @@ public class LabAgent : Agent
 	{
 		if (!printData)
 		{
-			Debug.Log("Target is " + target.transform.name + " and it is " + target.GetComponent<Feature>().animationName);
+			//Debug.Log("Target is " + target.transform.name + " and it is " + target.GetComponent<Feature>().animationName);
 			printData = true;
 		}
 	}

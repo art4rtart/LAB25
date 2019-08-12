@@ -11,7 +11,9 @@ public class AgentWeaponCtrl : MonoBehaviour
     public int currentBullets;
     public float range;
     public float fireRate;
-    private Vector3 originalPos;
+	public float shotFireRate;
+	public float flameFireRate;
+	private Vector3 originalPos;
     public float accuracy;
     private float originalAccuracy;
     public int damage;
@@ -21,14 +23,18 @@ public class AgentWeaponCtrl : MonoBehaviour
 
     // Parameters
     private float fireTimer;
-    private bool isReloading = false;
+	private float shotFireTimer;
+	private float flameFireTimer;
+
+	private bool isReloading = false;
     private bool isHealing = false;
     private bool isRunning;
 
     // Sounds
     public AudioSource audioSource;
     public AudioClip shootSound;
-    public AudioClip reloadSound;
+	public AudioClip shotGunSound;
+	public AudioClip reloadSound;
     public AudioClip drawSound;
 
     // References
@@ -50,6 +56,8 @@ public class AgentWeaponCtrl : MonoBehaviour
     public Transform shootPos;
 
     public LabAgent labAgent;
+	public FlameThrower flameThrower;
+
     private void Awake()
     {
         //fireTraceParent = GameObject.Find("ObjectManager").transform;
@@ -70,19 +78,25 @@ public class AgentWeaponCtrl : MonoBehaviour
     {
         if (fireTimer < fireRate)
             fireTimer += Time.fixedDeltaTime;
-    }
+		if (shotFireTimer < shotFireRate)
+			shotFireTimer += Time.fixedDeltaTime;
+		if (flameFireTimer < flameFireRate)
+			flameFireTimer += Time.fixedDeltaTime;
+		//Vector3 forward = transform.TransformDirection(Vector3.forward) * 199f;
+		Debug.DrawRay(transform.position + Vector3.up, transform.forward * 300, Color.green);
+	}
 
     public void Fire()
     {
-        if (fireTimer < fireRate || isReloading || isHealing)
-        {
-            return;
-        }
-        RaycastHit hit;
+		if (fireTimer < fireRate)
+		{
+			return;
+		}
+		RaycastHit hit;
 
         for (int i = 0; i < 1; ++i)
         {
-			if (Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
+			if (Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range + 500f))
             {
                 //Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
                 //InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
@@ -97,27 +111,27 @@ public class AgentWeaponCtrl : MonoBehaviour
                     if (labAgent.target.GetComponent<Feature>().nameHash != 4 && labAgent.target.GetComponent<Feature>().nameHash != 5 && labAgent.target.GetComponent<Feature>().nameHash != 1)
                     {
                         labAgent.AddReward(1f);
-                        Debug.Log("Good Shot Normal and Boss, I Used Normal Gun");
+                        //Debug.Log("Good Shot Normal and Boss, I Used Normal Gun");
                     }
                     else
                     {
                         labAgent.AddReward(-5f);
-                        Debug.Log("Bad (Normal)");
+                        //Debug.Log("Bad (Normal)");
                         labAgent.normalGunMissed++;
                     }
 
 					if (!hit.transform.CompareTag("Breakable"))
 					{
-						StartCoroutine(Particle.Instance.BloodEffect(hit.point));
-
+						//StartCoroutine(Particle.Instance.BloodEffect(hit.point));
 					}
 
-					else
-						StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+					//else
+						//StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
                 else
                 {
-					StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+					return;
+					//StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
             }
 			else return;
@@ -131,19 +145,19 @@ public class AgentWeaponCtrl : MonoBehaviour
 
     public void FireShotGun()
     {
-        if (fireTimer < fireRate || isReloading || isHealing)
+        if (shotFireTimer < shotFireRate )
         {
             return;
         }
 
         RaycastHit hit;
-        for (int i = 0; i < 1; ++i)
+        for (int i = 0; i < 5; ++i)
         {
             if (Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
             {
                 //Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
                 //InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
-                Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+                //Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
                 Health health = hit.transform.GetComponent<Health>();
 
                 // Debug.Log(hit.transform.gameObject.name);
@@ -154,92 +168,99 @@ public class AgentWeaponCtrl : MonoBehaviour
                     if (labAgent.target.GetComponent<Feature>().nameHash == 5)
                     {
                         labAgent.AddReward(1f);
-                        Debug.Log("Good Shot Police, I Used Shot Gun");
-                    }
+                        //Debug.Log("Good Shot Police, I Used Shot Gun");
+					}
                     else
                     {
                         labAgent.AddReward(-5f);
-                        Debug.Log("Bad (ShotGun)");
+                        //Debug.Log("Bad (ShotGun)");
                         labAgent.ShotGunMissed++;
                     }
 					if (!hit.transform.CompareTag("Breakable"))
 					{
-						StartCoroutine(Particle.Instance.BloodEffect(hit.point));
-
+						//StartCoroutine(Particle.Instance.BloodEffect(hit.point));
 					}
-
 					else
 						StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
 				else
 				{
-					StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+					//Debug.Log("Amazing");
+					//StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
             }
-			else return;
         }
         currentBullets--;
-        fireTimer = 0.0f;
+        shotFireTimer = 0.0f;
 
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
-		audioSource.PlayOneShot(shootSound);    //shoot sound
+		audioSource.PlayOneShot(shotGunSound);    //shoot sound
 		muzzleFlash.Play();
 	}
 
     public void FireFlameThrower()
     {
-        if (fireTimer < fireRate || isReloading || isHealing)
-        {
-            return;
-        }
+		if (flameFireTimer < flameFireRate)
+		{
+			return;
+		}
 
-        RaycastHit hit;
+		RaycastHit hit;
         for (int i = 0; i < 1; ++i)
         {
-            if (Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
-            {
-                //Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
-                //InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
-                Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
-                Health health = hit.transform.GetComponent<Health>();
+			if (Physics.Raycast(shootPos.position, shootPos.transform.forward, out hit, 7f))
+			{
+				//Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
+				//InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
+				Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
+				Health health = hit.transform.GetComponent<Health>();
 
-                // Debug.Log(hit.transform.gameObject.name);
+				// Debug.Log(hit.transform.gameObject.name);
 
-                if (health && health.hp > 0)
-                {
-                    health.ApplyDamage(flameDamage, hit.transform.InverseTransformPoint(hit.point));
-                    if (labAgent.target.GetComponent<Feature>().nameHash == 4)
-                    {
-                        labAgent.AddReward(1f);
-                        Debug.Log("Good Shot Transparent, I Used Flame Thrower");
-                    }
-                    else
-                    {
-                        labAgent.AddReward(-5f);
-                        Debug.Log("Bad (Flame)");
-                        labAgent.flameThrowerMissed++;
-                    }
-					if (!hit.transform.CompareTag("Breakable"))
+				if (health && health.hp > 0)
+				{
+					health.ApplyDamage(flameDamage, hit.transform.InverseTransformPoint(hit.point));
+					if (labAgent.target.GetComponent<Feature>().nameHash == 4)
 					{
-						StartCoroutine(Particle.Instance.BloodEffect(hit.point));
-
+						labAgent.AddReward(1f);
+						//Debug.Log("Good Shot Transparent, I Used Flame Thrower");
+						flameThrower.UseFlameThrower();
+					}
+					else
+					{
+						labAgent.AddReward(-5f);
+						//Debug.Log("Bad (Flame)");
+						labAgent.flameThrowerMissed++;
 					}
 
-					else
-						StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+					//if(health.hp <= 0)
+					//{
+					//	Debug.Log("Stop!!!");
+					//	flameThrower.StopFlameThrower();
+					//}
+					//if (!hit.transform.CompareTag("Breakable"))
+					//{
+					//	StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+					//}
+					//else
+					//	StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
 				else
 				{
-					StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+					return;
+					//StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
-            }
-			else return;
+			}
+			else
+			{
+				return;
+			}
 		}
         currentBullets--;
-        fireTimer = 0.0f;
+        flameFireTimer = 0.0f;
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
 		audioSource.PlayOneShot(shootSound);    //shoot sound
-		muzzleFlash.Play();
+		//muzzleFlash.Play();
 	}
 
     public void Healing()
@@ -268,4 +289,11 @@ public class AgentWeaponCtrl : MonoBehaviour
         currentBullets += bulletsToReload;
         bulletsTotal -= bulletsToReload;
     }
+
+	float sight = 20f;
+	void OnDrawGizmosSelected()
+	{
+		Vector3 forward = transform.TransformDirection(Vector3.forward) * sight;
+		Debug.DrawRay(transform.position, forward, Color.green);
+	}
 }

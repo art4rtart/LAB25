@@ -47,9 +47,9 @@ public class MedicalItem : MonoBehaviour
 		{
 			UseMedicalItem(medicalKitUseMessage, medicalKitUseTime);
 			itemManager.medicalKitCount--;
-            UIManager.Instance.TextUpdate();
-
-        }
+			UIManager.Instance.TextUpdate();
+			weaponController.useMedicalKit = false;
+		}
 
 		//	if (Input.GetMouseButtonDown(0) && itemManager.readyToUseKit && itemManager.medicalKitCount > 0)
 		if (weaponController.useAdrenaline && itemManager.adrenalineCount > 0)
@@ -165,7 +165,7 @@ public class MedicalItem : MonoBehaviour
 		if (_medicalKitEffect)
 		{
 			totalUseTime = 0;
-			PlayerManager.hp += 40f;
+			UIManager.Instance.TextUpdate();
 			_medicalKitEffect = medicalKitEffect = false;
 		}
 	}

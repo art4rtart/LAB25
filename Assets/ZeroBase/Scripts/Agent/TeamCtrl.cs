@@ -23,6 +23,7 @@ public class TeamCtrl : MonoBehaviour
 
 	[Header("New Values")]
 	public bool SetDestination;
+	public FlameThrower flamethrower;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class TeamCtrl : MonoBehaviour
 
 		if (enemyInRadius.Length == 0)
 		{
+			if(flamethrower != null) flamethrower.StopFlameThrower();
 			if (labAgent != null) labAgent.enabled = false;
 		}
 
@@ -49,7 +51,7 @@ public class TeamCtrl : MonoBehaviour
 		{
 			for (int i = 0; i < enemyInRadius.Length; ++i)
 			{
-				transform.LookAt(enemyInRadius[i].transform.position);
+				transform.LookAt(new Vector3(enemyInRadius[i].transform.position.x, this.transform.position.y, enemyInRadius[i].transform.position.z));
 				labAgent.target = enemyInRadius[i].transform.gameObject;
 				labAgent.feature = enemyInRadius[i].GetComponent<Feature>();
 				if (labAgent.target != null && labAgent.feature != null) labAgent.enabled = true;

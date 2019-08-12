@@ -81,8 +81,8 @@ public class ItemManager : MonoBehaviour
 		//currentHeartRate =
 		// -----------------------------------------------
 
-		currentHealth = Mathf.Clamp(currentHealth, 0, totalHealth);
-		currentArmor = Mathf.Clamp(currentArmor, 0, totalArmor);
+		currentHealth = Mathf.Clamp(Mathf.Clamp(PlayerManager.hp, 0, 100f), 0, totalHealth);
+		currentArmor = Mathf.Clamp(PlayerManager.armor, 0, totalArmor);
 
 		// Lerp Player Status
 		//if (Input.GetButtonDown("Fire1"))

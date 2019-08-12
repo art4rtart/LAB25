@@ -204,6 +204,7 @@ public class WeaponCtrl : MonoBehaviour
 					uiManager.currentWeaponImage.sprite = uiManager.weaponImage[2];
 					uiManager.bulletCountText.text = "1";
 					uiManager.totalBulletText.text = "1";
+					uiManager.bulletProgressbar.value = 1f;
 				}
             }
             else if (Input.GetKeyDown(KeyCode.Alpha9))
@@ -267,6 +268,7 @@ public class WeaponCtrl : MonoBehaviour
 					uiManager.currentWeaponImage.sprite = uiManager.weaponImage[2];
 					uiManager.bulletCountText.text = "1";
 					uiManager.totalBulletText.text = "1";
+					uiManager.bulletProgressbar.value = 1f;
 				}
 			}
 			//else if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -351,7 +353,7 @@ public class WeaponCtrl : MonoBehaviour
 
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
         {
-            Health health = hit.transform.GetComponent<Health>();
+			Health health = hit.transform.GetComponent<Health>();
 
             if (health && health.hp > 0)
             {
@@ -395,7 +397,7 @@ public class WeaponCtrl : MonoBehaviour
         {
             if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
             {
-                Health health = hit.transform.GetComponent<Health>();
+				Health health = hit.transform.GetComponent<Health>();
 
                 if (health && health.hp > 0)
                 {
