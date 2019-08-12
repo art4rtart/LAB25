@@ -5,11 +5,24 @@ using UnityEngine.UI;
 
 public class WeaponCtrl : MonoBehaviour
 {
-    // Weapon Specification
-    public string weaponName;
+	public static WeaponCtrl Instance
+	{
+		get
+		{
+			if (instance != null)
+				return instance;
+			instance = FindObjectOfType<WeaponCtrl>();
+			return instance;
+		}
+	}
+
+	private static WeaponCtrl instance;
+
+	// Weapon SpecificationcurrentBullets
+	public string weaponName;
     public int bulletsPerMag;
     public int bulletsTotal;
-    public static int currentBullets = 30;
+    public int currentBullets;
     public float range;
     public float fireRate;
     public float accuracy;
@@ -26,7 +39,9 @@ public class WeaponCtrl : MonoBehaviour
     // Sounds
     public AudioSource audioSource;
     public AudioClip shootSound;
-    public AudioClip reloadSound;
+	public AudioClip axeSound;
+	public AudioClip itemGetSound;
+	public AudioClip reloadSound;
     public AudioClip drawSound;
 
     //Recoil
@@ -37,7 +52,7 @@ public class WeaponCtrl : MonoBehaviour
     // References
     public Transform shootPoint;
     public Transform pickingPoint;
-    private Animator anim;
+    [HideInInspector] public Animator anim;
     public ParticleSystem muzzleFlash;
     private CharacterController characterController;
     private int useWard = 0;
@@ -59,12 +74,7 @@ public class WeaponCtrl : MonoBehaviour
 
     public enum WEAPON { AKM, SCI_FI, AXE, CUP, PICK, BOMB };
     public WEAPON myWeapnType;
-
-    void Awake()
-    {
-        bulletsTotal = 360;
-        currentBullets = 30;
-    }
+	public WEAPON prevWeaponType;
 
     private void Start()
     {
@@ -75,8 +85,7 @@ public class WeaponCtrl : MonoBehaviour
     private void Update()
     {
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-       
-
+	
         if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
             if (myWeapnType == WEAPON.AKM)
@@ -189,6 +198,7 @@ public class WeaponCtrl : MonoBehaviour
             {
                 if (info.IsName("Idle"))
                 {
+					prevWeaponType = WEAPON.AKM;
                     anim.SetTrigger("toAxe");
                     myWeapnType = WEAPON.AXE;
 					uiManager.currentWeaponImage.sprite = uiManager.weaponImage[2];
@@ -224,14 +234,18 @@ public class WeaponCtrl : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
+			
                 if (info.IsName("IDLE(axe)"))
                 {
+			
                     anim.SetTrigger("toAK");
-                    myWeapnType = WEAPON.AKM;
-					uiManager.currentWeaponImage.sprite = uiManager.weaponImage[0];
+                    myWeapnType = prevWeaponType;
+					if( myWeapnType == WEAPON.AKM)
+						uiManager.currentWeaponImage.sprite = uiManager.weaponImage[0];
+					if (myWeapnType == WEAPON.SCI_FI)
+						uiManager.currentWeaponImage.sprite = uiManager.weaponImage[2];
 					uiManager.TextUpdate();
 				}
-
                 else if(info.IsName("Walk(scifi)"))
                 {
                     anim.SetBool("toScifi", false);
@@ -243,16 +257,28 @@ public class WeaponCtrl : MonoBehaviour
                 if (myWeapnType == WEAPON.SCI_FI)
                     DoReload();
             }
-            //else if (Input.GetKeyDown(KeyCode.Alpha5))
-            //{
-                
-            //    if (info.IsName("Idle"))
-            //    {
-            //        anim.SetTrigger("toAxe");
-            //        myWeapnType = WEAPON.AXE;
-            //    }
-            //}
-        }
+			else if (Input.GetKeyDown(KeyCode.Alpha5))
+			{
+				if (info.IsName("Idle"))
+				{
+					prevWeaponType = myWeapnType;
+					anim.SetTrigger("toAxe");
+					myWeapnType = WEAPON.AXE;
+					uiManager.currentWeaponImage.sprite = uiManager.weaponImage[2];
+					uiManager.bulletCountText.text = "1";
+					uiManager.totalBulletText.text = "1";
+				}
+			}
+			//else if (Input.GetKeyDown(KeyCode.Alpha5))
+			//{
+
+			//    if (info.IsName("Idle"))
+			//    {
+			//        anim.SetTrigger("toAxe");
+			//        myWeapnType = WEAPON.AXE;
+			//    }
+			//}
+		}
 
         // ----------------------------------------------------------------------
         RecoilBack();
@@ -283,11 +309,11 @@ public class WeaponCtrl : MonoBehaviour
             if (health && health.hp > 0)
             {
                 health.ApplyDamage(damage * 5, hit.transform.InverseTransformPoint(hit.point));
-                //if (!hit.transform.CompareTag("Breakable"))
-                //{
-                //    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+                if (!hit.transform.CompareTag("Breakable"))
+                {
+                    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
 
-                //}
+                }
 
                 //else
                 //    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
@@ -299,9 +325,10 @@ public class WeaponCtrl : MonoBehaviour
         //    }
         //}
         AxeTimer = 0.0f;
-        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
-        //audioSource.PlayOneShot(shootSound);    //shoot sound
-        anim.CrossFadeInFixedTime("attackAxe", 0.01f);
+		audioSource.PlayOneShot(axeSound);
+		//anim.CrossFadeInFixedTime("Shoot", 0.01f);
+		//audioSource.PlayOneShot(shootSound);    //shoot sound
+		anim.CrossFadeInFixedTime("attackAxe", 0.01f);
     }
     private void Run()
     {
@@ -435,9 +462,12 @@ public class WeaponCtrl : MonoBehaviour
 
     private void DoReload()
     {
-        if (myWeapnType == WEAPON.AKM)
+		AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+	
+		if (myWeapnType == WEAPON.AKM)
         {
-            if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
+			isReloading = info.IsName("Reload");
+			if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
             {
                 anim.CrossFadeInFixedTime("Reload", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
@@ -445,7 +475,8 @@ public class WeaponCtrl : MonoBehaviour
         }
         else if (myWeapnType == WEAPON.SCI_FI)
         {
-            if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
+			isReloading = info.IsName("Reload(scifi)");
+			if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
             {
                 anim.CrossFadeInFixedTime("Reload(scifi)", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);

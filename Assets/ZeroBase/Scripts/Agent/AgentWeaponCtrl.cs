@@ -8,7 +8,7 @@ public class AgentWeaponCtrl : MonoBehaviour
     // Weapon Specification
     public int bulletsPerMag;
     public int bulletsTotal;
-    public int currentBullets = 30;
+    public int currentBullets;
     public float range;
     public float fireRate;
     private Vector3 originalPos;
@@ -26,15 +26,15 @@ public class AgentWeaponCtrl : MonoBehaviour
     private bool isRunning;
 
     // Sounds
-    //public AudioSource audioSource;
-    //public AudioClip shootSound;
-    //public AudioClip reloadSound;
-    //public AudioClip drawSound;
+    public AudioSource audioSource;
+    public AudioClip shootSound;
+    public AudioClip reloadSound;
+    public AudioClip drawSound;
 
     // References
 
     //private Animator anim;
-    //public ParticleSystem muzzleFlash;
+    public ParticleSystem muzzleFlash;
     private CharacterController characterController;
 
     // Prefabs
@@ -106,27 +106,28 @@ public class AgentWeaponCtrl : MonoBehaviour
                         labAgent.normalGunMissed++;
                     }
 
-                    //if (!hit.transform.CompareTag("Breakable"))
-                    //{
-                    //	StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+					if (!hit.transform.CompareTag("Breakable"))
+					{
+						StartCoroutine(Particle.Instance.BloodEffect(hit.point));
 
-                    //}
+					}
 
-                    //else
-                    //	StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-                }
+					else
+						StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+				}
                 else
                 {
-                    //StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-                }
+					StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+				}
             }
-        }
+			else return;
+		}
         currentBullets--;
         fireTimer = 0.0f;
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
-        //audioSource.PlayOneShot(shootSound);    //shoot sound
-        //muzzleFlash.Play();
-    }
+		audioSource.PlayOneShot(shootSound);    //shoot sound
+		muzzleFlash.Play();
+	}
 
     public void FireShotGun()
     {
@@ -161,27 +162,29 @@ public class AgentWeaponCtrl : MonoBehaviour
                         Debug.Log("Bad (ShotGun)");
                         labAgent.ShotGunMissed++;
                     }
-                    //if (!hit.transform.CompareTag("Breakable"))
-                    //{
-                    //	StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+					if (!hit.transform.CompareTag("Breakable"))
+					{
+						StartCoroutine(Particle.Instance.BloodEffect(hit.point));
 
-                    //}
+					}
 
-                    //else
-                    //	StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-                }
-                else
-                {
-                    //StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-                }
+					else
+						StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+				}
+				else
+				{
+					StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+				}
             }
+			else return;
         }
         currentBullets--;
         fireTimer = 0.0f;
+
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
-        //audioSource.PlayOneShot(shootSound);    //shoot sound
-        //muzzleFlash.Play();
-    }
+		audioSource.PlayOneShot(shootSound);    //shoot sound
+		muzzleFlash.Play();
+	}
 
     public void FireFlameThrower()
     {
@@ -216,27 +219,28 @@ public class AgentWeaponCtrl : MonoBehaviour
                         Debug.Log("Bad (Flame)");
                         labAgent.flameThrowerMissed++;
                     }
-                    //if (!hit.transform.CompareTag("Breakable"))
-                    //{
-                    //	StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+					if (!hit.transform.CompareTag("Breakable"))
+					{
+						StartCoroutine(Particle.Instance.BloodEffect(hit.point));
 
-                    //}
+					}
 
-                    //else
-                    //	StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-                }
-                else
-                {
-                    //StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-                }
+					else
+						StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+				}
+				else
+				{
+					StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+				}
             }
-        }
+			else return;
+		}
         currentBullets--;
         fireTimer = 0.0f;
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
-        //audioSource.PlayOneShot(shootSound);    //shoot sound
-        //muzzleFlash.Play();
-    }
+		audioSource.PlayOneShot(shootSound);    //shoot sound
+		muzzleFlash.Play();
+	}
 
     public void Healing()
     {

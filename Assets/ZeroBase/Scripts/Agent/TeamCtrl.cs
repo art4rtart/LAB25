@@ -19,8 +19,11 @@ public class TeamCtrl : MonoBehaviour
     public LayerMask enemyMask;
     Animator animator;
 	AgentShoot agentShoot;
-
 	public LabAgent labAgent;
+
+	[Header("New Values")]
+	public bool SetDestination;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -32,12 +35,14 @@ public class TeamCtrl : MonoBehaviour
 
     void Update()
     {
-        Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, enemyFindRadius, enemyMask);
+		if (SetDestination) navmesh.SetDestination(Player.transform.position);
+
+		Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, enemyFindRadius, enemyMask);
         targetToInfectee = false;
 
 		if (enemyInRadius.Length == 0)
 		{
-			labAgent.enabled = false;
+			if (labAgent != null) labAgent.enabled = false;
 		}
 
 		else
@@ -51,18 +56,6 @@ public class TeamCtrl : MonoBehaviour
 				else labAgent.enabled = false;
 			}
 		}
-
-		//if (isMyTeam) agentShoot.enabled = true;
-		//Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, enemyFindRadius, enemyMask);
-
-			//for (int i = 0; i < enemyInRadius.Length; i++)
-			//{
-			//    if (enemyInRadius[i].transform.CompareTag("Infectee"))
-			//    {
-			//        Vector3 enemyPos = new Vector3(enemyInRadius[i].transform.position.x, this.transform.position.y, enemyInRadius[i].transform.position.z);
-			//        this.gameObject.transform.LookAt(enemyPos);
-			//    }
-			//}
 	}
 
     public IEnumerator FollowPlayer()

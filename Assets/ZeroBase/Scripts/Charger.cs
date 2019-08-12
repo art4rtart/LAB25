@@ -81,6 +81,10 @@ public class Charger : MonoBehaviour
 				csCollider.isTrigger = false;
 			}
 		}
+		else if (other.gameObject.CompareTag("PlayerAgent"))
+		{
+			PlayerManager.Instance.ApplyDamage(100f);
+		}
 	}
 
 	IEnumerator Fallback()

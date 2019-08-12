@@ -6,9 +6,9 @@ public class AgentManager : MonoBehaviour
 {
     // Player Specification
     public static int hp = 100;
-    public static int armor = 0;
+    public static int armor = 100;
     private float maxHp;
-    private float maxArmor = 0;
+    private float maxArmor = 100;
     public static Transform myPos;
 
 

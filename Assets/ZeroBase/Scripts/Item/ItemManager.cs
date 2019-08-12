@@ -79,9 +79,9 @@ public class ItemManager : MonoBehaviour
     void Update()
 	{
 		//currentHeartRate =
-	   // -----------------------------------------------
+		// -----------------------------------------------
 
-	   currentHealth = Mathf.Clamp(currentHealth, 0, totalHealth);
+		currentHealth = Mathf.Clamp(currentHealth, 0, totalHealth);
 		currentArmor = Mathf.Clamp(currentArmor, 0, totalArmor);
 
 		// Lerp Player Status
@@ -105,7 +105,7 @@ public class ItemManager : MonoBehaviour
 			readyToUseKit = false;
 			readyToUseAdrenaline = false;
 			readyToUseGrenade = false;
-            weaponController.myWeapnType = WeaponCtrl.WEAPON.AKM;
+            
         }
 
 		if (Input.GetKeyDown(KeyCode.Alpha2) && isHoldingSomething)
@@ -180,7 +180,6 @@ public class ItemManager : MonoBehaviour
 					{
 						if (uiManager.isMissionStart) return;
 
-						// missionScript.GetComponent<Animator>().SetTrigger("Finish");
 						uiManager.missionTime = 40f;
 						uiManager.missionMessage = "SURVIVE UNTIL ELEVATOR ARRIVES";
 						uiManager.isMissionStart = true;
@@ -338,7 +337,6 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Adrenaline Syringe":
-				missionScript.GetComponent<Animator>().SetTrigger("Finish");
 				missionScript.Type();
 				adrenalineCount++;
 				break;
@@ -366,7 +364,6 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Jammer":
-				missionScript.GetComponent<Animator>().SetTrigger("Finish");
 				missionScript.Type();
 				hasJammer = true;
 				break;
@@ -378,9 +375,15 @@ public class ItemManager : MonoBehaviour
 			case "Beaker":
 				beakerCount += 1;
 				break;
+
+			case "Sci-Fi Machine Gun":
+				WeaponCtrl.Instance.anim.SetBool("toScifi", true);
+				WeaponCtrl.Instance.myWeapnType = WeaponCtrl.WEAPON.SCI_FI;
+				break;
 		}
         UIManager.Instance.TextUpdate();
-        if (item.gameObject.CompareTag("Item")) item.gameObject.SetActive(false);
+
+		if (item.gameObject.CompareTag("Item")) { item.gameObject.SetActive(false); weaponController.audioSource.PlayOneShot(weaponController.itemGetSound); }
 	}
 
 	void initializeData()

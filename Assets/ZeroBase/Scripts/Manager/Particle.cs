@@ -42,10 +42,10 @@ public class Particle : MonoBehaviour
 
     private void Start()
     {
-        bulletHolePool.Create(hitHolePrefab, 6, fireTraceParent);
-        flarePool.Create(hitSparkPrefab, 6, fireTraceParent);
-        bulletCasingPool.Create(bulletCasingPrefab, 11, fireTraceParent);
-        bloodParticlePool.Create(bloodParticlePrefab, 100, fireTraceParent);
+        bulletHolePool.Create(hitHolePrefab, 60, fireTraceParent);
+        flarePool.Create(hitSparkPrefab, 60, fireTraceParent);
+        bulletCasingPool.Create(bulletCasingPrefab, 110, fireTraceParent);
+        bloodParticlePool.Create(bloodParticlePrefab, 200, fireTraceParent);
     }
     public IEnumerator BulletEffect()
     {

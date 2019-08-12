@@ -44,8 +44,8 @@ public class UIManager : MonoBehaviour
 	public string newMissionMessage;
 
 	[Header("Weapon UI")]
-	int maxBullet = 30;
-	public int totalBullet = 360;
+	public int maxBullet;
+	public int totalBullet;
 	float bulletlerpTime;
 	bool fired;
 	public TextMeshProUGUI noWeaponText;
@@ -131,14 +131,14 @@ public class UIManager : MonoBehaviour
 	{
 		healthProgressbar.value = ItemManager.currentHealth / 100f;
 		armorProgressbar.value = ItemManager.currentArmor / 100f;
-		bulletProgressbar.value = Mathf.Floor((float)WeaponCtrl.currentBullets / (float)maxBullet * 100f) * 0.01f;
+		bulletProgressbar.value = Mathf.Floor((float)WeaponCtrl.Instance.currentBullets / (float)maxBullet * 100f) * 0.01f;
 
 		healthText.text = Mathf.Clamp(Mathf.Floor(ItemManager.currentHealth), 0, itemManager.totalHealth).ToString();
 		armorText.text = Mathf.Clamp(Mathf.Floor(ItemManager.currentArmor), 0, itemManager.totalArmor).ToString();
 		heratRateText.text = Mathf.Clamp(Mathf.Floor(itemManager.currentHeartRate), 0, itemManager.totalHeartRate).ToString();
 
 		// bullet Update
-		bulletCountText.text = Mathf.Clamp(WeaponCtrl.currentBullets, 0, maxBullet).ToString();
+		bulletCountText.text = Mathf.Clamp(WeaponCtrl.Instance.currentBullets, 0, maxBullet).ToString();
 		totalBulletText.text = totalBullet.ToString();
 
 		// item Update
@@ -161,7 +161,7 @@ public class UIManager : MonoBehaviour
 
 	public void DeveloperMode()
 	{
-		WeaponCtrl.currentBullets += weaponController.bulletsToReload;
+		WeaponCtrl.Instance.currentBullets += weaponController.bulletsToReload;
 		totalBullet = weaponController.bulletsTotal;
 		bulletProgressbar.value = 1f;
 	}

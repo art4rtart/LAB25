@@ -71,7 +71,7 @@ public class BombGage : MonoBehaviour
             {
                 if (!isCoroutineStarted)
                 {
-                    if (info.IsName("weaponChange(AKtoBomb)"))
+                    if (info.IsName("weaponChange(SciFitoBomb)"))
                     {
                         // startCorutine
                         //BombGageCoroutine = BombInstall();
@@ -95,7 +95,7 @@ public class BombGage : MonoBehaviour
             if (playerAnim.GetBool("ReadyToBombSet"))
             {
                 playerAnim.SetBool("ReadyToBombSet", false);
-                myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
+                myWeapon.myWeapnType = myWeapon.prevWeaponType;
             }
         }
 	}
@@ -148,7 +148,7 @@ public class BombGage : MonoBehaviour
 				BombIsInstalled();
 				playerAnim.SetTrigger("SuccesBombSet");
 				playerAnim.SetBool("ReadyToBombSet", false);
-                myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
+				myWeapon.myWeapnType = myWeapon.prevWeaponType;
                 Instantiate(ScifiBomb, playerAnim.transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation, null);
 				break;
 			}

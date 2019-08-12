@@ -326,6 +326,12 @@ public class PlayerCtrl : MonoBehaviour
         {
             return;
         }
+
+		if(hit.collider.name == "Charger")
+		{
+			m_PlayerManager.ApplyDamage(100f);
+		}
+
         body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
     }
 }
