@@ -45,60 +45,7 @@ public class BombGage : MonoBehaviour
 		GenerateRandomPos();
 	}
 
-	void Update()
-	{
-        if (canInstall && Input.GetKeyDown(KeyCode.B) && !isCoroutineStarted)
-        {
-            AnimatorStateInfo info = playerAnim.GetCurrentAnimatorStateInfo(0);
 
-            if (info.IsName("Idle"))
-            {
-                if (!isCoroutineStarted)
-                {
-                    // player Anim
-                    playerAnim.SetBool("ReadyToBombSet", true);
-                    myWeapon.myWeapnType = WeaponCtrl.WEAPON.BOMB;
-
-                    // ui active
-
-                    // startCorutine
-                    //BombGageCoroutine = BombInstall();
-                    StartCoroutine("BombInstall");
-                    isCoroutineStarted = true;
-                }
-            }
-            else
-            {
-                if (!isCoroutineStarted)
-                {
-                    if (info.IsName("weaponChange(SciFitoBomb)"))
-                    {
-                        // startCorutine
-                        //BombGageCoroutine = BombInstall();
-                        playerAnim.SetBool("ReadyToBombSet", true);
-                        myWeapon.myWeapnType = WeaponCtrl.WEAPON.BOMB;
-                        StartCoroutine("BombInstall");
-                        isCoroutineStarted = true;
-                    }
-                    else if (info.IsName("RunFinish"))
-                    {
-                        playerAnim.SetBool("ReadyToBombSet", true);
-                        myWeapon.myWeapnType = WeaponCtrl.WEAPON.BOMB;
-                        StartCoroutine("BombInstall");
-                        isCoroutineStarted = true;
-                    }
-                }
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if (playerAnim.GetBool("ReadyToBombSet"))
-            {
-                playerAnim.SetBool("ReadyToBombSet", false);
-                myWeapon.myWeapnType = myWeapon.prevWeaponType;
-            }
-        }
-	}
 	public static bool canInstall;
 	IEnumerator BombInstall()
 	{
@@ -148,7 +95,7 @@ public class BombGage : MonoBehaviour
 				BombIsInstalled();
 				playerAnim.SetTrigger("SuccesBombSet");
 				playerAnim.SetBool("ReadyToBombSet", false);
-				myWeapon.myWeapnType = myWeapon.prevWeaponType;
+				//myWeapon.myWeapnType = myWeapon.prevWeaponType;
                 Instantiate(ScifiBomb, playerAnim.transform.position + new Vector3(0f, 0.5f, 0f), transform.rotation, null);
 				break;
 			}

@@ -72,9 +72,11 @@ public class WeaponCtrl : MonoBehaviour
     int specialItemIndex;
     public MissionScripts missionScripts;
 
-    public enum WEAPON { AKM, SCI_FI, AXE, CUP, PICK, BOMB };
+    public enum WEAPON { AKM, SCI_FI, AXE, CUP, PICK, BOMB, HEARTER, WARD, JAMMER, ADRE, HEAL };
     public WEAPON myWeapnType;
-	public WEAPON prevWeaponType;
+
+    public int stage;
+    public GrenadeThrower grenadeThrower;
 
     private void Start()
     {
@@ -85,14 +87,21 @@ public class WeaponCtrl : MonoBehaviour
     private void Update()
     {
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-	
+        isReloading = info.IsName("Reload");
+
         if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
             if (myWeapnType == WEAPON.AKM)
             {
-                isReloading = info.IsName("Reload");
                 if (currentBullets > 0)
                     Fire();
+                else
+                    DoReload();
+            }
+            else if (myWeapnType == WEAPON.SCI_FI)
+            {
+                if (currentBullets > 0)
+                    Scifi_Fire();
                 else
                     DoReload();
             }
@@ -102,187 +111,129 @@ public class WeaponCtrl : MonoBehaviour
             }
             else if (myWeapnType == WEAPON.CUP)
             {
-
+                Debug.Log("asd");
+                anim.SetTrigger("doThrow");
+                grenadeThrower.ThrowGrenade();
+                //StartCoroutine(grenadeThrower.ThrowCup());
+                grenadeThrower.alpha = 0;
+                //itemManager.readyToUseGrenade = false;
+                //Anim End             
+                if (stage == 3)
+                    myWeapnType = WEAPON.AKM;
+                else if (stage == 4 || stage == 5)
+                    myWeapnType = WEAPON.SCI_FI;
             }
-            else if (myWeapnType == WEAPON.SCI_FI)
+            else if (myWeapnType == WEAPON.PICK)
             {
-                isReloading = info.IsName("Reload");
-                if (currentBullets > 0)
-                    Scifi_Fire();
-                else
-                    DoReload();
+
             }
             else if (myWeapnType == WEAPON.BOMB)
             {
 
             }
-            else if (myWeapnType == WEAPON.PICK)
+            else if (myWeapnType == WEAPON.HEARTER)
             {
-                Pickup();
+
+            }
+            else if (myWeapnType == WEAPON.WARD)
+            {
+
+            }
+            else if (myWeapnType == WEAPON.JAMMER)
+            {
+
+            }
+            else if (myWeapnType == WEAPON.ADRE)
+            {
+
+            }
+            else if (myWeapnType == WEAPON.HEAL)
+            {
+
             }
         }
-        //if (Input.GetKeyDown(KeyCode.T))
-        //{
-        //    isPick = !isPick;
-        //    if (myWeapnType != WEAPON.PICK)
-        //    {
-        //        if (pick.transform)
-        //        {
-        //            pick.transform.SetParent(null);
-        //            pick.transform.GetComponent<Rigidbody>().useGravity = true;
-        //        }
-        //    }
-        //}
-        if (myWeapnType == WEAPON.AKM )
+        else if (Input.GetKeyDown(KeyCode.R))
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (myWeapnType == WEAPON.AKM || myWeapnType == WEAPON.SCI_FI)
+            {
                 DoReload();
-            //her0in -------------------------------------------------------------------
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                anim.SetBool("Ward", false);
-                anim.SetBool("useHarter", false);
-                anim.SetTrigger("default");
-                specialItemIndex = 0;
-				uiManager.currentWeaponImage.sprite = uiManager.weaponImage[0];
-				uiManager.TextUpdate();
-			}
-
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && !useMedicalKit && !useAdrenaline && itemManager.medicalKitCount > 0)
-            {
-                anim.SetBool("Ward", false);
-                specialItemIndex = 0;
-                useMedicalKit = true;
-                anim.CrossFadeInFixedTime("Heal", 0.01f);
             }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha3) && !useMedicalKit && !useAdrenaline && itemManager.adrenalineCount > 0)
-            {
-                useAdrenaline = true;
-                anim.CrossFadeInFixedTime("Adrenaline", 0.01f);
-            }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                specialItemIndex++;
-
-                if (specialItemIndex % 2 == 1)
-                {
-                    anim.SetBool("useHarter", false);
-                    anim.SetBool("Ward", true);
-                }
-
-                else if (specialItemIndex % 2 == 0)
-                {
-                    if (itemManager.hasHearter)
-                    {
-                        anim.SetBool("Ward", false);
-                        anim.SetTrigger("itemChange");
-                        anim.SetBool("useHarter", true);
-                    }
-
-                    else
-                        specialItemIndex--;
-                }
-            }
-
-            else if (Input.GetKeyDown(KeyCode.J))
-            {
-                anim.CrossFadeInFixedTime("Jammer", 0.01f);
-
-
-                // zemmer.UseZemmer();
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                if (info.IsName("Idle"))
-                {
-					prevWeaponType = WEAPON.AKM;
-                    anim.SetTrigger("toAxe");
-                    myWeapnType = WEAPON.AXE;
-					uiManager.currentWeaponImage.sprite = uiManager.weaponImage[2];
-					uiManager.bulletCountText.text = "1";
-					uiManager.totalBulletText.text = "1";
-					uiManager.bulletProgressbar.value = 1f;
-				}
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha9))
-            {
-                if (info.IsName("Idle"))
-                {
-                    anim.SetBool("toScifi", true);
-                    myWeapnType = WEAPON.SCI_FI;
-                }
-            }
-            if (anim.GetBool("Ward") && Input.GetMouseButtonDown(1))
-            {
-                anim.SetTrigger("useWard");
-
-                missionScripts.GetComponent<Animator>().SetTrigger("Finish");
-                missionScripts.Type();
-
-                scanner.ScanDistance = 0;
-                scanner.scanning = true;
-
-                anim.SetBool("Ward", false);
-                anim.SetTrigger("default");
-                specialItemIndex = 0;
-            }
-            //RecoilBack();
         }
         else
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-			
-                if (info.IsName("IDLE(axe)"))
-                {
-			
-                    anim.SetTrigger("toAK");
-                    myWeapnType = prevWeaponType;
-					if( myWeapnType == WEAPON.AKM)
-						uiManager.currentWeaponImage.sprite = uiManager.weaponImage[0];
-					if (myWeapnType == WEAPON.SCI_FI)
-						uiManager.currentWeaponImage.sprite = uiManager.weaponImage[2];
-					uiManager.TextUpdate();
-				}
-                else if(info.IsName("Walk(scifi)"))
-                {
-                    anim.SetBool("toScifi", false);
+                if( info.IsName("Idle(AXE)"))
+                    anim.SetTrigger("doWeaponChange");
+                // To Main Weapon
+                if (stage == 3)
                     myWeapnType = WEAPON.AKM;
-				}
+                else if ( stage == 4 || stage == 5 )
+                    myWeapnType = WEAPON.SCI_FI;
             }
-            else if( Input.GetKeyDown(KeyCode.R))
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                if (myWeapnType == WEAPON.SCI_FI)
-                    DoReload();
+                // Heal
+                anim.SetBool("toDo", true);
+                anim.SetTrigger("doHeal");
+                StartCoroutine("DelayResetAnimParameter");
             }
-			else if (Input.GetKeyDown(KeyCode.Alpha5))
-			{
-				if (info.IsName("Idle"))
-				{
-					prevWeaponType = myWeapnType;
-					anim.SetTrigger("toAxe");
-					myWeapnType = WEAPON.AXE;
-					uiManager.currentWeaponImage.sprite = uiManager.weaponImage[2];
-					uiManager.bulletCountText.text = "1";
-					uiManager.totalBulletText.text = "1";
-					uiManager.bulletProgressbar.value = 1f;
-				}
-			}
-			//else if (Input.GetKeyDown(KeyCode.Alpha5))
-			//{
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                // To Axe
+                if (info.IsName("Idle(AK)") || info.IsName("Run(AK)") || info.IsName("Idle(SCIFI)") || info.IsName("Run(SCIFI)"))
+                {
+                    anim.SetTrigger("doWeaponChange");
+                    myWeapnType = WEAPON.AXE;
+                }
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                // To Throw Cup
+                anim.SetBool("toDo", true);
+                grenadeThrower.lineRenderer.enabled = true;
+                myWeapnType = WEAPON.CUP;
+                StartCoroutine("DelayResetAnimParameter");
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                // Ward
+                anim.SetBool("toDo", true);
+                anim.SetTrigger("doWard");
+                myWeapnType = WEAPON.WARD;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                // Hearter
+                anim.SetBool("toDo", true);
+                anim.SetTrigger("doHearter");
+                myWeapnType = WEAPON.HEARTER;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha7))
+            {
 
-			//    if (info.IsName("Idle"))
-			//    {
-			//        anim.SetTrigger("toAxe");
-			//        myWeapnType = WEAPON.AXE;
-			//    }
-			//}
-		}
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha8))
+            {
 
-        // ----------------------------------------------------------------------
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha9))
+            {
+                // Jammer
+                anim.SetBool("toDo", true);
+                anim.SetTrigger("doJammer");
+                StartCoroutine("DelayResetAnimParameter");
+                myWeapnType = WEAPON.JAMMER;
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha0))
+            {
+                // Adre
+                anim.SetBool("toDo", true);
+                anim.SetTrigger("doAdre");
+                myWeapnType = WEAPON.ADRE;
+                StartCoroutine("DelayResetAnimParameter");
+            }
+        }
         RecoilBack();
         Run();
     }
@@ -330,7 +281,7 @@ public class WeaponCtrl : MonoBehaviour
 		audioSource.PlayOneShot(axeSound);
 		//anim.CrossFadeInFixedTime("Shoot", 0.01f);
 		//audioSource.PlayOneShot(shootSound);    //shoot sound
-		anim.CrossFadeInFixedTime("attackAxe", 0.01f);
+		anim.CrossFadeInFixedTime("AxeAttack", 0.01f);
     }
     private void Run()
     {
@@ -342,8 +293,6 @@ public class WeaponCtrl : MonoBehaviour
 
     public void Fire()
     {
-        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-        isReloading = info.IsName("Reload");
         if (fireTimer < fireRate || isReloading || isRunning)
         {
             return;
@@ -374,7 +323,7 @@ public class WeaponCtrl : MonoBehaviour
         }
         currentBullets--;
         fireTimer = 0.0f;
-        anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        anim.CrossFadeInFixedTime("Shoot(AK)", 0.01f);
         audioSource.PlayOneShot(shootSound);    //shoot sound
         muzzleFlash.Play();
         Recoil();
@@ -384,8 +333,6 @@ public class WeaponCtrl : MonoBehaviour
 
     public void Scifi_Fire()
     {
-        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-        isReloading = info.IsName("Reload");
         if (fireTimer < fireRate * 0.5f || isReloading || isRunning)
         {
             return;
@@ -464,11 +411,8 @@ public class WeaponCtrl : MonoBehaviour
 
     private void DoReload()
     {
-		AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-	
 		if (myWeapnType == WEAPON.AKM)
         {
-			isReloading = info.IsName("Reload");
 			if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
             {
                 anim.CrossFadeInFixedTime("Reload", 0.01f); // Reloading
@@ -477,7 +421,6 @@ public class WeaponCtrl : MonoBehaviour
         }
         else if (myWeapnType == WEAPON.SCI_FI)
         {
-			isReloading = info.IsName("Reload(scifi)");
 			if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
             {
                 anim.CrossFadeInFixedTime("Reload(scifi)", 0.01f); // Reloading
@@ -495,6 +438,11 @@ public class WeaponCtrl : MonoBehaviour
             bulletsToReload = bulletsTotal;
         }
         bulletsTotal -= bulletsToReload;
+    }
+    private IEnumerator DelayResetAnimParameter()
+    {
+        yield return null;
+        anim.SetBool("toDo",false);
     }
 }
 

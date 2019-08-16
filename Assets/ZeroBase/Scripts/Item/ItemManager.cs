@@ -84,66 +84,6 @@ public class ItemManager : MonoBehaviour
 		currentHealth = Mathf.Clamp(Mathf.Clamp(PlayerManager.hp, 0, 100f), 0, totalHealth);
 		currentArmor = Mathf.Clamp(PlayerManager.armor, 0, totalArmor);
 
-		// Lerp Player Status
-		//if (Input.GetButtonDown("Fire1"))
-		//{
-		//	targetHealth = currentHealth - 10f;
-		//	takeDamage = true;
-		//}
-
-		//if (Input.GetButtonDown("Fire2"))
-		//{
-		//	targetHealth = currentHealth + 10f;
-		//	takeDamage = true;
-		//}
-
-		if (Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			// Debug.Log("I am Holding a Gun");
-
-			readyToUseGun = true;
-			readyToUseKit = false;
-			readyToUseAdrenaline = false;
-			readyToUseGrenade = false;
-            
-        }
-
-		if (Input.GetKeyDown(KeyCode.Alpha2) && isHoldingSomething)
-		{
-			// Debug.Log("I am Holding a Kit");
-
-			readyToUseGun = false;
-			readyToUseKit = true;
-			readyToUseAdrenaline = false;
-			readyToUseGrenade = false;
-
-			isHoldingSomething = true;
-		}
-
-		if (Input.GetKeyDown(KeyCode.Alpha3))
-		{
-			// Debug.Log("I am Holding a Adrenalin");
-
-			readyToUseGun = false;
-			readyToUseAdrenaline = true;
-			readyToUseKit = false;
-			readyToUseGrenade = false;
-
-			isHoldingSomething = true;
-		}
-
-		if (Input.GetKeyDown(KeyCode.Alpha6))
-		{
-			// Debug.Log("I am Holding a Grenade");
-
-			readyToUseGun = false;
-			readyToUseKit = false;
-			readyToUseAdrenaline = false;
-			readyToUseGrenade = true;
-            weaponController.myWeapnType = WeaponCtrl.WEAPON.CUP;
-			isHoldingSomething = true;
-		}
-
 		RaycastHit hit;
 		if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
 		{

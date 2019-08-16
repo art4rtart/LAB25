@@ -14,8 +14,7 @@ public class GrenadeThrower : MonoBehaviour
 
 	public Material material;
 	public float fadeSpeed = 0.5f;
-	bool readyToThrow;
-	float alpha;
+	public float alpha;
 
 	public Animator playerAnim;
 	public WeaponCtrl myWeapon;
@@ -24,31 +23,32 @@ public class GrenadeThrower : MonoBehaviour
 	{
 		material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
 
-        //Debug.Log(itemManager.readyToUseGrenade + " " + itemManager.beakerCount);
-        if (itemManager.readyToUseGrenade && itemManager.beakerCount > 0)
-		{
+  //      if (itemManager.readyToUseGrenade && itemManager.beakerCount > 0)
+		//{
             
-			playerAnim.SetTrigger("ReadyToThrow");
-            myWeapon.myWeapnType = WeaponCtrl.WEAPON.CUP;
-			readyToThrow = lineRenderer.enabled = true;
-		}
+		//	playerAnim.SetTrigger("ReadyToThrow");
+  //          myWeapon.myWeapnType = WeaponCtrl.WEAPON.CUP;
+		//	lineRenderer.enabled = true;
+		//}
 
-	    if (Input.GetMouseButtonUp(0) && readyToThrow)
-		{
-			ThrowGrenade();
-			readyToThrow = false;
-			StartCoroutine("ThrowCup");
-			alpha = 0;
-			itemManager.readyToUseGrenade = false;
-			playerAnim.ResetTrigger("ReadyToThrow");
-		}
+	 //   if (Input.GetMouseButtonUp(0))
+		//{
+		//	ThrowGrenade();
+		//	StartCoroutine("ThrowCup");
+		//	alpha = 0;
+		//	itemManager.readyToUseGrenade = false;
+		//	playerAnim.ResetTrigger("ReadyToThrow");
+  //          if (myWeapon.stage == 3)
+  //              myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
+  //          else if ( myWeapon.stage ==4 || myWeapon.stage ==5  )
+  //              myWeapon.myWeapnType = WeaponCtrl.WEAPON.SCI_FI;
+  //      }
 
-		if (readyToThrow)
+		if (myWeapon.myWeapnType == WeaponCtrl.WEAPON.CUP)
 		{
 			if (alpha < 1)
 				alpha += fadeSpeed * Time.deltaTime;
 		}
-
 		else
 		{
 			if (alpha > 0)
@@ -59,7 +59,7 @@ public class GrenadeThrower : MonoBehaviour
 			lineRenderer.enabled = false;
 	}
 
-	void ThrowGrenade()
+	public void ThrowGrenade()
 	{
 		itemManager.grenadeCount--;
         UIManager.Instance.TextUpdate();
@@ -69,7 +69,7 @@ public class GrenadeThrower : MonoBehaviour
 		rb.AddForce(transform.up * throwForce / 8, ForceMode.VelocityChange);
 	}
 	
-	IEnumerator ThrowCup()
+	public IEnumerator ThrowCup()
 	{
 		playerAnim.SetBool("isThrow", true);
         myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
