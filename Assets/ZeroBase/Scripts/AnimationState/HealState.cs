@@ -15,6 +15,7 @@ public class HealState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        WeaponCtrl.Instance.myWeapnType = WeaponCtrl.WEAPON.HEAL;
         if (isHeal)
             return;
         if (stateInfo.normalizedTime >= healTime)

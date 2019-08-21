@@ -101,7 +101,6 @@ public class WeaponCtrl : MonoBehaviour
                     Fire();
                 else
                     DoReload();
-                myWeapnType = WEAPON.AKM;
             }
             else if (myWeapnType == WEAPON.SCI_FI)
             {
@@ -109,12 +108,10 @@ public class WeaponCtrl : MonoBehaviour
                     Scifi_Fire();
                 else
                     DoReload();
-                myWeapnType = WEAPON.SCI_FI;
             }
             else if (myWeapnType == WEAPON.AXE)
             {
                 AxeAttack();
-                myWeapnType = WEAPON.AXE;
             }
             else if (myWeapnType == WEAPON.CUP)
             {         
@@ -123,12 +120,7 @@ public class WeaponCtrl : MonoBehaviour
                 //StartCoroutine(grenadeThrower.ThrowCup());
                 grenadeThrower.alpha = 0;
                 //itemManager.readyToUseGrenade = false;
-                myWeapnType = WEAPON.CUP;
                 //Anim End             
-                if (stage == 3)
-                    myWeapnType = WEAPON.AKM;
-                else if (stage == 4 || stage == 5)
-                    myWeapnType = WEAPON.SCI_FI;
             }
             else if (myWeapnType == WEAPON.PICK)
             {
@@ -136,29 +128,29 @@ public class WeaponCtrl : MonoBehaviour
             }
             else if (myWeapnType == WEAPON.BOMB)
             {
-                myWeapnType = WEAPON.BOMB;
+
             }
             else if (myWeapnType == WEAPON.HEARTER)
             {
-                myWeapnType = WEAPON.HEARTER;
+
             }
             else if (myWeapnType == WEAPON.WARD)
             {
                 anim.SetTrigger("useWard");
-                myWeapnType = WEAPON.WARD;
+
                 DelayResetuseWard();
             }
             else if (myWeapnType == WEAPON.JAMMER)
             {
-                myWeapnType = WEAPON.JAMMER;
+   
             }
             else if (myWeapnType == WEAPON.ADRE)
             {
-                myWeapnType = WEAPON.ADRE;
+        
             }
             else if (myWeapnType == WEAPON.HEAL)
             {
-                myWeapnType = WEAPON.HEAL;
+         
             }
         }
         else if (Input.GetKeyDown(KeyCode.R))
@@ -179,11 +171,11 @@ public class WeaponCtrl : MonoBehaviour
                     anim.SetTrigger("endHearter");
                     anim.SetTrigger("endBomb");
                 }
-                // To Main Weapon
-                if (stage == 3)
-                    myWeapnType = WEAPON.AKM;
-                else if (stage == 4 || stage == 5)
-                    myWeapnType = WEAPON.SCI_FI;
+                //// To Main Weapon
+                //if (stage == 3)
+                //    myWeapnType = WEAPON.AKM;
+                //else if (stage == 4 || stage == 5)
+                //    myWeapnType = WEAPON.SCI_FI;
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -198,7 +190,7 @@ public class WeaponCtrl : MonoBehaviour
                 if (info.IsName("Idle(AK)") || info.IsName("Run(AK)") || info.IsName("Idle(SCIFI)") || info.IsName("Run(SCIFI)"))
                 {
                     anim.SetTrigger("doWeaponChange");
-                    myWeapnType = WEAPON.AXE;
+                    
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -206,7 +198,7 @@ public class WeaponCtrl : MonoBehaviour
                 // To Throw Cup
                 anim.SetBool("toDo", true);
                 grenadeThrower.lineRenderer.enabled = true;
-                myWeapnType = WEAPON.CUP;
+             
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -214,7 +206,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Ward
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doWard");
-                myWeapnType = WEAPON.WARD;
+               
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.Alpha6))
@@ -222,7 +214,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Hearter
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doHearter");
-                myWeapnType = WEAPON.HEARTER;
+              
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.B))
@@ -230,7 +222,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Bomb
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doBomb");
-                myWeapnType = WEAPON.BOMB;
+              
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.Alpha9))
@@ -238,7 +230,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Jammer
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doJammer");
-                myWeapnType = WEAPON.JAMMER;
+            
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -246,7 +238,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Adre
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doAdre");
-                myWeapnType = WEAPON.ADRE;
+              
                 StartCoroutine("DelayResetAnimParameter");
             }
         }

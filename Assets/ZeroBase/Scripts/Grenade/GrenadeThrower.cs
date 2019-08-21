@@ -72,7 +72,7 @@ public class GrenadeThrower : MonoBehaviour
 	public IEnumerator ThrowCup()
 	{
 		playerAnim.SetBool("isThrow", true);
-        myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
+        //myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
         yield return new WaitForSeconds(1.0f);
 		playerAnim.SetBool("isThrow", false);
     }

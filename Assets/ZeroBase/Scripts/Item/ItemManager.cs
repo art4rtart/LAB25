@@ -318,7 +318,6 @@ public class ItemManager : MonoBehaviour
 
 			case "Sci-Fi Machine Gun":
 				WeaponCtrl.Instance.anim.SetBool("toScifi", true);
-				WeaponCtrl.Instance.myWeapnType = WeaponCtrl.WEAPON.SCI_FI;
 				break;
 		}
         UIManager.Instance.TextUpdate();
