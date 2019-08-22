@@ -92,7 +92,7 @@ public class WeaponCtrl : MonoBehaviour
         //if (info.IsName("EndToDo(AK)") || info.IsName("Idle(AK)"))
         //    myWeapnType = WEAPON.AKM;
 
-        Debug.Log(myWeapnType);
+        //Debug.Log(myWeapnType);
         if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
             if (myWeapnType == WEAPON.AKM)
@@ -138,7 +138,7 @@ public class WeaponCtrl : MonoBehaviour
             {
                 anim.SetTrigger("useWard");
 
-                DelayResetuseWard();
+                StartCoroutine("DelayResetuseWard");
             }
             else if (myWeapnType == WEAPON.JAMMER)
             {
@@ -165,7 +165,10 @@ public class WeaponCtrl : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 if (info.IsName("Idle(AXE)"))
+                {
                     anim.SetTrigger("doWeaponChange");
+                  
+                }
                 else
                 {
                     anim.SetTrigger("endHearter");
@@ -176,6 +179,8 @@ public class WeaponCtrl : MonoBehaviour
                 //    myWeapnType = WEAPON.AKM;
                 //else if (stage == 4 || stage == 5)
                 //    myWeapnType = WEAPON.SCI_FI;
+                StartCoroutine("DelayResetdoWeaponChange");
+
             }
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -190,7 +195,7 @@ public class WeaponCtrl : MonoBehaviour
                 if (info.IsName("Idle(AK)") || info.IsName("Run(AK)") || info.IsName("Idle(SCIFI)") || info.IsName("Run(SCIFI)"))
                 {
                     anim.SetTrigger("doWeaponChange");
-                    
+                    StartCoroutine("DelayResetdoWeaponChange");
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -424,15 +429,15 @@ public class WeaponCtrl : MonoBehaviour
         {
 			if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
             {
-                anim.CrossFadeInFixedTime("Reload", 0.01f); // Reloading
+                anim.CrossFadeInFixedTime("Reload(AK)", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
             }
         }
         else if (myWeapnType == WEAPON.SCI_FI)
         {
-			if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
+            if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
             {
-                anim.CrossFadeInFixedTime("Reload(scifi)", 0.01f); // Reloading
+                anim.CrossFadeInFixedTime("Reload(Scifi)", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
             }
         }
@@ -464,6 +469,18 @@ public class WeaponCtrl : MonoBehaviour
     {
         yield return null;
         anim.ResetTrigger("doThrow");
+    }
+
+    private IEnumerator DelayResetdoWeaponChange()
+    {
+        //Debug.Log("ASDSAD");
+        yield return null;
+
+        anim.ResetTrigger("doWeaponChange");
+        anim.ResetTrigger("endHearter");
+        anim.ResetTrigger("endBomb");
+        //Debug.Log("ASD");
+
     }
 }
 
