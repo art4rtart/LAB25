@@ -17,5 +17,7 @@ public class WeaponManager : MonoBehaviour
             else
                 anim.runtimeAnimatorController = weaponCtrls[0];
         }
+        else if (Input.GetMouseButtonUp(2))
+            UIManager.Instance.TextUpdate();
     }
 }

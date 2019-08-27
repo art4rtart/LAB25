@@ -10,7 +10,7 @@ public class ItemManager : MonoBehaviour
 	public GameObject player;
 	public UIManager uiManager;
 	public Crosshair crosshair;
-	public WeaponCtrl weaponController;
+	//public WeaponCtrl weaponController;
 
 	[Header("Item Count")]
 	[HideInInspector] public int medicalKitCount;
@@ -287,8 +287,11 @@ public class ItemManager : MonoBehaviour
 
 			case "7.76mm Bullet Crate":
 				uiManager.totalBullet += 30;
-				weaponController.bulletsTotal += 30;
-				break;
+                if( WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.AKM )
+                    WeaponCtrl.Instance.akBulletsTotal += 30;
+                else if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
+                    WeaponCtrl.Instance.sciBulletsTotal += 30;
+                break;
 
 			case "Biometrics Goggle":
 				StartCoroutine(uiManager.FadeIn());
@@ -322,7 +325,7 @@ public class ItemManager : MonoBehaviour
 		}
         UIManager.Instance.TextUpdate();
 
-		if (item.gameObject.CompareTag("Item")) { item.gameObject.SetActive(false); weaponController.audioSource.PlayOneShot(weaponController.itemGetSound); }
+		if (item.gameObject.CompareTag("Item")) { item.gameObject.SetActive(false); WeaponCtrl.Instance.audioSource.PlayOneShot(WeaponCtrl.Instance.itemGetSound); }
 	}
 
 	void initializeData()

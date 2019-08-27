@@ -19,14 +19,23 @@ public class WeaponCtrl : MonoBehaviour
     private static WeaponCtrl instance;
 
     // Weapon SpecificationcurrentBullets
-    public string weaponName;
-    public int bulletsPerMag;
-    public int bulletsTotal;
-    public int currentBullets;
-    public float range;
-    public float fireRate;
-    public float accuracy;
-    public int damage;
+    // AK
+    private int akBulletsPerMag = 30;
+    [HideInInspector]public int akBulletsTotal = 360;
+    [HideInInspector]public int akCurrentBullets = 30;
+    private float akRange = 100f;
+    private float akFireRate = 0.1f;
+    private float akAccuracy = 0.015f;
+    private int akDamage = 43;
+
+    // Scifi
+    private int sciBulletsPerMag = 150;
+    [HideInInspector]public int sciBulletsTotal = 1500;
+    [HideInInspector]public int sciCurrentBullets = 150;
+    private float sciRange = 100f;
+    private float sciFireRate = 0.05f;
+    private float sciAccuracy = 0.005f;
+    private int sciDamage = 50;
 
     // Axe
     private float AxeRate = 0.25f;
@@ -97,14 +106,14 @@ public class WeaponCtrl : MonoBehaviour
         {
             if (myWeapnType == WEAPON.AKM)
             {
-                if (currentBullets > 0)
+                if (akCurrentBullets > 0)
                     Fire();
                 else
                     DoReload();
             }
             else if (myWeapnType == WEAPON.SCI_FI)
             {
-                if (currentBullets > 0)
+                if (sciCurrentBullets > 0)
                     Scifi_Fire();
                 else
                     DoReload();
@@ -254,8 +263,16 @@ public class WeaponCtrl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (fireTimer < fireRate)
-            fireTimer += Time.fixedDeltaTime;
+        if (myWeapnType == WEAPON.AKM)
+        {
+            if (fireTimer < akFireRate)
+                fireTimer += Time.fixedDeltaTime;
+        }
+        else if (myWeapnType == WEAPON.SCI_FI)
+        {
+            if (fireTimer < sciFireRate)
+                fireTimer += Time.fixedDeltaTime;
+        }
         if (AxeTimer < AxeRate)
             AxeTimer += Time.fixedDeltaTime;
 
@@ -275,7 +292,7 @@ public class WeaponCtrl : MonoBehaviour
 
             if (health && health.hp > 0)
             {
-                health.ApplyDamage(damage * 5, hit.transform.InverseTransformPoint(hit.point));
+                health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
                 if (!hit.transform.CompareTag("Breakable"))
                 {
                     StartCoroutine(Particle.Instance.BloodEffect(hit.point));
@@ -307,20 +324,20 @@ public class WeaponCtrl : MonoBehaviour
 
     public void Fire()
     {
-        if (fireTimer < fireRate || isReloading || isRunning)
+        if (fireTimer < akFireRate || isReloading || isRunning)
         {
             return;
         }
 
         RaycastHit hit;
 
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * akAccuracy, out hit, akRange))
         {
             Health health = hit.transform.GetComponent<Health>();
 
             if (health && health.hp > 0)
             {
-                health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
+                health.ApplyDamage(sciDamage, hit.transform.InverseTransformPoint(hit.point));
                 if (!hit.transform.CompareTag("Breakable"))
                 {
                     StartCoroutine(Particle.Instance.BloodEffect(hit.point));
@@ -335,7 +352,7 @@ public class WeaponCtrl : MonoBehaviour
                 StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
         }
-        currentBullets--;
+        akCurrentBullets--;
         fireTimer = 0.0f;
         anim.CrossFadeInFixedTime("Shoot(AK)", 0.01f);
         audioSource.PlayOneShot(shootSound);    //shoot sound
@@ -347,7 +364,7 @@ public class WeaponCtrl : MonoBehaviour
 
     public void Scifi_Fire()
     {
-        if (fireTimer < fireRate * 0.5f || isReloading || isRunning)
+        if (fireTimer < sciFireRate || isReloading || isRunning)
         {
             return;
         }
@@ -356,13 +373,13 @@ public class WeaponCtrl : MonoBehaviour
 
         for (int i = 0; i < 3; ++i)
         {
-            if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
+            if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * sciAccuracy, out hit, sciRange))
             {
                 Health health = hit.transform.GetComponent<Health>();
 
                 if (health && health.hp > 0)
                 {
-                    health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
+                    health.ApplyDamage(sciDamage, hit.transform.InverseTransformPoint(hit.point));
                     if (!hit.transform.CompareTag("Breakable"))
                     {
                         StartCoroutine(Particle.Instance.BloodEffect(hit.point));
@@ -378,9 +395,9 @@ public class WeaponCtrl : MonoBehaviour
                 }
             }
         }
-        currentBullets--;
+        sciCurrentBullets--;
         fireTimer = 0.0f;
-        anim.CrossFadeInFixedTime("Shoot(scifi)", 0.01f);
+        anim.CrossFadeInFixedTime("Shoot(Scifi)", 0.01f);
         audioSource.PlayOneShot(shootSound);    //shoot sound
         muzzleFlash.Play();
         Recoil();
@@ -390,7 +407,7 @@ public class WeaponCtrl : MonoBehaviour
 
     public void Pickup()
     {
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out pick, range))
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out pick, 100))
         {
             if (pick.transform.CompareTag("Moveable"))
             {
@@ -427,7 +444,7 @@ public class WeaponCtrl : MonoBehaviour
     {
         if (myWeapnType == WEAPON.AKM)
         {
-            if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
+            if (!isReloading && akCurrentBullets < akBulletsPerMag && akBulletsTotal > 0)
             {
                 anim.CrossFadeInFixedTime("Reload(AK)", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
@@ -435,7 +452,7 @@ public class WeaponCtrl : MonoBehaviour
         }
         else if (myWeapnType == WEAPON.SCI_FI)
         {
-            if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
+            if (!isReloading && sciCurrentBullets < sciBulletsPerMag && sciBulletsTotal > 0)
             {
                 anim.CrossFadeInFixedTime("Reload(Scifi)", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
@@ -446,12 +463,24 @@ public class WeaponCtrl : MonoBehaviour
     public void Reload()
     {
         // her0in
-        bulletsToReload = bulletsPerMag - currentBullets;
-        if (bulletsToReload > bulletsTotal)
+        if (myWeapnType == WEAPON.AKM)
         {
-            bulletsToReload = bulletsTotal;
+            bulletsToReload = akBulletsPerMag - akCurrentBullets;
+            if (bulletsToReload > akBulletsTotal)
+            {
+                bulletsToReload = akBulletsTotal;
+            }
+            akBulletsTotal -= bulletsToReload;
         }
-        bulletsTotal -= bulletsToReload;
+        else if (myWeapnType == WEAPON.SCI_FI)
+        {
+            bulletsToReload = sciBulletsPerMag - sciCurrentBullets;
+            if (bulletsToReload > sciBulletsTotal)
+            {
+                bulletsToReload = sciBulletsTotal;
+            }
+            sciBulletsTotal -= bulletsToReload;
+        }
     }
     private IEnumerator DelayResetAnimParameter()
     {
