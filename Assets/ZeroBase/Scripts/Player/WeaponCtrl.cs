@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class WeaponCtrl : MonoBehaviour
 {
-	public static WeaponCtrl Instance
-	{
-		get
-		{
-			if (instance != null)
-				return instance;
-			instance = FindObjectOfType<WeaponCtrl>();
-			return instance;
-		}
-	}
+    public static WeaponCtrl Instance
+    {
+        get
+        {
+            if (instance != null)
+                return instance;
+            instance = FindObjectOfType<WeaponCtrl>();
+            return instance;
+        }
+    }
 
-	private static WeaponCtrl instance;
+    private static WeaponCtrl instance;
 
-	// Weapon SpecificationcurrentBullets
-	public string weaponName;
+    // Weapon SpecificationcurrentBullets
+    public string weaponName;
     public int bulletsPerMag;
     public int bulletsTotal;
     public int currentBullets;
@@ -39,9 +39,9 @@ public class WeaponCtrl : MonoBehaviour
     // Sounds
     public AudioSource audioSource;
     public AudioClip shootSound;
-	public AudioClip axeSound;
-	public AudioClip itemGetSound;
-	public AudioClip reloadSound;
+    public AudioClip axeSound;
+    public AudioClip itemGetSound;
+    public AudioClip reloadSound;
     public AudioClip drawSound;
 
     //Recoil
@@ -65,7 +65,7 @@ public class WeaponCtrl : MonoBehaviour
     public int bulletsToReload;
     public ZombieScanner scanner;
     public Zemmer zemmer;
-	public UIManager uiManager;
+    public UIManager uiManager;
     public ItemManager itemManager;
     public bool useAdrenaline;
     public bool useMedicalKit;
@@ -114,7 +114,7 @@ public class WeaponCtrl : MonoBehaviour
                 AxeAttack();
             }
             else if (myWeapnType == WEAPON.CUP)
-            {         
+            {
                 anim.SetTrigger("doThrow");
                 grenadeThrower.ThrowGrenade();
                 //StartCoroutine(grenadeThrower.ThrowCup());
@@ -142,15 +142,15 @@ public class WeaponCtrl : MonoBehaviour
             }
             else if (myWeapnType == WEAPON.JAMMER)
             {
-   
+
             }
             else if (myWeapnType == WEAPON.ADRE)
             {
-        
+
             }
             else if (myWeapnType == WEAPON.HEAL)
             {
-         
+
             }
         }
         else if (Input.GetKeyDown(KeyCode.R))
@@ -167,7 +167,7 @@ public class WeaponCtrl : MonoBehaviour
                 if (info.IsName("Idle(AXE)"))
                 {
                     anim.SetTrigger("doWeaponChange");
-                  
+
                 }
                 else
                 {
@@ -203,7 +203,7 @@ public class WeaponCtrl : MonoBehaviour
                 // To Throw Cup
                 anim.SetBool("toDo", true);
                 grenadeThrower.lineRenderer.enabled = true;
-             
+
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -211,7 +211,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Ward
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doWard");
-               
+
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.Alpha6))
@@ -219,7 +219,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Hearter
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doHearter");
-              
+
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.B))
@@ -227,7 +227,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Bomb
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doBomb");
-              
+
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.Alpha9))
@@ -235,7 +235,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Jammer
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doJammer");
-            
+
                 StartCoroutine("DelayResetAnimParameter");
             }
             else if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -243,7 +243,7 @@ public class WeaponCtrl : MonoBehaviour
                 // Adre
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doAdre");
-              
+
                 StartCoroutine("DelayResetAnimParameter");
             }
         }
@@ -262,14 +262,14 @@ public class WeaponCtrl : MonoBehaviour
     }
     private void AxeAttack()
     {
-        if (AxeTimer < AxeRate )
+        if (AxeTimer < AxeRate)
         {
             return;
         }
 
         RaycastHit hit;
 
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward , out hit, 1.5f))
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 1.5f))
         {
             Health health = hit.transform.GetComponent<Health>();
 
@@ -292,10 +292,10 @@ public class WeaponCtrl : MonoBehaviour
         //    }
         //}
         AxeTimer = 0.0f;
-		audioSource.PlayOneShot(axeSound);
-		//anim.CrossFadeInFixedTime("Shoot", 0.01f);
-		//audioSource.PlayOneShot(shootSound);    //shoot sound
-		anim.CrossFadeInFixedTime("AxeAttack", 0.01f);
+        audioSource.PlayOneShot(axeSound);
+        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        //audioSource.PlayOneShot(shootSound);    //shoot sound
+        anim.CrossFadeInFixedTime("AxeAttack", 0.01f);
     }
     private void Run()
     {
@@ -316,7 +316,7 @@ public class WeaponCtrl : MonoBehaviour
 
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
         {
-			Health health = hit.transform.GetComponent<Health>();
+            Health health = hit.transform.GetComponent<Health>();
 
             if (health && health.hp > 0)
             {
@@ -358,7 +358,7 @@ public class WeaponCtrl : MonoBehaviour
         {
             if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
             {
-				Health health = hit.transform.GetComponent<Health>();
+                Health health = hit.transform.GetComponent<Health>();
 
                 if (health && health.hp > 0)
                 {
@@ -425,9 +425,9 @@ public class WeaponCtrl : MonoBehaviour
 
     private void DoReload()
     {
-		if (myWeapnType == WEAPON.AKM)
+        if (myWeapnType == WEAPON.AKM)
         {
-			if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
+            if (!isReloading && currentBullets < bulletsPerMag && bulletsTotal > 0)
             {
                 anim.CrossFadeInFixedTime("Reload(AK)", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
@@ -455,26 +455,26 @@ public class WeaponCtrl : MonoBehaviour
     }
     private IEnumerator DelayResetAnimParameter()
     {
-        yield return null;
-        anim.SetBool("toDo",false);
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("toDo", false);
     }
 
     private IEnumerator DelayResetuseWard()
     {
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
         anim.ResetTrigger("useWard");
     }
 
     private IEnumerator DelayResetdoThrow()
     {
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
         anim.ResetTrigger("doThrow");
     }
 
     private IEnumerator DelayResetdoWeaponChange()
     {
         //Debug.Log("ASDSAD");
-        yield return null;
+        yield return new WaitForSeconds(0.5f);
 
         anim.ResetTrigger("doWeaponChange");
         anim.ResetTrigger("endHearter");
