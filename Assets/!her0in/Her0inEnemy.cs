@@ -62,6 +62,7 @@ public class Her0inEnemy : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(navMesh.speed);
         AnimatorStateInfo info2 = anim.GetCurrentAnimatorStateInfo(0);
 
         if (!followTarget && !isGenerated)
@@ -117,7 +118,7 @@ public class Her0inEnemy : MonoBehaviour
         navMesh.enabled = false;
         anim.SetBool("Run", false);
 
-		StartCoroutine(Attack());
+        StartCoroutine(Attack());
     }
 
     public float attackSpeed;
@@ -131,7 +132,7 @@ public class Her0inEnemy : MonoBehaviour
 
         else
         {
-			if (player.transform.name == "Player") anim.SetTrigger("Attack");
+            if (player.transform.name == "Player") anim.SetTrigger("Attack");
         }
 
         yield return new WaitForSeconds(attackSpeed);

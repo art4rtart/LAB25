@@ -2168,7 +2168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1715910568633515911
 Transform:
   m_ObjectHideFlags: 0
@@ -2196,7 +2196,7 @@ Animator:
   m_GameObject: {fileID: 1715910568633344935}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 42e521c0afe242b4dbc4dc345a0585ce, type: 3}
-  m_Controller: {fileID: 9100000, guid: 48971feb60d7bd242a368f9f93740fca, type: 2}
+  m_Controller: {fileID: 9100000, guid: dab4a10bfeff0c6428bcc0291b8b460e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2234,12 +2234,12 @@ MonoBehaviour:
   isAttack: 0
   findRadius: 15
   attackRange: 3
-  moveSpeed: 3
+  moveSpeed: 2.5
   humanMask:
     serializedVersion: 2
     m_Bits: 16384
   myRagDollCtrl: {fileID: 2022273142267587103}
-  isGenerated: 1
+  isGenerated: 0
   isLimpid: 0
   isDissolved: 0
   dissolveDistance: 0
