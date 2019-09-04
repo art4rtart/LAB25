@@ -137,7 +137,10 @@ public class WeaponCtrl : MonoBehaviour
             }
             else if (myWeapnType == WEAPON.BOMB)
             {
-
+                if (BombGage.Instance.canInstall)
+                {
+                    StartCoroutine(BombGage.Instance.BombInstall());
+                }
             }
             else if (myWeapnType == WEAPON.HEARTER)
             {

@@ -12602,11 +12602,11 @@ MonoBehaviour:
   gageHandler: {fileID: 569729819}
   stageAnimator: {fileID: 1824209076}
   BombInstallText: {fileID: 1034055047}
-  playerAnim: {fileID: 0}
-  hasBomb: 0
+  playerAnim: {fileID: 521801991}
   ScifiBomb: {fileID: 7337009680765003606, guid: 7a75e2ded001f884e8222427d24245b8,
     type: 3}
-  myWeapon: {fileID: 0}
+  canInstall: 0
+  installedBombCount: 0
   zoneTriggers:
   - {fileID: 559377021}
   - {fileID: 459722034}
@@ -18072,7 +18072,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1888972622}
+      objectReference: {fileID: 1832492962}
     - target: {fileID: 5196305998795175103, guid: b126394cafc28474b9a487641923166c,
         type: 3}
       propertyPath: uiManager
@@ -35670,6 +35670,38 @@ Transform:
   m_Father: {fileID: 2099931161}
   m_RootOrder: 63
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!84 &1133210416
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 4
+  m_DepthFormat: 2
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1133716386
 GameObject:
   m_ObjectHideFlags: 0
@@ -44879,7 +44911,6 @@ MonoBehaviour:
   sliderLerpSpeed: 2
   fpsCam: {fileID: 0}
   HUD: {fileID: 372656400}
-  weaponController: {fileID: 0}
   itemManager: {fileID: 1612263006}
   helmetFadeImage: {fileID: 1359214117}
   fadeSpeed: 1.8
@@ -52197,7 +52228,6 @@ MonoBehaviour:
   player: {fileID: 868245324}
   uiManager: {fileID: 1397807531}
   crosshair: {fileID: 1876802971}
-  weaponController: {fileID: 0}
   medicalKitCount: 0
   adrenalineCount: 0
   grenadeCount: 0
@@ -54621,7 +54651,6 @@ MonoBehaviour:
   - {fileID: 1263208743}
   - {fileID: 310668959}
   - {fileID: 367662936}
-  bombGage: {fileID: 0}
   startGenerator: 0
   isGeneratorExist: 0
 --- !u!95 &1703170284
@@ -57193,6 +57222,38 @@ Transform:
   m_Father: {fileID: 1404803009}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
+--- !u!84 &1832492962
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_Width: 1920
+  m_Height: 1080
+  m_AntiAliasing: 1
+  m_DepthFormat: 2
+  m_ColorFormat: 7
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 1
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1 &1834904680
 GameObject:
   m_ObjectHideFlags: 0
@@ -62758,38 +62819,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 1, z: 0}
   m_TimeToStationary: 0.5
---- !u!84 &1888972622
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_Width: 1920
-  m_Height: 1080
-  m_AntiAliasing: 1
-  m_DepthFormat: 2
-  m_ColorFormat: 7
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 1
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1898449643
 GameObject:
   m_ObjectHideFlags: 0

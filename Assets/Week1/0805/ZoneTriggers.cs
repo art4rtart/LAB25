@@ -10,7 +10,7 @@ public class ZoneTriggers : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
-			BombGage.canInstall = true;
+			BombGage.Instance.canInstall = true;
 			isColliding = true;
 		}
 	}
@@ -19,7 +19,7 @@ public class ZoneTriggers : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
-			BombGage.canInstall = false;
+            BombGage.Instance.canInstall = false;
 			isColliding = false;
 		}
 	}

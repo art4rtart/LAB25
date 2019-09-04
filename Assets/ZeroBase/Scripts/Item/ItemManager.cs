@@ -158,7 +158,7 @@ public class ItemManager : MonoBehaviour
 
 						if (elevator != null)
 						{
-							if (BombGage.installedBombCount == 4)
+							if (BombGage.Instance.installedBombCount == 4)
 							{
 								elevator.GetComponent<Animator>().SetTrigger("CloseElevator");
 								player.transform.SetParent(elevator.GetComponent<Elevator>().elevator.transform);

@@ -18,7 +18,7 @@ public class ScriptController : MonoBehaviour
 
 	[Header("Stage4")]
 	public GameObject[] bombPlace;
-	public BombGage bombGage;
+	//public BombGage bombGage;
 	public bool startGenerator;
 	public bool isGeneratorExist;
 
@@ -82,8 +82,8 @@ public class ScriptController : MonoBehaviour
 
 		yield return new WaitForSeconds(5f);
 
-		bombGage = FindObjectOfType<BombGage>();
-		bombGage.stageAnimator.SetBool("FadeIn", true);
+		//bombGage = FindObjectOfType<BombGage>();
+		BombGage.Instance.stageAnimator.SetBool("FadeIn", true);
 
 		bombPlace[0].transform.position = new Vector3(10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, 10 + Random.Range(-5f,5f));
 		bombPlace[1].transform.position = new Vector3(-10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, 10 + Random.Range(-5f, 5f));
@@ -102,7 +102,7 @@ public class ScriptController : MonoBehaviour
 		// play zombie comming sound
 
 		yield return new WaitForSeconds(2f);
-		if (BombGage.installedBombCount < 4)
+		if (BombGage.Instance.installedBombCount < 4)
 		{
 			missionScript.Type();
 			subText.text = missionScript.subSentences[missionScript.subIndex];
