@@ -57,7 +57,8 @@ Shader "her0in/hologramDoor"
 					o.vertex = UnityObjectToClipPos(v.vertex);
 					o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
-					o.screenuv = ((o.vertex.xy / o.vertex.w) + 1) / 2;
+					// Change.
+					o.screenuv = ((o.vertex.xy / o.vertex.w) + 1) * 0.5;
 					o.screenuv.y = 1 - o.screenuv.y;
 					o.depth = -mul(UNITY_MATRIX_MV, v.vertex).z *_ProjectionParams.w;
 

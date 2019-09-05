@@ -29,11 +29,11 @@ public class ActTrigger : MonoBehaviour
 	{
 		if(other.gameObject.CompareTag("Player"))
 		{
-			if (triggerType == "Generate") StartCoroutine(generator.Generate());
-			else if (triggerType == "Script") scriptController.typeNextScript = true;
-			else if (triggerType == "Finish") missionScript.GetComponent<Animator>().SetTrigger("Finish");
-			else if (triggerType == "ChangeScene") ChangeScene();
-			else if (triggerType == "BossPlayerLock") BossLock();
+			if (triggerType.Equals("Generate")) StartCoroutine(generator.Generate());
+			else if (triggerType.Equals("Script")) scriptController.typeNextScript = true;
+			else if (triggerType.Equals("Finish")) missionScript.GetComponent<Animator>().SetTrigger("Finish");
+			else if (triggerType.Equals("ChangeScene")) ChangeScene();
+			else if (triggerType.Equals("BossPlayerLock")) BossLock();
 			this.gameObject.SetActive(false);
 		}
 	}

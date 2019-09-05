@@ -29,7 +29,7 @@ public class PathFinder : MonoBehaviour
 			destinations.Add(path.corners[i]);
 			if (Vector3.Distance(path.corners[i], path.corners[i + 1]) >= 5f)
 			{
-				Vector3 middle = path.corners[i] + ((path.corners[i + 1] - path.corners[i]) / 2);
+                Vector3 middle = path.corners[i] + ((path.corners[i + 1] - path.corners[i]) * 0.5f);
 				destinations.Add(middle);
 			}
 		}
@@ -63,7 +63,7 @@ public class PathFinder : MonoBehaviour
 				destinations.Add(path.corners[i]);
 				if (Vector3.Distance(path.corners[i], path.corners[i + 1]) >= 5f)
 				{
-					Vector3 middle = path.corners[i] + ((path.corners[i + 1] - path.corners[i]) / 2);
+					Vector3 middle = path.corners[i] + ((path.corners[i + 1] - path.corners[i]) * 0.5f);
 
 					destinations.Add(middle);
 				}

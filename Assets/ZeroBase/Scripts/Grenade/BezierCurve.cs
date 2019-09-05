@@ -26,18 +26,18 @@ public class BezierCurve : MonoBehaviour
 		lineRenderer.SetPositions(pointList.ToArray());
 	}
 
-	void OnDrawGizmos()
-	{
-        Gizmos.color = Color.green;
-		Gizmos.DrawLine(point1.position, point2.position);
+	//void OnDrawGizmos()
+	//{
+ //       Gizmos.color = Color.green;
+	//	Gizmos.DrawLine(point1.position, point2.position);
 
-		Gizmos.color = Color.cyan;
-		Gizmos.DrawLine(point2.position, point3.position);
+	//	Gizmos.color = Color.cyan;
+	//	Gizmos.DrawLine(point2.position, point3.position);
 
-		Gizmos.color = Color.red;
-		for (float ratio = 0.5f / vertexCount; ratio < 1; ratio += 1.0f / vertexCount)
-		{
-			Gizmos.DrawLine(Vector3.Lerp(point1.position, point2.position, ratio), Vector3.Lerp(point2.position, point3.position, ratio));
-		}
-	}
+	//	Gizmos.color = Color.red;
+	//	for (float ratio = 0.5f / vertexCount; ratio < 1; ratio += 1.0f / vertexCount)
+	//	{
+	//		Gizmos.DrawLine(Vector3.Lerp(point1.position, point2.position, ratio), Vector3.Lerp(point2.position, point3.position, ratio));
+	//	}
+	//}
 }

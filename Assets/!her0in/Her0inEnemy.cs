@@ -58,11 +58,12 @@ public class Her0inEnemy : MonoBehaviour
         csCollider = GetComponent<CapsuleCollider>();
         info = GetComponent<Health>();
         info.diedByBullet.AddListener(AfterDie);
+
+        StartCoroutine(SetNextMove());
     }
 
-    void Update()
+    IEnumerator SetNextMove()
     {
-        //Debug.Log(navMesh.speed);
         AnimatorStateInfo info2 = anim.GetCurrentAnimatorStateInfo(0);
 
         if (!followTarget && !isGenerated)
@@ -89,20 +90,30 @@ public class Her0inEnemy : MonoBehaviour
             transform.LookAt(calcuatledtarget);
         }
 
-        if (isLimpid && navMesh.enabled && navMesh.remainingDistance != 0 && navMesh.remainingDistance < navMesh.stoppingDistance + dissolveDistance && !isDissolved)
+        if (isLimpid)
         {
-            spawnEffect.enabled = true;
-            isDissolved = true;
+            if (!isDissolved)
+            {
+                if (navMesh.enabled && navMesh.remainingDistance != 0 && navMesh.remainingDistance < navMesh.stoppingDistance + dissolveDistance)
+                {
+                    spawnEffect.enabled = true;
+                    isDissolved = true;
+                }
+
+                if (spawnEffect.enabled && !isGenerated)
+                {
+                    target = player.transform;
+                    if (navMesh.isOnNavMesh) navMesh.SetDestination(target.position);
+                    StartCoroutine(Follow());
+                    followTarget = true;
+                    isDissolved = true;
+                }
+            }
         }
 
-        if (isLimpid && spawnEffect.enabled && !isDissolved && !isGenerated)
-        {
-            target = player.transform;
-            if (navMesh.isOnNavMesh) navMesh.SetDestination(target.position);
-            StartCoroutine(Follow());
-            followTarget = true;
-            isDissolved = true;
-        }
+        yield return new WaitForSeconds(0.1f);
+
+        StartCoroutine(SetNextMove());
     }
 
     public IEnumerator Follow()
@@ -132,7 +143,7 @@ public class Her0inEnemy : MonoBehaviour
 
         else
         {
-            if (player.transform.name == "Player") anim.SetTrigger("Attack");
+            if (player.transform.name.Equals("Player")) anim.SetTrigger("Attack");
         }
 
         yield return new WaitForSeconds(attackSpeed);
@@ -140,7 +151,7 @@ public class Her0inEnemy : MonoBehaviour
         navMesh.speed = 0f;
         navMesh.enabled = true;
 
-        while (navMesh.remainingDistance == 0)
+        while (navMesh.remainingDistance.Equals(0))
             yield return null;
 
         if (navMesh.enabled && navMesh.remainingDistance >= navMesh.stoppingDistance)

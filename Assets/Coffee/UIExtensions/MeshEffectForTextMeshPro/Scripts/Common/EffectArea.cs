@@ -76,13 +76,13 @@ namespace Coffee.UIExtensions
 		/// </summary>
 		public static void GetPositionFactor (this EffectArea area, int index, Rect rect, Vector2 position, bool isText, bool isTMPro, out float x, out float y)
 		{
-			if (isText && area == EffectArea.Character)
+			if (isText && area.Equals(EffectArea.Character))
 			{
 				index = isTMPro ? (index + 3) % 4 : index % 4;
 				x = splitedCharacterPosition [index].x;
 				y = splitedCharacterPosition [index].y;
 			}
-			else if (area == EffectArea.Fit)
+			else if (area.Equals(EffectArea.Fit))
 			{
 				x = Mathf.Clamp01 ((position.x - rect.xMin) / rect.width);
 				y = Mathf.Clamp01 ((position.y - rect.yMin) / rect.height);
@@ -99,7 +99,7 @@ namespace Coffee.UIExtensions
 		/// </summary>
 		public static void GetNormalizedFactor (this EffectArea area, int index, Matrix2x3 matrix, Vector2 position, bool isText, out Vector2 nomalizedPos)
 		{
-			if (isText && area == EffectArea.Character)
+			if (isText && area.Equals(EffectArea.Character))
 			{
 				nomalizedPos = matrix * splitedCharacterPosition [index % 4];
 			}

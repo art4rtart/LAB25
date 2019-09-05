@@ -33,8 +33,8 @@ public class ScriptController : MonoBehaviour
 
 	void Start()
 	{
-		if (stageNum == 3) StartCoroutine(Stage3Script());
-		else if (stageNum == 4) StartCoroutine(Stage4Script());
+		if (stageNum.Equals(3)) StartCoroutine(Stage3Script());
+		else if (stageNum.Equals(4)) StartCoroutine(Stage4Script());
 	}
 
 	IEnumerator Stage3Script()

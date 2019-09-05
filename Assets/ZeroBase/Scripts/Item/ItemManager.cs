@@ -112,7 +112,7 @@ public class ItemManager : MonoBehaviour
 			{
 				uiManager.isPointingItem = true;
 
-				if (hit.transform.name == "ElevatorSensor")
+				if (hit.transform.name.Equals( "ElevatorSensor"))
 				{
 					itemNameText.text = "ELEVATOR BUTTON";
 
@@ -131,13 +131,13 @@ public class ItemManager : MonoBehaviour
 					}
 				}
 
-				else if (hit.transform.name == "PowerButton")
+				else if (hit.transform.name .Equals( "PowerButton"))
 				{
 					itemNameText.text = "POWER GENERATER";
 					if(coreExploder != null) coreExploder.isReadyToOverPower = true;
 				}
 
-				else if (hit.transform.name == "AutomaticSensor")
+				else if (hit.transform.name .Equals( "AutomaticSensor"))
 				{
 					itemNameText.text = "GATE SENSOR";
 
@@ -147,7 +147,7 @@ public class ItemManager : MonoBehaviour
 					}
 				}
 
-				else if (hit.transform.name == "ElevatorCloseButton")
+				else if (hit.transform.name .Equals( "ElevatorCloseButton"))
 				{
 					itemNameText.text = "CLOSE ELEVATOR";
 					if (Input.GetKeyDown(KeyCode.F))
@@ -158,7 +158,7 @@ public class ItemManager : MonoBehaviour
 
 						if (elevator != null)
 						{
-							if (BombGage.Instance.installedBombCount == 4)
+							if (BombGage.Instance.installedBombCount .Equals( 4))
 							{
 								elevator.GetComponent<Animator>().SetTrigger("CloseElevator");
 								player.transform.SetParent(elevator.GetComponent<Elevator>().elevator.transform);
@@ -170,7 +170,7 @@ public class ItemManager : MonoBehaviour
 					}
 				}
 
-				else if (hit.transform.name == "GateButtonTypeB")
+				else if (hit.transform.name .Equals( "GateButtonTypeB"))
 				{
 					itemNameText.text = "GATE SENSOR";
 
@@ -187,7 +187,7 @@ public class ItemManager : MonoBehaviour
 					}
 				}
 
-				else	if (hit.transform.name == "GateButton")
+				else	if (hit.transform.name .Equals( "GateButton"))
 				{
 					itemNameText.text = "CARD KEY SENSOR";
 
@@ -287,9 +287,9 @@ public class ItemManager : MonoBehaviour
 
 			case "7.76mm Bullet Crate":
 				uiManager.totalBullet += 30;
-                if( WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.AKM )
+                if( WeaponCtrl.Instance.myWeapnType.Equals(WeaponCtrl.WEAPON.AKM ))
                     WeaponCtrl.Instance.akBulletsTotal += 30;
-                else if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
+                else if (WeaponCtrl.Instance.myWeapnType.Equals( WeaponCtrl.WEAPON.SCI_FI))
                     WeaponCtrl.Instance.sciBulletsTotal += 30;
                 break;
 

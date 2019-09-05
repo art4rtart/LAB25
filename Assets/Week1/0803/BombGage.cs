@@ -107,9 +107,9 @@ public class BombGage : MonoBehaviour
                     }
                 }
 
-                if (correctCount >= 3f && slider.value == 100)
+                if (correctCount >= 3f && slider.value.Equals(100))
                 {
-                    Debug.Log("CLEAR");
+                    //Debug.Log("CLEAR");
                     BombIsInstalled();
                     //playerAnim.SetTrigger("SuccesBombSet");
                     //playerAnim.SetBool("ReadyToBombSet", false);
