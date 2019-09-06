@@ -55,8 +55,20 @@ public class PlayerCtrl : MonoBehaviour
     public float crouchHeight;
     private float playerHeight;
 
-    // Use this for initialization
-    private void Start()
+	public static PlayerCtrl Instance
+	{
+		get
+		{
+			if (instance != null)
+				return instance;
+			instance = FindObjectOfType<PlayerCtrl>();
+			return instance;
+		}
+	}
+	private static PlayerCtrl instance;
+
+	// Use this for initialization
+	private void Start()
     {
         m_CharacterController = GetComponent<CharacterController>();
         m_Camera = Camera.main;

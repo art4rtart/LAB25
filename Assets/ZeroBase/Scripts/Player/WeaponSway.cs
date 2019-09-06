@@ -10,8 +10,20 @@ public class WeaponSway : MonoBehaviour
 
     private Vector3 originalPosition;
 
-    // Use this for initialization
-    private void Start()
+	public static WeaponSway Instance
+	{
+		get
+		{
+			if (instance != null)
+				return instance;
+			instance = FindObjectOfType<WeaponSway>();
+			return instance;
+		}
+	}
+	private static WeaponSway instance;
+
+	// Use this for initialization
+	private void Start()
     {
         originalPosition = transform.localPosition;
      

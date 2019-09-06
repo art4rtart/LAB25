@@ -30,6 +30,7 @@ public class SceneMaster : MonoBehaviour
 
 	void Start()
 	{
+		Debug.Log(this.gameObject.name);
 		SaveCurrentSceneName();
 	}
 

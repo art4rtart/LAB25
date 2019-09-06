@@ -19,8 +19,7 @@ public class LabAgentTargetDetector : MonoBehaviour
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, range, ObjectMask);
 		//prevDistance = 9999f;
 
-		if (hitColliders.Length 
-            0)
+		if (hitColliders.Length  == 0)
 		{
 			labAgent.enabled = false;
 		}

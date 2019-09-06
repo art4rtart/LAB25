@@ -13,7 +13,7 @@ public class Crosshair : MonoBehaviour
 	IEnumerator targetLock;
 	IEnumerator targetUnlock;
 
-	void Awake()
+	void OnEnable()
 	{
 		animator = GetComponent<Animator>();
 		targetLock = TargetLocked();
