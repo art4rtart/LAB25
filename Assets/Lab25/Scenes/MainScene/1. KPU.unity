@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -148,6 +148,7 @@ MonoBehaviour:
   nextSceneName: 2. Logo
   isTrigger: 0
   changeTime: 0
+  audioSource: {fileID: 0}
 --- !u!95 &111338438
 Animator:
   serializedVersion: 3
