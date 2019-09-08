@@ -31,12 +31,21 @@ public class SceneMaster : MonoBehaviour
 	void Start()
 	{
 		SaveCurrentSceneName();
-	}
+        StartCoroutine(CheckEscapeScene());
+    }
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Escape)) Escape();
-	}
+    private IEnumerator CheckEscapeScene()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) Escape();
+
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(CheckEscapeScene());
+    }
+
+    //void Update()
+	//{
+	//	if (Input.GetKeyDown(KeyCode.Escape)) Escape();
+	//}
 
 	public static void SaveCurrentSceneName()
 	{

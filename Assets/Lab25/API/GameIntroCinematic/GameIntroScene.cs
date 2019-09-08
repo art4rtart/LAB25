@@ -33,18 +33,33 @@ public class GameIntroScene : MonoBehaviour
 		subTitleText.text = subTitleSentences[sentenceIndex];
 
 		StartCoroutine(Blink());
-	}
+        StartCoroutine(CheckSkipScene());
+    }
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			print("Skip!");
-			isBlinkEnd = true;
-			fadeAnimator.SetTrigger("SceneEnd");
-			Invoke("LoadScene", 1.5f);
-		}
-	}
+    private IEnumerator CheckSkipScene()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print("Skip!");
+            isBlinkEnd = true;
+            fadeAnimator.SetTrigger("SceneEnd");
+            Invoke("LoadScene", 1.5f);
+        }
+
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(CheckSkipScene());
+    }
+
+	//void Update()
+	//{
+	//	if (Input.GetKeyDown(KeyCode.Space))
+	//	{
+	//		print("Skip!");
+	//		isBlinkEnd = true;
+	//		fadeAnimator.SetTrigger("SceneEnd");
+	//		Invoke("LoadScene", 1.5f);
+	//	}
+	//}
 
 	public void LoadScene()
 	{

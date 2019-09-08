@@ -87,6 +87,8 @@ public class WeaponCtrl : MonoBehaviour
     public int stage;
     public GrenadeThrower grenadeThrower;
 
+    private readonly string reloadStr = "Reload";
+
     private void Start()
     {
         characterController = GetComponentInParent<CharacterController>();
@@ -96,7 +98,7 @@ public class WeaponCtrl : MonoBehaviour
     private void Update()
     {
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-        isReloading = info.IsName("Reload");
+        isReloading = info.IsName(reloadStr);
 
         //if (info.IsName("EndToDo(AK)") || info.IsName("Idle(AK)"))
         //    myWeapnType = WEAPON.AKM;
@@ -386,9 +388,7 @@ public class WeaponCtrl : MonoBehaviour
                     if (!hit.transform.CompareTag("Breakable"))
                     {
                         StartCoroutine(Particle.Instance.BloodEffect(hit.point));
-
                     }
-
                     else
                         StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
                 }

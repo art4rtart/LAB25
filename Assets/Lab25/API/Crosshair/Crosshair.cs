@@ -22,13 +22,13 @@ public class Crosshair : MonoBehaviour
 		StartCoroutine(targetUnlock);
 	}
 
-	void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.L))
-		{
-			locked = !locked;
-		}
-	}
+	//void Update()
+	//{
+	//	if(Input.GetKeyDown(KeyCode.L))
+	//	{
+	//		locked = !locked;
+	//	}
+	//}
 
 	public void LockCrosshair()
 	{
