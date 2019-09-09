@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Lab25/Scenes/GUI/Util/GameIntro.unity
     guid: a191ce9d60916b3468dfab37d22fd12c
-  - enabled: 0
+  - enabled: 1
     path: Assets/Lab25/Scenes/MainScene/3. Title.unity
     guid: fc29c0eb013635248a63184af7394bd0
   - enabled: 0
@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Lab25/Scenes/GUI/Stage/Stage2.unity
     guid: 71d618eede34d9442b9fe7ba021ece31
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lab25/Scenes/GUI/Stage/Stage3.unity
     guid: bee655112fe179048866d25ed72e0a37
   - enabled: 0
@@ -68,7 +68,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Lab25/Scenes/GUI/Util/Settings.unity
     guid: ee9896257dcc16e48947160cb5b80031
-  - enabled: 1
-    path: Assets/0906/OptionAPI/Scenes/Option.unity
-    guid: 61bccf8c98556514db23ebb36636a3c5
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/0908/New Scene.unity
+    guid: 05589cdb844a7134daede583ac583679
   m_configObjects: {}

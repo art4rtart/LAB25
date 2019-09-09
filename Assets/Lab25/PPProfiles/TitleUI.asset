@@ -101,9 +101,9 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 1
-        threshold: 1
-        softKnee: 0.5
+        intensity: 2
+        threshold: 1.1
+        softKnee: 0.25
         radius: 6.6
         antiFlicker: 0
       lensDirt:

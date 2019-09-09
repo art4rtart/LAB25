@@ -973,7 +973,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Another Flight Title SDF Material
-  m_Shader: {fileID: 4800000, guid: 43184227f35f24905865f36834c4fea9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 983d3d7238f4540e3af421a4abb25e26, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -993,7 +993,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FaceTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e90a5b54f56729b448259d13e7f711f8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -1063,7 +1063,7 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 0.7830189, g: 0, b: 0, a: 1}
+    - _FaceColor: {r: 0.5188679, g: 0, b: 0, a: 1}
     - _GlowColor: {r: 0.9056604, g: 0, b: 0, a: 1}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0.7735849, g: 0.040138844, b: 0.040138844, a: 1}

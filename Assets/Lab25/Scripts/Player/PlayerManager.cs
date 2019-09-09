@@ -17,7 +17,6 @@ public class PlayerManager : MonoBehaviour
 
     private static PlayerManager instance;
 
-    public ItemManager itemManager;
 	public static bool powerOverWhelming;
     // Player Specification
     public static float hp = 100f;
@@ -38,7 +37,6 @@ public class PlayerManager : MonoBehaviour
     private static Transform mycam;
 
     public static bool isHit = false;
-    public WeaponCtrl myWeaponCtrl;
 
     private void Start()
     {
