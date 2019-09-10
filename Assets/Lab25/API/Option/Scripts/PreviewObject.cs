@@ -53,6 +53,7 @@ public class PreviewObject : MonoBehaviour
 	public RectTransform contentRect;
 	public Renderer blurRend;
 	public Animator sceneFadeAnimator;
+	public bool isNotUsingWeapon;
 
 	void Start()
 	{
@@ -108,7 +109,7 @@ public class PreviewObject : MonoBehaviour
 
 		this.gameObject.transform.GetChild(0).gameObject.SetActive(isPaused);
 		UIManager.Instance.gameObject.SetActive(!isPaused);
-		WeaponCtrl.Instance.enabled = !isPaused;
+		if(!isNotUsingWeapon) WeaponCtrl.Instance.enabled = !isPaused;
 		PlayerCtrl.Instance.enabled = !isPaused;
 		WeaponSway.Instance.enabled = !isPaused;
 		sceneFadeAnimator.gameObject.SetActive(false);

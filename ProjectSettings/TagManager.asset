@@ -67,7 +67,7 @@ TagManager:
   - Wall
   - Distance
   - Minimap
-  - NotCollisionToEnemy
+  - 3DUI
   - 
   - 
   - 
