@@ -39,11 +39,17 @@ public class WeaponCtrl : MonoBehaviour
 
     // Axe
     private float AxeRate = 0.25f;
+
+    // Bong
+    private float BpngRate = 0.35f;
+
     // Parameters
     private float fireTimer;
     private bool isReloading;
     private bool isRunning;
     private float AxeTimer;
+    private float BongTimer;
+    //[HideInInspector]public bool hasBong = false;
 
     // Sounds
     public AudioSource audioSource;
@@ -81,7 +87,7 @@ public class WeaponCtrl : MonoBehaviour
     int specialItemIndex;
     public MissionScripts missionScripts;
 
-    public enum WEAPON { AKM, SCI_FI, AXE, CUP, PICK, BOMB, HEARTER, WARD, JAMMER, ADRE, HEAL };
+    public enum WEAPON { AKM, SCI_FI, AXE, CUP, PICK, BOMB, HEARTER, WARD, JAMMER, ADRE, HEAL, BONG };
     public WEAPON myWeapnType;
 
     public int stage;
@@ -123,6 +129,10 @@ public class WeaponCtrl : MonoBehaviour
             else if (myWeapnType.Equals( WEAPON.AXE ))
             {
                 AxeAttack();
+            }
+            else if (myWeapnType.Equals(WEAPON.BONG))
+            {
+                BongAttack();
             }
             else if (myWeapnType.Equals( WEAPON.CUP))
             {
@@ -205,7 +215,7 @@ public class WeaponCtrl : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                // To Axe
+                // To Axe or To Bong
                 if (info.IsName("Idle(AK)") || info.IsName("Run(AK)") || info.IsName("Idle(SCIFI)") || info.IsName("Run(SCIFI)"))
                 {
                     anim.SetTrigger("doWeaponChange");
@@ -281,6 +291,8 @@ public class WeaponCtrl : MonoBehaviour
         if (AxeTimer < AxeRate)
             AxeTimer += Time.fixedDeltaTime;
 
+        if (BongTimer < 0.3f)
+            BongTimer += Time.fixedDeltaTime;
     }
     private void AxeAttack()
     {
@@ -319,6 +331,44 @@ public class WeaponCtrl : MonoBehaviour
         //audioSource.PlayOneShot(shootSound);    //shoot sound
         anim.CrossFadeInFixedTime("AxeAttack", 0.01f);
     }
+
+    private void BongAttack()
+    {
+        if (BongTimer < 0.3f)
+        {
+            return;
+        }
+        RaycastHit hit;
+
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 3f))
+        {
+            Health health = hit.transform.GetComponent<Health>();
+
+            if (health && health.hp > 0)
+            {
+                health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
+                if (!hit.transform.CompareTag("Breakable"))
+                {
+                    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+
+                }
+
+                //else
+                //    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+            }
+        }
+        //    else
+        //    {
+        //        StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+        //    }
+        //}
+        BongTimer = 0.0f;
+        audioSource.PlayOneShot(axeSound);
+        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        //audioSource.PlayOneShot(shootSound);    //shoot sound
+        anim.CrossFadeInFixedTime("BongAttack", 0.01f);
+    }
+
     private void Run()
     {
         anim.SetBool("isRun", Input.GetKey(KeyCode.LeftShift));

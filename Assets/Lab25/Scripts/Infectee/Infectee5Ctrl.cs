@@ -23,7 +23,7 @@ public class Infectee5Ctrl : MonoBehaviour
 
     void CheckArrived()
     {
-        Debug.Log("Check");
+        //Debug.Log("Check");
         if (secondRoar.Equals(0))
         {
             if (nv.remainingDistance < 0.5f)
@@ -40,18 +40,18 @@ public class Infectee5Ctrl : MonoBehaviour
         }
         else
         {
-            Debug.Log(nv.remainingDistance);
+            //Debug.Log(nv.remainingDistance);
             if (!nv.remainingDistance.Equals(0))
             {
                 if (nv.remainingDistance >= 0.5f)
                 {
-                    Debug.Log("ASD");
+                    //Debug.Log("ASD");
                     anim.SetBool("isArrived", false);
                     StartCoroutine(Move());
                 }
                 else
                 {
-                    Debug.Log("ZXC");
+                    //Debug.Log("ZXC");
                     Destroy(this.gameObject);
                 }
             }

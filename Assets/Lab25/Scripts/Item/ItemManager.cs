@@ -258,6 +258,10 @@ public class ItemManager : MonoBehaviour
 				weaponIndex = 2;
 				break;
 
+            case "Bong":
+                WeaponManager.Instance.ChangeAxeToIronBongAnim();
+                break;
+
 			case "Glock":
 				isHoldingWeapon = uiManager.changeWeaponImage = true;
 				weaponIndex = 3;
