@@ -10,36 +10,71 @@ public class Sensor : MonoBehaviour
 	public AutomaticDoor automaticDoor;
 	[HideInInspector]
 	public bool isOpend = false;
-	
+
+	public bool isMissionSensor;
+	public bool isCollidingWithMoveableObject;
+
 	void Awake()
 	{
 		audiosource = GetComponent<AudioSource>();
 	}
 
-	void Update()
-	{
-		//if(Input.GetKeyDown(KeyCode.B))
-		//{
-		//	ItemManager.hasCardKey = !ItemManager.hasCardKey;
-		//}
-	}
-
 	public void OpenGate()
 	{
-		if(!ItemManager.hasCardKey){
-			audiosource.clip = sounds[0];
-			if(!audiosource.isPlaying) audiosource.Play();
-			return;
-		}
-
-		else{
+		if (isMissionSensor)
+		{
 			audiosource.clip = sounds[1];
+			if (!audiosource.isPlaying) audiosource.Play();
+			if (isOpend) return;
+			automaticDoor.OpenDoor();
+			isOpend = true;
 		}
 
-		if (!audiosource.isPlaying) audiosource.Play();
+		else
+		{
+			if (!ItemManager.hasCardKey)
+			{
+				audiosource.clip = sounds[0];
+				if (!audiosource.isPlaying) audiosource.Play();
+				return;
+			}
 
-		if (isOpend) return;
-		automaticDoor.OpenDoor();
-		isOpend = true;
+			else
+			{
+				audiosource.clip = sounds[1];
+			}
+
+			if (!audiosource.isPlaying) audiosource.Play();
+
+			if (isOpend) return;
+			automaticDoor.OpenDoor();
+			isOpend = true;
+		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("Moveable") || isMissionSensor)
+		{
+			StartCoroutine(Checker());
+		}
+	}
+
+	IEnumerator Checker()
+	{
+		float time = 0;
+		isCollidingWithMoveableObject = true;
+		while (true)
+		{
+			time += Time.deltaTime;
+
+			if (time > 1f)
+			{
+				break;
+			}
+
+			yield return null;
+		}
+		OpenGate();
 	}
 }

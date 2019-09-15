@@ -80,6 +80,8 @@ public class AutomaticDoor : MonoBehaviour
 			yield return null;
 		}
 
+		if (sensor != null) { while (sensor.isCollidingWithMoveableObject) { yield return null; } }
+
 		yield return new WaitForSeconds(2.0f);
 		isOpened = false;
 		audioSource.Stop();
