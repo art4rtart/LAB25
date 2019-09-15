@@ -73,7 +73,7 @@ public class WeaponCtrl : MonoBehaviour
     private int useWard = 0;
 
     // Pickup
-    private bool isPick = false;
+    //private WEAPON prevWeapon;
     RaycastHit pick;
 
     // her0in
@@ -109,6 +109,7 @@ public class WeaponCtrl : MonoBehaviour
         //if (info.IsName("EndToDo(AK)") || info.IsName("Idle(AK)"))
         //    myWeapnType = WEAPON.AKM;
 
+        
         //Debug.Log(myWeapnType);
         if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
@@ -145,7 +146,7 @@ public class WeaponCtrl : MonoBehaviour
             }
             else if (myWeapnType.Equals( WEAPON.PICK))
             {
-
+                Pickup();
             }
             else if (myWeapnType.Equals( WEAPON.BOMB))
             {
@@ -184,6 +185,16 @@ public class WeaponCtrl : MonoBehaviour
                 DoReload();
             }
         }
+        else if ( Input.GetKeyDown(KeyCode.T))
+        {
+            if (myWeapnType == WEAPON.PICK)
+            {
+                pick.transform.GetComponent<Rigidbody>().useGravity = true;
+                pick.transform.SetParent(null);
+            }
+            else
+                myWeapnType = WEAPON.PICK;
+        }
         else
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -216,7 +227,7 @@ public class WeaponCtrl : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 // To Axe or To Bong
-                if (info.IsName("Idle(AK)") || info.IsName("Run(AK)") || info.IsName("Idle(SCIFI)") || info.IsName("Run(SCIFI)"))
+                if (info.IsName("Idle(IRON)") || info.IsName("Idle(AK)") || info.IsName("Run(AK)") || info.IsName("Idle(SCIFI)") || info.IsName("Run(SCIFI)"))
                 {
                     anim.SetTrigger("doWeaponChange");
                     StartCoroutine("DelayResetdoWeaponChange");
@@ -338,6 +349,22 @@ public class WeaponCtrl : MonoBehaviour
         {
             return;
         }
+     
+        //    else
+        //    {
+        //        StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+        //    }
+        //}
+        BongTimer = 0.0f;
+        audioSource.PlayOneShot(axeSound);
+        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        //audioSource.PlayOneShot(shootSound);    //shoot sound
+        anim.CrossFadeInFixedTime("BongAttack", 0.01f);
+    }
+
+    public void DamagedByBong()
+    {
+
         RaycastHit hit;
 
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 3f))
@@ -357,16 +384,6 @@ public class WeaponCtrl : MonoBehaviour
                 //    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
         }
-        //    else
-        //    {
-        //        StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-        //    }
-        //}
-        BongTimer = 0.0f;
-        audioSource.PlayOneShot(axeSound);
-        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
-        //audioSource.PlayOneShot(shootSound);    //shoot sound
-        anim.CrossFadeInFixedTime("BongAttack", 0.01f);
     }
 
     private void Run()
@@ -460,11 +477,11 @@ public class WeaponCtrl : MonoBehaviour
 
     public void Pickup()
     {
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out pick, 100))
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out pick, 10))
         {
             if (pick.transform.CompareTag("Moveable"))
             {
-                Debug.Log(pick.transform.name);
+                //Debug.Log(pick.transform.name);
                 pick.transform.GetComponent<Rigidbody>().useGravity = false;
                 pick.transform.SetParent(pickingPoint.transform);
             }
