@@ -73,7 +73,7 @@ public class WeaponCtrl : MonoBehaviour
     private int useWard = 0;
 
     // Pickup
-    //private WEAPON prevWeapon;
+    private WEAPON prevWeapon;
     RaycastHit pick;
 
     // her0in
@@ -189,11 +189,18 @@ public class WeaponCtrl : MonoBehaviour
         {
             if (myWeapnType == WEAPON.PICK)
             {
-                pick.transform.GetComponent<Rigidbody>().useGravity = true;
-                pick.transform.SetParent(null);
+                if (pick.transform.CompareTag("Moveable"))
+                {
+                    pick.transform.GetComponent<Rigidbody>().useGravity = true;
+                    pick.transform.SetParent(null);
+                }
+                myWeapnType = prevWeapon;
             }
             else
+            {
+                prevWeapon = myWeapnType;
                 myWeapnType = WEAPON.PICK;
+            }
         }
         else
         {
