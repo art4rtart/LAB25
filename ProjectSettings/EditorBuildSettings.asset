@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Lab25/Scenes/GUI/Stage/Stage2.unity
     guid: 71d618eede34d9442b9fe7ba021ece31
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lab25/Scenes/GUI/Stage/Stage3.unity
     guid: bee655112fe179048866d25ed72e0a37
   - enabled: 0
@@ -74,7 +74,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/0908/New Scene.unity
     guid: 05589cdb844a7134daede583ac583679
-  - enabled: 0
+  - enabled: 1
     path: Assets/0908/Stage1/New Scene.unity
     guid: 1b5b315608e8cba4c9135543a6afc3d4
   m_configObjects: {}

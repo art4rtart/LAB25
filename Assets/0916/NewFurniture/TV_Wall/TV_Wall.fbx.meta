@@ -1,0 +1,158 @@
+fileFormatVersion: 2
+guid: 7eb373d4573c5954b8457b0c39a5605f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: tv_and_remote:pCube142
+    100004: tv_and_remote:remote
+    100006: tv_and_remote:TV
+    100008: tv_and_remote:typeMesh4
+    400000: //RootNode
+    400002: tv_and_remote:pCube142
+    400004: tv_and_remote:remote
+    400006: tv_and_remote:TV
+    400008: tv_and_remote:typeMesh4
+    2100000: tv_and_remote_tv_bottom
+    2100002: tv_and_remote_Tv_screen
+    2100004: tv_and_remote_BLACK_SHINY_MATERIAL
+    2100006: lambert1
+    2100008: tv_and_remote_remote_top__not_walpaper
+    2100010: tv_and_remote_remote_top
+    2100012: tv_and_remote_typeBlinn1
+    2300000: tv_and_remote:pCube142
+    2300002: tv_and_remote:remote
+    2300004: tv_and_remote:typeMesh4
+    3300000: tv_and_remote:pCube142
+    3300002: tv_and_remote:remote
+    3300004: tv_and_remote:typeMesh4
+    4300000: tv_and_remote:typeMesh4
+    4300002: tv_and_remote:pCube142
+    4300004: tv_and_remote:remote
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 828655f96249253478c44df5bcda3110, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tv_and_remote_BLACK_SHINY_MATERIAL
+    second: {fileID: 2100000, guid: fb4f1c7c2cc31964cb9370c6642f0a78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tv_and_remote_Tv_screen
+    second: {fileID: 2100000, guid: 681fb2b8dc1db4d4fab32e3734df9fd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tv_and_remote_remote_top
+    second: {fileID: 2100000, guid: 59343224eab0ab84b9d3c029fa9f9307, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tv_and_remote_remote_top__not_walpaper
+    second: {fileID: 2100000, guid: d73ede41d73fc884398ad7ec95b5fabe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tv_and_remote_tv_bottom
+    second: {fileID: 2100000, guid: 099aeee9137e2c447b50828f738eef24, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tv_and_remote_typeBlinn1
+    second: {fileID: 2100000, guid: a5cff6013b39fdc42b1322583751170e, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: remote
+    second: {fileID: 2800000, guid: 980e522d0c9afed4db3942db38113414, type: 3}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

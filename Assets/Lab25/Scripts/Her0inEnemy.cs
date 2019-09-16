@@ -207,8 +207,8 @@ public class Her0inEnemy : MonoBehaviour
         {
             if (!settingTrigger)
             {
-                rgbd.constraints = RigidbodyConstraints.FreezePositionY;
-                rgbd.mass = 100;
+                rgbd.constraints = RigidbodyConstraints.FreezeAll;
+				rgbd.mass = 1000;
                 rgbd.drag = 50;
 
                 if (isGenerated) StartCoroutine(Follow());

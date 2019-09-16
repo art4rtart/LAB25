@@ -68,7 +68,7 @@ public class Sensor : MonoBehaviour
 		{
 			time += Time.deltaTime;
 
-			if (time > 1f)
+			if (time > 0.5f)
 			{
 				break;
 			}
