@@ -12,7 +12,9 @@ public class AttackState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         doAttack = false;
-       
+
+        myInfectee = animator.transform.GetComponent<Her0inEnemy>();
+        myInfectee.isAttack = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,8 +25,13 @@ public class AttackState : StateMachineBehaviour
 
         if (stateInfo.normalizedTime >= attackTime)
         {
-      
-			doAttack = true;
+            if (Vector3.Distance(PlayerCtrl.myPos.position, animator.transform.position) <= myInfectee.attackRange)
+            {
+                myInfectee.damagedEffect.Hit();
+                PlayerManager.Instance.ApplyDamage(10);
+            }
+            myInfectee.isAttack = false;
+            doAttack = true;
 
         }
     }

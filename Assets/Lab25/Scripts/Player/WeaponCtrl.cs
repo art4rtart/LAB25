@@ -206,7 +206,7 @@ public class WeaponCtrl : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (info.IsName("Idle(AXE)"))
+                if (info.IsName("Idle(AXE)") || info.IsName("Idle(IRON)"))
                 {
                     anim.SetTrigger("doWeaponChange");
 
