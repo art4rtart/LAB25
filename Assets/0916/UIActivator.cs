@@ -9,7 +9,11 @@ public class UIActivator : MonoBehaviour
 	public GameObject imagePanel;
 
 	private Animator animator;
+	private AudioSource audioSource;
 	bool showUI = false;
+
+	[Header("Sound Settings")]
+	public AudioClip[] audioClip;
 
 	[Header("UI Settings")]
 	public TextMeshProUGUI titleText;
@@ -21,6 +25,7 @@ public class UIActivator : MonoBehaviour
 	void Awake()
 	{
 		animator = GetComponent<Animator>();
+		audioSource = GetComponent<AudioSource>();
 		Player = FindObjectOfType<PlayerCtrl>().gameObject;
 	}
 
@@ -52,7 +57,7 @@ public class UIActivator : MonoBehaviour
 	public void ActivateUI()
 	{
 		showUI = !showUI;
-
+		audioSource.Play();
 		animator.SetBool("Show3DUI", showUI);
 	}
 
@@ -60,6 +65,7 @@ public class UIActivator : MonoBehaviour
 	{
 		if(other.gameObject.CompareTag("Player"))
 		{
+			audioSource.clip = audioClip[0];
 			ActivateUI();
 		}
 	}
@@ -68,6 +74,7 @@ public class UIActivator : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
+			audioSource.clip = audioClip[1];
 			ActivateUI();
 		}
 	}
