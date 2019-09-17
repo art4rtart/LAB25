@@ -64,14 +64,9 @@ public class PreviewObject : MonoBehaviour
 
 	void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Escape))
+		if(Input.GetKeyDown(KeyCode.Backspace))
 		{
 			ActivateOption();
-		}
-
-		if (Input.GetKeyDown(KeyCode.Backspace))
-		{
-			Canvas3DAnimator.SetTrigger("Select");
 		}
 
 		Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
@@ -104,8 +99,8 @@ public class PreviewObject : MonoBehaviour
 	void ActivateOption()
 	{
 		isPaused = !isPaused;
-
 		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
 
 		this.gameObject.transform.GetChild(0).gameObject.SetActive(isPaused);
 		UIManager.Instance.gameObject.SetActive(!isPaused);

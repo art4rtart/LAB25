@@ -40,6 +40,7 @@ TagManager:
   - Moveable
   - Breakable
   - Floor
+  - Location
   layers:
   - Default
   - TransparentFX

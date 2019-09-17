@@ -41,7 +41,7 @@ public class ItemManager : MonoBehaviour
 	[Header("Player Stat")]
 	public static float currentHealth = 100f;
 	public float totalHealth = 100f;
-	public static float currentArmor = 100f;
+	public static float currentArmor = 0f;
 	public float totalArmor = 100f;
 	public float currentHeartRate = 90f;
 	public float totalHeartRate = 150f;
@@ -220,6 +220,15 @@ public class ItemManager : MonoBehaviour
 				}
 			}
 
+			if(hit.transform.CompareTag("Moveable"))
+			{
+				if (!isTargetLocked)
+				{
+					crosshair.LockCrosshair();
+					isTargetLocked = true;
+				}
+			}
+
 			else
 			{
 				if (!hit.transform.CompareTag("Item") && !hit.transform.CompareTag("MissionObject"))
@@ -235,6 +244,12 @@ public class ItemManager : MonoBehaviour
 					if(coreExploder != null) coreExploder.isReadyToOverPower = false;
 					uiManager.isPointingItem = false;
 					return;
+				}
+
+				if (isTargetLocked)
+				{
+					crosshair.LockCrosshair();
+					isTargetLocked = false;
 				}
 			}
 		}
@@ -341,7 +356,7 @@ public class ItemManager : MonoBehaviour
 		isUsingWard = false;
 		isUsingHearter = false;
 		currentHealth = 100f;
-		currentArmor = 100f;
+		currentArmor = 0f;
 		currentHeartRate = 90f;
 	}
 
