@@ -72,9 +72,6 @@ public class WeaponCtrl : MonoBehaviour
     private CharacterController characterController;
     private int useWard = 0;
 
-    // Pickup
-    private WEAPON prevWeapon;
-    RaycastHit pick;
 
     // her0in
     public int bulletsToReload;
@@ -87,7 +84,7 @@ public class WeaponCtrl : MonoBehaviour
     int specialItemIndex;
     public MissionScripts missionScripts;
 
-    public enum WEAPON { AKM, SCI_FI, AXE, CUP, PICK, BOMB, HEARTER, WARD, JAMMER, ADRE, HEAL, BONG };
+    public enum WEAPON { AKM, SCI_FI, AXE, CUP, BOMB, HEARTER, WARD, JAMMER, ADRE, HEAL, BONG };
     public WEAPON myWeapnType;
 
     public int stage;
@@ -144,10 +141,6 @@ public class WeaponCtrl : MonoBehaviour
                 //itemManager.readyToUseGrenade = false;
                 //Anim End             
             }
-            else if (myWeapnType.Equals( WEAPON.PICK))
-            {
-                Pickup();
-            }
             else if (myWeapnType.Equals( WEAPON.BOMB))
             {
                 if (BombGage.Instance.canInstall)
@@ -183,23 +176,6 @@ public class WeaponCtrl : MonoBehaviour
             if (myWeapnType .Equals( WEAPON.AKM) || myWeapnType .Equals( WEAPON.SCI_FI))
             {
                 DoReload();
-            }
-        }
-        else if ( Input.GetKeyDown(KeyCode.T))
-        {
-            if (myWeapnType == WEAPON.PICK)
-            {
-                if (pick.transform.CompareTag("Moveable"))
-                {
-                    pick.transform.GetComponent<Rigidbody>().useGravity = true;
-                    pick.transform.SetParent(null);
-                }
-                myWeapnType = prevWeapon;
-            }
-            else
-            {
-                prevWeapon = myWeapnType;
-                myWeapnType = WEAPON.PICK;
             }
         }
         else
@@ -482,18 +458,6 @@ public class WeaponCtrl : MonoBehaviour
         UIManager.Instance.TextUpdate();
     }
 
-    public void Pickup()
-    {
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out pick, 10))
-        {
-            if (pick.transform.CompareTag("Moveable"))
-            {
-                //Debug.Log(pick.transform.name);
-                pick.transform.GetComponent<Rigidbody>().useGravity = false;
-                pick.transform.SetParent(pickingPoint.transform);
-            }
-        }
-    }
     private void Recoil()
     {
         Vector3 recoilVector = new Vector3(Random.Range(-recoilKickback.x, recoilKickback.x), recoilKickback.y, recoilKickback.z);
