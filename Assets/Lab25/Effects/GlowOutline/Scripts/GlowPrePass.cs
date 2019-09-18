@@ -31,7 +31,7 @@ public class GlowPrePass : MonoBehaviour
 	{
 		Graphics.Blit(src, dst);
 
-		// Graphics.SetRenderTarget(Blurred);
+		Graphics.SetRenderTarget(Blurred);
 		GL.Clear(false, true, Color.clear);
 
 		Graphics.Blit(src, Blurred);

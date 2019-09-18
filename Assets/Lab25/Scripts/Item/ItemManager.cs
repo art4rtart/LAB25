@@ -65,7 +65,20 @@ public class ItemManager : MonoBehaviour
 	bool isTargetLocked;
 	public CoreExploder coreExploder;
 
-    public static void SetPlayerStat()
+	public static ItemManager Instance
+	{
+		get
+		{
+			if (instance != null)
+				return instance;
+			instance = FindObjectOfType<ItemManager>();
+			return instance;
+		}
+	}
+
+	private static ItemManager instance;
+
+	public static void SetPlayerStat()
     {
         currentHealth = PlayerManager.hp;
         currentArmor = PlayerManager.armor;
@@ -338,13 +351,22 @@ public class ItemManager : MonoBehaviour
 				beakerCount += 1;
 				break;
 
+			case "FlashLight":
+				hasFlashLight = true;
+				break;
+
+			case "Battery":
+				hasBattery = true;
+				break;
+
 			case "Sci-Fi Machine Gun":
 				WeaponCtrl.Instance.anim.SetBool("toScifi", true);
 				break;
 		}
         UIManager.Instance.TextUpdate();
 
-		if (item.gameObject.CompareTag("Item")) { item.gameObject.SetActive(false); WeaponCtrl.Instance.audioSource.PlayOneShot(WeaponCtrl.Instance.itemGetSound); }
+		if (item.gameObject.name == "FuseBox") { if (hasBattery) { uiManager.isPointingItem = false; StartCoroutine(BlackOut.Instance.TextLightUp()); } }
+		if (item.gameObject.CompareTag("Item") && item.gameObject.name != "FuseBox") { item.gameObject.SetActive(false); WeaponCtrl.Instance.audioSource.PlayOneShot(WeaponCtrl.Instance.itemGetSound); }
 	}
 
 	void initializeData()
@@ -360,7 +382,9 @@ public class ItemManager : MonoBehaviour
 		currentHeartRate = 90f;
 	}
 
-	bool hasWard;
+	bool hasBattery = false;
+	public bool hasFlashLight = false;
+	bool hasWard = false;
 	public static bool hasCardKey = false;
 	bool hasJammer;
 }
