@@ -54,11 +54,20 @@ public class Sensor : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.CompareTag("Moveable") || isMissionSensor)
+		if (other.gameObject.CompareTag("Moveable") && isMissionSensor)
 		{
 			StartCoroutine(Checker());
 		}
 	}
+
+	void OnTriggerExit(Collider other)
+	{
+		if (other.gameObject.CompareTag("Moveable") && isMissionSensor)
+		{
+			StartCoroutine(automaticDoor.CloseDoor());
+		}
+	}
+
 
 	IEnumerator Checker()
 	{

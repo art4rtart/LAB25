@@ -92,6 +92,19 @@ public class AutomaticDoor : MonoBehaviour
 		if (sensor != null) sensor.isOpend = false;
 	}
 
+	public IEnumerator CloseDoor()
+	{
+		isOpened = false;
+		audioSource.Stop();
+		animator.SetBool("DoorOpen", false);
+		audioSource.clip = closeSound;
+		audioSource.Play();
+		if (isTriggerGate) { StopCoroutine(colorLerpBlue); StartCoroutine(colorLerpRed); }
+		if (sensor != null) sensor.isOpend = false;
+
+		yield return null;
+	}
+
 	IEnumerator LerpColor(Color current, Color target)
 	{
 		MaterialPropertyBlock mpb = new MaterialPropertyBlock();

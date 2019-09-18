@@ -6,13 +6,18 @@ public class LookState : StateMachineBehaviour
 {
 	PlayerCtrl playerController;
 	GameObject crossHair;
+	GameObject HUD;
+
 	// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
 		crossHair = FindObjectOfType<Crosshair>().gameObject;
+		HUD = FindObjectOfType<UIManager>().transform.GetChild(3).gameObject;
 		playerController = FindObjectOfType<PlayerCtrl>();
+		
 		playerController.enabled = false;
 		crossHair.SetActive(false);
+		HUD.SetActive(false);
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -25,6 +30,7 @@ public class LookState : StateMachineBehaviour
 	{
 		playerController.enabled = true;
 		crossHair.SetActive(true);
+		HUD.SetActive(true);
 		animator.enabled = false;
 	}
 

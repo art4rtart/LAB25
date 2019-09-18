@@ -14,6 +14,13 @@ public class BlackOut : MonoBehaviour
 	float duration = 2f;
 	float smoothness = 0.05f;
 	public bool blackOutStart = false;
+
+	[Header("Security Room Settings")]
+	public Light roomLight;
+	public TextMeshProUGUI Description;
+	public GameObject Button3DUI;
+	public GameObject gateSensor;
+
 	void Start()
 	{
 		audioSource = GetComponent<AudioSource>();
@@ -36,7 +43,7 @@ public class BlackOut : MonoBehaviour
 	}
 	private static BlackOut instance;
 
-	public IEnumerator TextLightUp()
+	public IEnumerator LightSecurityRoom()
 	{
 		float alpha = 0.2f;
 
@@ -46,7 +53,10 @@ public class BlackOut : MonoBehaviour
 			locationNameSecurity.color = new Color(locationNameSecurity.color.r, locationNameSecurity.color.g, locationNameSecurity.color.b, alpha);
 			yield return new WaitForSeconds(smoothness);
 		}
-
+		Button3DUI.SetActive(true);
+		roomLight.enabled = true;
+		Description.text = "Service Available.";
+		gateSensor.tag = "MissionObject";
 		yield return null;
 	}
 

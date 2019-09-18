@@ -6,7 +6,7 @@ public class MaterialController : MonoBehaviour
 {
 	public float smoothness = 0.05f;
 	public float duration = 1f;
-
+	public float increaseValue = 0f;
 	public Renderer[] rend;
 
 	Color currentColor = Color.black;
@@ -23,10 +23,10 @@ public class MaterialController : MonoBehaviour
 	IEnumerator waitForBlackOut()
 	{
 		while (!BlackOut.Instance.blackOutStart) yield return null;
-		StartCoroutine(LerpColor(currentColor, targetColor));
+		StartCoroutine(LerpEmissionColor(currentColor, targetColor));
 	}
 
-	IEnumerator LerpColor(Color current, Color target)
+	IEnumerator LerpEmissionColor(Color current, Color target)
 	{
 		yield return new WaitForSeconds(2f);
 
@@ -44,7 +44,8 @@ public class MaterialController : MonoBehaviour
 			}
 
 			progress += increment;
-			emissionScale += .45f;
+			emissionScale += increaseValue;
+
 			yield return new WaitForSeconds(smoothness);
 		}
 

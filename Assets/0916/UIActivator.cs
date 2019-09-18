@@ -11,6 +11,8 @@ public class UIActivator : MonoBehaviour
 	private Animator animator;
 	private AudioSource audioSource;
 	bool showUI = false;
+	bool isReady;
+	bool isInteracting;
 
 	[Header("Sound Settings")]
 	public AudioClip[] audioClip;
@@ -63,10 +65,22 @@ public class UIActivator : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.CompareTag("Player"))
+		if (other.gameObject.CompareTag("Player"))
 		{
-			audioSource.clip = audioClip[0];
-			ActivateUI();
+			isReady = true;
+		}
+	}
+
+	void OnTriggerStay(Collider other)
+	{
+		if (other.gameObject.CompareTag("Player"))
+		{
+			if (Input.GetKeyDown(KeyCode.Q) && !isInteracting)
+			{
+				isInteracting = true;
+				audioSource.clip = audioClip[0];
+				ActivateUI();
+			}
 		}
 	}
 
@@ -74,8 +88,12 @@ public class UIActivator : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
-			audioSource.clip = audioClip[1];
-			ActivateUI();
+			if (isInteracting)
+			{
+				audioSource.clip = audioClip[1];
+				isReady = isInteracting = false;
+				ActivateUI();
+			}
 		}
 	}
 }

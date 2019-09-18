@@ -365,7 +365,7 @@ public class ItemManager : MonoBehaviour
 		}
         UIManager.Instance.TextUpdate();
 
-		if (item.gameObject.name == "FuseBox") { if (hasBattery) { uiManager.isPointingItem = false; StartCoroutine(BlackOut.Instance.TextLightUp()); } }
+		if (item.gameObject.name == "FuseBox") { if (hasBattery) { uiManager.isPointingItem = false; StartCoroutine(BlackOut.Instance.LightSecurityRoom()); } }
 		if (item.gameObject.CompareTag("Item") && item.gameObject.name != "FuseBox") { item.gameObject.SetActive(false); WeaponCtrl.Instance.audioSource.PlayOneShot(WeaponCtrl.Instance.itemGetSound); }
 	}
 
