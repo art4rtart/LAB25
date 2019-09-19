@@ -7,6 +7,9 @@ public class ChangeRagDoll : MonoBehaviour
 {
     public GameObject charObj;
     public GameObject ragdollObj;
+
+	[Header("Generator Setting")]
+	public bool isGeneratorExist;
     private InfecteeGenerator generator;
 
     private Health infectee;
@@ -15,7 +18,8 @@ public class ChangeRagDoll : MonoBehaviour
     private void Start()
     {
         infectee = GetComponentInChildren<Health>();
-        generator = GameObject.Find("Generator").GetComponent<InfecteeGenerator>();
+
+        if(isGeneratorExist) generator = GameObject.Find("Generator").GetComponent<InfecteeGenerator>();
     }
 
     public IEnumerator ChangeRagdoll()

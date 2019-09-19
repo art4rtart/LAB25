@@ -38,6 +38,12 @@ public class Her0inEnemy : MonoBehaviour
 
     Health info;
 
+	void Awake()
+	{
+		player = FindObjectOfType<PlayerCtrl>().gameObject;
+		damagedEffect = FindObjectOfType<DamagedEffect>();
+	}
+
     void OnEnable()
     {
         if (isGenerated)
@@ -121,7 +127,8 @@ public class Her0inEnemy : MonoBehaviour
         navMesh.speed = moveSpeed;
         anim.SetBool("Run", true);
         navMesh.enabled = true;
-        while (navMesh.remainingDistance >= navMesh.stoppingDistance)
+
+        while (navMesh.enabled && navMesh.remainingDistance >= navMesh.stoppingDistance)
         {
             yield return null;
         }

@@ -10,7 +10,7 @@ public class AttackRange : MonoBehaviour
 	[Header("Default Settings")]
 	public float speed = 5f;
 	public float viewRadius;
-	public float circleSize;
+	public float circleSize = 7f;
 
 	[Header("Zemmer")]
 	public bool isUseable;
@@ -27,10 +27,10 @@ public class AttackRange : MonoBehaviour
 	{
 		while (projector.orthographicSize < circleSize)
 		{
-			projector.orthographicSize = Mathf.Clamp(projector.orthographicSize += speed * Time.deltaTime, 0f, 7f);
+			projector.orthographicSize = Mathf.Clamp(projector.orthographicSize += speed * Time.deltaTime, 0f, circleSize);
 			yield return null;
 		}
-		if(isUseable) StartCoroutine(ZemmerUpdate());
+		if (isUseable) StartCoroutine(ZemmerUpdate());
 		yield return null;
 	}
 
@@ -42,7 +42,7 @@ public class AttackRange : MonoBehaviour
 
 			if (!zemmer.activate)
 			{
-				projector.orthographicSize = Mathf.Clamp(projector.orthographicSize += speed * Time.deltaTime, 3f, 7f);
+				projector.orthographicSize = Mathf.Clamp(projector.orthographicSize += speed * Time.deltaTime, 3f, circleSize);
 			}
 
 			else
@@ -57,11 +57,11 @@ public class AttackRange : MonoBehaviour
 
 				else if (playerInRadius.Length == 0)
 				{
-					if (projector.orthographicSize < 7f)
+					if (projector.orthographicSize < circleSize)
 						projector.orthographicSize += speed * Time.deltaTime;
 				}
 
-				projector.orthographicSize = Mathf.Clamp(projector.orthographicSize, 3f, 7f);
+				projector.orthographicSize = Mathf.Clamp(projector.orthographicSize, 3f, circleSize);
 			}
 
 			yield return null;
@@ -72,14 +72,14 @@ public class AttackRange : MonoBehaviour
 	{
 		while (projector.orthographicSize >= 0f)
 		{
-			projector.orthographicSize = Mathf.Clamp(projector.orthographicSize -= speed * Time.deltaTime, 0f, 7f);
+			projector.orthographicSize = Mathf.Clamp(projector.orthographicSize -= speed * Time.deltaTime, 0f, circleSize);
 			yield return null;
 		}
 	}
 
-	//private void OnDrawGizmosSelected()
-	//{
-	//	Gizmos.color = Color.red;
-	//	Gizmos.DrawWireSphere(this.transform.position, viewRadius);
-	//}
+	private void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(this.transform.position, viewRadius);
+	}
 }

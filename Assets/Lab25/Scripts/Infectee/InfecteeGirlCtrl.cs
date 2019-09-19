@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class InfecteeGirlCtrl : MonoBehaviour
 {
-    public float recognizeRange;
-    public Transform target;
+    Transform target;
     public SkinnedMeshRenderer mySkin;
     public bool isAttacked = false;
 
@@ -17,6 +16,12 @@ public class InfecteeGirlCtrl : MonoBehaviour
 
     [HideInInspector]
     private Animator anim;
+	private Projector projector;
+	void Awake()
+	{
+		target = FindObjectOfType<PlayerCtrl>().transform;
+		projector = this.transform.GetChild(2).GetComponent<Projector>();
+	}
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +29,10 @@ public class InfecteeGirlCtrl : MonoBehaviour
         anim = GetComponent<Animator>();
         audiosrc = GetComponent<AudioSource>();
         info = GetComponent<Health>();
-    }
+
+		for (int i = 0; i < bloodRend.Length; i++) { bloodRend[i].material.SetColor(Shader.PropertyToID("_Color"), new Color(1f, 1f, 1f, 0f)); }
+		girlRend.material.SetFloat(Shader.PropertyToID("_Dissolved"), 0f);
+	}
 
     // Update is called once per frame
     void Update()
@@ -34,11 +42,12 @@ public class InfecteeGirlCtrl : MonoBehaviour
 
         float distance = Vector3.Distance(target.position, transform.position);
 
-        if (distance <= recognizeRange || isAttacked)
+        if (distance <= projector.orthographicSize || isAttacked)
         {
+			StartCoroutine(Dissolve());
             anim.SetBool("isBoom", true);
             wasBoom = true;
-            Invoke("ScreamSoundPlay", 1.8f);
+            Invoke("ScreamSoundPlay", 1.5f);
             Invoke("Boom", 2.5f);
         }
     }
@@ -53,14 +62,16 @@ public class InfecteeGirlCtrl : MonoBehaviour
         isAttacked = true;
     }
 
-    void Boom()
+	void Boom()
     {
-        if (gameObject.activeSelf)
-        {
-            Instantiate(boomParticle, new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z), transform.rotation);
-            //gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
+		// exlpode Sound
+		audiosrc.clip = soundClips[1];
+		audiosrc.Play();
+
+		TestShake.Instance.Shake();
+
+		Instantiate(boomParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+		StartCoroutine(Blood());
     }
 
     private void ScreamSoundPlay()
@@ -76,6 +87,37 @@ public class InfecteeGirlCtrl : MonoBehaviour
     {
         if (gameObject.activeSelf)
             Boom();
-
     }
+
+	public Renderer[] bloodRend;
+	IEnumerator Blood()
+	{
+		float value = 0;
+
+		projector.enabled = false;
+		while (value <= 1)
+		{
+			for (int i = 0; i < bloodRend.Length; i++)
+			{
+				bloodRend[i].material.SetColor(Shader.PropertyToID("_Color"), new Color(1f, 1f, 1f, value));
+			}
+			value += Time.deltaTime * 2f;
+			yield return null;
+		}
+	}
+
+	public Renderer girlRend;
+	IEnumerator Dissolve()
+	{
+		float value = 0;
+
+		while (value <= 1)
+		{
+			value += Time.deltaTime * 2f;
+			girlRend.material.SetFloat(Shader.PropertyToID("_Dissolved"), value);
+			yield return null;
+		}
+
+		yield return null;
+	}
 }

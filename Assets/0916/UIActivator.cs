@@ -67,6 +67,7 @@ public class UIActivator : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
+			animator.SetBool("ActivateUI", true);
 			isReady = true;
 		}
 	}
@@ -88,6 +89,7 @@ public class UIActivator : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
+			animator.SetBool("ActivateUI", false);
 			if (isInteracting)
 			{
 				audioSource.clip = audioClip[1];

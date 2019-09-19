@@ -7992,7 +7992,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4829273576876220426
 Transform:
   m_ObjectHideFlags: 0
@@ -8023,8 +8023,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charObj: {fileID: 4829273576178018862}
   ragdollObj: {fileID: 4829273575841241064}
-  InfecteeID: 1
-  dieTime: 5
+  isGeneratorExist: 1
+  InfecteeID: 0
+  dieTime: 2.5
 --- !u!114 &1209373770
 MonoBehaviour:
   m_ObjectHideFlags: 0
