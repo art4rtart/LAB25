@@ -1487,7 +1487,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.15
   m_TransitionOffset: 0
   m_ExitTime: 0.82857144
   m_HasExitTime: 1
@@ -1534,7 +1534,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.15
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 1
@@ -4819,7 +4819,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.15
   m_TransitionOffset: 0
   m_ExitTime: 0.7692308
   m_HasExitTime: 0
@@ -5446,7 +5446,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: EndToDo(AK)
-  m_Speed: 1
+  m_Speed: 0.8
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101017206121748300}
@@ -8326,10 +8326,10 @@ AnimatorStateMachine:
     m_Position: {x: 552, y: 252, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102142079967645728}
-    m_Position: {x: 804, y: 408, z: 0}
+    m_Position: {x: 804, y: 444, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102935845072344008}
-    m_Position: {x: 804, y: 456, z: 0}
+    m_Position: {x: 804, y: 504, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102168223139508784}
     m_Position: {x: 1152, y: 348, z: 0}

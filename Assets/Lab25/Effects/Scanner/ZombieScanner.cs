@@ -14,7 +14,7 @@ public class ZombieScanner : MonoBehaviour
 
 	void Awake()
 	{
-		player = GameObject.FindGameObjectWithTag("Player");
+		player = FindObjectOfType<PlayerCtrl>().gameObject;
 	}
 
 	public float findRadius = 10f;
@@ -34,7 +34,7 @@ public class ZombieScanner : MonoBehaviour
 			{
 				if (Vector3.Distance(this.transform.position, zombieInRadius[i].transform.position) <= ScanDistance)
 				{
-					if(!zombieInRadius[i].GetComponent<Her0inEnemy>().spawnEffect.enabled)
+					if(zombieInRadius[i].GetComponent<Her0inEnemy>() != null && !zombieInRadius[i].GetComponent<Her0inEnemy>().spawnEffect.enabled)
 						zombieInRadius[i].GetComponent<Her0inEnemy>().spawnEffect.enabled = true;
 				}
 			}

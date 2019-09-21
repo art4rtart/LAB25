@@ -5,7 +5,7 @@ using UnityEngine;
 public class InfecteeGirlCtrl : MonoBehaviour
 {
     Transform target;
-    public SkinnedMeshRenderer mySkin;
+    public SkinnedMeshRenderer[] rend;
     public bool isAttacked = false;
 
     private bool wasBoom = false;
@@ -34,7 +34,7 @@ public class InfecteeGirlCtrl : MonoBehaviour
         info = GetComponent<Health>();
 
 		for (int i = 0; i < bloodRend.Length; i++) { bloodRend[i].material.SetColor(Shader.PropertyToID("_Color"), new Color(1f, 1f, 1f, 0f)); }
-		girlRend.material.SetFloat(Shader.PropertyToID("_Dissolved"), 0f);
+		for(int i = 0; i < rend.Length; i++) rend[i].material.SetFloat(Shader.PropertyToID("_Dissolved"), 0f);
 	}
 
     // Update is called once per frame
@@ -58,7 +58,7 @@ public class InfecteeGirlCtrl : MonoBehaviour
 
     public void ChangeSkinColor()
     {
-        mySkin.material.color += new Color(0.01f, 0, 0);
+		for(int i = 0; i < rend.Length; i++) rend[i].material.color += new Color(0.01f, 0, 0);
     }
 
     public void SetAttackTrigger()
@@ -69,6 +69,8 @@ public class InfecteeGirlCtrl : MonoBehaviour
 	void Boom()
     {
 		// exlpode Sound
+		this.gameObject.tag = "Untagged";
+		this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
 		audiosrc.clip = soundClips[1];
 		audiosrc.Play();
 		TestShake.Instance.Shake();
@@ -110,20 +112,17 @@ public class InfecteeGirlCtrl : MonoBehaviour
 		}
 	}
 
-	public Renderer girlRend;
 	IEnumerator Dissolve()
 	{
 		float value = 0;
 
+		yield return new WaitForSeconds(2.2f);
 		while (value <= 1)
 		{
-			attackRange.circleSize += Time.deltaTime * 5f;
-			value += Time.deltaTime * 2f;
-			girlRend.material.SetFloat(Shader.PropertyToID("_Dissolved"), value);
+			value += Time.deltaTime * 1.5f;
+			for(int i = 0; i < rend.Length; i++) rend[i].material.SetFloat(Shader.PropertyToID("_Dissolved"), value);
 			yield return null;
 		}
-
-		yield return null;
 	}
 
 	IEnumerator RangeIncrease()
@@ -131,7 +130,7 @@ public class InfecteeGirlCtrl : MonoBehaviour
 		attackRange.isExploding = true;
 		while (projector.enabled)
 		{
-			attackRange.circleSize += Time.deltaTime * 2f;
+			attackRange.circleSize += Time.deltaTime * 5f;
 			yield return null;
 		}
 	}

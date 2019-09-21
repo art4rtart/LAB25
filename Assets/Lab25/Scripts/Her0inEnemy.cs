@@ -65,7 +65,7 @@ public class Her0inEnemy : MonoBehaviour
         info = GetComponent<Health>();
         info.diedByBullet.AddListener(AfterDie);
 
-        StartCoroutine(SetNextMove());
+		StartCoroutine(SetNextMove());
     }
 
     IEnumerator SetNextMove()
@@ -108,6 +108,7 @@ public class Her0inEnemy : MonoBehaviour
 
                 if (spawnEffect.enabled && !isGenerated)
                 {
+					this.gameObject.GetComponent<CapsuleCollider>().enabled = true;
                     target = player.transform;
                     if (navMesh.isOnNavMesh) navMesh.SetDestination(target.position);
                     StartCoroutine(Follow());
@@ -217,8 +218,8 @@ public class Her0inEnemy : MonoBehaviour
                 rgbd.constraints = RigidbodyConstraints.FreezeAll;
 				rgbd.mass = 1000;
                 rgbd.drag = 50;
-
-                if (isGenerated) StartCoroutine(Follow());
+				if (isLimpid) this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+				if (isGenerated) StartCoroutine(Follow());
 
                 settingTrigger = true;
             }

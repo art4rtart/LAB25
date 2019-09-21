@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9111084358200600418}
   - component: {fileID: 9111084358200600419}
   - component: {fileID: 9111084358200600416}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: MetalBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 9111084358780302188}
   - component: {fileID: 9111084358780302189}
   - component: {fileID: 9111084358780302194}
-  m_Layer: 13
+  m_Layer: 23
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 9111084358951875198}
   - component: {fileID: 9111084358951875199}
   - component: {fileID: 9111084358951875196}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: MetalBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 9111084359013850633}
   - component: {fileID: 9111084359013850638}
   - component: {fileID: 9111084359013850639}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: MetalBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   - component: {fileID: 9111084359025958883}
   - component: {fileID: 9111084359025958880}
   - component: {fileID: 9111084359025958881}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: MetalBar (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 9111084359041128103}
   - component: {fileID: 9111084359041128100}
   - component: {fileID: 9111084359041128101}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: MetalBar (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -558,7 +558,7 @@ GameObject:
   - component: {fileID: 9111084359448601697}
   - component: {fileID: 9111084359448601702}
   - component: {fileID: 9111084359448601703}
-  m_Layer: 13
+  m_Layer: 23
   m_Name: Glass
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 9111084359754846473}
   - component: {fileID: 9111084359754846478}
   - component: {fileID: 9111084359754846479}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: MetalBar (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 9111084359942716067}
   - component: {fileID: 9111084359942716064}
   - component: {fileID: 9111084359942716065}
-  m_Layer: 13
+  m_Layer: 23
   m_Name: MovingGlass
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -841,9 +841,9 @@ GameObject:
   - component: {fileID: 4995159001402844160}
   - component: {fileID: 8820313072509919527}
   - component: {fileID: 3549096139080124462}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: AutomaticDoor(Glass)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1067,7 +1067,7 @@ GameObject:
   - component: {fileID: 9111084360208368315}
   - component: {fileID: 9111084360208368312}
   - component: {fileID: 9111084360208368313}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: MetalBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

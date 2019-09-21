@@ -188,7 +188,6 @@ public class MedicalItem : MonoBehaviour
 	{
 		while (true)
 		{
-			Debug.Log(increaseRate);
 			itemManager.currentHeartRate = Random.Range(90 + increaseRate, 100 + increaseRate);
 			UIManager.Instance.heratRateText.text = itemManager.currentHeartRate.ToString("N0");
 			yield return new WaitForSeconds(0.5f);

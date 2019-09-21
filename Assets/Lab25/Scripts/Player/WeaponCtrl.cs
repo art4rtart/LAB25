@@ -155,8 +155,9 @@ public class WeaponCtrl : MonoBehaviour
             else if (myWeapnType .Equals( WEAPON.WARD))
             {
                 anim.SetTrigger("useWard");
+				scanner.scanning = true;
 
-                StartCoroutine("DelayResetuseWard");
+				StartCoroutine("DelayResetuseWard");
             }
             else if (myWeapnType .Equals( WEAPON.JAMMER))
             {
@@ -235,6 +236,7 @@ public class WeaponCtrl : MonoBehaviour
 
                 StartCoroutine("DelayResetAnimParameter");
             }
+
             else if (Input.GetKeyDown(KeyCode.Alpha6))
             {
                 // Hearter
