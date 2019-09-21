@@ -15,6 +15,7 @@ public class AttackRange : MonoBehaviour
 	[Header("Zemmer")]
 	public bool isUseable;
 	public LayerMask playerMask;
+	public bool isExploding;
 
 	void Awake()
 	{
@@ -47,21 +48,31 @@ public class AttackRange : MonoBehaviour
 
 			else
 			{
-				Collider[] playerInRadius = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
-
-				if (playerInRadius.Length != 0)
+				if (!isExploding)
 				{
-					if (projector.orthographicSize > 3f)
-						projector.orthographicSize -= speed * Time.deltaTime;
+					Collider[] playerInRadius = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
+
+					if (playerInRadius.Length != 0)
+					{
+						if (projector.orthographicSize > 3f)
+							projector.orthographicSize -= speed * Time.deltaTime;
+					}
+
+					else if (playerInRadius.Length == 0)
+					{
+						if (projector.orthographicSize < circleSize)
+							projector.orthographicSize += speed * Time.deltaTime;
+					}
+
+					projector.orthographicSize = Mathf.Clamp(projector.orthographicSize, 3f, circleSize);
 				}
 
-				else if (playerInRadius.Length == 0)
+				else
 				{
 					if (projector.orthographicSize < circleSize)
 						projector.orthographicSize += speed * Time.deltaTime;
+					projector.orthographicSize = Mathf.Clamp(projector.orthographicSize, 3f, circleSize);
 				}
-
-				projector.orthographicSize = Mathf.Clamp(projector.orthographicSize, 3f, circleSize);
 			}
 
 			yield return null;

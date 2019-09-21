@@ -28,8 +28,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Alpha: 0.22
-    - _Brightness: 3.9
+    - _Alpha: 1
+    - _Brightness: 0.1
     - _FlickerSpeed: 54
     - _Fold: 3
     - _GlitchIntensity: 0.25

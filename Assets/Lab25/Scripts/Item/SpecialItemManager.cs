@@ -24,7 +24,7 @@ public class SpecialItemManager : MonoBehaviour
 	{
 		AnimatorStateInfo animStateInfo = playerAnim.GetCurrentAnimatorStateInfo(0);
 
-		if (animStateInfo.IsName("useHarter") && animStateInfo.normalizedTime > 0.1f && !heraterActivateTrigger)
+		if (animStateInfo.IsName("Hearter") && animStateInfo.normalizedTime > 0.1f && !heraterActivateTrigger)
 		{
 			StopAllCoroutines();
 			StartCoroutine(LightOn());

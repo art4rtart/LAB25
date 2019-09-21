@@ -38,6 +38,7 @@ public class MedicalItem : MonoBehaviour
     {
 		SetFrameBlending(0f);
 		itemManager = GameObject.FindGameObjectWithTag("ItemManager").GetComponent<ItemManager>();
+		StartCoroutine(HeartBeatTextUpdate());
 	}
 
     void Update()
@@ -115,7 +116,7 @@ public class MedicalItem : MonoBehaviour
 	public float blurMotionSpeed;
 	float timeCount;
 	
-	float defaultHeartRateValue = 80f;
+	float defaultHeartRateValue = 100f;
 	float targetHeartRateValue = 155f;
 	public Animator reloadAnim;
 	float reloadAnimSpeed = 1f;
@@ -131,10 +132,13 @@ public class MedicalItem : MonoBehaviour
 				itemManager.currentHeartRate = Mathf.Clamp(itemManager.currentHeartRate += increaseSpeed * Time.deltaTime, defaultHeartRateValue, targetHeartRateValue);
 				blurMotionValue = Mathf.Clamp(blurMotionValue += blurMotionSpeed * Time.deltaTime, 0f, targetMotionValue);
 
-				playerCtrl.m_WalkSpeed = Mathf.Clamp(playerCtrl.m_WalkSpeed += blurMotionSpeed * 0.2f * Time.deltaTime, 5f, 10f);
-				playerCtrl.m_RunSpeed = Mathf.Clamp(playerCtrl.m_RunSpeed += blurMotionSpeed * 0.2f * Time.deltaTime, 10f, 15f);
+				playerCtrl.m_WalkSpeed = Mathf.Clamp(playerCtrl.m_WalkSpeed += blurMotionSpeed * 5f * Time.deltaTime, 5f, 10f);
+				playerCtrl.m_RunSpeed = Mathf.Clamp(playerCtrl.m_RunSpeed += blurMotionSpeed * 5f * Time.deltaTime, 10f, 15f);
 
 				reloadAnimSpeed = Mathf.Clamp(reloadAnimSpeed += blurMotionSpeed * Time.deltaTime, 1f, 1.5f);
+
+				increaseRate = Mathf.Clamp(increaseRate += blurMotionSpeed * Time.deltaTime * 8f, 0, 50f);
+
 				reloadAnim.SetFloat("ReloadSpeed", reloadAnimSpeed);
 				beat.AdrenalineHeartBeatTrigger();
 			}
@@ -144,18 +148,20 @@ public class MedicalItem : MonoBehaviour
 				itemManager.currentHeartRate = Mathf.Clamp(itemManager.currentHeartRate -= increaseSpeed * Time.deltaTime, defaultHeartRateValue, targetHeartRateValue);
 				blurMotionValue = Mathf.Clamp(blurMotionValue -= blurMotionSpeed * Time.deltaTime, 0f, targetMotionValue);
 
-				playerCtrl.m_WalkSpeed = Mathf.Clamp(playerCtrl.m_WalkSpeed -= blurMotionSpeed * 0.4f * Time.deltaTime, 5f, 7f);
-				playerCtrl.m_RunSpeed = Mathf.Clamp(playerCtrl.m_RunSpeed -= blurMotionSpeed * 0.4f * Time.deltaTime, 10f, 13f);
-				reloadAnimSpeed = Mathf.Clamp(reloadAnimSpeed -= blurMotionSpeed * 0.4f * Time.deltaTime, 1f, 1.5f);
+				playerCtrl.m_WalkSpeed = Mathf.Clamp(playerCtrl.m_WalkSpeed -= blurMotionSpeed * 3f * Time.deltaTime, 5f, 7f);
+				playerCtrl.m_RunSpeed = Mathf.Clamp(playerCtrl.m_RunSpeed -= blurMotionSpeed * 3f * Time.deltaTime, 10f, 13f);
+				reloadAnimSpeed = Mathf.Clamp(reloadAnimSpeed -= blurMotionSpeed * 0.8f * Time.deltaTime, 1f, 1.5f);
+				increaseRate = Mathf.Clamp(increaseRate -= blurMotionSpeed * Time.deltaTime * 8f, 0, 50f);
 				reloadAnim.SetFloat("ReloadSpeed", reloadAnimSpeed);
 
-				if (itemManager.currentHeartRate <= defaultHeartRateValue)
+				if (increaseRate <= 0f)
 				{
 					beat.DefaultHeartBeatTrigger();
 					timeCount = 0;
 					adrenalineEffect = false;
 				}
 			}
+
 			SetFrameBlending(blurMotionValue);
 		}
 	}
@@ -175,5 +181,17 @@ public class MedicalItem : MonoBehaviour
 		MotionBlurModel.Settings motionblurSettings = ppProfile.motionBlur.settings;
 		motionblurSettings.frameBlending = value;
 		ppProfile.motionBlur.settings = motionblurSettings;
+	}
+
+	float increaseRate = 0;
+	IEnumerator HeartBeatTextUpdate()
+	{
+		while (true)
+		{
+			Debug.Log(increaseRate);
+			itemManager.currentHeartRate = Random.Range(90 + increaseRate, 100 + increaseRate);
+			UIManager.Instance.heratRateText.text = itemManager.currentHeartRate.ToString("N0");
+			yield return new WaitForSeconds(0.5f);
+		}
 	}
 }

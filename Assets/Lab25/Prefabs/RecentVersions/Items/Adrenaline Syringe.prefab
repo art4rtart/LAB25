@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7436928861688722498}
   - component: {fileID: 7436928861688722499}
   - component: {fileID: 7436928861688722496}
-  m_Layer: 25
+  m_Layer: 21
   m_Name: Adrenaline Syringe
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -122,5 +122,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.02311212, y: 0.008623939, z: 0.07182063}
-  m_Center: {x: -0.0000020479788, y: 2.32831e-10, z: -0.025910458}
+  m_Size: {x: 0.07193526, y: 0.008623939, z: 0.109252594}
+  m_Center: {x: -0.0000020479788, y: 2.3283103e-10, z: -0.025910458}

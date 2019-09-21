@@ -53,11 +53,9 @@ public class ItemManager : MonoBehaviour
 	bool isInteracting = false;
 
 	// her0in new
-	public MissionScripts missionScript;
 	public Quest quest;
 	public bool hasHearter;
 	public GameObject elevator;
-	public ScriptController scriptController;
 
 	[Header("Cross Hair")]
 	public TextMeshProUGUI zombieNameText;
@@ -189,7 +187,6 @@ public class ItemManager : MonoBehaviour
 
 					if (Input.GetKeyDown(KeyCode.F))
 					{
-						missionScript.GetComponent<Animator>().SetTrigger("Finish");
 						uiManager.missionTime = 40f;
 						uiManager.missionMessage = "VIRUS ROOM GATE IS CLOSING";
 						uiManager.isMissionStart = true;
@@ -206,8 +203,6 @@ public class ItemManager : MonoBehaviour
 
 					if (Input.GetKeyDown(KeyCode.F) && hasCardKey )
                     {
-						missionScript.GetComponent<Animator>().SetTrigger("Finish");
-						missionScript.Type(); // need conditions
 						uiManager.isPointingItem = false;
 						pointTrigger = false;
 						quest.OpenGate(hit.transform.GetChild(0).gameObject);
@@ -309,7 +304,6 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Adrenaline Syringe":
-				missionScript.Type();
 				adrenalineCount++;
 				break;
 
@@ -339,7 +333,6 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Jammer":
-				missionScript.Type();
 				hasJammer = true;
 				break;
 

@@ -17,10 +17,13 @@ public class InfecteeGirlCtrl : MonoBehaviour
     [HideInInspector]
     private Animator anim;
 	private Projector projector;
+	private AttackRange attackRange;
+	
 	void Awake()
 	{
 		target = FindObjectOfType<PlayerCtrl>().transform;
 		projector = this.transform.GetChild(2).GetComponent<Projector>();
+		attackRange = this.transform.GetChild(2).GetComponent<AttackRange>();
 	}
 
     // Start is called before the first frame update
@@ -45,6 +48,7 @@ public class InfecteeGirlCtrl : MonoBehaviour
         if (distance <= projector.orthographicSize || isAttacked)
         {
 			StartCoroutine(Dissolve());
+			StartCoroutine(RangeIncrease());
             anim.SetBool("isBoom", true);
             wasBoom = true;
             Invoke("ScreamSoundPlay", 1.5f);
@@ -67,12 +71,12 @@ public class InfecteeGirlCtrl : MonoBehaviour
 		// exlpode Sound
 		audiosrc.clip = soundClips[1];
 		audiosrc.Play();
-
 		TestShake.Instance.Shake();
 
 		Instantiate(boomParticle, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
 		StartCoroutine(Blood());
-    }
+		if(Vector3.Distance(this.transform.position, target.transform.position) < projector.orthographicSize) PlayerManager.Instance.ApplyDamage(100);
+	}
 
     private void ScreamSoundPlay()
     {
@@ -113,11 +117,22 @@ public class InfecteeGirlCtrl : MonoBehaviour
 
 		while (value <= 1)
 		{
+			attackRange.circleSize += Time.deltaTime * 5f;
 			value += Time.deltaTime * 2f;
 			girlRend.material.SetFloat(Shader.PropertyToID("_Dissolved"), value);
 			yield return null;
 		}
 
 		yield return null;
+	}
+
+	IEnumerator RangeIncrease()
+	{
+		attackRange.isExploding = true;
+		while (projector.enabled)
+		{
+			attackRange.circleSize += Time.deltaTime * 2f;
+			yield return null;
+		}
 	}
 }

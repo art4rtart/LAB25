@@ -136,8 +136,8 @@ public class UIManager : MonoBehaviour
         else if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
             bulletProgressbar.value = Mathf.Floor((float)WeaponCtrl.Instance.sciCurrentBullets / (float)150 * 100f) * 0.01f;
 
-        healthText.text = Mathf.Clamp(Mathf.Floor(ItemManager.currentHealth), 0, itemManager.totalHealth).ToString();
-		armorText.text = Mathf.Clamp(Mathf.Floor(ItemManager.currentArmor), 0, itemManager.totalArmor).ToString();
+		// healthText.text = Mathf.Clamp(Mathf.Floor(ItemManager.currentHealth), 0, itemManager.totalHealth).ToString();
+		//armorText.text = Mathf.Clamp(Mathf.Floor(ItemManager.currentArmor), 0, itemManager.totalArmor).ToString();
 		heratRateText.text = Mathf.Clamp(Mathf.Floor(itemManager.currentHeartRate), 0, itemManager.totalHeartRate).ToString();
 
         // bullet Update

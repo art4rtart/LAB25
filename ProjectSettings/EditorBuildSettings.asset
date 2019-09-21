@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Lab25/Scenes/GUI/Util/Credit.unity
     guid: bfee5f67454f59049964f3fabdce8d2a
-  - enabled: 0
+  - enabled: 1
     path: Assets/0908/Stage1/Stage1.unity
     guid: 1b5b315608e8cba4c9135543a6afc3d4
   - enabled: 0
@@ -74,7 +74,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/0908/Stage2/Stage2.unity
     guid: 05589cdb844a7134daede583ac583679
   m_configObjects: {}

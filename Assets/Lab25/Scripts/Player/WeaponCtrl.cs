@@ -200,13 +200,16 @@ public class WeaponCtrl : MonoBehaviour
                 StartCoroutine("DelayResetdoWeaponChange");
 
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
+
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && itemManager.medicalKitCount > 0)
             {
-                // Heal
+				// Heal
+				useMedicalKit = true;
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doHeal");
                 StartCoroutine("DelayResetAnimParameter");
             }
+
             else if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 // To Axe or To Bong
@@ -256,9 +259,10 @@ public class WeaponCtrl : MonoBehaviour
 
                 StartCoroutine("DelayResetAnimParameter");
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha0))
+            else if (Input.GetKeyDown(KeyCode.Alpha0) && itemManager.adrenalineCount > 0)
             {
-                // Adre
+				// Adre
+				useAdrenaline = true;
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doAdre");
 
