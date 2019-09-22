@@ -263,7 +263,7 @@ public class ItemManager : MonoBehaviour
 		}
 
 		// Get Item
-		if (Input.GetKeyDown(KeyCode.F) && uiManager.isPointingItem)
+		if (Input.GetKeyDown(KeyCode.F) && uiManager.isPointingItem )
 			GetItem(hit.transform);
 	}
 
@@ -271,18 +271,22 @@ public class ItemManager : MonoBehaviour
 	{
 		switch (item.transform.name)
 		{
-			case "Knife":
+            case "AK-47":
+                WeaponManager.Instance.ChangeStartAK();
+                break;
+            case "Knife":
 				isHoldingWeapon = uiManager.changeWeaponImage = true;
 				weaponIndex = 1;
 				break;
 
 			case "Axe":
 				isHoldingWeapon = uiManager.changeWeaponImage = true;
-				weaponIndex = 2;
+                WeaponManager.Instance.ChangeStartAxe();
+                weaponIndex = 2;
 				break;
 
             case "Bong":
-                WeaponManager.Instance.ChangeAxeToIronBongAnim();
+                WeaponManager.Instance.ChangeStartIron();
                 break;
 
 			case "Glock":
@@ -353,8 +357,8 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Sci-Fi Machine Gun":
-				WeaponCtrl.Instance.anim.SetBool("toScifi", true);
-				break;
+                WeaponManager.Instance.ChangeStartScifi();
+                break;
 		}
         UIManager.Instance.TextUpdate();
 

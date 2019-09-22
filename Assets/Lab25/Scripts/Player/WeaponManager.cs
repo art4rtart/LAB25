@@ -21,6 +21,7 @@ public class WeaponManager : MonoBehaviour
     public Animator anim;
 
     public int weaponNum;
+    public GameObject playerObj;
     private int curWeaponNum = 0;
 
     // Update is called once per frame
@@ -37,11 +38,25 @@ public class WeaponManager : MonoBehaviour
             UIManager.Instance.TextUpdate();
     }
 
-    public void ChangeAxeToIronBongAnim()
+    public void ChangeStartAxe()
     {
-        if (anim.runtimeAnimatorController == weaponCtrls[0])
-            anim.runtimeAnimatorController = weaponCtrls[2];
-        else if (anim.runtimeAnimatorController == weaponCtrls[1])
-            anim.runtimeAnimatorController = weaponCtrls[3];
+        playerObj.SetActive(true);
+        anim.runtimeAnimatorController = weaponCtrls[4];
+    }
+
+    public void ChangeStartAK()
+    {
+        playerObj.SetActive(true);
+        anim.runtimeAnimatorController = weaponCtrls[0];
+    }
+
+    public void ChangeStartScifi()
+    {
+        anim.runtimeAnimatorController = weaponCtrls[1];
+    }
+
+    public void ChangeStartIron()
+    {
+        anim.runtimeAnimatorController = weaponCtrls[3];
     }
 }

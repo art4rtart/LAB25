@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.AI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -17,7 +19,7 @@ public class PlayerManager : MonoBehaviour
 
     private static PlayerManager instance;
 
-	public static bool powerOverWhelming;
+    public static bool powerOverWhelming;
     // Player Specification
     public static float hp = 100f;
     public static float armor = 0;
@@ -35,16 +37,16 @@ public class PlayerManager : MonoBehaviour
     //public NavMeshAgent _nvAgent;
 
     private static Transform mycam;
-
     public static bool isHit = false;
 
+  
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
         maxHp = hp;
         infecteeParent = GameObject.Find("Generator");
         mycam = Camera.main.transform;
-   
+
         //DontDestroyOnLoad(gameObject);
     }
 
@@ -52,7 +54,9 @@ public class PlayerManager : MonoBehaviour
     {
         isHit = true;
 
-		if (!powerOverWhelming) {
+        StartCoroutine("PlayHeartbeatSound");
+
+        if (!powerOverWhelming) {
             if (armor <= 0)
             {
                 if (hp <= 0)
@@ -64,14 +68,14 @@ public class PlayerManager : MonoBehaviour
             {
                 armor -= damage;
             }
-		}
+        }
         ItemManager.SetPlayerStat();
         UIManager.Instance.TextUpdate();
-		GetComponent<TestShake>().Shake();
-		//RecoilBack();
-		// 마크
-		//UIManager.takeDamge = true;
-	}
+        GetComponent<TestShake>().Shake();
+        //RecoilBack();
+        // 마크
+        //UIManager.takeDamge = true;
+    }
 
     private void recoverArmorGage(int recoverGage)
     {
@@ -111,15 +115,6 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Item"))
         {
             Destroy(collision.gameObject);
-        }
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.gameObject.CompareTag("Item"))
-        {
-            //Debug.Log("CCCollision");
-            //Destroy(hit.gameObject);
         }
     }
 

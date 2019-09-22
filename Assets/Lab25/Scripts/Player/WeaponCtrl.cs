@@ -58,6 +58,7 @@ public class WeaponCtrl : MonoBehaviour
     public AudioClip itemGetSound;
     public AudioClip reloadSound;
     public AudioClip drawSound;
+    public AudioClip heartbeatSound;
 
     //Recoil
     public Transform camRecoil;
@@ -92,6 +93,8 @@ public class WeaponCtrl : MonoBehaviour
 
     private readonly string reloadStr = "Reload";
 
+    // Heartbeat
+    private float heartbeatFreq = 0.65f;
     private void Start()
     {
         characterController = GetComponentInParent<CharacterController>();
@@ -202,7 +205,7 @@ public class WeaponCtrl : MonoBehaviour
 
             }
 
-            else if (Input.GetKeyDown(KeyCode.Alpha2) && itemManager.medicalKitCount > 0)
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && itemManager.medicalKitCount > 0)
             {
 				// Heal
 				useMedicalKit = true;
@@ -211,7 +214,7 @@ public class WeaponCtrl : MonoBehaviour
                 StartCoroutine("DelayResetAnimParameter");
             }
 
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 // To Axe or To Bong
                 if (info.IsName("Idle(IRON)") || info.IsName("Idle(AK)") || info.IsName("Run(AK)") || info.IsName("Idle(SCIFI)") || info.IsName("Run(SCIFI)"))
@@ -220,7 +223,7 @@ public class WeaponCtrl : MonoBehaviour
                     StartCoroutine("DelayResetdoWeaponChange");
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            else if (Input.GetKeyDown(KeyCode.Alpha0))
             {
                 // To Throw Cup
                 anim.SetBool("toDo", true);
@@ -228,7 +231,7 @@ public class WeaponCtrl : MonoBehaviour
 
                 StartCoroutine("DelayResetAnimParameter");
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            else if (Input.GetKeyDown(KeyCode.Alpha6))
             {
                 // Ward
                 anim.SetBool("toDo", true);
@@ -237,7 +240,7 @@ public class WeaponCtrl : MonoBehaviour
                 StartCoroutine("DelayResetAnimParameter");
             }
 
-            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            else if (Input.GetKeyDown(KeyCode.Alpha5))
             {
                 // Hearter
                 anim.SetBool("toDo", true);
@@ -261,9 +264,10 @@ public class WeaponCtrl : MonoBehaviour
 
                 StartCoroutine("DelayResetAnimParameter");
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha0) && itemManager.adrenalineCount > 0)
+            else if (Input.GetKeyDown(KeyCode.Alpha4) )
             {
-				// Adre
+                // Adre
+                StartCoroutine("HeartbeatSoundPlay");
 				useAdrenaline = true;
                 anim.SetBool("toDo", true);
                 anim.SetTrigger("doAdre");
@@ -557,6 +561,19 @@ public class WeaponCtrl : MonoBehaviour
         anim.ResetTrigger("endBomb");
         //Debug.Log("ASD");
 
+    }
+
+    private IEnumerator HeartbeatSoundPlay()
+    {
+        for( int i = 0; i < 10; ++i )
+        {
+            yield return new WaitForSeconds(heartbeatFreq);
+            if (i == 4)
+                heartbeatFreq = 0.4f;
+            audioSource.clip = heartbeatSound;
+            audioSource.Play();
+        }
+        heartbeatFreq = 0.65f;
     }
 }
 
