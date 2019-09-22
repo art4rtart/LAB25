@@ -38,11 +38,11 @@ public class Her0inEnemy : MonoBehaviour
 
     Health info;
 
-	void Awake()
-	{
-		player = FindObjectOfType<PlayerCtrl>().gameObject;
-		damagedEffect = FindObjectOfType<DamagedEffect>();
-	}
+    void Awake()
+    {
+        player = FindObjectOfType<PlayerCtrl>().gameObject;
+        damagedEffect = FindObjectOfType<DamagedEffect>();
+    }
 
     void OnEnable()
     {
@@ -65,8 +65,18 @@ public class Her0inEnemy : MonoBehaviour
         info = GetComponent<Health>();
         info.diedByBullet.AddListener(AfterDie);
 
-		StartCoroutine(SetNextMove());
+        StartCoroutine(SetNextMove());
+
+        int random = Random.Range(0, 2);
+
+        if (random == 1)
+        {
+            //anim.SetBool("Walk", true);
+            anim.SetTrigger("Walk");
+            anim.applyRootMotion = true;
+        }
     }
+
 
     IEnumerator SetNextMove()
     {
@@ -75,7 +85,7 @@ public class Her0inEnemy : MonoBehaviour
         if (!followTarget && !isGenerated)
         {
             Collider[] humanInRadius = Physics.OverlapSphere(transform.position, findRadius, humanMask);
-
+     
             for (int i = 0; i < humanInRadius.Length; i++)
             {
                 if (humanInRadius[i].transform.CompareTag("Player"))
@@ -108,7 +118,6 @@ public class Her0inEnemy : MonoBehaviour
 
                 if (spawnEffect.enabled && !isGenerated)
                 {
-					this.gameObject.GetComponent<CapsuleCollider>().enabled = true;
                     target = player.transform;
                     if (navMesh.isOnNavMesh) navMesh.SetDestination(target.position);
                     StartCoroutine(Follow());
@@ -125,6 +134,7 @@ public class Her0inEnemy : MonoBehaviour
 
     public IEnumerator Follow()
     {
+        anim.applyRootMotion = false;
         navMesh.speed = moveSpeed;
         anim.SetBool("Run", true);
         navMesh.enabled = true;
@@ -215,16 +225,19 @@ public class Her0inEnemy : MonoBehaviour
         {
             if (!settingTrigger)
             {
-                rgbd.constraints = RigidbodyConstraints.FreezeAll;
-				rgbd.mass = 1000;
-                rgbd.drag = 50;
-				if (isLimpid) this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
-				if (isGenerated) StartCoroutine(Follow());
+                rgbd.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+                //rgbd.drag = 50;
+
+                if (isGenerated) StartCoroutine(Follow());
 
                 settingTrigger = true;
             }
 
             else return;
+        }
+        else if (other.gameObject.CompareTag("Enviroment"))
+        {
+            transform.rotation = Random.rotation;
         }
     }
 }
