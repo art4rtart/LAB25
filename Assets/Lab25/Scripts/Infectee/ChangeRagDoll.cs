@@ -15,7 +15,10 @@ public class ChangeRagDoll : MonoBehaviour
     private Health infectee;
 	public int InfecteeID;
 	public float dieTime = 2.5f;
-    private void Start()
+
+	public bool attackedByElectricStick;
+
+	private void Start()
     {
         infectee = GetComponentInChildren<Health>();
 
@@ -25,16 +28,24 @@ public class ChangeRagDoll : MonoBehaviour
     public IEnumerator ChangeRagdoll()
     {
         CopyAnimCharacterTransformToRagdoll(charObj.transform, ragdollObj.transform);
-    
-        charObj.gameObject.SetActive(false);
+		ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<ParticleSystem>().Stop();
+
+		if (attackedByElectricStick)
+		{
+			ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<ParticleSystem>().Play();
+			ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<AudioSource>().clip = ragdollObj.GetComponent<RagDollDIeCtrl>().hitSound[Random.Range(0, ragdollObj.GetComponent<RagDollDIeCtrl>().hitSound.Length)];
+			ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<AudioSource>().Play();
+		}
+
+		charObj.gameObject.SetActive(false);
         ragdollObj.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(dieTime);
       
         charObj.gameObject.SetActive(true);
         ragdollObj.gameObject.SetActive(false);
-
-        infectee.hp = infectee.maxHp;
+		attackedByElectricStick = false;
+		infectee.hp = infectee.maxHp;
 
 		generator.enemyPool[InfecteeID].RemoveItem(transform.gameObject, null, generator.transform.parent);
 
@@ -50,7 +61,7 @@ public class ChangeRagDoll : MonoBehaviour
 
     private void CopyAnimCharacterTransformToRagdoll(Transform origin, Transform rag)
     {
-        for (int i = 0; i < rag.transform.childCount; i++)
+        for (int i = 0; i < rag.transform.childCount - 1; i++)
         {
             if (origin.transform.childCount != 0)
             {

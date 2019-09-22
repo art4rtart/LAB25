@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
     {
         isHit = true;
 
-        StartCoroutine("PlayHeartbeatSound");
+        // StartCoroutine("PlayHeartbeatSound");
 
         if (!powerOverWhelming) {
             if (armor <= 0)
@@ -117,5 +117,4 @@ public class PlayerManager : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
-
 }

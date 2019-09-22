@@ -264,7 +264,7 @@ public class WeaponCtrl : MonoBehaviour
 
                 StartCoroutine("DelayResetAnimParameter");
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha4) )
+            else if (Input.GetKeyDown(KeyCode.Alpha4) && itemManager.adrenalineCount > 0)
             {
                 // Adre
                 StartCoroutine("HeartbeatSoundPlay");
@@ -366,7 +366,8 @@ public class WeaponCtrl : MonoBehaviour
 
             if (health && health.hp > 0)
             {
-                health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
+				hit.transform.GetComponentInParent<ChangeRagDoll>().attackedByElectricStick = true;
+				health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
                 if (!hit.transform.CompareTag("Breakable"))
                 {
                     StartCoroutine(Particle.Instance.BloodEffect(hit.point));

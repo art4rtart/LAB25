@@ -28,6 +28,9 @@ public class RagDollDIeCtrl : MonoBehaviour
     [HideInInspector]
     public bool hitByBullet;
 
+	public GameObject Electricity;
+	public AudioClip[] hitSound;
+
     private void Awake()
     {
         targetTr = GameObject.FindWithTag("Player").transform;

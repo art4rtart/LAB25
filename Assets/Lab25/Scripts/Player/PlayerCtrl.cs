@@ -91,8 +91,9 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
 		// Power Over Whelming
-		if(Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.P))
 		{
 			PlayerManager.powerOverWhelming = !PlayerManager.powerOverWhelming;
 		}
@@ -110,7 +111,7 @@ public class PlayerCtrl : MonoBehaviour
         if (!m_Jump)
         {
             m_Jump = Input.GetButtonDown("Jump");
-        }
+		}
 
         if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
         {
@@ -118,7 +119,9 @@ public class PlayerCtrl : MonoBehaviour
             PlayLandingSound();
             m_MoveDir.y = 0f;
             m_Jumping = false;
-        }
+			isGrounding = true;
+		}
+
         if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
         {
             m_MoveDir.y = 0f;
@@ -130,11 +133,13 @@ public class PlayerCtrl : MonoBehaviour
         float lastHeight = m_CharacterController.height;
         m_CharacterController.height = Mathf.Lerp(m_CharacterController.height, playerHeight, Time.deltaTime * 9f);
         Vector3 tmpPos = transform.position;
-        //tmpPos.y += (m_CharacterController.height - lastHeight);
-        //transform.position = tmpPos;
+		//tmpPos.y += (m_CharacterController.height - lastHeight);
+		//transform.position = tmpPos;
 
-    }
+		if(isGrounding) { this.transform.position = new Vector3(transform.position.x, 0f, transform.position.z); }
+	}
 
+	bool isGrounding = true;
 
     private void PlayLandingSound()
     {
@@ -169,7 +174,8 @@ public class PlayerCtrl : MonoBehaviour
             {
                 m_MoveDir.y = m_JumpSpeed;
                 PlayJumpSound();
-                m_Jump = false;
+				isGrounding = false;
+				m_Jump = false;
                 m_Jumping = true;
             }
         }
@@ -328,8 +334,14 @@ public class PlayerCtrl : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;
-        //dont move the rigidbody if the character is on top of it
-        if (m_CollisionFlags == CollisionFlags.Below)
+
+
+		if (hit.collider.name == "Stairs")
+		{
+			isGrounding = false;
+		}
+		//dont move the rigidbody if the character is on top of it
+		if (m_CollisionFlags == CollisionFlags.Below)
         {
             return;
         }
@@ -344,6 +356,6 @@ public class PlayerCtrl : MonoBehaviour
 			m_PlayerManager.ApplyDamage(100f);
 		}
 
-        body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
+		body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
     }
 }

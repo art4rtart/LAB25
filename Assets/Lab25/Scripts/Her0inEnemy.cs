@@ -38,7 +38,7 @@ public class Her0inEnemy : MonoBehaviour
 
     Health info;
 
-    void Awake()
+	void Awake()
     {
         player = FindObjectOfType<PlayerCtrl>().gameObject;
         damagedEffect = FindObjectOfType<DamagedEffect>();
@@ -134,7 +134,11 @@ public class Her0inEnemy : MonoBehaviour
 
     public IEnumerator Follow()
     {
-        anim.applyRootMotion = false;
+		rgbd.constraints = RigidbodyConstraints.FreezeAll;
+		// rgbd.drag = 50;
+		// rgbd.mass = 100;
+
+		anim.applyRootMotion = false;
         navMesh.speed = moveSpeed;
         anim.SetBool("Run", true);
         navMesh.enabled = true;
@@ -226,7 +230,6 @@ public class Her0inEnemy : MonoBehaviour
             if (!settingTrigger)
             {
                 rgbd.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
-                //rgbd.drag = 50;
 
                 if (isGenerated) StartCoroutine(Follow());
 
@@ -235,7 +238,7 @@ public class Her0inEnemy : MonoBehaviour
 
             else return;
         }
-        else if (other.gameObject.CompareTag("Enviroment"))
+        else if (other.gameObject.CompareTag("Floor"))
         {
             transform.rotation = Random.rotation;
         }
