@@ -42,7 +42,12 @@ public class Her0inEnemy : MonoBehaviour
     {
         player = FindObjectOfType<PlayerCtrl>().gameObject;
         damagedEffect = FindObjectOfType<DamagedEffect>();
-    }
+		anim = GetComponent<Animator>();
+		rgbd = GetComponent<Rigidbody>();
+		navMesh = GetComponent<NavMeshAgent>();
+		myChange = GetComponentInParent<ChangeRagDoll>();
+		csCollider = GetComponent<CapsuleCollider>();
+	}
 
     void OnEnable()
     {
@@ -51,21 +56,16 @@ public class Her0inEnemy : MonoBehaviour
             if (player)
             {
                 target = player.transform;
+				anim.applyRootMotion = false;
             }
         }
-    }
+		StartCoroutine(SetNextMove());
+	}
 
     void Start()
     {
-        anim = GetComponent<Animator>();
-        rgbd = GetComponent<Rigidbody>();
-        navMesh = GetComponent<NavMeshAgent>();
-        myChange = GetComponentInParent<ChangeRagDoll>();
-        csCollider = GetComponent<CapsuleCollider>();
         info = GetComponent<Health>();
         info.diedByBullet.AddListener(AfterDie);
-
-        StartCoroutine(SetNextMove());
 
         int random = Random.Range(0, 2);
 
@@ -80,6 +80,8 @@ public class Her0inEnemy : MonoBehaviour
 
     IEnumerator SetNextMove()
     {
+		Debug.Log("HI");
+
         AnimatorStateInfo info2 = anim.GetCurrentAnimatorStateInfo(0);
 
         if (!followTarget && !isGenerated)
@@ -135,8 +137,8 @@ public class Her0inEnemy : MonoBehaviour
     public IEnumerator Follow()
     {
 		rgbd.constraints = RigidbodyConstraints.FreezeAll;
-		// rgbd.drag = 50;
-		// rgbd.mass = 100;
+		rgbd.drag = 50;
+		rgbd.mass = 100;
 
 		anim.applyRootMotion = false;
         navMesh.speed = moveSpeed;
@@ -231,6 +233,7 @@ public class Her0inEnemy : MonoBehaviour
             {
                 rgbd.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
 
+				StopAllCoroutines();
                 if (isGenerated) StartCoroutine(Follow());
 
                 settingTrigger = true;
@@ -238,6 +241,7 @@ public class Her0inEnemy : MonoBehaviour
 
             else return;
         }
+
         else if (other.gameObject.CompareTag("Floor"))
         {
             transform.rotation = Random.rotation;

@@ -51,6 +51,11 @@ public class ButtonAnimation : MonoBehaviour
 		CheckMenuName();
 	}
 
+	public void UTRSButtonClick()
+	{
+
+	}
+
 	void CheckMenuName()
 	{
 		switch(menuName)

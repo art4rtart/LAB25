@@ -243,7 +243,7 @@ public class ItemManager : MonoBehaviour
 				{
 					if (item != null)
 					{
-						item.GetComponent<GlowObject>().ChangeToDefaultColor();
+						if(item.GetComponent<GlowObject>() != null) item.GetComponent<GlowObject>().ChangeToDefaultColor();
 						item = null;
 					}
 

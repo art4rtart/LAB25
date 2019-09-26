@@ -20,11 +20,11 @@ public class WeaponCtrl : MonoBehaviour
 
     // Weapon SpecificationcurrentBullets
     // AK
-    private int akBulletsPerMag = 30;
-    [HideInInspector]public int akBulletsTotal = 360;
-    [HideInInspector]public int akCurrentBullets = 30;
+    public int akBulletsPerMag = 50;
+	public int akBulletsTotal = 450;
+	[HideInInspector] public int akCurrentBullets = 50;
     private float akRange = 100f;
-    private float akFireRate = 0.1f;
+    private float akFireRate = 0.05f;
     private float akAccuracy = 0.015f;
     private int akDamage = 43;
 
@@ -95,11 +95,15 @@ public class WeaponCtrl : MonoBehaviour
 
     // Heartbeat
     private float heartbeatFreq = 0.65f;
-    private void Start()
+    private void Awake()
     {
         characterController = GetComponentInParent<CharacterController>();
         anim = GameObject.Find("Player").GetComponent<Animator>();
-    }
+
+		akCurrentBullets = akBulletsPerMag;
+		UIManager.Instance.bulletsPerMagazine = akCurrentBullets;
+		UIManager.Instance.totalBullet = akBulletsTotal;
+	}
 
     private void Update()
     {

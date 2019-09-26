@@ -45,8 +45,10 @@ public class InfecteeGenerator : MonoBehaviour
 			enemyPool[i].Dispose();
 		}
     }
+
 	int wave = 0;
-    public IEnumerator Generate()
+
+	public IEnumerator Generate()
     {
         GameObject infectee;
 

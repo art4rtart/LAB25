@@ -136,7 +136,7 @@ public class PlayerCtrl : MonoBehaviour
 		//tmpPos.y += (m_CharacterController.height - lastHeight);
 		//transform.position = tmpPos;
 
-		if(isGrounding) { this.transform.position = new Vector3(transform.position.x, 0f, transform.position.z); }
+		if(isGrounding) { this.transform.position = new Vector3(transform.position.x, -0.3f, transform.position.z); }
 	}
 
 	bool isGrounding = true;

@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
 	[Header("Weapon UI")]
 	public int maxBullet;
 	public int totalBullet;
+	public int bulletsPerMagazine = 30;
 	float bulletlerpTime;
 	bool fired;
 	public TextMeshProUGUI noWeaponText;
@@ -132,7 +133,8 @@ public class UIManager : MonoBehaviour
 		healthProgressbar.value = ItemManager.currentHealth / 100f;
 		armorProgressbar.value = ItemManager.currentArmor / 100f;
         if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.AKM)
-            bulletProgressbar.value = Mathf.Floor((float)WeaponCtrl.Instance.akCurrentBullets / (float)30 * 100f) * 0.01f;
+            bulletProgressbar.value = Mathf.Floor((float)WeaponCtrl.Instance.akCurrentBullets / (float)bulletsPerMagazine * 100f) * 0.01f;
+
         else if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
             bulletProgressbar.value = Mathf.Floor((float)WeaponCtrl.Instance.sciCurrentBullets / (float)150 * 100f) * 0.01f;
 
@@ -142,9 +144,10 @@ public class UIManager : MonoBehaviour
 
         // bullet Update
         if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.AKM)
-            bulletCountText.text = Mathf.Clamp(WeaponCtrl.Instance.akCurrentBullets, 0, 30).ToString();
+            bulletCountText.text = Mathf.Clamp(WeaponCtrl.Instance.akCurrentBullets, 0, bulletsPerMagazine).ToString();
         else if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
             bulletCountText.text = Mathf.Clamp(WeaponCtrl.Instance.sciCurrentBullets, 0, 150).ToString();
+
         totalBulletText.text = totalBullet.ToString();
 
 		// item Update
@@ -172,6 +175,7 @@ public class UIManager : MonoBehaviour
             WeaponCtrl.Instance.akCurrentBullets += WeaponCtrl.Instance.bulletsToReload;
             totalBullet = WeaponCtrl.Instance.akBulletsTotal;
         }
+
         else if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
         { 
             WeaponCtrl.Instance.sciCurrentBullets += WeaponCtrl.Instance.bulletsToReload;
