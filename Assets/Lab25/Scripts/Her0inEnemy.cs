@@ -51,15 +51,14 @@ public class Her0inEnemy : MonoBehaviour
 
     void OnEnable()
     {
-        if (isGenerated)
-        {
-            if (player)
-            {
-                target = player.transform;
+		if (isGenerated)
+		{
+			if (player)
+			{
+				target = player.transform;
 				anim.applyRootMotion = false;
-            }
-        }
-		StartCoroutine(SetNextMove());
+			}
+		}
 	}
 
     void Start()
@@ -75,13 +74,13 @@ public class Her0inEnemy : MonoBehaviour
             anim.SetTrigger("Walk");
             anim.applyRootMotion = true;
         }
-    }
+
+		StartCoroutine(SetNextMove());
+	}
 
 
     IEnumerator SetNextMove()
     {
-		Debug.Log("HI");
-
         AnimatorStateInfo info2 = anim.GetCurrentAnimatorStateInfo(0);
 
         if (!followTarget && !isGenerated)
@@ -142,8 +141,9 @@ public class Her0inEnemy : MonoBehaviour
 
 		anim.applyRootMotion = false;
         navMesh.speed = moveSpeed;
-        anim.SetBool("Run", true);
-        navMesh.enabled = true;
+
+		anim.SetBool("Run", true);
+		navMesh.enabled = true;
 
         while (navMesh.enabled && navMesh.remainingDistance >= navMesh.stoppingDistance)
         {
@@ -233,9 +233,7 @@ public class Her0inEnemy : MonoBehaviour
             {
                 rgbd.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
 
-				StopAllCoroutines();
                 if (isGenerated) StartCoroutine(Follow());
-
                 settingTrigger = true;
             }
 

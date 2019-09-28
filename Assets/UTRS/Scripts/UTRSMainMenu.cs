@@ -61,6 +61,7 @@ public class UTRSMainMenu : MonoBehaviour
 
 	void ShowUpgradeMenuAfterFewSeconds()
 	{
+		UTRSManager.Instance.upgradeMenu.GetComponent<Animator>().SetBool("FadeIn", true);
 		UTRSManager.Instance.upgradeMenu.SetActive(true);
 	}
 

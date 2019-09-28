@@ -113,7 +113,7 @@ public class CameraViewController : MonoBehaviour
 		while (current.position != target.position && current.eulerAngles != target.eulerAngles)
 		{
 			current.position = Vector3.Lerp(current.position, target.position, changeValue);
-			current.eulerAngles = Vector3.Lerp(current.eulerAngles, target.eulerAngles, changeValue);
+			current.rotation = Quaternion.Slerp(current.transform.rotation, target.transform.rotation, changeValue);
 
 			cam.transform.position = current.position;
 			cam.transform.eulerAngles = current.eulerAngles;

@@ -11380,7 +11380,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: afe75492e67b108409c72ec503b15e7f, type: 3}
   - {fileID: 8300000, guid: 19da715963b869f4497976a46d3171fd, type: 3}
   - {fileID: 8300000, guid: bb9851e72f7db084cb521dcc1e0bc522, type: 3}
-  percentage: 100
+  percentage: 10
   isLooping: 1
 --- !u!82 &6041404737824495646
 AudioSource:

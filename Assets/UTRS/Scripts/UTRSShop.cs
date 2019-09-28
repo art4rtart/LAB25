@@ -25,7 +25,7 @@ public class UTRSShop : MonoBehaviour
 
 	public void Update()
 	{
-		if(Input.GetKeyDown(KeyCode.Escape) && (UTRSManager.Instance.MenuState != UTRSManager.CurrentMenu.Main && UTRSManager.Instance.MenuState != UTRSManager.CurrentMenu.None))
+		if(Input.GetKeyDown(KeyCode.Escape) && (UTRSManager.Instance.MenuState != UTRSManager.CurrentMenu.Main && UTRSManager.Instance.MenuState != UTRSManager.CurrentMenu.Upgrade && UTRSManager.Instance.MenuState != UTRSManager.CurrentMenu.None))
 		{
 			anim.SetBool("FadeIn", false);
 			//StartCoroutine(UTRSManager.Instance.Blur(false));

@@ -9682,7 +9682,7 @@ GameObject:
   - component: {fileID: 1100622180}
   - component: {fileID: 1100622179}
   m_Layer: 17
-  m_Name: Infectee
+  m_Name: KnitInfectee
   m_TagString: Infectee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9765,7 +9765,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -10006,7 +10006,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: afe75492e67b108409c72ec503b15e7f, type: 3}
   - {fileID: 8300000, guid: 19da715963b869f4497976a46d3171fd, type: 3}
   - {fileID: 8300000, guid: bb9851e72f7db084cb521dcc1e0bc522, type: 3}
-  percentage: 100
+  percentage: 10
   isLooping: 1
 --- !u!82 &1100622179
 AudioSource:

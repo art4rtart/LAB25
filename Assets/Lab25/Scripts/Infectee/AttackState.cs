@@ -14,6 +14,7 @@ public class AttackState : StateMachineBehaviour
         doAttack = false;
 
         myInfectee = animator.transform.GetComponent<Her0inEnemy>();
+
         myInfectee.isAttack = true;
     }
 
