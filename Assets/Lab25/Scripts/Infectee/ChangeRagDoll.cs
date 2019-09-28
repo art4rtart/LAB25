@@ -10,7 +10,9 @@ public class ChangeRagDoll : MonoBehaviour
 
 	[Header("Generator Setting")]
 	public bool isGeneratorExist;
+    public bool isDgeneratorExist;
     private InfecteeGenerator generator;
+    private DefenseGenerator dGenerator;
 
     private Health infectee;
 	public int InfecteeID;
@@ -22,7 +24,14 @@ public class ChangeRagDoll : MonoBehaviour
     {
         infectee = GetComponentInChildren<Health>();
 
-        if(isGeneratorExist) generator = GameObject.Find("Generator").GetComponent<InfecteeGenerator>();
+        if (isGeneratorExist)
+        {
+            generator = GameObject.Find("Generator").GetComponent<InfecteeGenerator>();
+        }
+        else if ( isDgeneratorExist)
+        {
+            dGenerator = GameObject.Find("Generator").GetComponent<DefenseGenerator>();
+        }
     }
 
     public IEnumerator ChangeRagdoll()
@@ -47,7 +56,10 @@ public class ChangeRagDoll : MonoBehaviour
 		attackedByElectricStick = false;
 		infectee.hp = infectee.maxHp;
 
-		generator.enemyPool[InfecteeID].RemoveItem(transform.gameObject, null, generator.transform.parent);
+        if( !isDgeneratorExist )
+            generator.enemyPool[InfecteeID].RemoveItem(transform.gameObject, null, generator.transform);
+        else
+            dGenerator.enemyPool[InfecteeID].RemoveItem(transform.gameObject, null, dGenerator.transform);
 
         //if( transform.name[0] == 'h')
         //    generator.enemyPool.RemoveItem(transform.gameObject, null, generator.transform.parent);
@@ -61,14 +73,14 @@ public class ChangeRagDoll : MonoBehaviour
 
     private void CopyAnimCharacterTransformToRagdoll(Transform origin, Transform rag)
     {
-        for (int i = 0; i < rag.transform.childCount - 1; i++)
+        for (int i = 0; i < origin.childCount; i++)
         {
-            if (origin.transform.childCount != 0)
+            if (origin.childCount != 0)
             {
-                CopyAnimCharacterTransformToRagdoll(origin.transform.GetChild(i), rag.transform.GetChild(i));
+                CopyAnimCharacterTransformToRagdoll(origin.GetChild(i), rag.GetChild(i));
             }
-            rag.transform.GetChild(i).localPosition = origin.transform.GetChild(i).localPosition;
-            rag.transform.GetChild(i).localRotation = origin.transform.GetChild(i).localRotation;
+            rag.GetChild(i).localPosition = origin.GetChild(i).localPosition;
+            rag.GetChild(i).localRotation = origin.GetChild(i).localRotation;
         }
         ragdollObj.transform.position = charObj.transform.position;
         ragdollObj.transform.rotation = charObj.transform.rotation;

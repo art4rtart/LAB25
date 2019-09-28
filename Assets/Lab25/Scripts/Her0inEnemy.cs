@@ -27,7 +27,7 @@ public class Her0inEnemy : MonoBehaviour
     Rigidbody rgbd;
     NavMeshAgent navMesh;
     [HideInInspector] public Transform target;
-    CapsuleCollider csCollider;
+
     private ChangeRagDoll myChange;
     [HideInInspector] public Vector3 hitPos;
     public bool followTarget;
@@ -40,13 +40,11 @@ public class Her0inEnemy : MonoBehaviour
 
 	void Awake()
     {
-        player = FindObjectOfType<PlayerCtrl>().gameObject;
         damagedEffect = FindObjectOfType<DamagedEffect>();
 		anim = GetComponent<Animator>();
 		rgbd = GetComponent<Rigidbody>();
 		navMesh = GetComponent<NavMeshAgent>();
 		myChange = GetComponentInParent<ChangeRagDoll>();
-		csCollider = GetComponent<CapsuleCollider>();
 	}
 
     void OnEnable()
@@ -57,8 +55,10 @@ public class Her0inEnemy : MonoBehaviour
 			{
 				target = player.transform;
 				anim.applyRootMotion = false;
-			}
-		}
+
+                StartCoroutine(SetNextMove());
+            }
+        }
 	}
 
     void Start()
@@ -74,8 +74,6 @@ public class Her0inEnemy : MonoBehaviour
             anim.SetTrigger("Walk");
             anim.applyRootMotion = true;
         }
-
-		StartCoroutine(SetNextMove());
 	}
 
 
@@ -194,16 +192,16 @@ public class Her0inEnemy : MonoBehaviour
     //    hitPos = pos;
     //}
 
-    private void OnDrawGizmosSelected()
-    {
-        if (!isGenerated)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, findRadius);
-        }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if (!isGenerated)
+    //    {
+    //        Gizmos.color = Color.red;
+    //        Gizmos.DrawWireSphere(transform.position, findRadius);
+    //    }
 
-        else return;
-    }
+    //    else return;
+    //}
 
     public void AfterDie(Vector3 pos)
     {
@@ -212,7 +210,11 @@ public class Her0inEnemy : MonoBehaviour
         myRagDollCtrl.speed = navMesh.velocity.magnitude;
         myRagDollCtrl.AttackedPos = hitPos;
         myRagDollCtrl.hitByBullet = true;
+        isGenerated = true;
+        settingTrigger = false;
 
+        if (DefenseGenerator.Instance)
+            DefenseGenerator.Instance.killedInfectee += 1;
         myChange.StartCoroutine(myChange.ChangeRagdoll());
     }
 
@@ -221,7 +223,7 @@ public class Her0inEnemy : MonoBehaviour
         myRagDollCtrl.speed = navMesh.velocity.magnitude;
         myRagDollCtrl.AttackedPos = hitPos;
         myRagDollCtrl.hitByBullet = false;
-
+        isGenerated = true;
         myChange.StartCoroutine(myChange.ChangeRagdoll());
     }
 

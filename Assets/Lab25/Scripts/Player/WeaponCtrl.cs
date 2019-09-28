@@ -404,7 +404,7 @@ public class WeaponCtrl : MonoBehaviour
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * akAccuracy, out hit, akRange))
         {
             Health health = hit.transform.GetComponent<Health>();
-
+            
             if (health && health.hp > 0)
             {
                 health.ApplyDamage(sciDamage, hit.transform.InverseTransformPoint(hit.point));
