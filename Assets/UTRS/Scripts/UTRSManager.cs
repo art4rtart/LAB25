@@ -6,13 +6,6 @@ using UnityEngine.PostProcessing;
 
 public class UTRSManager : MonoBehaviour
 {
-	public enum CurrentMenu { None, Main, Item, Upgrade, Barricade};
-	public CurrentMenu MenuState;
-
-	public Camera fpsCamera;
-	public GameObject mainCamera;
-	public GameObject gameManager;
-
 	public static UTRSManager Instance
 	{
 		get
@@ -25,28 +18,46 @@ public class UTRSManager : MonoBehaviour
 	}
 	private static UTRSManager instance;
 
+	public enum CurrentMenu { None, Main, Item, Upgrade, Barricade};
+	public CurrentMenu MenuState;
+
+	[Header("Camera")]
+	public Camera fpsCamera;
+	public GameObject mainCamera;
+
+	[Header("Text")]
 	public TextMeshProUGUI goldText;
+	public TextMeshProUGUI leftTimeText;
 
 	[HideInInspector] public float addGold;
 	public float totalGold;
 
+	[Header("Menu Objects")]
 	public GameObject mainMenu;
 	public GameObject shopMenu;
 	public GameObject upgradeMenu;
 	public GameObject barricadeAddMenu;
 
+	[Header("Time")]
+	public Animator UTRSTimeAnim;
+	public float leftTime;
+	public float waitingTime;
+	public bool startCounting;
+	public float waveTotalTime;
+	public float waveLeftTime;
+
+	public GameObject gameManager;
+	[HideInInspector] public Transform player;
+	[HideInInspector] public WeaponCtrl weaponCtrl;
+	[HideInInspector] public WeaponSway weaponSway;
+
 	public PostProcessingProfile ppProfile;
 
-	[HideInInspector] public Transform player;
-	WeaponCtrl weaponCtrl;
-	WeaponSway weaponSway;
+	[Header("Sound")]
+	public AudioSource[] audioSource;
+	public AudioClip[] UIAudioClips;
 
-	void UpdateText()
-	{
-		goldText.text = totalGold.ToString();
-	}
-
-	void Start()
+	void Awake()
 	{
 		UpdateText();
 		SetPostprocessing(1f);
@@ -54,6 +65,77 @@ public class UTRSManager : MonoBehaviour
 		weaponCtrl = FindObjectOfType<WeaponCtrl>();
 		weaponSway = FindObjectOfType<WeaponSway>();
 	}
+
+	public bool showMenuOpen = false;
+
+	bool weaponSwap = false;
+
+	void Start()
+	{
+		Animator tempAnim = player.GetComponent<Animator>();
+	}
+
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Tab) && (MenuState == CurrentMenu.Main || MenuState == CurrentMenu.None))
+		{
+			mainCamera.transform.position = fpsCamera.transform.position;
+			mainCamera.transform.eulerAngles = fpsCamera.transform.eulerAngles;
+
+			PlaySound(0);
+
+			mainCamera.SetActive(true);
+			gameManager.SetActive(false);
+
+			weaponCtrl.enabled = false;
+			weaponSway.enabled = false;
+
+			Cursor.visible = !showMenuOpen;
+			Cursor.lockState = CursorLockMode.None;
+
+			fpsCamera.enabled = !fpsCamera.enabled;
+			player.GetComponent<PlayerCtrl>().enabled = false;
+
+			showMenuOpen = !showMenuOpen;
+
+			if (showMenuOpen) MenuState = CurrentMenu.Main;
+			else MenuState = CurrentMenu.None;
+
+			StopAllCoroutines();
+			StartCoroutine(Blur(showMenuOpen));
+		}
+
+		UpdateText();
+
+		// weapon key settings
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.AKM || WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
+			{
+				weaponSwap = !weaponSwap;
+				isUsingAk = !isUsingAk;
+				if (!weaponSwap) { player.GetComponent<Animator>().SetTrigger("SciFitoAk"); player.GetComponent<Animator>().SetTrigger("NotUsingSciFi"); }
+
+				player.GetComponent<Animator>().SetTrigger("doWeaponChange");
+				player.GetComponent<Animator>().SetBool("ChangeToScifiGun", weaponSwap);
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			if (isUsingAk) player.GetComponent<Animator>().SetTrigger("ElectricStickToAk");
+			else { player.GetComponent<Animator>().SetTrigger("ElectricStickToSciFi"); player.GetComponent<Animator>().SetBool("ChangeToScifiGun", true); }
+
+			if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
+			{
+				player.GetComponent<Animator>().SetBool("ChangeToScifiGun", false);
+				player.GetComponent<Animator>().SetTrigger("SciFitoElectricStick");
+				player.GetComponent<Animator>().SetTrigger("NotUsingSciFi");
+			}
+		}
+	}
+
+	bool isUsingAk = true;
 
 	void OnApplicationQuit()
 	{
@@ -67,37 +149,19 @@ public class UTRSManager : MonoBehaviour
 		ppProfile.bloom.settings = bloomSettings;
 	}
 
-	public bool showMenuOpen = false;
-
-	void Update()
+	void UpdateText()
 	{
-		if(Input.GetKeyDown(KeyCode.Tab) && (MenuState == CurrentMenu.Main || MenuState == CurrentMenu.None))
-		{
-			mainCamera.transform.position = fpsCamera.transform.position;
-			mainCamera.transform.eulerAngles = fpsCamera.transform.eulerAngles;
-			mainCamera.SetActive(!showMenuOpen);
-			gameManager.SetActive(showMenuOpen);
-			weaponCtrl.enabled = !weaponCtrl.enabled;
-			weaponSway.enabled = !weaponSway.enabled;
-
-			Cursor.visible = !showMenuOpen;
-			Cursor.lockState = CursorLockMode.None;
-
-			fpsCamera.enabled = !fpsCamera.enabled;
-			player.GetComponent<PlayerCtrl>().enabled = !player.GetComponent<PlayerCtrl>().enabled;
-
-			showMenuOpen = !showMenuOpen;
-
-			if (showMenuOpen) MenuState = CurrentMenu.Main;
-			else MenuState = CurrentMenu.None;
-
-			StopAllCoroutines();
-			StartCoroutine(Blur(showMenuOpen));
-		}
+		goldText.text = totalGold.ToString();
 	}
 
-	public float smothness = 2f;
+	public void PlaySound(int audioIndex)
+	{
+		audioSource[audioIndex].clip = UIAudioClips[audioIndex];
+		if (!audioSource[audioIndex].isPlaying) audioSource[audioIndex].Play();
+	}
 
+
+	public float smothness = 2f;
 	public IEnumerator Blur(bool dir)
 	{
 		float value = 0;

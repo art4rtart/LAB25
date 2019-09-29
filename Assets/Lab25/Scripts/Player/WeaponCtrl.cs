@@ -20,11 +20,11 @@ public class WeaponCtrl : MonoBehaviour
 
     // Weapon SpecificationcurrentBullets
     // AK
-    public int akBulletsPerMag = 50;
-	public int akBulletsTotal = 450;
+    public int akBulletsPerMag = 30;
+	public int akBulletsTotal = 360;
 	[HideInInspector] public int akCurrentBullets = 50;
     private float akRange = 100f;
-    private float akFireRate = 0.05f;
+    public float akFireRate = 0.1f;
     private float akAccuracy = 0.015f;
     private int akDamage = 43;
 
@@ -91,7 +91,8 @@ public class WeaponCtrl : MonoBehaviour
     public int stage;
     public GrenadeThrower grenadeThrower;
 
-    private readonly string reloadStr = "Reload";
+    private string reloadStr = "Reload";
+	public bool isUTRSMode;
 
     // Heartbeat
     private float heartbeatFreq = 0.65f;
@@ -500,17 +501,19 @@ public class WeaponCtrl : MonoBehaviour
     {
         if (myWeapnType .Equals( WEAPON.AKM))
         {
+			if (isUTRSMode) reloadStr = "AKReload";
             if (!isReloading && akCurrentBullets < akBulletsPerMag && akBulletsTotal > 0)
             {
-                anim.CrossFadeInFixedTime("Reload", 0.01f); // Reloading
+                anim.CrossFadeInFixedTime("AKReload", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
             }
         }
         else if (myWeapnType .Equals( WEAPON.SCI_FI))
         {
-            if (!isReloading && sciCurrentBullets < sciBulletsPerMag && sciBulletsTotal > 0)
+			if (isUTRSMode) reloadStr = "SciFiReload";
+			if (!isReloading && sciCurrentBullets < sciBulletsPerMag && sciBulletsTotal > 0)
             {
-                anim.CrossFadeInFixedTime("Reload", 0.01f); // Reloading
+                anim.CrossFadeInFixedTime("SciFiReload", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
             }
         }
@@ -521,7 +524,8 @@ public class WeaponCtrl : MonoBehaviour
         // her0in
         if (myWeapnType .Equals( WEAPON.AKM))
         {
-            bulletsToReload = akBulletsPerMag - akCurrentBullets;
+			if (isUTRSMode) reloadStr = "AKReload";
+			bulletsToReload = akBulletsPerMag - akCurrentBullets;
             if (bulletsToReload > akBulletsTotal)
             {
                 bulletsToReload = akBulletsTotal;
@@ -530,7 +534,8 @@ public class WeaponCtrl : MonoBehaviour
         }
         else if (myWeapnType .Equals( WEAPON.SCI_FI))
         {
-            bulletsToReload = sciBulletsPerMag - sciCurrentBullets;
+			if (isUTRSMode) reloadStr = "SciFiReload";
+			bulletsToReload = sciBulletsPerMag - sciCurrentBullets;
             if (bulletsToReload > sciBulletsTotal)
             {
                 bulletsToReload = sciBulletsTotal;

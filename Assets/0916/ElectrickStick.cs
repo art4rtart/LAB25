@@ -19,8 +19,8 @@ public class ElectrickStick : MonoBehaviour
 
 	void Update()
 	{
-		if (WeaponCtrl.Instance.myWeapnType != WeaponCtrl.WEAPON.BONG) { ps.startSize = 0f; subPs.startSize = 0f; audioSource.Stop(); isHoldingStick = false; return; }
-		else if (!isHoldingStick) { ps.startSize = 0.2f; subPs.startSize = 0.5f; audioSource.Play(); isHoldingStick = true; }
+		if (WeaponCtrl.Instance.myWeapnType != WeaponCtrl.WEAPON.BONG) { ps.startSize = 0f; subPs.startSize = 0f; audioSource.Stop(); ps.Stop(); isHoldingStick = false; return; }
+		else if (!isHoldingStick) { ps.startSize = 0.2f; subPs.startSize = 0.5f; audioSource.Play(); ps.Play(); isHoldingStick = true; }
 
 		if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 		{

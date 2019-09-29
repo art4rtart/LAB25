@@ -61,6 +61,7 @@ public class BarigateController : MonoBehaviour
 	bool isCollidingWithUI = false;
 	public void UICollideEnter()
 	{
+		UTRSManager.Instance.PlaySound(1);
 		isCollidingWithUI = true;
 	}
 
@@ -72,6 +73,7 @@ public class BarigateController : MonoBehaviour
 
 	public void BuyDesk()
 	{
+		UTRSManager.Instance.PlaySound(2);
 		selectedObject = null;
 		selectedObject = Desk;
 
@@ -83,6 +85,7 @@ public class BarigateController : MonoBehaviour
 
 	public void BuyBox()
 	{
+		UTRSManager.Instance.PlaySound(2);
 		selectedObject = null;
 		selectedObject = Box;
 
@@ -94,6 +97,7 @@ public class BarigateController : MonoBehaviour
 
 	public void BuyFence()
 	{
+		UTRSManager.Instance.PlaySound(2);
 		selectedObject = null;
 		selectedObject = Fence;
 

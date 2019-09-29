@@ -70,6 +70,8 @@ public class CameraViewController : MonoBehaviour
 			BarigateController.Instance.Desk.SetActive(false);
 			BarigateController.Instance.Box.SetActive(false);
 			BarigateController.Instance.Fence.SetActive(false);
+
+			UTRSManager.Instance.PlaySound(0);
 		}
 
 

@@ -14,8 +14,19 @@ public class Effect
 
 public class UTRSUpgrade : MonoBehaviour
 {
-	[Header("Item Upgrade")]
+	public static UTRSUpgrade Instance
+	{
+		get
+		{
+			if (instance != null)
+				return instance;
+			instance = FindObjectOfType<UTRSUpgrade>();
+			return instance;
+		}
+	}
+	private static UTRSUpgrade instance;
 
+	[Header("Item Upgrade")]
 	public Effect medicalKit = new Effect();
 	public Effect adrenaline = new Effect();
 	public Effect damageVest = new Effect();
@@ -23,8 +34,8 @@ public class UTRSUpgrade : MonoBehaviour
 	public Effect scifiBullet = new Effect();
 
 	[Header("Weapon Upgrade")]
-	public Effect ak = new Effect();
-	public Effect scifi = new Effect();
+	public Effect weaponAk = new Effect();
+	public Effect weaponScifi = new Effect();
 
 	[Header("Human Upgrade")]
 	public Effect medic = new Effect();
@@ -42,9 +53,12 @@ public class UTRSUpgrade : MonoBehaviour
 
 	Animator anim;
 
+	WeaponCtrl weaponCtrl;
+
 	void Awake()
 	{
 		anim = GetComponent<Animator>();
+		weaponCtrl = FindObjectOfType<WeaponCtrl>();
 	}
 
 	public void Update()
@@ -54,6 +68,7 @@ public class UTRSUpgrade : MonoBehaviour
 			anim.SetBool("FadeIn", false);
 			UTRSMainMenu.Instance.anim.SetBool("FadeIn", true);
 			UTRSManager.Instance.MenuState = UTRSManager.CurrentMenu.Main;
+			UTRSManager.Instance.PlaySound(0);
 		}
 	}
 
@@ -91,9 +106,10 @@ public class UTRSUpgrade : MonoBehaviour
 		medicalKit.upgradePrice *= 10f;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 	}
 
-	public void AkWeaponKitUpgrade()
+	public void AkWeaponUpgrade()
 	{
-
+		weaponAk.upgradePrice *= 2f;
+		if(weaponCtrl.akFireRate > 0.01f) weaponCtrl.akFireRate -= 0.01f;
 	}
 
 	public void SciFiWeaponUpgrade()

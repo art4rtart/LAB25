@@ -131,8 +131,7 @@ public class DefenseGenerator : MonoBehaviour
 
     public IEnumerator WaveGenerate()
     {
-        yield return new WaitForSeconds(stageClearDelay);
-
-        StartCoroutine(Generate());
+		yield return new WaitForSeconds(stageClearDelay);
+		StartCoroutine(Generate());
     }
 }

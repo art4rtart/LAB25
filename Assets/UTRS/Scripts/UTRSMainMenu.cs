@@ -29,7 +29,7 @@ public class UTRSMainMenu : MonoBehaviour
 	public void ShowItemMenu()
 	{
 		UTRSManager.Instance.MenuState = UTRSManager.CurrentMenu.Item;
-
+		UTRSManager.Instance.PlaySound(0);
 		anim.SetBool("FadeIn", false);
 		Invoke("ShowItemMenuAfterFewSeconds", 1f);
 	}
@@ -37,7 +37,7 @@ public class UTRSMainMenu : MonoBehaviour
 	public void ShowUpgradeMenu()
 	{
 		UTRSManager.Instance.MenuState = UTRSManager.CurrentMenu.Upgrade;
-
+		UTRSManager.Instance.PlaySound(0);
 		anim.SetBool("FadeIn", false);
 		Invoke("ShowUpgradeMenuAfterFewSeconds", 1f);
 	}
@@ -45,8 +45,7 @@ public class UTRSMainMenu : MonoBehaviour
 	public void ShowBarricadeMenu()
 	{
 		UTRSManager.Instance.MenuState = UTRSManager.CurrentMenu.Barricade;
-
-		//UTRSManager.Instance.mainCamera.transform.SetParent(null);
+		UTRSManager.Instance.PlaySound(0);
 
 		barricadeClicked = true;
 		anim.SetBool("FadeIn", false);

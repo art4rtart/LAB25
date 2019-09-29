@@ -16,6 +16,9 @@ public class Health : MonoBehaviour
 
     ItemDrop itemDrop;
 
+	[Header("UTRS Settings")]
+	public bool isUTRSMode;
+	public int bounty = 10;
     // Start is called before the first frame update
     void Awake()
     {
@@ -37,6 +40,7 @@ public class Health : MonoBehaviour
 			diedByBullet.Invoke(hitpos);
 			died.Invoke();
 			if (itemDrop != null) itemDrop.DropItem();
+			if(isUTRSMode) UTRSManager.Instance.totalGold += bounty;
 		}
 	}
 

@@ -20,6 +20,8 @@ public class ButtonAnimation : MonoBehaviour
 	public TextMeshProUGUI subMenuText1;
 	public TextMeshProUGUI subMenuText2;
 
+	public bool isUTRSMode;
+
 	void Start()
 	{
 		animator = GetComponent<Animator>();
@@ -27,6 +29,7 @@ public class ButtonAnimation : MonoBehaviour
 
 	public void ButtonEnter()
 	{
+		if (isUTRSMode) { UTRSManager.Instance.PlaySound(1); }
 		animator.SetBool("Enter", true);
 	}
 
@@ -37,6 +40,8 @@ public class ButtonAnimation : MonoBehaviour
 
 	public void ButtonClick()
 	{
+		if (isUTRSMode) return;
+
 		InitButton();
 		animator.SetBool("Click", true);
 		// button click sound
@@ -53,7 +58,10 @@ public class ButtonAnimation : MonoBehaviour
 
 	public void UTRSButtonClick()
 	{
-
+		Button button = GetComponent<Button>();
+		button.interactable = false;
+		UTRSManager.Instance.PlaySound(2);
+		button.interactable = true;
 	}
 
 	void CheckMenuName()

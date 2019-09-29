@@ -4071,15 +4071,15 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1107243562743421428}
-    second:
-    - {fileID: 1109179781701150396}
   - first: {fileID: 1107474198812812770}
     second:
     - {fileID: 1109679809008817420}
   - first: {fileID: 1107234793718598028}
     second:
     - {fileID: 1109799093064983308}
+  - first: {fileID: 1107243562743421428}
+    second:
+    - {fileID: 1109179781701150396}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 60, y: -72, z: 0}
   m_EntryPosition: {x: -192, y: 120, z: 0}
