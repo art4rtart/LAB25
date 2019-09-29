@@ -51,11 +51,12 @@ public class DefenseGenerator : MonoBehaviour
 		for (int i = 0; i < infectees.Length; i++)
 		{
 			enemyPool[i] = new MemoryPool();
+          
+            enemyPool[i].Create(infectees[i], generateTotal, this.transform);
             infectees[i].SetActive(false);
-			enemyPool[i].Create(infectees[i], generateTotal, this.transform);
-		}
+        }
 
-		StartCoroutine(StartGenerate());
+        StartCoroutine(StartGenerate());
         StartCoroutine(CheckStageClear());
     }
 

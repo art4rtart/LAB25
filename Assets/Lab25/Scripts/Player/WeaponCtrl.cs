@@ -319,10 +319,13 @@ public class WeaponCtrl : MonoBehaviour
             if (health && health.hp > 0)
             {
                 health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
+                if (health.hp <= 0)
+                {
+                    StartCoroutine(Particle.Instance.BloodTraceEffect(hit.transform.position));
+                }
                 if (!hit.transform.CompareTag("Breakable"))
                 {
                     StartCoroutine(Particle.Instance.BloodEffect(hit.point));
-
                 }
 
                 //else
@@ -362,7 +365,6 @@ public class WeaponCtrl : MonoBehaviour
 
     public void DamagedByBong()
     {
-
         RaycastHit hit;
 
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 3f))
@@ -373,6 +375,10 @@ public class WeaponCtrl : MonoBehaviour
             {
 				hit.transform.GetComponentInParent<ChangeRagDoll>().attackedByElectricStick = true;
 				health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
+                if (health.hp <= 0)
+                {
+                    StartCoroutine(Particle.Instance.BloodTraceEffect(hit.transform.position));
+                }
                 if (!hit.transform.CompareTag("Breakable"))
                 {
                     StartCoroutine(Particle.Instance.BloodEffect(hit.point));
@@ -408,13 +414,17 @@ public class WeaponCtrl : MonoBehaviour
             
             if (health && health.hp > 0)
             {
-                health.ApplyDamage(sciDamage, hit.transform.InverseTransformPoint(hit.point));
+                health.ApplyDamage(akDamage, hit.transform.InverseTransformPoint(hit.point));
+                if (health.hp <= 0)
+                {
+                    StartCoroutine(Particle.Instance.BloodTraceEffect(hit.transform.position));
+                }
+
                 if (!hit.transform.CompareTag("Breakable"))
                 {
                     StartCoroutine(Particle.Instance.BloodEffect(hit.point));
 
                 }
-
                 else
                     StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
@@ -451,6 +461,10 @@ public class WeaponCtrl : MonoBehaviour
                 if (health && health.hp > 0)
                 {
                     health.ApplyDamage(sciDamage, hit.transform.InverseTransformPoint(hit.point));
+                    if (health.hp <= 0)
+                    {
+                        StartCoroutine(Particle.Instance.BloodTraceEffect(hit.transform.position));
+                    }
                     if (!hit.transform.CompareTag("Breakable"))
                     {
                         StartCoroutine(Particle.Instance.BloodEffect(hit.point));

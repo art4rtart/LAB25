@@ -29,7 +29,9 @@ public class MemoryPool : System.IDisposable
             Item item = new Item();
             item.active = false;
             item.gameObject = Object.Instantiate(original) as GameObject;
+            //Debug.Log(item.gameObject.activeSelf);
             item.gameObject.SetActive(false);
+            //Debug.Log(item.gameObject.activeSelf);
             item.gameObject.transform.SetParent(parent);
             table.Add(item);
         }

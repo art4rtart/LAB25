@@ -206,7 +206,6 @@ public class Her0inEnemy : MonoBehaviour
     public void AfterDie(Vector3 pos)
     {
         hitPos = pos;
-
         myRagDollCtrl.speed = navMesh.velocity.magnitude;
         myRagDollCtrl.AttackedPos = hitPos;
         myRagDollCtrl.hitByBullet = true;

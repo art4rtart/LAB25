@@ -25,12 +25,14 @@ public class Particle : MonoBehaviour
     public GameObject hitHolePrefab;
     public GameObject bulletCasingPrefab;
     public GameObject bloodParticlePrefab;
+    public GameObject bloodTracePrefab;
 
     // ObjectPool
     public static MemoryPool bulletHolePool = new MemoryPool();
     public static MemoryPool flarePool = new MemoryPool();
     public static MemoryPool bulletCasingPool = new MemoryPool();
     public static MemoryPool bloodParticlePool = new MemoryPool();
+    public static MemoryPool bloodTraceParticlePool = new MemoryPool();
 
     private Transform fireTraceParent;
     public Transform bulletCasingPoint;
@@ -46,6 +48,7 @@ public class Particle : MonoBehaviour
         flarePool.Create(hitSparkPrefab, 60, fireTraceParent);
         bulletCasingPool.Create(bulletCasingPrefab, 110, fireTraceParent);
         bloodParticlePool.Create(bloodParticlePrefab, 200, fireTraceParent);
+        bloodTraceParticlePool.Create(bloodTracePrefab, 200, fireTraceParent);
     }
     public IEnumerator BulletEffect()
     {
@@ -73,6 +76,21 @@ public class Particle : MonoBehaviour
 
         bulletCasingObject.transform.SetParent(fireTraceParent);
         bulletCasingPool.RemoveItem(bulletCasingObject, bulletCasingPrefab, fireTraceParent);
+    }
+
+    public IEnumerator BloodTraceEffect(Vector3 pos)
+    {
+        GameObject bloodTraceObject;
+        bloodTraceObject = bloodTraceParticlePool.NewItem();
+
+    
+        if (bloodTraceObject)
+        {
+            bloodTraceObject.transform.position = pos;
+        }
+        yield return new WaitForSeconds(5f);
+        bloodTraceObject.transform.SetParent(fireTraceParent);
+        bloodTraceParticlePool.RemoveItem(bloodTraceObject, bloodTracePrefab, fireTraceParent);
     }
 
     public IEnumerator FireEffect(Vector3 pos, Quaternion rot)
@@ -117,5 +135,6 @@ public class Particle : MonoBehaviour
         bulletHolePool.Dispose();
         flarePool.Dispose();
         bulletCasingPool.Dispose();
+        bloodTraceParticlePool.Dispose();
     }
 }
