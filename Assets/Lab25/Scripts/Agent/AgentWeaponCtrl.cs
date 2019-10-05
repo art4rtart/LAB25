@@ -122,16 +122,16 @@ public class AgentWeaponCtrl : MonoBehaviour
 
 					if (!hit.transform.CompareTag("Breakable"))
 					{
-						//StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+						//StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
 					}
 
 					//else
-						//StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+						//StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
                 else
                 {
 					return;
-					//StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+					//StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
             }
 			else return;
@@ -178,15 +178,15 @@ public class AgentWeaponCtrl : MonoBehaviour
                     }
 					if (!hit.transform.CompareTag("Breakable"))
 					{
-						//StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+						//StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
 					}
 					else
-						StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+						StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
 				else
 				{
 					//Debug.Log("Amazing");
-					//StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+					//StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
             }
         }
@@ -240,15 +240,15 @@ public class AgentWeaponCtrl : MonoBehaviour
 					//}
 					//if (!hit.transform.CompareTag("Breakable"))
 					//{
-					//	StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+					//	StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
 					//}
 					//else
-					//	StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+					//	StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
 				else
 				{
 					return;
-					//StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+					//StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
 				}
 			}
 			else

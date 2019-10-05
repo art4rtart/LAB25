@@ -2,23 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Particle : MonoBehaviour
+public class ParticleManager : MonoBehaviour
 {
-    public static Particle Instance
+    public static ParticleManager Instance
     {
         get
         {
             if (instance != null)
                 return instance;
-            instance = FindObjectOfType<Particle>();
+            instance = FindObjectOfType<ParticleManager>();
             return instance;
         }
     }
 
-    private static Particle instance;
-
-    // Reference
-    public Transform PlayerTr;
+    private static ParticleManager instance;
 
     // Prefabs
     public GameObject hitSparkPrefab;
@@ -28,14 +25,16 @@ public class Particle : MonoBehaviour
     public GameObject bloodTracePrefab;
 
     // ObjectPool
-    public static MemoryPool bulletHolePool = new MemoryPool();
-    public static MemoryPool flarePool = new MemoryPool();
-    public static MemoryPool bulletCasingPool = new MemoryPool();
-    public static MemoryPool bloodParticlePool = new MemoryPool();
-    public static MemoryPool bloodTraceParticlePool = new MemoryPool();
+    private MemoryPool bulletHolePool = new MemoryPool();
+    private MemoryPool flarePool = new MemoryPool();
+    private MemoryPool bulletCasingPool = new MemoryPool();
+    private MemoryPool bloodParticlePool = new MemoryPool();
+    private MemoryPool bloodTraceParticlePool = new MemoryPool();
 
+    // Transform
     private Transform fireTraceParent;
     public Transform bulletCasingPoint;
+    public Transform PlayerTr;
 
     private void Awake()
     {
@@ -65,12 +64,6 @@ public class Particle : MonoBehaviour
             bulletCasingObject.transform.Rotate(Random.Range(-45, 45), Random.Range(-90, 30), 0);
             bulletRigid.velocity = Vector3.zero;
             bulletRigid.AddForce((PlayerTr.transform.up * 0.5f + PlayerTr.transform.right) * 5);
-
-            //Debug.Log(bulletCasingObject.GetComponent<Rigidbody>().velocity);
-            //bulletCasingObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            //Debug.Log(bulletCasingObject.GetComponent<Rigidbody>().velocity);
-            //bulletCasingObject.GetComponent<Rigidbody>().AddRelativeForce(bulletCasingObject.transform.right * 10);
-
         }
         yield return new WaitForSeconds(1f);
 

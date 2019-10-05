@@ -321,20 +321,20 @@ public class WeaponCtrl : MonoBehaviour
                 health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
                 if (health.hp <= 0)
                 {
-                    StartCoroutine(Particle.Instance.BloodTraceEffect(hit.transform.position));
+                    StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                 }
                 if (!hit.transform.CompareTag("Breakable"))
                 {
-                    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
                 }
 
                 //else
-                //    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                //    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
         }
         //    else
         //    {
-        //        StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+        //        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
         //    }
         //}
         AxeTimer = 0.0f;
@@ -353,7 +353,7 @@ public class WeaponCtrl : MonoBehaviour
      
         //    else
         //    {
-        //        StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+        //        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
         //    }
         //}
         BongTimer = 0.0f;
@@ -377,16 +377,16 @@ public class WeaponCtrl : MonoBehaviour
 				health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
                 if (health.hp <= 0)
                 {
-                    StartCoroutine(Particle.Instance.BloodTraceEffect(hit.transform.position));
+                    StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                 }
                 if (!hit.transform.CompareTag("Breakable"))
                 {
-                    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
 
                 }
 
                 //else
-                //    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                //    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
         }
     }
@@ -417,20 +417,20 @@ public class WeaponCtrl : MonoBehaviour
                 health.ApplyDamage(akDamage, hit.transform.InverseTransformPoint(hit.point));
                 if (health.hp <= 0)
                 {
-                    StartCoroutine(Particle.Instance.BloodTraceEffect(hit.transform.position));
+                    StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                 }
 
                 if (!hit.transform.CompareTag("Breakable"))
                 {
-                    StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
 
                 }
                 else
-                    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
             else
             {
-                StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
             }
         }
         akCurrentBullets--;
@@ -439,7 +439,7 @@ public class WeaponCtrl : MonoBehaviour
         audioSource.PlayOneShot(shootSound);    //shoot sound
         muzzleFlash.Play();
         Recoil();
-        StartCoroutine(Particle.Instance.BulletEffect());
+        StartCoroutine(ParticleManager.Instance.BulletEffect());
         UIManager.Instance.TextUpdate();
     }
 
@@ -463,18 +463,18 @@ public class WeaponCtrl : MonoBehaviour
                     health.ApplyDamage(sciDamage, hit.transform.InverseTransformPoint(hit.point));
                     if (health.hp <= 0)
                     {
-                        StartCoroutine(Particle.Instance.BloodTraceEffect(hit.transform.position));
+                        StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                     }
                     if (!hit.transform.CompareTag("Breakable"))
                     {
-                        StartCoroutine(Particle.Instance.BloodEffect(hit.point));
+                        StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
                     }
                     else
-                        StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
                 }
                 else
                 {
-                    StartCoroutine(Particle.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
                 }
             }
         }
@@ -484,7 +484,7 @@ public class WeaponCtrl : MonoBehaviour
         audioSource.PlayOneShot(shootSound);    //shoot sound
         muzzleFlash.Play();
         Recoil();
-        StartCoroutine(Particle.Instance.BulletEffect());
+        StartCoroutine(ParticleManager.Instance.BulletEffect());
         UIManager.Instance.TextUpdate();
     }
 
