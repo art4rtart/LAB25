@@ -19,7 +19,6 @@ public class BombGage : MonoBehaviour
 
     private static BombGage instance;
 
-
     public Slider slider;
 	public RectTransform[] handle;
 	public RectTransform gageHandler;
@@ -48,7 +47,7 @@ public class BombGage : MonoBehaviour
 	{
 		BombGageCoroutine = BombInstall();
 		installedBombCount = 0;
-		BombInstallText.text = installedBombCount + " / 4 \ninstalled bomb";
+		BombInstallText.text = (4 - installedBombCount).ToString();
 	}
 
 	void Start()
@@ -56,14 +55,15 @@ public class BombGage : MonoBehaviour
 		GenerateRandomPos();
 	}
 
-
 	public bool canInstall;
+	public bool isInstalling;
+	[HideInInspector] public float correctCount = 0;
 	public IEnumerator BombInstall()
 	{
         if (!isCoroutineStarted)
         {
             isCoroutineStarted = true;
-            float correctCount = 0;
+            correctCount = 0;
             PlayerManager.isHit = false;
 
             slider.GetComponent<Animator>().SetBool("BombGageFade", true);
@@ -72,7 +72,9 @@ public class BombGage : MonoBehaviour
             // install sound play
             while (currentGage <= 4)
             {
-                if (PlayerManager.isHit) break;
+				BombInstallInstructor.Instance.CorrectBombInstruction();
+
+				if (PlayerManager.isHit) break;
 
                 addSpeed += Time.deltaTime;
                 currentGage = Mathf.Clamp(currentGage += Time.deltaTime * 1.5f * addSpeed, 0, 4);
@@ -120,10 +122,15 @@ public class BombGage : MonoBehaviour
                 }
                 yield return null;
             }
-            //Debug.Log("THIRD");
-            slider.GetComponent<Animator>().SetBool("BombGageFade", false);
+			//Debug.Log("THIRD");
+			
+			slider.GetComponent<Animator>().SetBool("BombGageFade", false);
+			isInstalling = false;
+			WeaponCtrl.Instance.isHoldingBomb = false;
 
-            yield return new WaitForSeconds(.5f);
+			if (correctCount < 3) BombInstallInstructor.Instance.InstallBombInstruction();
+
+			yield return new WaitForSeconds(.5f);
             for (int i = 0; i < randomNum.Length; i++)
             {
                 handle[i].GetComponent<Image>().color = Color.white;
@@ -134,7 +141,8 @@ public class BombGage : MonoBehaviour
             slider.value = 0;
             addSpeed = 0;
             currentGage = 0;
-            GenerateRandomPos();
+			correctCount = 0;
+			GenerateRandomPos();
         }
 		isCoroutineStarted = false;
 		//StopCoroutine(BombGageCoroutine);
@@ -164,7 +172,7 @@ public class BombGage : MonoBehaviour
 		if (installedBombCount < 4)
 		{
 			installedBombCount++;
-			BombInstallText.text = installedBombCount + " / 4 \ninstalled bomb";
+			BombInstallText.text = (4 - installedBombCount).ToString();
 		}
 
 		for(int i = 0; i < zoneTriggers.Length; i++)
@@ -174,6 +182,22 @@ public class BombGage : MonoBehaviour
 				zoneTriggers[i].changeZoneCircleRange();
 				break;
 			}
+		}
+	}
+
+	public GameObject[] bombPlace;
+	public void SetBombPlace()
+	{
+		stageAnimator.SetBool("FadeIn", true);
+
+		bombPlace[0].transform.position = new Vector3(10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, 10 + Random.Range(-5f, 5f));
+		bombPlace[1].transform.position = new Vector3(-10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, 10 + Random.Range(-5f, 5f));
+		bombPlace[2].transform.position = new Vector3(-10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, -10 + Random.Range(-5f, 5f));
+		bombPlace[3].transform.position = new Vector3(10 + Random.Range(-5f, 5f), bombPlace[0].transform.position.y, -10 + Random.Range(-5f, 5f));
+
+		for (int i = 0; i < bombPlace.Length; i++)
+		{
+			bombPlace[i].SetActive(true);
 		}
 	}
 }

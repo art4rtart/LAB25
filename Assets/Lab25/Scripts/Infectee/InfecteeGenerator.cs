@@ -35,7 +35,7 @@ public class InfecteeGenerator : MonoBehaviour
 			enemyPool[i].Create(infectees[i], GenerateTotal, this.transform);
 		}
 
-		if (Stage == 0) StartCoroutine(Generate());
+		if (Stage == 4) StartCoroutine(Generate());
     }
 
     void OnApplicationQuit()
@@ -50,6 +50,8 @@ public class InfecteeGenerator : MonoBehaviour
 
 	public IEnumerator Generate()
     {
+		if (Stage == 4) yield return new WaitForSeconds(15f);
+
         GameObject infectee;
 
         for (int i = 0; i < spawnZone.Length; i++)

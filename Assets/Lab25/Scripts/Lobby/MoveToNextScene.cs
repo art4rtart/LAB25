@@ -12,6 +12,8 @@ public class MoveToNextScene : MonoBehaviour
 	public AudioSource audioSource;
 	bool fadeOutAudio;
 
+	public int currentStageNum;
+
 	void Start()
 	{
 		if(isTrigger)

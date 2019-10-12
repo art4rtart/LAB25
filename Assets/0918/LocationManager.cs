@@ -5,7 +5,6 @@ using TMPro;
 
 public class LocationManager : MonoBehaviour
 {
-	private static LocationManager instance;
 	public static LocationManager Instance
 	{
 		get
@@ -16,11 +15,11 @@ public class LocationManager : MonoBehaviour
 			return instance;
 		}
 	}
+	private static LocationManager instance;
 
 	private TextMeshProUGUI locationText;
 	private Animator animator;
 
-	public bool hi;
 	void Start()
 	{
 		locationText = GetComponent<TextMeshProUGUI>();

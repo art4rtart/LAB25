@@ -433,6 +433,8 @@ public class Hover : MonoBehaviour
 		lobby.menuAnimator.SetTrigger("FadeOut");
 		lobby.highlightMenuAnimator.SetTrigger("Fade");
 
+		DataManager.Instance.initGame = true;
+
 		StartCoroutine(FadeVolume());
 	}
 
@@ -442,6 +444,8 @@ public class Hover : MonoBehaviour
 		audioManager.Play("DefaultClickSound");
 		lobby.menuAnimator.SetTrigger("FadeOut");
 		lobby.highlightMenuAnimator.SetTrigger("Fade");
+
+		DataManager.Instance.initGame = false;
 
 		StartCoroutine(FadeVolume());
 	}

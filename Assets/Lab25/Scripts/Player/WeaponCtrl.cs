@@ -106,17 +106,21 @@ public class WeaponCtrl : MonoBehaviour
 		UIManager.Instance.totalBullet = akBulletsTotal;
 	}
 
+	public bool isHoldingBomb;
+
     private void Update()
     {
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         isReloading = info.IsName(reloadStr);
 
-        //if (info.IsName("EndToDo(AK)") || info.IsName("Idle(AK)"))
-        //    myWeapnType = WEAPON.AKM;
+		//if (info.IsName("EndToDo(AK)") || info.IsName("Idle(AK)"))
+		//    myWeapnType = WEAPON.AKM;
 
-        
-        //Debug.Log(myWeapnType);
-        if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
+		if (myWeapnType != WEAPON.BOMB) isHoldingBomb = false;
+		else isHoldingBomb = true;
+
+		//Debug.Log(myWeapnType);
+		if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
         {
             if (myWeapnType.Equals(WEAPON.AKM))
             {
@@ -151,10 +155,11 @@ public class WeaponCtrl : MonoBehaviour
             }
             else if (myWeapnType.Equals( WEAPON.BOMB))
             {
-                if (BombGage.Instance.canInstall)
+                if (BombGage.Instance.canInstall && !BombGage.Instance.isInstalling)
                 {
                     StartCoroutine(BombGage.Instance.BombInstall());
-                }
+					BombGage.Instance.isInstalling = true;
+				}
             }
             else if (myWeapnType .Equals( WEAPON.HEARTER))
             {

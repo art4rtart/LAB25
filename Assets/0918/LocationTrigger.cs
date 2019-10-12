@@ -16,7 +16,7 @@ public class LocationTrigger : MonoBehaviour
 	{
 		if (other.gameObject == null) return;
 
-		if (other.gameObject.CompareTag("Location"))
+		if (other.gameObject.CompareTag("Location") || other.gameObject.CompareTag("Player"))
 		{
 			locationManager.SetLocationName(locationName);
 		}

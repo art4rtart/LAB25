@@ -27,7 +27,7 @@ public class PlayerManager : MonoBehaviour
     private float maxArmor = 100;
 
     // Teleport Attribute
-    public bool teleportFlag = false;
+    public bool TeleportFlag = false;
     public Vector3 TeleportPos = Vector3.zero;
     public bool isEnd = false;
 
@@ -39,15 +39,20 @@ public class PlayerManager : MonoBehaviour
     private static Transform mycam;
     public static bool isHit = false;
 
-  
+	private void Awake()
+	{
+		if (DataManager.Instance == null) return;
+		if (DataManager.Instance.initGame) { DataManager.Instance.InitGame(); }
+		else { DataManager.Instance.GetTotalData(FindObjectOfType<MoveToNextScene>().currentStageNum); }
+		DataManager.Instance.initGame = false;
+	}
+
     private void Start()
     {
-        characterController = GetComponent<CharacterController>();
+		characterController = GetComponent<CharacterController>();
         maxHp = hp;
         infecteeParent = GameObject.Find("Generator");
         mycam = Camera.main.transform;
-
-        //DontDestroyOnLoad(gameObject);
     }
 
     public void ApplyDamage(float damage)
@@ -110,8 +115,6 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log("CCollision");
-       
         if (collision.gameObject.CompareTag("Item"))
         {
             Destroy(collision.gameObject);

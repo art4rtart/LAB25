@@ -3841,7 +3841,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Reload
+  m_Name: AKReload
   m_Speed: 1.38
   m_CycleOffset: 0
   m_Transitions:
@@ -4158,15 +4158,15 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
+  - first: {fileID: 1107474198812812770}
+    second:
+    - {fileID: 1109679809008817420}
   - first: {fileID: 1107234793718598028}
     second:
     - {fileID: 1109799093064983308}
   - first: {fileID: 1107344572966185938}
     second:
     - {fileID: 1109980061092632274}
-  - first: {fileID: 1107474198812812770}
-    second:
-    - {fileID: 1109679809008817420}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 60, y: -72, z: 0}
   m_EntryPosition: {x: -192, y: 120, z: 0}

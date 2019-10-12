@@ -37,7 +37,7 @@ public class ChangeRagDoll : MonoBehaviour
     public IEnumerator ChangeRagdoll()
     {
         CopyAnimCharacterTransformToRagdoll(charObj.transform, ragdollObj.transform);
-		ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<ParticleSystem>().Stop();
+		if(ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity != null) ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<ParticleSystem>().Stop();
 
 		if (attackedByElectricStick)
 		{

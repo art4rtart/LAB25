@@ -38,17 +38,8 @@ public class Her0inEnemy : MonoBehaviour
 
     Health info;
 
-	void Awake()
-    {
-        damagedEffect = FindObjectOfType<DamagedEffect>();
-		anim = GetComponent<Animator>();
-		rgbd = GetComponent<Rigidbody>();
-		navMesh = GetComponent<NavMeshAgent>();
-		myChange = GetComponentInParent<ChangeRagDoll>();
-	}
-
-    void OnEnable()
-    {
+	void OnEnable()
+	{
 		if (isGenerated)
 		{
 			if (player)
@@ -56,9 +47,19 @@ public class Her0inEnemy : MonoBehaviour
 				target = player.transform;
 				anim.applyRootMotion = false;
 
-                StartCoroutine(SetNextMove());
-            }
-        }
+				StartCoroutine(SetNextMove());
+			}
+		}
+	}
+
+	void Awake()
+    {
+        damagedEffect = FindObjectOfType<DamagedEffect>();
+		anim = GetComponent<Animator>();
+		rgbd = GetComponent<Rigidbody>();
+		navMesh = GetComponent<NavMeshAgent>();
+		myChange = GetComponentInParent<ChangeRagDoll>();
+		player = FindObjectOfType<PlayerCtrl>().gameObject;
 	}
 
     void Start()
@@ -74,62 +75,60 @@ public class Her0inEnemy : MonoBehaviour
             anim.SetTrigger("Walk");
             anim.applyRootMotion = true;
         }
+
+		StartCoroutine(SetNextMove());
 	}
 
+	IEnumerator SetNextMove()
+	{
+		AnimatorStateInfo info2 = anim.GetCurrentAnimatorStateInfo(0);
+		if (!followTarget && !isGenerated)
+		{
+			Collider[] humanInRadius = Physics.OverlapSphere(transform.position, findRadius, humanMask);
+			for (int i = 0; i < humanInRadius.Length; i++)
+			{
+				if (humanInRadius[i].transform.CompareTag("Player"))
+				{
+					target = humanInRadius[i].transform;
+					if (navMesh.isOnNavMesh) navMesh.SetDestination(target.position);
+					StartCoroutine(Follow());
+					followTarget = true;
+				}
+			}
+		}
 
-    IEnumerator SetNextMove()
-    {
-        AnimatorStateInfo info2 = anim.GetCurrentAnimatorStateInfo(0);
+		if (navMesh.enabled && target != null) navMesh.SetDestination(target.transform.position);
 
-        if (!followTarget && !isGenerated)
-        {
-            Collider[] humanInRadius = Physics.OverlapSphere(transform.position, findRadius, humanMask);
-     
-            for (int i = 0; i < humanInRadius.Length; i++)
-            {
-                if (humanInRadius[i].transform.CompareTag("Player"))
-                {
-                    target = humanInRadius[i].transform;
-                    if (navMesh.isOnNavMesh) navMesh.SetDestination(target.position);
-                    StartCoroutine(Follow());
-                    followTarget = true;
-                }
-            }
-        }
+		if (info2.IsName("Attack") || info2.IsName("Run"))
+		{
+			Vector3 calcuatledtarget = new Vector3(target.transform.position.x, this.transform.position.y, target.transform.position.z);
+			transform.LookAt(calcuatledtarget);
+		}
 
-        if (navMesh.enabled && target != null) navMesh.SetDestination(target.transform.position);
+		if (isLimpid)
+		{
+			if (!isDissolved)
+			{
+				if (navMesh.enabled && navMesh.remainingDistance != 0 && navMesh.remainingDistance < navMesh.stoppingDistance + dissolveDistance)
+				{
+					spawnEffect.enabled = true;
+					isDissolved = true;
+				}
 
-        if (info2.IsName("Attack") || info2.IsName("Run"))
-        {
-            Vector3 calcuatledtarget = new Vector3(target.transform.position.x, this.transform.position.y, target.transform.position.z);
-            transform.LookAt(calcuatledtarget);
-        }
+				if (spawnEffect.enabled && !isGenerated)
+				{
+					target = player.transform;
+					if (navMesh.isOnNavMesh) navMesh.SetDestination(target.position);
+					StartCoroutine(Follow());
+					followTarget = true;
+					isDissolved = true;
+				}
+			}
+		}
 
-        if (isLimpid)
-        {
-            if (!isDissolved)
-            {
-                if (navMesh.enabled && navMesh.remainingDistance != 0 && navMesh.remainingDistance < navMesh.stoppingDistance + dissolveDistance)
-                {
-                    spawnEffect.enabled = true;
-                    isDissolved = true;
-                }
-
-                if (spawnEffect.enabled && !isGenerated)
-                {
-                    target = player.transform;
-                    if (navMesh.isOnNavMesh) navMesh.SetDestination(target.position);
-                    StartCoroutine(Follow());
-                    followTarget = true;
-                    isDissolved = true;
-                }
-            }
-        }
-
-        yield return new WaitForSeconds(0.1f);
-
-        StartCoroutine(SetNextMove());
-    }
+		yield return new WaitForSeconds(.1f);
+		StartCoroutine(SetNextMove());
+	}
 
     public IEnumerator Follow()
     {
@@ -165,7 +164,7 @@ public class Her0inEnemy : MonoBehaviour
 
         else
         {
-            if (player.transform.name.Equals("Player")) anim.SetTrigger("Attack");
+			if (player.transform.name.Equals("Player")) anim.SetTrigger("Attack");
         }
 
         yield return new WaitForSeconds(attackSpeed);
@@ -187,23 +186,22 @@ public class Her0inEnemy : MonoBehaviour
         }
     }
 
-    //public void SetHitPos(Vector3 pos)
-    //{
-    //    hitPos = pos;
-    //}
+	//public void SetHitPos(Vector3 pos)
+	//{
+	//    hitPos = pos;
+	//}
 
-    //private void OnDrawGizmosSelected()
-    //{
-    //    if (!isGenerated)
-    //    {
-    //        Gizmos.color = Color.red;
-    //        Gizmos.DrawWireSphere(transform.position, findRadius);
-    //    }
+	private void OnDrawGizmosSelected()
+	{
+		if (!isGenerated)
+		{
+			Gizmos.color = Color.red;
+			Gizmos.DrawWireSphere(transform.position, findRadius);
+		}
+		else return;
+	}
 
-    //    else return;
-    //}
-
-    public void AfterDie(Vector3 pos)
+	public void AfterDie(Vector3 pos)
     {
         hitPos = pos;
         myRagDollCtrl.speed = navMesh.velocity.magnitude;
@@ -230,7 +228,7 @@ public class Her0inEnemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Floor"))
         {
-            if (!settingTrigger)
+			if (!settingTrigger)
             {
                 rgbd.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
 
@@ -239,11 +237,6 @@ public class Her0inEnemy : MonoBehaviour
             }
 
             else return;
-        }
-
-        else if (other.gameObject.CompareTag("Floor"))
-        {
-            transform.rotation = Random.rotation;
         }
     }
 }

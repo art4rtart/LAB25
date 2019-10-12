@@ -3730,7 +3730,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Reload
+  m_Name: SciFiReload
   m_Speed: 1.38
   m_CycleOffset: 0
   m_Transitions:

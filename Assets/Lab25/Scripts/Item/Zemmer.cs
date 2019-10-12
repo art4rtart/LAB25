@@ -12,6 +12,7 @@ public class Zemmer : MonoBehaviour
 
 	void Awake()
 	{
+		if (jammerIconImage == null) return;
 		defaultAlpha = jammerIconImage.color.a;
 	}
 

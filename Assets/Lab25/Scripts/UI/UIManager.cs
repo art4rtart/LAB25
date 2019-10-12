@@ -78,7 +78,6 @@ public class UIManager : MonoBehaviour
 
 	void Start()
 	{
-		currentWeaponImage.sprite = weaponImage[0];
 		TextUpdate();
 	}
 
@@ -132,10 +131,11 @@ public class UIManager : MonoBehaviour
 	{
 		healthProgressbar.value = ItemManager.currentHealth / 100f;
 		armorProgressbar.value = ItemManager.currentArmor / 100f;
-        if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.AKM)
+
+        if (WeaponCtrl.Instance != null && WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.AKM)
             bulletProgressbar.value = Mathf.Floor((float)WeaponCtrl.Instance.akCurrentBullets / (float)bulletsPerMagazine * 100f) * 0.01f;
 
-        else if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
+        else if (WeaponCtrl.Instance != null && WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
             bulletProgressbar.value = Mathf.Floor((float)WeaponCtrl.Instance.sciCurrentBullets / (float)150 * 100f) * 0.01f;
 
 		// healthText.text = Mathf.Clamp(Mathf.Floor(ItemManager.currentHealth), 0, itemManager.totalHealth).ToString();
@@ -143,9 +143,9 @@ public class UIManager : MonoBehaviour
 		heratRateText.text = Mathf.Clamp(Mathf.Floor(itemManager.currentHeartRate), 0, itemManager.totalHeartRate).ToString();
 
         // bullet Update
-        if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.AKM)
+        if (WeaponCtrl.Instance != null && WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.AKM)
             bulletCountText.text = Mathf.Clamp(WeaponCtrl.Instance.akCurrentBullets, 0, bulletsPerMagazine).ToString();
-        else if (WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
+        else if (WeaponCtrl.Instance != null && WeaponCtrl.Instance.myWeapnType == WeaponCtrl.WEAPON.SCI_FI)
             bulletCountText.text = Mathf.Clamp(WeaponCtrl.Instance.sciCurrentBullets, 0, 150).ToString();
 
         totalBulletText.text = totalBullet.ToString();

@@ -6,11 +6,13 @@ public class ZoneTriggers : MonoBehaviour
 {
 	public bool isColliding = false;
 
-	void OnTriggerEnter(Collider other)
+	void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
 			BombGage.Instance.canInstall = true;
+			if(!BombInstallInstructor.Instance.enabled) BombInstallInstructor.Instance.enabled = true;
+			BombInstallInstructor.Instance.isOutOfBound = false;
 			isColliding = true;
 		}
 	}
@@ -19,7 +21,8 @@ public class ZoneTriggers : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("Player"))
 		{
-            BombGage.Instance.canInstall = false;
+			BombGage.Instance.canInstall = false;
+			BombInstallInstructor.Instance.isOutOfBound = true;
 			isColliding = false;
 		}
 	}

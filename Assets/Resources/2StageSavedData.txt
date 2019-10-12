@@ -1,0 +1,7 @@
+StageNum 2
+Health 100
+Armor 100
+CurrentBullet 25
+TotalBullet 345
+CedicalKitCount 0
+AdrenalineCount 0

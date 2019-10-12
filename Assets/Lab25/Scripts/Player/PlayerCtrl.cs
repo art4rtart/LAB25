@@ -119,7 +119,7 @@ public class PlayerCtrl : MonoBehaviour
             PlayLandingSound();
             m_MoveDir.y = 0f;
             m_Jumping = false;
-			isGrounding = true;
+			//isGrounding = true;
 		}
 
         if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
@@ -136,10 +136,10 @@ public class PlayerCtrl : MonoBehaviour
 		//tmpPos.y += (m_CharacterController.height - lastHeight);
 		//transform.position = tmpPos;
 
-		if(isGrounding) { this.transform.position = new Vector3(transform.position.x, -0.3f, transform.position.z); }
+		// if(isGrounding) { this.transform.position = new Vector3(transform.position.x, -0.3f, transform.position.z); }
 	}
 
-	bool isGrounding = true;
+	//bool isGrounding = true;
 
     private void PlayLandingSound()
     {
@@ -174,7 +174,7 @@ public class PlayerCtrl : MonoBehaviour
             {
                 m_MoveDir.y = m_JumpSpeed;
                 PlayJumpSound();
-				isGrounding = false;
+				// isGrounding = false;
 				m_Jump = false;
                 m_Jumping = true;
             }
@@ -184,9 +184,9 @@ public class PlayerCtrl : MonoBehaviour
             m_MoveDir += Physics.gravity * m_GravityMultiplier * Time.fixedDeltaTime;
         }
 
-        if( m_PlayerManager.teleportFlag )
+        if( m_PlayerManager.TeleportFlag )
         {
-            m_PlayerManager.teleportFlag = false;
+            m_PlayerManager.TeleportFlag = false;
             transform.position = m_PlayerManager.TeleportPos;
             m_PlayerManager.TeleportPos = Vector3.zero;
         }
@@ -336,10 +336,10 @@ public class PlayerCtrl : MonoBehaviour
         Rigidbody body = hit.collider.attachedRigidbody;
 
 
-		if (hit.collider.name == "Stairs")
-		{
-			isGrounding = false;
-		}
+		//if (hit.collider.name == "Stairs")
+		//{
+		//	isGrounding = false;
+		//}
 		//dont move the rigidbody if the character is on top of it
 		if (m_CollisionFlags == CollisionFlags.Below)
         {
