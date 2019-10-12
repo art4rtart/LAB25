@@ -19,11 +19,14 @@ public class ChangeRagDoll : MonoBehaviour
 	public float dieTime = 2.5f;
 
 	public bool attackedByElectricStick;
+    private Her0inEnemy heroinEnemyScr;
+    private RagDollDIeCtrl ragDollScr;
 
-	private void Start()
+    private void Start()
     {
         infectee = GetComponentInChildren<Health>();
-
+        heroinEnemyScr = charObj.GetComponent<Her0inEnemy>();
+        ragDollScr = ragdollObj.GetComponent<RagDollDIeCtrl>();
         if (isGeneratorExist)
         {
             generator = GameObject.Find("Generator").GetComponent<InfecteeGenerator>();
@@ -37,13 +40,15 @@ public class ChangeRagDoll : MonoBehaviour
     public IEnumerator ChangeRagdoll()
     {
         CopyAnimCharacterTransformToRagdoll(charObj.transform, ragdollObj.transform);
-		if(ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity != null) ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<ParticleSystem>().Stop();
+		if(ragDollScr.Electricity != null) ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<ParticleSystem>().Stop();
 
 		if (attackedByElectricStick)
 		{
-			ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<ParticleSystem>().Play();
-			ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<AudioSource>().clip = ragdollObj.GetComponent<RagDollDIeCtrl>().hitSound[Random.Range(0, ragdollObj.GetComponent<RagDollDIeCtrl>().hitSound.Length)];
-			ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<AudioSource>().Play();
+            AudioSource tmpAudio = ragDollScr.Electricity.GetComponent<AudioSource>();
+
+            ragDollScr.Electricity.GetComponent<ParticleSystem>().Play();
+			tmpAudio.clip = ragDollScr.hitSound[Random.Range(0, ragDollScr.hitSound.Length)];
+            tmpAudio.Play();
 		}
 
 		charObj.gameObject.SetActive(false);
@@ -73,16 +78,36 @@ public class ChangeRagDoll : MonoBehaviour
 
     private void CopyAnimCharacterTransformToRagdoll(Transform origin, Transform rag)
     {
-        for (int i = 0; i < origin.childCount; i++)
+        if (heroinEnemyScr.isLimpid == false)
         {
-            if (origin.childCount != 0)
+
+            for (int i = 0; i < origin.childCount; i++)
             {
-                CopyAnimCharacterTransformToRagdoll(origin.GetChild(i), rag.GetChild(i));
+                if (origin.childCount != 0)
+                {
+
+                    CopyAnimCharacterTransformToRagdoll(origin.GetChild(i), rag.GetChild(i));
+                }
+                rag.GetChild(i).localPosition = origin.GetChild(i).localPosition;
+                rag.GetChild(i).localRotation = origin.GetChild(i).localRotation;
             }
-            rag.GetChild(i).localPosition = origin.GetChild(i).localPosition;
-            rag.GetChild(i).localRotation = origin.GetChild(i).localRotation;
+            ragdollObj.transform.position = charObj.transform.position;
+            ragdollObj.transform.rotation = charObj.transform.rotation;
         }
-        ragdollObj.transform.position = charObj.transform.position;
-        ragdollObj.transform.rotation = charObj.transform.rotation;
+        else 
+        {
+            for (int i = 0; i < rag.childCount; i++)
+            {
+                if (origin.childCount != 0)
+                {
+                    CopyAnimCharacterTransformToRagdoll(origin.GetChild(i), rag.GetChild(i));
+                }
+                rag.GetChild(i).localPosition = origin.GetChild(i).localPosition;
+                rag.GetChild(i).localRotation = origin.GetChild(i).localRotation;
+            }
+            ragdollObj.transform.position = charObj.transform.position;
+            ragdollObj.transform.rotation = charObj.transform.rotation;
+        }
+
     }
 }

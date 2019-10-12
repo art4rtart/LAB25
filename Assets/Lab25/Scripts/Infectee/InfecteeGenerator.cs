@@ -33,7 +33,8 @@ public class InfecteeGenerator : MonoBehaviour
 		{
 			enemyPool[i] = new MemoryPool();
 			enemyPool[i].Create(infectees[i], GenerateTotal, this.transform);
-		}
+            infectees[i].SetActive(false);
+        }
 
 		if (Stage == 4) StartCoroutine(Generate());
     }

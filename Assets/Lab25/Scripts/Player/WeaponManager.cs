@@ -23,11 +23,11 @@ public class WeaponManager : MonoBehaviour
     public int weaponNum;
     public GameObject playerObj;
     private int curWeaponNum = 0;
-
+    public int stage = 0;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(2) && stage >= 4)
         {
             if (anim.runtimeAnimatorController == weaponCtrls[0])
                 anim.runtimeAnimatorController = weaponCtrls[1];

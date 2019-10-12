@@ -64,7 +64,7 @@ public class BombGage : MonoBehaviour
         {
             isCoroutineStarted = true;
             correctCount = 0;
-            PlayerManager.isHit = false;
+            //PlayerManager.isHit = false;
 
             slider.GetComponent<Animator>().SetBool("BombGageFade", true);
             yield return new WaitForSeconds(.5f);
@@ -74,7 +74,7 @@ public class BombGage : MonoBehaviour
             {
 				BombInstallInstructor.Instance.CorrectBombInstruction();
 
-				if (PlayerManager.isHit) break;
+				//if (PlayerManager.isHit) break;
 
                 addSpeed += Time.deltaTime;
                 currentGage = Mathf.Clamp(currentGage += Time.deltaTime * 1.5f * addSpeed, 0, 4);
