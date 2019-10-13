@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 854759231}
   m_Layer: 17
   m_Name: Sparks
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4834,7 +4834,7 @@ GameObject:
   - component: {fileID: 1806746459}
   m_Layer: 17
   m_Name: Electricity
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9749,7 +9749,7 @@ GameObject:
   - component: {fileID: 713409203804878444}
   m_Layer: 17
   m_Name: def.toe.l
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9780,7 +9780,7 @@ GameObject:
   - component: {fileID: 585563863289240409}
   m_Layer: 17
   m_Name: def.toe.l_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9969,7 +9969,7 @@ GameObject:
   - component: {fileID: 335890308}
   m_Layer: 17
   m_Name: RagDollInfectee
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10192,7 +10192,7 @@ GameObject:
   - component: {fileID: 3995206170701243454}
   m_Layer: 17
   m_Name: def.f.ring.01.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10223,7 +10223,7 @@ GameObject:
   - component: {fileID: 9186236383877750181}
   m_Layer: 17
   m_Name: def.eye.l_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10428,7 +10428,7 @@ GameObject:
   - component: {fileID: 3944557735222242833}
   m_Layer: 17
   m_Name: def.f.pinky.01.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10459,7 +10459,7 @@ GameObject:
   - component: {fileID: 2912019059854895901}
   m_Layer: 17
   m_Name: def.palm.04.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10490,7 +10490,7 @@ GameObject:
   - component: {fileID: 3192973588878593061}
   m_Layer: 17
   m_Name: def.f.index.01.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10521,7 +10521,7 @@ GameObject:
   - component: {fileID: 8648522139850397259}
   m_Layer: 17
   m_Name: def.jaw_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10583,7 +10583,7 @@ GameObject:
   - component: {fileID: 554906661789904013}
   m_Layer: 17
   m_Name: def.chest.fix.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10706,7 +10706,7 @@ GameObject:
   - component: {fileID: 3045205798692680875}
   m_Layer: 17
   m_Name: def.jaw
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10799,7 +10799,7 @@ GameObject:
   - component: {fileID: 2310607212497702917}
   m_Layer: 17
   m_Name: def.hips.fix.l
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11229,7 +11229,7 @@ GameObject:
   - component: {fileID: 8418499165899685464}
   m_Layer: 17
   m_Name: def.f.ring.01.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11323,7 +11323,7 @@ GameObject:
   - component: {fileID: 8748366449187604202}
   m_Layer: 17
   m_Name: def.f.thumb.01.l_end
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11353,7 +11353,7 @@ GameObject:
   - component: {fileID: 5975390682083605108}
   m_Layer: 17
   m_Name: def.hand.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11388,7 +11388,7 @@ GameObject:
   - component: {fileID: 3926113600626723051}
   m_Layer: 17
   m_Name: def.f.index.02.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11449,7 +11449,7 @@ GameObject:
   - component: {fileID: 6420160720514520938}
   m_Layer: 17
   m_Name: def.f.thumb.01.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11511,7 +11511,7 @@ GameObject:
   - component: {fileID: 7622556809562833369}
   m_Layer: 17
   m_Name: def.thigh.lower.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11543,7 +11543,7 @@ GameObject:
   - component: {fileID: 1841562080991892441}
   m_Layer: 17
   m_Name: def.f.index.03.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11605,7 +11605,7 @@ GameObject:
   - component: {fileID: 2665187802263903584}
   m_Layer: 17
   m_Name: def.f.thumb.02.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11794,7 +11794,7 @@ GameObject:
   - component: {fileID: 2279309898010885914}
   m_Layer: 17
   m_Name: def.eye.r_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11933,7 +11933,7 @@ GameObject:
   - component: {fileID: 3254311941514617776}
   m_Layer: 17
   m_Name: def.toe.r_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11963,7 +11963,7 @@ GameObject:
   - component: {fileID: 3352196415506188285}
   m_Layer: 17
   m_Name: def.f.middle.03.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11994,7 +11994,7 @@ GameObject:
   - component: {fileID: 6576984545934801550}
   m_Layer: 17
   m_Name: def.f.pinky.01.l_end
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12024,7 +12024,7 @@ GameObject:
   - component: {fileID: 2796432198636047595}
   m_Layer: 17
   m_Name: def.arm.lower.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12087,7 +12087,7 @@ GameObject:
   - component: {fileID: 199810483668830827}
   m_Layer: 17
   m_Name: def.palm.01.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12118,7 +12118,7 @@ GameObject:
   - component: {fileID: 1969306778231177333}
   m_Layer: 17
   m_Name: def.arm.lower.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12150,7 +12150,7 @@ GameObject:
   - component: {fileID: 8754628750746946617}
   m_Layer: 17
   m_Name: def.f.ring.02.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12244,7 +12244,7 @@ GameObject:
   - component: {fileID: 6088325579067199487}
   m_Layer: 17
   m_Name: def.f.pinky.01.r_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12274,7 +12274,7 @@ GameObject:
   - component: {fileID: 5568181054692543327}
   m_Layer: 17
   m_Name: def.f.index.01.r_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12304,7 +12304,7 @@ GameObject:
   - component: {fileID: 9149469633151694551}
   m_Layer: 17
   m_Name: def.hips.fix.r_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12538,7 +12538,7 @@ GameObject:
   - component: {fileID: 4047708048454704208}
   m_Layer: 17
   m_Name: def.f.thumb.03.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12660,7 +12660,7 @@ GameObject:
   - component: {fileID: 1944329190782644525}
   m_Layer: 17
   m_Name: root
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12726,7 +12726,7 @@ GameObject:
   - component: {fileID: 4285209430207980801}
   m_Layer: 17
   m_Name: def.palm.03.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12757,7 +12757,7 @@ GameObject:
   - component: {fileID: 5787498154177889223}
   m_Layer: 17
   m_Name: def.f.index.03.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12969,6 +12969,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+  isUTRSMode: 0
+  bounty: 10
 --- !u!114 &221878874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13369,7 +13371,7 @@ GameObject:
   - component: {fileID: 849306601415981016}
   m_Layer: 17
   m_Name: def.neck
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13492,7 +13494,7 @@ GameObject:
   - component: {fileID: 4375731084545779341}
   m_Layer: 17
   m_Name: def.palm.03.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13632,7 +13634,7 @@ GameObject:
   - component: {fileID: 4716212421139494741}
   m_Layer: 17
   m_Name: def.f.middle.02.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13803,7 +13805,7 @@ GameObject:
   - component: {fileID: 5399215778745866351}
   m_Layer: 17
   m_Name: def.chest.fix.l
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13896,7 +13898,7 @@ GameObject:
   - component: {fileID: 7836847800002201283}
   m_Layer: 17
   m_Name: def.f.middle.01.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13927,7 +13929,7 @@ GameObject:
   - component: {fileID: 407732162788910282}
   m_Layer: 17
   m_Name: def.f.pinky.03.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14021,7 +14023,7 @@ GameObject:
   - component: {fileID: 2020404736593362440}
   m_Layer: 17
   m_Name: Armature
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14440,6 +14442,7 @@ MonoBehaviour:
   charObj: {fileID: 3372380545461173407}
   ragdollObj: {fileID: 569418168568487037}
   isGeneratorExist: 1
+  isDgeneratorExist: 0
   InfecteeID: 0
   dieTime: 2.5
   attackedByElectricStick: 0
@@ -14466,7 +14469,7 @@ GameObject:
   - component: {fileID: 6679031597635190101}
   m_Layer: 17
   m_Name: def.f.index.01.l_end
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14667,7 +14670,7 @@ GameObject:
   - component: {fileID: 7950819115893072133}
   m_Layer: 17
   m_Name: def.chest.fix.l_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14697,7 +14700,7 @@ GameObject:
   - component: {fileID: 7493722215509590785}
   m_Layer: 17
   m_Name: def.shoulder.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14728,7 +14731,7 @@ GameObject:
   - component: {fileID: 7899324683173881720}
   m_Layer: 17
   m_Name: def.f.middle.01.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14791,7 +14794,7 @@ GameObject:
   - component: {fileID: 6013124131276507115}
   m_Layer: 17
   m_Name: def.eye.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14822,7 +14825,7 @@ GameObject:
   - component: {fileID: 2658988365136544684}
   m_Layer: 17
   m_Name: def.hand.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14919,7 +14922,7 @@ GameObject:
   - component: {fileID: 510594896990294859}
   m_Layer: 17
   m_Name: def.palm.01.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15145,7 +15148,7 @@ GameObject:
   - component: {fileID: 6634534828141644074}
   m_Layer: 17
   m_Name: def.f.thumb.02.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15176,7 +15179,7 @@ GameObject:
   - component: {fileID: 2415156229088839245}
   m_Layer: 17
   m_Name: def.f.pinky.01.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15422,7 +15425,7 @@ GameObject:
   - component: {fileID: 8827107074070251351}
   m_Layer: 17
   m_Name: def.foot.l
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15453,7 +15456,7 @@ GameObject:
   - component: {fileID: 2895910672150308014}
   m_Layer: 17
   m_Name: def.f.middle.01.l_end
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15483,7 +15486,7 @@ GameObject:
   - component: {fileID: 4587837648788027745}
   m_Layer: 17
   m_Name: def.palm.02.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15545,7 +15548,7 @@ GameObject:
   - component: {fileID: 2485562577054366159}
   m_Layer: 17
   m_Name: def.f.pinky.03.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15576,7 +15579,7 @@ GameObject:
   - component: {fileID: 6410486968773312641}
   m_Layer: 17
   m_Name: def.f.middle.03.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15669,7 +15672,7 @@ GameObject:
   - component: {fileID: 1537024099628194321}
   m_Layer: 17
   m_Name: def.shin.lower.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15872,7 +15875,7 @@ GameObject:
   - component: {fileID: 2364537266339524121}
   m_Layer: 17
   m_Name: def.f.index.02.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15903,7 +15906,7 @@ GameObject:
   - component: {fileID: 6885192069178489617}
   m_Layer: 17
   m_Name: def.f.middle.02.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15964,7 +15967,7 @@ GameObject:
   - component: {fileID: 5873368516902357944}
   m_Layer: 17
   m_Name: def.hips.fix.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16026,7 +16029,7 @@ GameObject:
   - component: {fileID: 9074426913107146262}
   m_Layer: 17
   m_Name: def.shoulder.l
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16089,7 +16092,7 @@ GameObject:
   - component: {fileID: 7791791374841422876}
   m_Layer: 17
   m_Name: def.hips.fix.l_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16119,7 +16122,7 @@ GameObject:
   - component: {fileID: 438271669405838467}
   m_Layer: 17
   m_Name: def.f.middle.01.r_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16149,7 +16152,7 @@ GameObject:
   - component: {fileID: 5073197052638313156}
   m_Layer: 17
   m_Name: def.foot.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16180,7 +16183,7 @@ GameObject:
   - component: {fileID: 8696887621593725058}
   m_Layer: 17
   m_Name: def.f.pinky.02.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16242,7 +16245,7 @@ GameObject:
   - component: {fileID: 400278579183682642}
   m_Layer: 17
   m_Name: def.shin.lower.l
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16561,7 +16564,7 @@ GameObject:
   - component: {fileID: 2775876001440847867}
   m_Layer: 17
   m_Name: def.f.thumb.01.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16592,7 +16595,7 @@ GameObject:
   - component: {fileID: 5423965344155795679}
   m_Layer: 17
   m_Name: def.chest.upper
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16734,7 +16737,7 @@ GameObject:
   - component: {fileID: 9179899151167090846}
   m_Layer: 17
   m_Name: def.thigh.lower.l
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16766,7 +16769,7 @@ GameObject:
   - component: {fileID: 2676833053295250536}
   m_Layer: 17
   m_Name: def.f.ring.01.l_end
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16921,7 +16924,7 @@ GameObject:
   - component: {fileID: 4102915166528517218}
   m_Layer: 17
   m_Name: def.f.index.01.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17014,7 +17017,7 @@ GameObject:
   - component: {fileID: 2500199230043115514}
   m_Layer: 17
   m_Name: def.f.ring.03.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17045,7 +17048,7 @@ GameObject:
   - component: {fileID: 4565236151545279728}
   m_Layer: 17
   m_Name: def.eye.l
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17169,7 +17172,7 @@ GameObject:
   - component: {fileID: 5500303548408931696}
   m_Layer: 17
   m_Name: def.chest.fix.r_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17230,7 +17233,7 @@ GameObject:
   - component: {fileID: 2349090906872335761}
   m_Layer: 17
   m_Name: def.f.ring.02.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17515,7 +17518,7 @@ GameObject:
   - component: {fileID: 8487734145286130216}
   m_Layer: 17
   m_Name: def.palm.04.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17639,7 +17642,7 @@ GameObject:
   - component: {fileID: 3632154472794600579}
   m_Layer: 17
   m_Name: def.f.thumb.01.r_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17669,7 +17672,7 @@ GameObject:
   - component: {fileID: 1221859855315722814}
   m_Layer: 17
   m_Name: def.palm.02.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17700,7 +17703,7 @@ GameObject:
   - component: {fileID: 6488385389857167329}
   m_Layer: 17
   m_Name: def.toe.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17731,7 +17734,7 @@ GameObject:
   - component: {fileID: 1487242702702197631}
   m_Layer: 17
   m_Name: def.f.ring.03.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17762,7 +17765,7 @@ GameObject:
   - component: {fileID: 1937506858459299958}
   m_Layer: 17
   m_Name: def.f.pinky.02.r
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17886,7 +17889,7 @@ GameObject:
   - component: {fileID: 8969573071536763889}
   m_Layer: 17
   m_Name: def.chest.lower
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17949,7 +17952,7 @@ GameObject:
   - component: {fileID: 1707246407391980099}
   m_Layer: 17
   m_Name: def.f.ring.01.r_end
-  m_TagString: Infectee
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17979,7 +17982,7 @@ GameObject:
   - component: {fileID: 1145734163867966056}
   m_Layer: 17
   m_Name: def.f.thumb.03.l
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

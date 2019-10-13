@@ -91,9 +91,10 @@ public class WeaponCtrl : MonoBehaviour
     public int stage;
     public GrenadeThrower grenadeThrower;
 
-    private string reloadStr = "Reload";
+    public string reloadStr = "SciFiReload";
 	public bool isUTRSMode;
-
+    private int playerMask;
+    private readonly string playerStr = "Player";
     // Heartbeat
     private float heartbeatFreq = 0.65f;
     private void Awake()
@@ -104,7 +105,9 @@ public class WeaponCtrl : MonoBehaviour
 		akCurrentBullets = akBulletsPerMag;
 		UIManager.Instance.bulletsPerMagazine = akCurrentBullets;
 		UIManager.Instance.totalBullet = akBulletsTotal;
-	}
+
+        playerMask = (-1) - (1 << LayerMask.NameToLayer("Player"));
+    }
 
 	public bool isHoldingBomb;
 
@@ -112,7 +115,7 @@ public class WeaponCtrl : MonoBehaviour
     {
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         isReloading = info.IsName(reloadStr);
-
+      
 		//if (info.IsName("EndToDo(AK)") || info.IsName("Idle(AK)"))
 		//    myWeapnType = WEAPON.AKM;
 
@@ -292,6 +295,9 @@ public class WeaponCtrl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Debug.DrawRay(shootPoint.transform.position, (shootPoint.transform.forward * 2 + shootPoint.transform.right).normalized * 100f, Color.red);
+        //Debug.DrawRay(shootPoint.transform.position, ((shootPoint.transform.forward * 2 + shootPoint.transform.right * -1f)).normalized * 100f, Color.red);
+
         if (myWeapnType .Equals( WEAPON.AKM))
         {
             if (fireTimer < akFireRate)
@@ -317,7 +323,7 @@ public class WeaponCtrl : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 1.5f))
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 1.5f, playerMask))
         {
             Health health = hit.transform.GetComponent<Health>();
 
@@ -328,13 +334,17 @@ public class WeaponCtrl : MonoBehaviour
                 {
                     StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                 }
-                if (!hit.transform.CompareTag("Breakable"))
-                {
-                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
-                }
+
+                StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+
 
                 //else
                 //    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+            }
+            else
+            {
+                if (transform.tag.Equals(playerStr))
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
             }
         }
         //    else
@@ -370,28 +380,77 @@ public class WeaponCtrl : MonoBehaviour
 
     public void DamagedByBong()
     {
-        RaycastHit hit;
+        RaycastHit hit, hit2, hit3;
 
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 3f))
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 3f, playerMask))
         {
             Health health = hit.transform.GetComponent<Health>();
 
             if (health && health.hp > 0)
             {
-				hit.transform.GetComponentInParent<ChangeRagDoll>().attackedByElectricStick = true;
-				health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
+                hit.transform.GetComponentInParent<ChangeRagDoll>().attackedByElectricStick = true;
+                health.ApplyDamage(300, hit.transform.InverseTransformPoint(hit.point));
                 if (health.hp <= 0)
                 {
                     StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                 }
-                if (!hit.transform.CompareTag("Breakable"))
-                {
-                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
 
+                StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+
+
+            }
+            else
+            {
+                if (transform.tag.Equals(playerStr))
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+            }
+        }
+
+        if (Physics.Raycast(shootPoint.position, (shootPoint.transform.forward * 2 + shootPoint.transform.right).normalized, out hit2, 3f, playerMask))
+        {
+            Health health = hit2.transform.GetComponent<Health>();
+
+            if (health && health.hp > 0)
+            {
+                hit2.transform.GetComponentInParent<ChangeRagDoll>().attackedByElectricStick = true;
+                health.ApplyDamage(300, hit2.transform.InverseTransformPoint(hit2.point));
+                if (health.hp <= 0)
+                {
+                    StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit2.transform.position));
                 }
 
-                //else
-                //    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                StartCoroutine(ParticleManager.Instance.BloodEffect(hit2.point));
+
+
+            }
+            else
+            {
+                if (transform.tag.Equals(playerStr))
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+            }
+        }
+
+        if (Physics.Raycast(shootPoint.position, (shootPoint.transform.forward * 2 + shootPoint.transform.right * -1f).normalized, out hit3, 3f, playerMask))
+        {
+            Health health = hit3.transform.GetComponent<Health>();
+
+            if (health && health.hp > 0)
+            {
+                hit3.transform.GetComponentInParent<ChangeRagDoll>().attackedByElectricStick = true;
+                health.ApplyDamage(300, hit3.transform.InverseTransformPoint(hit3.point));
+                if (health.hp <= 0)
+                {
+                    StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit3.transform.position));
+                }
+
+                StartCoroutine(ParticleManager.Instance.BloodEffect(hit3.point));
+
+
+            }
+            else
+            {
+                if (transform.tag.Equals(playerStr))
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
             }
         }
     }
@@ -412,11 +471,11 @@ public class WeaponCtrl : MonoBehaviour
         }
 
         RaycastHit hit;
-
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * akAccuracy, out hit, akRange))
+        
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * akAccuracy, out hit, akRange, playerMask))
         {
             Health health = hit.transform.GetComponent<Health>();
-            
+
             if (health && health.hp > 0)
             {
                 health.ApplyDamage(akDamage, hit.transform.InverseTransformPoint(hit.point));
@@ -425,17 +484,16 @@ public class WeaponCtrl : MonoBehaviour
                     StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                 }
 
-                if (!hit.transform.CompareTag("Breakable"))
-                {
-                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
 
-                }
-                else
-                    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+
             }
             else
             {
-                StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                if (!transform.tag.Equals(playerStr))
+                    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                else
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
             }
         }
         akCurrentBullets--;
@@ -456,10 +514,10 @@ public class WeaponCtrl : MonoBehaviour
         }
 
         RaycastHit hit;
-
+  
         for (int i = 0; i < 3; ++i)
         {
-            if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * sciAccuracy, out hit, sciRange))
+            if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * sciAccuracy, out hit, sciRange, playerMask))
             {
                 Health health = hit.transform.GetComponent<Health>();
 
@@ -470,16 +528,16 @@ public class WeaponCtrl : MonoBehaviour
                     {
                         StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                     }
-                    if (!hit.transform.CompareTag("Breakable"))
-                    {
-                        StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
-                    }
-                    else
-                        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+
                 }
                 else
                 {
-                    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                    if( !transform.tag.Equals(playerStr))
+                        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                    else
+                        StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
                 }
             }
         }
@@ -518,7 +576,7 @@ public class WeaponCtrl : MonoBehaviour
 
     private void DoReload()
     {
-        if (myWeapnType .Equals( WEAPON.AKM))
+        if (myWeapnType.Equals( WEAPON.AKM))
         {
 			if (isUTRSMode) reloadStr = "AKReload";
             if (!isReloading && akCurrentBullets < akBulletsPerMag && akBulletsTotal > 0)
@@ -527,10 +585,10 @@ public class WeaponCtrl : MonoBehaviour
                 audioSource.PlayOneShot(reloadSound);
             }
         }
-        else if (myWeapnType .Equals( WEAPON.SCI_FI))
+        else if (myWeapnType.Equals( WEAPON.SCI_FI))
         {
 			if (isUTRSMode) reloadStr = "SciFiReload";
-			if (isUTRSMode) reloadStr = "SciFiReload";
+
 			if (!isReloading && sciCurrentBullets < sciBulletsPerMag && sciBulletsTotal > 0)
             {
                 anim.CrossFadeInFixedTime("SciFiReload", 0.01f); // Reloading

@@ -24,15 +24,21 @@ public class WeaponManager : MonoBehaviour
     public GameObject playerObj;
     private int curWeaponNum = 0;
     public int stage = 0;
+
+    private readonly string akIdleStr = "Idle(AK)";
+    private readonly string sciIdleStr = "Idle(Scifi)";
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(2) && stage >= 4)
         {
-            if (anim.runtimeAnimatorController == weaponCtrls[0])
-                anim.runtimeAnimatorController = weaponCtrls[1];
-            else 
-                anim.runtimeAnimatorController = weaponCtrls[0];
+            AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+ 
+            if (anim.runtimeAnimatorController == weaponCtrls[2] && info.IsName(akIdleStr))
+                anim.runtimeAnimatorController = weaponCtrls[3];
+            else if(anim.runtimeAnimatorController == weaponCtrls[3] && info.IsName(sciIdleStr))
+                anim.runtimeAnimatorController = weaponCtrls[2];
         }
         else if (Input.GetMouseButtonUp(2))
             UIManager.Instance.TextUpdate();

@@ -47,7 +47,7 @@ public class InfecteeGenerator : MonoBehaviour
 		}
     }
 
-	int wave = 0;
+	int wave = 1;
 
 	public IEnumerator Generate()
     {
@@ -61,15 +61,10 @@ public class InfecteeGenerator : MonoBehaviour
 			{
 				for (int j = 0; j < generate; ++j)
 				{
-					if (Stage == 4 && wave == 0)
-					{
-						infectee = enemyPool[Random.Range(2, infectees.Length)].NewItem();
-					}
 
-					else
-						infectee = enemyPool[Random.Range(0, infectees.Length)].NewItem();
+                    infectee = enemyPool[Random.Range(0, infectees.Length)].NewItem();
 
-					Vector3 pos = spawnZone[i].transform.position + new Vector3(Random.Range(-3.0f, 3.0f), 0, Random.Range(-3.0f, 3.0f));
+                    Vector3 pos = spawnZone[i].transform.position + new Vector3(Random.Range(-3.0f, 3.0f), 0, Random.Range(-3.0f, 3.0f));
 
 					if ( infectee != null ) infectee.transform.GetChild(0).position = pos;
 

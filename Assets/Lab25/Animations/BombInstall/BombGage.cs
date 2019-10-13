@@ -79,7 +79,11 @@ public class BombGage : MonoBehaviour
                 addSpeed += Time.deltaTime;
                 currentGage = Mathf.Clamp(currentGage += Time.deltaTime * 1.5f * addSpeed, 0, 4);
                 slider.value = Mathf.Floor(currentGage * 100f) * 0.25f;
-
+                if (BombInstallInstructor.Instance.isOutOfBound)
+                {
+                    slider.GetComponent<Animator>().SetBool("BombGageFade", false);
+                    break;
+                }
                 if (slider.value > randomNum[randomNumIndex] + 5 && correctCount < 3)
                 {
                     //Debug.Log("FIRST");
@@ -87,7 +91,7 @@ public class BombGage : MonoBehaviour
                     break;
                 }
 
-                if (Input.GetKeyDown(KeyCode.B))
+                if (Input.GetMouseButtonDown(0))
                 {
                     //Debug.Log("Click B");
                     if (randomNum[randomNumIndex] - 5 < slider.value && slider.value < randomNum[randomNumIndex] + 5)

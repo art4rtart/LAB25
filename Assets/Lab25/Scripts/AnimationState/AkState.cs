@@ -14,7 +14,8 @@ public class AkState : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 		if (WeaponCtrl.Instance == null) return;
-        WeaponCtrl.Instance.myWeapnType = WeaponCtrl.WEAPON.AKM;    
+        WeaponCtrl.Instance.myWeapnType = WeaponCtrl.WEAPON.AKM;
+        WeaponCtrl.Instance.reloadStr = "AKReload";
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

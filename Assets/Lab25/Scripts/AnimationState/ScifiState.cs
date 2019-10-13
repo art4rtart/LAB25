@@ -13,7 +13,8 @@ public class ScifiState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        WeaponCtrl.Instance.myWeapnType = WeaponCtrl.WEAPON.SCI_FI;    
+        WeaponCtrl.Instance.myWeapnType = WeaponCtrl.WEAPON.SCI_FI;
+        WeaponCtrl.Instance.reloadStr = "SciFiReload";
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
