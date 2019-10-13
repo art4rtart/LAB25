@@ -16,7 +16,7 @@ public class ItemManager : MonoBehaviour
 	[HideInInspector] public int medicalKitCount;
 	[HideInInspector] public int adrenalineCount;
 	[HideInInspector] public int grenadeCount;
-	[HideInInspector] public int beakerCount;
+	public int beakerCount = 1;
 
 	[Header("Interact Rage")]
 	public float range = 10f;
@@ -375,7 +375,6 @@ public class ItemManager : MonoBehaviour
 		medicalKitCount = 0;
 		adrenalineCount = 0;
 		grenadeCount = 0;
-		beakerCount = 5;
 		isUsingWard = false;
 		isUsingHearter = false;
 		currentHealth = 100f;

@@ -147,12 +147,14 @@ public class WeaponCtrl : MonoBehaviour
             {
                 BongAttack();
             }
-            else if (myWeapnType.Equals( WEAPON.CUP))
+            else if (myWeapnType.Equals( WEAPON.CUP) && itemManager.beakerCount > 0)
             {
                 anim.SetTrigger("doThrow");
                 grenadeThrower.ThrowGrenade();
-                //StartCoroutine(grenadeThrower.ThrowCup());
-                grenadeThrower.alpha = 0;
+				itemManager.beakerCount--;
+				grenadeThrower.lineRenderer.enabled = false;
+				//StartCoroutine(grenadeThrower.ThrowCup());
+				grenadeThrower.alpha = 0;
                 //itemManager.readyToUseGrenade = false;
                 //Anim End             
             }
@@ -236,7 +238,7 @@ public class WeaponCtrl : MonoBehaviour
                     StartCoroutine("DelayResetdoWeaponChange");
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha0))
+            else if (Input.GetKeyDown(KeyCode.C))
             {
                 // To Throw Cup
                 anim.SetBool("toDo", true);
@@ -471,30 +473,33 @@ public class WeaponCtrl : MonoBehaviour
         }
 
         RaycastHit hit;
-        
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * akAccuracy, out hit, akRange, playerMask))
         {
-            Health health = hit.transform.GetComponent<Health>();
+			Health health = hit.transform.GetComponent<Health>();
 
-            if (health && health.hp > 0)
-            {
-                health.ApplyDamage(akDamage, hit.transform.InverseTransformPoint(hit.point));
-                if (health.hp <= 0)
-                {
-                    StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
-                }
+			if (health && health.hp > 0)
+			{
+				health.ApplyDamage(akDamage, hit.transform.InverseTransformPoint(hit.point));
+				if (health.hp <= 0)
+				{
+					StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
+				}
 
 
-                StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+				StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
 
-            }
-            else
-            {
-                if (!transform.tag.Equals(playerStr))
-                    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-                else
-                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
-            }
+			}
+			else
+			{
+				if (!hit.transform.tag.Equals(playerStr))
+				{
+					StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+				}
+				else
+				{
+					StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+				}
+			}
         }
         akCurrentBullets--;
         fireTimer = 0.0f;
@@ -534,7 +539,7 @@ public class WeaponCtrl : MonoBehaviour
                 }
                 else
                 {
-                    if( !transform.tag.Equals(playerStr))
+                    if( !hit.transform.tag.Equals(playerStr))
                         StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
                     else
                         StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));

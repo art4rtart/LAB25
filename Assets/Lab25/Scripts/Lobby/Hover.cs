@@ -467,7 +467,7 @@ public class Hover : MonoBehaviour
 	{
 		loadUtilScene = true;
 		SceneMaster.SaveCurrentSceneName();
-		utilSceneName = "Ranking";
+		utilSceneName = "Exhibition";
 
 		audioManager.Play("DefaultClickSound");
 		lobby.menuAnimator.SetTrigger("FadeOut");
@@ -480,13 +480,13 @@ public class Hover : MonoBehaviour
 	{
 		loadUtilScene = true;
 		SceneMaster.SaveCurrentSceneName();
-		utilSceneName = "MissionCleared";
+		utilSceneName = "UTRS";
 
 		audioManager.Play("DefaultClickSound");
 		lobby.menuAnimator.SetTrigger("FadeOut");
 		lobby.highlightMenuAnimator.SetTrigger("Fade");
 
-		StartCoroutine(FadeVolume());
+		StartCoroutine(FadeVolumeBigScene(utilSceneName));
 	}
 
 	public void SettingLoad()
@@ -509,6 +509,21 @@ public class Hover : MonoBehaviour
 			bgm.volume -= Time.deltaTime;
 
 			if (bgm.volume <= 0.3f && loadUtilScene) SceneManager.LoadScene(utilSceneName);
+			yield return null;
+		}
+	}
+
+	IEnumerator FadeVolumeBigScene(string stageName)
+	{
+		while (bgm.volume >= 0f)
+		{
+			bgm.volume -= Time.deltaTime;
+
+			if (bgm.volume <= 0.3f && loadUtilScene)
+			{
+				LevelLoader.sceneName = stageName;
+				SceneManager.LoadScene(loadingNames[Random.Range(0, loadingNames.Length)]);
+			}
 			yield return null;
 		}
 	}

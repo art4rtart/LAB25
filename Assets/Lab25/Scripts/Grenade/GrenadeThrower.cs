@@ -21,42 +21,42 @@ public class GrenadeThrower : MonoBehaviour
 	//&& itemManager.grenadeCount > 0
 	void Update()
 	{
-		material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
-
-  //      if (itemManager.readyToUseGrenade && itemManager.beakerCount > 0)
+		//if (itemManager.readyToUseGrenade && itemManager.beakerCount > 0)
 		//{
-            
+
 		//	playerAnim.SetTrigger("ReadyToThrow");
-  //          myWeapon.myWeapnType = WeaponCtrl.WEAPON.CUP;
+		//	myWeapon.myWeapnType = WeaponCtrl.WEAPON.CUP;
 		//	lineRenderer.enabled = true;
 		//}
 
-	 //   if (Input.GetMouseButtonUp(0))
+		//   if (Input.GetMouseButtonUp(0))
 		//{
 		//	ThrowGrenade();
 		//	StartCoroutine("ThrowCup");
 		//	alpha = 0;
 		//	itemManager.readyToUseGrenade = false;
 		//	playerAnim.ResetTrigger("ReadyToThrow");
-  //          if (myWeapon.stage == 3)
-  //              myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
-  //          else if ( myWeapon.stage ==4 || myWeapon.stage ==5  )
-  //              myWeapon.myWeapnType = WeaponCtrl.WEAPON.SCI_FI;
-  //      }
+		//          if (myWeapon.stage == 3)
+		//              myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
+		//          else if ( myWeapon.stage ==4 || myWeapon.stage ==5  )
+		//              myWeapon.myWeapnType = WeaponCtrl.WEAPON.SCI_FI;
+		//      }
 
 		if (myWeapon.myWeapnType == WeaponCtrl.WEAPON.CUP)
 		{
-			if (alpha < 1)
-				alpha += fadeSpeed * Time.deltaTime;
-		}
-		else
-		{
-			if (alpha > 0)
-				alpha -= fadeSpeed * Time.deltaTime;
+			if (!lineRenderer.enabled) lineRenderer.enabled = true;
+			alpha = Mathf.Clamp(alpha += fadeSpeed * Time.deltaTime, 0, 1f);
 		}
 
-		if (alpha < 0.01f)
+		else
+		{
+			alpha = 0;
 			lineRenderer.enabled = false;
+			//alpha = Mathf.Clamp(alpha += fadeSpeed * Time.deltaTime, 0, 1f);
+			//if (alpha == 0 && lineRenderer.enabled) lineRenderer.enabled = false;
+		}
+
+		material.color = new Color(material.color.r, material.color.g, material.color.b, alpha);
 	}
 
 	public void ThrowGrenade()

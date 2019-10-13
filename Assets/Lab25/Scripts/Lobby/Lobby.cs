@@ -65,12 +65,14 @@ public class Lobby : MonoBehaviour
 
 	public void MoveLeftEvent()
 	{
+		audioManager.Play("DefaultClickSound");
 		spriteIndex = (spriteIndex + 1) % stageSprites.Length;
 		RefreshMenu();
 	}
 
 	public void MoveRightButton()
 	{
+		audioManager.Play("DefaultClickSound");
 		spriteIndex = (spriteIndex - 1) % stageSprites.Length;
 		RefreshMenu();
 	}

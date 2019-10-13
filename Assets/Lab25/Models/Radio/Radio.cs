@@ -32,7 +32,6 @@ public class Radio : MonoBehaviour
 		while(!isStartedRadio) { yield return null; }
 
 		yield return new WaitForSeconds(5f);
-		if (scriptTrigger.activeSelf) { scriptTrigger.SetActive(false); missionScript.index++; missionScript.subIndex++; }
 		audioSource.Play();
 
 		Color baseColor = rend.material.color;

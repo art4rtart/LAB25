@@ -42,10 +42,10 @@ public class SceneMaster : MonoBehaviour
         StartCoroutine(CheckEscapeScene());
     }
 
-    //void Update()
-	//{
-	//	if (Input.GetKeyDown(KeyCode.Escape)) Escape();
-	//}
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Backspace)) Escape();
+	}
 
 	public static void SaveCurrentSceneName()
 	{

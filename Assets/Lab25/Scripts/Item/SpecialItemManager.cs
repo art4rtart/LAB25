@@ -24,7 +24,7 @@ public class SpecialItemManager : MonoBehaviour
 	{
 		AnimatorStateInfo animStateInfo = playerAnim.GetCurrentAnimatorStateInfo(0);
 
-		if (animStateInfo.IsName("Hearter") && animStateInfo.normalizedTime > 0.1f && !heraterActivateTrigger)
+		if (animStateInfo.IsName("Hearter") && animStateInfo.normalizedTime > 0f && !heraterActivateTrigger)
 		{
 			StopAllCoroutines();
 			StartCoroutine(LightOn());
@@ -34,7 +34,7 @@ public class SpecialItemManager : MonoBehaviour
 			heraterActivateTrigger = true;
 		}
 
-		else if (animStateInfo.IsName("endHearter") && animStateInfo.normalizedTime > 0.1f && heraterActivateTrigger)
+		else if (animStateInfo.IsName("EndToDo(AK)") && animStateInfo.normalizedTime > 0.1f && heraterActivateTrigger)
 		{
 			StopAllCoroutines();
 			StartCoroutine(LightOff());
@@ -42,7 +42,7 @@ public class SpecialItemManager : MonoBehaviour
 			heraterActivateTrigger = false;
 		}
 
-		else if (animStateInfo.IsName("endHearter") && animStateInfo.normalizedTime >= 1f)
+		else if (animStateInfo.IsName("EndToDo(AK)") && animStateInfo.normalizedTime >= 1f)
 		{
 			StopAllCoroutines();
 			heaterScreen.SetActive(false);

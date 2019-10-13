@@ -20,6 +20,7 @@ public class Beaker : MonoBehaviour
 		{
 			infectees[i].target = this.gameObject.transform;
 			infectees[i].player = this.gameObject;
+			if (!infectees[i].GetComponent<NavMeshAgent>().enabled) infectees[i].GetComponent<NavMeshAgent>().enabled = true;
 			infectees[i].GetComponent<NavMeshAgent>().SetDestination(infectees[i].target.position);
 			StartCoroutine(infectees[i].Follow());
 			infectees[i].followTarget = true;
