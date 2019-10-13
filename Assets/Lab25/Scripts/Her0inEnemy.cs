@@ -132,6 +132,12 @@ public class Her0inEnemy : MonoBehaviour
 
     public IEnumerator Follow()
     {
+		if (!navMesh.enabled)
+		{
+			navMesh.enabled = true;
+			target = FindObjectOfType<PlayerCtrl>().transform;
+			navMesh.SetDestination(target.position);
+		}
 		rgbd.constraints = RigidbodyConstraints.FreezeAll;
 		rgbd.drag = 50;
 		rgbd.mass = 100;

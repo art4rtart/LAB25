@@ -530,6 +530,7 @@ public class WeaponCtrl : MonoBehaviour
         else if (myWeapnType .Equals( WEAPON.SCI_FI))
         {
 			if (isUTRSMode) reloadStr = "SciFiReload";
+			if (isUTRSMode) reloadStr = "SciFiReload";
 			if (!isReloading && sciCurrentBullets < sciBulletsPerMag && sciBulletsTotal > 0)
             {
                 anim.CrossFadeInFixedTime("SciFiReload", 0.01f); // Reloading
