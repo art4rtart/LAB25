@@ -1794,7 +1794,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: ChangeToScifiGun
     m_Type: 4
@@ -10307,27 +10307,27 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -4542916965575096138}
-    second:
-    - {fileID: 8594741707203867143}
-  - first: {fileID: -5760718101910948327}
-    second:
-    - {fileID: -5915377203162351521}
-  - first: {fileID: 1107344572966185938}
-    second:
-    - {fileID: 1109980061092632274}
-  - first: {fileID: 1107859289146572674}
-    second:
-    - {fileID: 1109528320897806888}
   - first: {fileID: 1107783017713661716}
     second:
     - {fileID: 1109771137307161360}
+  - first: {fileID: -5760718101910948327}
+    second:
+    - {fileID: -5915377203162351521}
+  - first: {fileID: 1107859289146572674}
+    second:
+    - {fileID: 1109528320897806888}
+  - first: {fileID: 1107344572966185938}
+    second:
+    - {fileID: 1109980061092632274}
+  - first: {fileID: -4542916965575096138}
+    second:
+    - {fileID: 8594741707203867143}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 60, y: -72, z: 0}
   m_EntryPosition: {x: -192, y: 120, z: 0}
   m_ExitPosition: {x: 60, y: -132, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 1102907395099009334}
+  m_DefaultState: {fileID: 1102887954919760548}
 --- !u!1107 &1107859289146572674
 AnimatorStateMachine:
   serializedVersion: 5

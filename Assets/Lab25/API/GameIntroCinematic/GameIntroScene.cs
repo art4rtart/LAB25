@@ -38,31 +38,22 @@ public class GameIntroScene : MonoBehaviour
 
     private IEnumerator CheckSkipScene()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            print("Skip!");
-            isBlinkEnd = true;
-            fadeAnimator.SetTrigger("SceneEnd");
-            Invoke("LoadScene", 1.5f);
-        }
-
-        yield return new WaitForSeconds(0.1f);
-        StartCoroutine(CheckSkipScene());
+		while (true)
+		{
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				isBlinkEnd = true;
+				fadeAnimator.SetTrigger("SceneEnd");
+				Invoke("LoadScene", 1.5f);
+				break;
+			}
+			yield return null;
+		}
     }
-
-	//void Update()
-	//{
-	//	if (Input.GetKeyDown(KeyCode.Space))
-	//	{
-	//		print("Skip!");
-	//		isBlinkEnd = true;
-	//		fadeAnimator.SetTrigger("SceneEnd");
-	//		Invoke("LoadScene", 1.5f);
-	//	}
-	//}
 
 	public void LoadScene()
 	{
+		Debug.Log("Skip!");
 		moveToNextScene.LoadSceneTrigger();
 	}
 

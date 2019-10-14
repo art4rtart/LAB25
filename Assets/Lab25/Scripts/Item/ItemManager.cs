@@ -301,7 +301,7 @@ public class ItemManager : MonoBehaviour
 				break;
 
 			case "Damage Protection Vest":
-				PlayerManager.armor += 100f;
+				PlayerManager.armor = Mathf.Clamp(PlayerManager.armor += 100f, 0, 100f);
 				UIManager.Instance.TextUpdate();
 				break;
 

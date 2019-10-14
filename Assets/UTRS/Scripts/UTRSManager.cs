@@ -135,7 +135,7 @@ public class UTRSManager : MonoBehaviour
 		}
 	}
 
-	bool isUsingAk = true;
+	bool isUsingAk = false;
 
 	void OnApplicationQuit()
 	{

@@ -54,6 +54,8 @@ public class PlayerDieRag : MonoBehaviour
 	void GoToTitle()
 	{
 		subCamera.SetActive(true);
-		SceneManager.LoadScene("2. Title");
+		SceneManager.LoadScene("3. Title");
+		PlayerManager.hp = 100f;
+		PlayerManager.armor = 0f;
 	}
 }

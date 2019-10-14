@@ -77,6 +77,7 @@ public class UTRSShop : MonoBehaviour
 		if (UTRSManager.Instance.totalGold - akGunPrice > 0)
 		{
 			UTRSManager.Instance.totalGold -= akGunPrice;
+			goodAnim.SetTrigger("ElectricStickToAk");
 			goodAnim.SetBool("isAkReady", true);
 		}
 	}
