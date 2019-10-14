@@ -27,6 +27,10 @@ public class SpecialItemManager : MonoBehaviour
 		if (animStateInfo.IsName("Hearter") && animStateInfo.normalizedTime > 0f && !heraterActivateTrigger)
 		{
 			StopAllCoroutines();
+
+			//playerAnim.ResetTrigger("endHearter");
+			//playerAnim.ResetTrigger("endBomb");
+
 			StartCoroutine(LightOn());
 			heaterScreen.SetActive(true);
 			heraterAnim.SetBool("activate", true);
@@ -34,7 +38,7 @@ public class SpecialItemManager : MonoBehaviour
 			heraterActivateTrigger = true;
 		}
 
-		else if (animStateInfo.IsName("EndToDo(AK)") && animStateInfo.normalizedTime > 0.1f && heraterActivateTrigger)
+		else if (animStateInfo.IsName("harter_d") && animStateInfo.normalizedTime > 0.1f && heraterActivateTrigger)
 		{
 			StopAllCoroutines();
 			StartCoroutine(LightOff());

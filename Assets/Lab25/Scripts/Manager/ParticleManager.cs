@@ -81,7 +81,7 @@ public class ParticleManager : MonoBehaviour
         {
             bloodTraceObject.transform.position = pos;
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(15f);
         bloodTraceObject.transform.SetParent(fireTraceParent);
         bloodTraceParticlePool.RemoveItem(bloodTraceObject, bloodTracePrefab, fireTraceParent);
     }

@@ -67,13 +67,7 @@ public class GrenadeThrower : MonoBehaviour
 		Rigidbody rb = grenade.GetComponent<Rigidbody>();
 		rb.AddForce(transform.forward * throwForce, ForceMode.VelocityChange);
 		rb.AddForce(transform.up * throwForce / 8, ForceMode.VelocityChange);
+		myWeapon.ResetParameterDoThrow();
 	}
-	
-	public IEnumerator ThrowCup()
-	{
-		playerAnim.SetBool("isThrow", true);
-        //myWeapon.myWeapnType = WeaponCtrl.WEAPON.AKM;
-        yield return new WaitForSeconds(1.0f);
-		playerAnim.SetBool("isThrow", false);
-    }
+
 }

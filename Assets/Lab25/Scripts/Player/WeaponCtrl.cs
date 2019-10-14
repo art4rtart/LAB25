@@ -111,11 +111,11 @@ public class WeaponCtrl : MonoBehaviour
 
 	public bool isHoldingBomb;
 
-    private void Update()
-    {
-        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-        isReloading = info.IsName(reloadStr);
-      
+	private void Update()
+	{
+		AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+		isReloading = info.IsName(reloadStr);
+
 		//if (info.IsName("EndToDo(AK)") || info.IsName("Idle(AK)"))
 		//    myWeapnType = WEAPON.AKM;
 
@@ -124,103 +124,111 @@ public class WeaponCtrl : MonoBehaviour
 
 		//Debug.Log(myWeapnType);
 		if (Input.GetMouseButton(0) && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonUp(0))
-        {
-            if (myWeapnType.Equals(WEAPON.AKM))
-            {
-                if (akCurrentBullets > 0)
-                    Fire();
-                else
-                    DoReload();
-            }
-            else if (myWeapnType.Equals(WEAPON.SCI_FI))
-            {
-                if (sciCurrentBullets > 0)
-                    Scifi_Fire();
-                else
-                    DoReload();
-            }
-            else if (myWeapnType.Equals( WEAPON.AXE ))
-            {
-                AxeAttack();
-            }
-            else if (myWeapnType.Equals(WEAPON.BONG))
-            {
-                BongAttack();
-            }
-            else if (myWeapnType.Equals( WEAPON.CUP) && itemManager.beakerCount > 0)
-            {
-                anim.SetTrigger("doThrow");
-                grenadeThrower.ThrowGrenade();
+		{
+			if (myWeapnType.Equals(WEAPON.AKM))
+			{
+				if (akCurrentBullets > 0)
+					Fire();
+				else
+					DoReload();
+			}
+			else if (myWeapnType.Equals(WEAPON.SCI_FI))
+			{
+				if (sciCurrentBullets > 0)
+					Scifi_Fire();
+				else
+					DoReload();
+			}
+			else if (myWeapnType.Equals(WEAPON.AXE))
+			{
+				AxeAttack();
+			}
+			else if (myWeapnType.Equals(WEAPON.BONG))
+			{
+				BongAttack();
+			}
+		}
+		else if (Input.GetMouseButtonDown(0))
+		{
+			 if (myWeapnType.Equals(WEAPON.CUP) /*&& itemManager.beakerCount > 0*/)
+			{
+	
+				grenadeThrower.ThrowGrenade();
 				itemManager.beakerCount--;
 				grenadeThrower.lineRenderer.enabled = false;
 				//StartCoroutine(grenadeThrower.ThrowCup());
 				grenadeThrower.alpha = 0;
-                //itemManager.readyToUseGrenade = false;
-                //Anim End             
-            }
-            else if (myWeapnType.Equals( WEAPON.BOMB))
-            {
-                if (BombGage.Instance.canInstall && !BombGage.Instance.isInstalling)
-                {
-                    StartCoroutine(BombGage.Instance.BombInstall());
+				//itemManager.readyToUseGrenade = false;
+				//Anim End             
+			}
+			else if (myWeapnType.Equals(WEAPON.BOMB))
+			{
+				if (BombGage.Instance.canInstall && !BombGage.Instance.isInstalling)
+				{
+					StartCoroutine(BombGage.Instance.BombInstall());
 					BombGage.Instance.isInstalling = true;
 				}
-            }
-            else if (myWeapnType .Equals( WEAPON.HEARTER))
-            {
+			}
 
-            }
-            else if (myWeapnType .Equals( WEAPON.WARD))
-            {
-                anim.SetTrigger("useWard");
+			else if (myWeapnType.Equals(WEAPON.HEARTER))
+			{
+
+			}
+
+			else if (myWeapnType.Equals(WEAPON.WARD))
+			{
+				anim.SetTrigger("useWard");
 				scanner.scanning = true;
 
 				StartCoroutine("DelayResetuseWard");
-            }
-            else if (myWeapnType .Equals( WEAPON.JAMMER))
-            {
+			}
 
-            }
-            else if (myWeapnType .Equals( WEAPON.ADRE))
-            {
+			else if (myWeapnType.Equals(WEAPON.JAMMER))
+			{
 
-            }
-            else if (myWeapnType .Equals( WEAPON.HEAL))
-            {
+			}
+			else if (myWeapnType.Equals(WEAPON.ADRE))
+			{
 
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (myWeapnType .Equals( WEAPON.AKM) || myWeapnType .Equals( WEAPON.SCI_FI))
-            {
-                DoReload();
-            }
-        }
+			}
+			else if (myWeapnType.Equals(WEAPON.HEAL))
+			{
+
+			}
+		}
+     
         else
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (info.IsName("Idle(AXE)") || info.IsName("Idle(IRON)"))
-                {
-                    anim.SetTrigger("doWeaponChange");
+				Debug.Log("Click");
+				if (info.IsName("Idle(AXE)") || info.IsName("Idle(IRON)"))
+				{
+					anim.SetTrigger("doWeaponChange");
 
-                }
-                else
-                {
-                    anim.SetTrigger("endHearter");
-                    anim.SetTrigger("endBomb");
-                }
-                //// To Main Weapon
-                //if (stage == 3)
-                //    myWeapnType = WEAPON.AKM;
-                //else if (stage == 4 || stage == 5)
-                //    myWeapnType = WEAPON.SCI_FI;
+				}
+				else
+				{
+					Debug.Log("Click Ing");
+
+
+					anim.SetTrigger("endHearter");
+					anim.SetTrigger("endBomb");
+					anim.SetBool("doThrow", false);
+
+				}
+
                 StartCoroutine("DelayResetdoWeaponChange");
 
             }
-
-            else if (Input.GetKeyDown(KeyCode.Alpha3) && itemManager.medicalKitCount > 0)
+			else if (Input.GetKeyDown(KeyCode.R))
+			{
+				if (myWeapnType.Equals(WEAPON.AKM) || myWeapnType.Equals(WEAPON.SCI_FI))
+				{
+					DoReload();
+				}
+			}
+			else if (Input.GetKeyDown(KeyCode.Alpha3) && itemManager.medicalKitCount > 0)
             {
 				// Heal
 				useMedicalKit = true;
@@ -232,21 +240,28 @@ public class WeaponCtrl : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 // To Axe or To Bong
-                if (info.IsName("Idle(IRON)") || info.IsName("Idle(AK)") || info.IsName("Run(AK)") || info.IsName("Idle(SCIFI)") || info.IsName("Run(SCIFI)"))
+                if ( info.IsName("Idle(AK)") || info.IsName("Idle(SCIFI)") )
                 {
                     anim.SetTrigger("doWeaponChange");
                     StartCoroutine("DelayResetdoWeaponChange");
                 }
-            }
+				else
+				{
+					anim.SetTrigger("endHearter");
+					anim.SetTrigger("endBomb");
+					anim.SetBool("doThrow", false);
+				}
+			}
             else if (Input.GetKeyDown(KeyCode.C))
             {
                 // To Throw Cup
                 anim.SetBool("toDo", true);
-                grenadeThrower.lineRenderer.enabled = true;
+				anim.SetBool("doThrow", true);
+				grenadeThrower.lineRenderer.enabled = true;
 
                 StartCoroutine("DelayResetAnimParameter");
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha6))
+            else if (Input.GetKeyDown(KeyCode.Alpha6) && itemManager.hasWard)
             {
                 // Ward
                 anim.SetBool("toDo", true);
@@ -255,7 +270,7 @@ public class WeaponCtrl : MonoBehaviour
                 StartCoroutine("DelayResetAnimParameter");
             }
 
-            else if (Input.GetKeyDown(KeyCode.Alpha5))
+            else if (Input.GetKeyDown(KeyCode.Alpha5) && itemManager.hasHearter)
             {
                 // Hearter
                 anim.SetBool("toDo", true);
@@ -626,9 +641,14 @@ public class WeaponCtrl : MonoBehaviour
             sciBulletsTotal -= bulletsToReload;
         }
     }
+
+	public void ResetParameterDoThrow()
+	{
+		anim.SetBool("doThrow", false);
+	}
     private IEnumerator DelayResetAnimParameter()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         anim.SetBool("toDo", false);
     }
 
@@ -638,16 +658,10 @@ public class WeaponCtrl : MonoBehaviour
         anim.ResetTrigger("useWard");
     }
 
-    private IEnumerator DelayResetdoThrow()
-    {
-        yield return new WaitForSeconds(0.5f);
-        anim.ResetTrigger("doThrow");
-    }
-
     private IEnumerator DelayResetdoWeaponChange()
     {
         //Debug.Log("ASDSAD");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
 
         anim.ResetTrigger("doWeaponChange");
         anim.ResetTrigger("endHearter");
@@ -668,5 +682,6 @@ public class WeaponCtrl : MonoBehaviour
         }
         heartbeatFreq = 0.65f;
     }
+
 }
 

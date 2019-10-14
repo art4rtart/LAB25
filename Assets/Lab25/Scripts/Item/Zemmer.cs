@@ -18,7 +18,7 @@ public class Zemmer : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Z))
+		if (Input.GetKeyDown(KeyCode.Z) && ItemManager.Instance.hasJammer)
 			UseZemmer();
 	}
 	public void UseZemmer()

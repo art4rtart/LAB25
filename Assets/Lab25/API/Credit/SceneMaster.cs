@@ -68,7 +68,12 @@ public class SceneMaster : MonoBehaviour
 		}
 		fadeInImage.color = new Color(fadeInImage.color.r, fadeInImage.color.g, fadeInImage.color.b, 1);
 		yield return new WaitForSeconds(.5f);
-		SceneManager.LoadScene(sceneName);
+
+		if (SceneManager.GetActiveScene().name == "Credit")
+			SceneManager.LoadScene("3. Title");
+
+		else
+			SceneManager.LoadScene(sceneName);
 
 		while(sceneName == SceneManager.GetActiveScene().name) yield return null;
 		yield return new WaitForSeconds(.5f);

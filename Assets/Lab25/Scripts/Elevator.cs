@@ -25,11 +25,19 @@ public class Elevator : MonoBehaviour
 		fadeAnim.SetTrigger("SceneEnd");
 
 		LevelLoader.sceneName = nextSceneName;
-		SceneManager.LoadScene(loadingNames[Random.Range(0, loadingNames.Length)]);
+
+		StartCoroutine(Timer());
 	}
 
 	public void DoorOpen()
 	{
 		uiManager.isMissionComplete = true;
+	}
+
+	IEnumerator Timer()
+	{
+		yield return new WaitForSeconds(2f);
+
+		SceneManager.LoadScene(nextSceneName);
 	}
 }

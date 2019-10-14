@@ -35,8 +35,7 @@ public class ScreamInfectee : MonoBehaviour
 		}
 
 		anim.SetTrigger("Scream");
-		audioSource.Play();
-
+		
 		Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, getZombieRadius, enemyMask);
 
 		for (int i = 0; i < enemyInRadius.Length; i++)
@@ -45,6 +44,9 @@ public class ScreamInfectee : MonoBehaviour
 			enemyInRadius[i].GetComponent<Her0inEnemy>().followTarget = true;
 		}
 		yield return null;
+
+		yield return new WaitForSeconds(.5f);
+		audioSource.Play();
 
 		// Die Dissolve
 		yield return new WaitForSeconds(1.75f);

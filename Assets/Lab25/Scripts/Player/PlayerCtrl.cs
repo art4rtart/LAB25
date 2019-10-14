@@ -54,6 +54,10 @@ public class PlayerCtrl : MonoBehaviour
     public float crouchSpeed;
     public float crouchHeight;
     private float playerHeight;
+	private int startRunSpeed = 10;
+	private int startWalkSpeed = 4;
+	private int isHitRunSpeed = 3;
+	private int isHitWalkSpeed = 3;
 
 	public static PlayerCtrl Instance
 	{
@@ -119,7 +123,6 @@ public class PlayerCtrl : MonoBehaviour
             PlayLandingSound();
             m_MoveDir.y = 0f;
             m_Jumping = false;
-			//isGrounding = true;
 		}
 
         if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
@@ -135,11 +138,14 @@ public class PlayerCtrl : MonoBehaviour
         Vector3 tmpPos = transform.position;
 		//tmpPos.y += (m_CharacterController.height - lastHeight);
 		//transform.position = tmpPos;
-
-		// if(isGrounding) { this.transform.position = new Vector3(transform.position.x, -0.3f, transform.position.z); }
+		//Debug.Log(m_CharacterController.isGrounded);
+		//if (m_CharacterController.isGrounded) newYPos = this.transform.position.y;
+		//if (isCollidedInfectee) { this.transform.position = new Vector3(transform.position.x, newYPos, transform.position.z); }
 	}
 
-	//bool isGrounding = true;
+
+	public float newYPos = -0.3f;
+	bool isCollidedInfectee = true;
 
     private void PlayLandingSound()
     {
@@ -174,7 +180,6 @@ public class PlayerCtrl : MonoBehaviour
             {
                 m_MoveDir.y = m_JumpSpeed;
                 PlayJumpSound();
-				// isGrounding = false;
 				m_Jump = false;
                 m_Jumping = true;
             }
@@ -336,11 +341,14 @@ public class PlayerCtrl : MonoBehaviour
         Rigidbody body = hit.collider.attachedRigidbody;
 
 
-		//if (hit.collider.name == "Stairs")
-		//{
-		//	isGrounding = false;
-		//}
-		//dont move the rigidbody if the character is on top of it
+
+		if (hit.collider.name == "Charger")
+		{
+			m_PlayerManager.ApplyDamage(100f);
+		}
+
+
+			// dont move the rigidbody if the character is on top of it
 		if (m_CollisionFlags == CollisionFlags.Below)
         {
             return;
@@ -351,11 +359,7 @@ public class PlayerCtrl : MonoBehaviour
             return;
         }
 
-		if(hit.collider.name == "Charger")
-		{
-			m_PlayerManager.ApplyDamage(100f);
-		}
-
-		body.AddForceAtPosition(m_CharacterController.velocity * 0.1f, hit.point, ForceMode.Impulse);
-    }
+		body.AddForce(m_CharacterController.velocity * 0.0001f, ForceMode.Impulse);
+	
+	}
 }

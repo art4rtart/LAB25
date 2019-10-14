@@ -20,6 +20,7 @@ public class BombGage : MonoBehaviour
     private static BombGage instance;
 
     public Slider slider;
+	public Image sliderBackgroundImage;
 	public RectTransform[] handle;
 	public RectTransform gageHandler;
 	public Animator stageAnimator;
@@ -60,7 +61,8 @@ public class BombGage : MonoBehaviour
 	[HideInInspector] public float correctCount = 0;
 	public IEnumerator BombInstall()
 	{
-        if (!isCoroutineStarted)
+		isCoroutineStarted = false;
+		if (!isCoroutineStarted)
         {
             isCoroutineStarted = true;
             correctCount = 0;
@@ -69,8 +71,8 @@ public class BombGage : MonoBehaviour
             slider.GetComponent<Animator>().SetBool("BombGageFade", true);
             yield return new WaitForSeconds(.5f);
 
-            // install sound play
-            while (currentGage <= 4)
+			// install sound play
+			while (currentGage <= 4)
             {
 				BombInstallInstructor.Instance.CorrectBombInstruction();
 

@@ -54,7 +54,6 @@ public class ItemManager : MonoBehaviour
 
 	// her0in new
 	public Quest quest;
-	public bool hasHearter;
 	public GameObject elevator;
 
 	[Header("Cross Hair")]
@@ -384,7 +383,8 @@ public class ItemManager : MonoBehaviour
 
 	bool hasBattery = false;
 	public bool hasFlashLight = false;
-	bool hasWard = false;
+	public bool hasWard = false;
+	public bool hasHearter = false;
+	public bool hasJammer = false;
 	public static bool hasCardKey = false;
-	bool hasJammer;
 }
