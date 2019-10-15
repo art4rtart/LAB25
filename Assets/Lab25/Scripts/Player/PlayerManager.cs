@@ -45,7 +45,8 @@ public class PlayerManager : MonoBehaviour
 		if (DataManager.Instance.initGame) { DataManager.Instance.InitGame(); }
 		else { DataManager.Instance.GetTotalData(FindObjectOfType<MoveToNextScene>().currentStageNum); }
 		DataManager.Instance.initGame = false;
-	}
+        PlayerManager.hp = 100;
+    }
 
     private void Start()
     {

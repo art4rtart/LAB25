@@ -14,15 +14,12 @@ public class MoveToNextScene : MonoBehaviour
 
 	public int currentStageNum;
 
-	void Awake()
-	{
-		Screen.SetResolution(1920, 1080, true);
-        PlayerManager.hp = 100;
-
-    }
 	void Start()
 	{
-		if(isTrigger)
+        Screen.SetResolution(1920, 1080, true);
+        
+    
+        if (isTrigger)
 		{
 			Invoke("LoadSceneTrigger", changeTime);
 		}
