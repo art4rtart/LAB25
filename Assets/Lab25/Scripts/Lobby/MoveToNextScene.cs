@@ -14,6 +14,10 @@ public class MoveToNextScene : MonoBehaviour
 
 	public int currentStageNum;
 
+	void Awake()
+	{
+		Screen.SetResolution(1920, 1080, true);
+	}
 	void Start()
 	{
 		if(isTrigger)

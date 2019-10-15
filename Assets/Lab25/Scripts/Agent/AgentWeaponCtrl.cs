@@ -86,7 +86,7 @@ public class AgentWeaponCtrl : MonoBehaviour
         if (flameFireTimer < flameFireRate)
             flameFireTimer += Time.fixedDeltaTime;
         //Vector3 forward = transform.TransformDirection(Vector3.forward) * 199f;
-        Debug.DrawRay(transform.position + Vector3.up, transform.forward * 300, Color.green);
+        //Debug.DrawRay(transform.position + Vector3.up, transform.forward * 300, Color.green);
     }
 
     public void Fire()
@@ -105,7 +105,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 
             if (health && health.hp > 0)
             {
-     
+			
                 health.ApplyDamage(43, hit.transform.InverseTransformPoint(hit.point));
                 if (health.hp <= 0)
                 {
@@ -256,10 +256,4 @@ public class AgentWeaponCtrl : MonoBehaviour
         bulletsTotal -= bulletsToReload;
     }
 
-    float sight = 20f;
-    void OnDrawGizmosSelected()
-    {
-        Vector3 forward = transform.TransformDirection(Vector3.forward) * sight;
-        Debug.DrawRay(transform.position, forward, Color.green);
-    }
 }

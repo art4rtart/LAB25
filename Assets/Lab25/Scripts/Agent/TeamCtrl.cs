@@ -24,14 +24,16 @@ public class TeamCtrl : MonoBehaviour
 	[Header("New Values")]
 	//public bool SetDestination;
 	public FlameThrower flamethrower;
+	public Transform shootPos;
 
-    void Start()
+	void Start()
     {
         animator = GetComponent<Animator>();
         navmesh = GetComponent<NavMeshAgent>();
         //Player = GameObject.FindGameObjectWithTag("Player");
 		rgbd = GetComponent<Rigidbody>();
 		agentShoot = GetComponent<AgentShoot>();
+
 	}
 
     void Update()
@@ -40,6 +42,7 @@ public class TeamCtrl : MonoBehaviour
 
 		Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, enemyFindRadius, enemyMask);
         targetToInfectee = false;
+		//Debug.Log(enemyInRadius.Length);
 
 		if (enemyInRadius.Length == 0)
 		{
@@ -48,14 +51,22 @@ public class TeamCtrl : MonoBehaviour
 		}
 
 		else
-		{
+		{ 
 			for (int i = 0; i < enemyInRadius.Length; ++i)
 			{
-				transform.LookAt(new Vector3(enemyInRadius[i].transform.position.x, this.transform.position.y, enemyInRadius[i].transform.position.z));
-				labAgent.target = enemyInRadius[i].transform.gameObject;
-				labAgent.feature = enemyInRadius[i].GetComponent<Feature>();
-				if (labAgent.target != null && labAgent.feature != null) labAgent.enabled = true;
-				else labAgent.enabled = false;
+				RaycastHit hit;
+				if (Physics.Raycast(shootPos.transform.position, shootPos.transform.forward, out hit, 10f))
+				{
+					if( hit.transform.tag.Equals("Infectee"))
+					{
+						transform.LookAt(new Vector3(enemyInRadius[i].transform.position.x, this.transform.position.y, enemyInRadius[i].transform.position.z));
+						labAgent.target = enemyInRadius[i].transform.gameObject;
+						labAgent.feature = enemyInRadius[i].GetComponent<Feature>();
+						if (labAgent.target != null && labAgent.feature != null) labAgent.enabled = true;
+						else labAgent.enabled = false;
+						break;
+					}
+				}
 			}
 		}
 	}
@@ -68,9 +79,9 @@ public class TeamCtrl : MonoBehaviour
         while (Player != null)
         {
 
-            //navmesh.SetDestination(Player.transform.position);
+			//navmesh.SetDestination(Player.transform.position);
 
-            if (navmesh.remainingDistance < navmesh.stoppingDistance)
+			if (navmesh.remainingDistance < navmesh.stoppingDistance)
                 animator.SetBool("isRun", false);
 
             else

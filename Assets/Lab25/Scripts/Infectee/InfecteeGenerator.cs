@@ -32,7 +32,7 @@ public class InfecteeGenerator : MonoBehaviour
 		for (int i = 0; i < infectees.Length; i++)
 		{
 			enemyPool[i] = new MemoryPool();
-			enemyPool[i].Create(infectees[i], GenerateTotal, this.transform);
+			enemyPool[i].Create(infectees[i], GenerateTotal / infectees.Length, this.transform);
             infectees[i].SetActive(false);
         }
 

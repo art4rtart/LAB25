@@ -49,10 +49,9 @@ public class AgentCtrl : MonoBehaviour
             velocity = smoothDeltaPosition / Time.deltaTime;
 
         bool shouldMove = velocity.magnitude > 0.5f && (nv.remainingDistance + 0.8) - nv.stoppingDistance   > nv.radius;
-
-       
-        // Update animation parameters
-        anim.SetBool("isRun", shouldMove);
+			
+		// Update animation parameters
+		anim.SetBool("isRun", shouldMove);
         anim.SetFloat("velx", velocity.x);
         anim.SetFloat("vely", velocity.y);
 
