@@ -81,10 +81,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 
         if (fireTimer < fireRate)
             fireTimer += Time.fixedDeltaTime;
-        if (shotFireTimer < shotFireRate)
-            shotFireTimer += Time.fixedDeltaTime;
-        if (flameFireTimer < flameFireRate)
-            flameFireTimer += Time.fixedDeltaTime;
+ 
         //Vector3 forward = transform.TransformDirection(Vector3.forward) * 199f;
         //Debug.DrawRay(transform.position + Vector3.up, transform.forward * 300, Color.green);
     }
@@ -139,7 +136,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 
     public void FireShotGun()
     {
-        if (shotFireTimer < shotFireRate)
+        if (fireTimer < shotFireRate)
         {
             return;
         }
@@ -177,7 +174,7 @@ public class AgentWeaponCtrl : MonoBehaviour
             }
         }
         currentBullets--;
-        shotFireTimer = 0.0f;
+        fireTimer = 0.0f;
 
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
         audioSource.PlayOneShot(shotGunSound);    //shoot sound
@@ -186,7 +183,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 
     public void FireFlameThrower()
     {
-        if (flameFireTimer < flameFireRate)
+        if (fireTimer < flameFireRate)
         {
             return;
         }
@@ -223,7 +220,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 
 
         currentBullets--;
-        flameFireTimer = 0.0f;
+        fireTimer = 0.0f;
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
         //audioSource.PlayOneShot(shootSound);    //shoot sound
                                                 //muzzleFlash.Play();
