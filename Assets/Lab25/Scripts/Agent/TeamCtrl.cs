@@ -22,7 +22,7 @@ public class TeamCtrl : MonoBehaviour
 	public LabAgent labAgent;
 
 	[Header("New Values")]
-	public bool SetDestination;
+	//public bool SetDestination;
 	public FlameThrower flamethrower;
 
     void Start()
@@ -36,7 +36,7 @@ public class TeamCtrl : MonoBehaviour
 
     void Update()
     {
-		if (SetDestination) navmesh.SetDestination(Player.transform.position);
+		//if (SetDestination) navmesh.SetDestination(Player.transform.position);
 
 		Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, enemyFindRadius, enemyMask);
         targetToInfectee = false;
@@ -68,7 +68,7 @@ public class TeamCtrl : MonoBehaviour
         while (Player != null)
         {
 
-            navmesh.SetDestination(Player.transform.position);
+            //navmesh.SetDestination(Player.transform.position);
 
             if (navmesh.remainingDistance < navmesh.stoppingDistance)
                 animator.SetBool("isRun", false);

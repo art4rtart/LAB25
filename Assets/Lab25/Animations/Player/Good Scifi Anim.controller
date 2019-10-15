@@ -3611,7 +3611,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AxeAttack
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101351544218418454}
@@ -4425,15 +4425,15 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1107474198812812770}
-    second:
-    - {fileID: 1109679809008817420}
   - first: {fileID: 1107234793718598028}
     second:
     - {fileID: 1109799093064983308}
   - first: {fileID: 1107243562743421428}
     second:
     - {fileID: 1109179781701150396}
+  - first: {fileID: 1107474198812812770}
+    second:
+    - {fileID: 1109679809008817420}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 60, y: -72, z: 0}
   m_EntryPosition: {x: -192, y: 120, z: 0}

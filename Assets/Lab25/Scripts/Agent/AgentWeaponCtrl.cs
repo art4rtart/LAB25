@@ -11,9 +11,9 @@ public class AgentWeaponCtrl : MonoBehaviour
     public int currentBullets;
     public float range;
     public float fireRate;
-	public float shotFireRate;
-	public float flameFireRate;
-	private Vector3 originalPos;
+    public float shotFireRate;
+    public float flameFireRate;
+    private Vector3 originalPos;
     public float accuracy;
     private float originalAccuracy;
     public int damage;
@@ -23,18 +23,18 @@ public class AgentWeaponCtrl : MonoBehaviour
 
     // Parameters
     private float fireTimer;
-	private float shotFireTimer;
-	private float flameFireTimer;
+    private float shotFireTimer;
+    private float flameFireTimer;
 
-	private bool isReloading = false;
+    private bool isReloading = false;
     private bool isHealing = false;
     private bool isRunning;
 
     // Sounds
     public AudioSource audioSource;
     public AudioClip shootSound;
-	public AudioClip shotGunSound;
-	public AudioClip reloadSound;
+    public AudioClip shotGunSound;
+    public AudioClip reloadSound;
     public AudioClip drawSound;
 
     // References
@@ -56,8 +56,9 @@ public class AgentWeaponCtrl : MonoBehaviour
     public Transform shootPos;
 
     public LabAgent labAgent;
-	public FlameThrower flameThrower;
-
+    public FlameThrower flameThrower;
+    private int playerMask;
+    private readonly string playerStr = "Player";
     private void Awake()
     {
         //fireTraceParent = GameObject.Find("ObjectManager").transform;
@@ -70,82 +71,75 @@ public class AgentWeaponCtrl : MonoBehaviour
 
         //bloodParticlePool.Create(bloodParticlePrefab, 100, fireTraceParent);
         characterController = GetComponentInParent<CharacterController>();
-
-        //anim = GameObject.Find("Agent(ARMED)").GetComponent<Animator>();
+        playerMask = (-1) - (1 << LayerMask.NameToLayer("Player"));
+        anim = transform.root.GetComponent<Animator>();
     }
 
     private void FixedUpdate()
     {
+        //Debug.DrawRay(shootPos.transform.position, shootPos.transform.forward * 100f, Color.red);
+
         if (fireTimer < fireRate)
             fireTimer += Time.fixedDeltaTime;
-		if (shotFireTimer < shotFireRate)
-			shotFireTimer += Time.fixedDeltaTime;
-		if (flameFireTimer < flameFireRate)
-			flameFireTimer += Time.fixedDeltaTime;
-		//Vector3 forward = transform.TransformDirection(Vector3.forward) * 199f;
-		Debug.DrawRay(transform.position + Vector3.up, transform.forward * 300, Color.green);
-	}
+        if (shotFireTimer < shotFireRate)
+            shotFireTimer += Time.fixedDeltaTime;
+        if (flameFireTimer < flameFireRate)
+            flameFireTimer += Time.fixedDeltaTime;
+        //Vector3 forward = transform.TransformDirection(Vector3.forward) * 199f;
+        Debug.DrawRay(transform.position + Vector3.up, transform.forward * 300, Color.green);
+    }
 
     public void Fire()
     {
-		if (fireTimer < fireRate)
-		{
-			return;
-		}
-		RaycastHit hit;
-
-        for (int i = 0; i < 1; ++i)
+  
+        if (fireTimer < fireRate)
         {
-			if (Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range + 500f))
+            return;
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(shootPos.transform.position, shootPos.transform.forward, out hit, 100f, playerMask))
+        {
+
+            Health health = hit.transform.GetComponent<Health>();
+
+            if (health && health.hp > 0)
             {
-                //Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
-                //InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
-                Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
-                Health health = hit.transform.GetComponent<Health>();
-
-                // Debug.Log(hit.transform.gameObject.name);
-
-                if (health && health.hp > 0)
+     
+                health.ApplyDamage(43, hit.transform.InverseTransformPoint(hit.point));
+                if (health.hp <= 0)
                 {
-                    health.ApplyDamage(damage, hit.transform.InverseTransformPoint(hit.point));
-                    if (labAgent.target.GetComponent<Feature>().nameHash != 4 && labAgent.target.GetComponent<Feature>().nameHash != 5 && labAgent.target.GetComponent<Feature>().nameHash != 1)
-                    {
-                        labAgent.AddReward(1f);
-                        //Debug.Log("Good Shot Normal and Boss, I Used Normal Gun");
-                    }
-                    else
-                    {
-                        labAgent.AddReward(-5f);
-                        //Debug.Log("Bad (Normal)");
-                        labAgent.normalGunMissed++;
-                    }
+                    StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
+                }
 
-					if (!hit.transform.CompareTag("Breakable"))
-					{
-						//StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
-					}
 
-					//else
-						//StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-				}
+                StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+
+            }
+            else
+            {
+                if (!hit.transform.tag.Equals(playerStr))
+                {
+                    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                }
                 else
                 {
-					return;
-					//StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-				}
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+                }
             }
-			else return;
-		}
+        }
+
+
         currentBullets--;
         fireTimer = 0.0f;
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
-		audioSource.PlayOneShot(shootSound);    //shoot sound
-		muzzleFlash.Play();
-	}
+        audioSource.PlayOneShot(shootSound);    //shoot sound
+        muzzleFlash.Play();
+    }
 
     public void FireShotGun()
     {
-        if (shotFireTimer < shotFireRate )
+        if (shotFireTimer < shotFireRate)
         {
             return;
         }
@@ -153,115 +147,87 @@ public class AgentWeaponCtrl : MonoBehaviour
         RaycastHit hit;
         for (int i = 0; i < 5; ++i)
         {
-            if (Physics.Raycast(shootPos.position, shootPos.transform.forward + Random.onUnitSphere * accuracy, out hit, range))
+            if (Physics.Raycast(shootPos.transform.position, shootPos.transform.forward, out hit, 100f, playerMask))
             {
-                //Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
-                //InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
-                //Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
                 Health health = hit.transform.GetComponent<Health>();
-
-                // Debug.Log(hit.transform.gameObject.name);
 
                 if (health && health.hp > 0)
                 {
-                    health.ApplyDamage(shotGunDamage, hit.transform.InverseTransformPoint(hit.point));
-                    if (labAgent.target.GetComponent<Feature>().nameHash == 5)
+                    health.ApplyDamage(43, hit.transform.InverseTransformPoint(hit.point));
+                    if (health.hp <= 0)
                     {
-                        labAgent.AddReward(1f);
-                        //Debug.Log("Good Shot Police, I Used Shot Gun");
-					}
+                        StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
+                    }
+
+
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+
+                }
+                else
+                {
+                    if (!hit.transform.tag.Equals(playerStr))
+                    {
+                        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                    }
                     else
                     {
-                        labAgent.AddReward(-5f);
-                        //Debug.Log("Bad (ShotGun)");
-                        labAgent.ShotGunMissed++;
+                        StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
                     }
-					if (!hit.transform.CompareTag("Breakable"))
-					{
-						//StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
-					}
-					else
-						StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-				}
-				else
-				{
-					//Debug.Log("Amazing");
-					//StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-				}
+                }
             }
         }
         currentBullets--;
         shotFireTimer = 0.0f;
 
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
-		audioSource.PlayOneShot(shotGunSound);    //shoot sound
-		muzzleFlash.Play();
-	}
+        audioSource.PlayOneShot(shotGunSound);    //shoot sound
+        muzzleFlash.Play();
+    }
 
     public void FireFlameThrower()
     {
-		if (flameFireTimer < flameFireRate)
-		{
-			return;
-		}
-
-		RaycastHit hit;
-        for (int i = 0; i < 1; ++i)
+        if (flameFireTimer < flameFireRate)
         {
-			if (Physics.Raycast(shootPos.position, shootPos.transform.forward, out hit, 7f))
-			{
-				//Her0inEnemy enemyCtrl = hit.transform.GetComponent<Her0inEnemy>();
-				//InfecteeGirlCtrl enemyGirlCtrl = hit.transform.GetComponent<InfecteeGirlCtrl>();
-				Rigidbody rigidbody = hit.transform.GetComponent<Rigidbody>();
-				Health health = hit.transform.GetComponent<Health>();
+            return;
+        }
 
-				// Debug.Log(hit.transform.gameObject.name);
+        RaycastHit hit;
+        if (Physics.Raycast(shootPos.transform.position, shootPos.transform.forward, out hit, 100f, playerMask))
+        {
+            Health health = hit.transform.GetComponent<Health>();
 
-				if (health && health.hp > 0)
-				{
-					health.ApplyDamage(flameDamage, hit.transform.InverseTransformPoint(hit.point));
-					if (labAgent.target.GetComponent<Feature>().nameHash == 4)
-					{
-						labAgent.AddReward(1f);
-						//Debug.Log("Good Shot Transparent, I Used Flame Thrower");
-						flameThrower.UseFlameThrower();
-					}
-					else
-					{
-						labAgent.AddReward(-5f);
-						//Debug.Log("Bad (Flame)");
-						labAgent.flameThrowerMissed++;
-					}
+            if (health && health.hp > 0)
+            {
+                health.ApplyDamage(flameDamage, hit.transform.InverseTransformPoint(hit.point));
+                if (health.hp <= 0)
+                {
+                    StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
+                }
+                flameThrower.UseFlameThrower();
 
-					//if(health.hp <= 0)
-					//{
-					//	Debug.Log("Stop!!!");
-					//	flameThrower.StopFlameThrower();
-					//}
-					//if (!hit.transform.CompareTag("Breakable"))
-					//{
-					//	StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
-					//}
-					//else
-					//	StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-				}
-				else
-				{
-					return;
-					//StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-				}
-			}
-			else
-			{
-				return;
-			}
-		}
+                StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+
+            }
+            else
+            {
+                if (!hit.transform.tag.Equals(playerStr))
+                {
+                    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                }
+                else
+                {
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+                }
+            }
+        }
+
+
         currentBullets--;
         flameFireTimer = 0.0f;
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
-		audioSource.PlayOneShot(shootSound);    //shoot sound
-		//muzzleFlash.Play();
-	}
+        //audioSource.PlayOneShot(shootSound);    //shoot sound
+                                                //muzzleFlash.Play();
+    }
 
     public void Healing()
     {
@@ -290,10 +256,10 @@ public class AgentWeaponCtrl : MonoBehaviour
         bulletsTotal -= bulletsToReload;
     }
 
-	float sight = 20f;
-	void OnDrawGizmosSelected()
-	{
-		Vector3 forward = transform.TransformDirection(Vector3.forward) * sight;
-		Debug.DrawRay(transform.position, forward, Color.green);
-	}
+    float sight = 20f;
+    void OnDrawGizmosSelected()
+    {
+        Vector3 forward = transform.TransformDirection(Vector3.forward) * sight;
+        Debug.DrawRay(transform.position, forward, Color.green);
+    }
 }

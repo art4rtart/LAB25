@@ -337,8 +337,35 @@ public class WeaponCtrl : MonoBehaviour
         {
             return;
         }
+        AxeTimer = 0.0f;
+        audioSource.PlayOneShot(axeSound);
+        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        //audioSource.PlayOneShot(shootSound);    //shoot sound
+        anim.CrossFadeInFixedTime("AxeAttack", 0.01f);
+    }
 
-        RaycastHit hit;
+    private void BongAttack()
+    {
+        if (BongTimer < 0.3f)
+        {
+            return;
+        }
+     
+        //    else
+        //    {
+        //        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+        //    }
+        //}
+        BongTimer = 0.0f;
+        audioSource.PlayOneShot(axeSound);
+        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        //audioSource.PlayOneShot(shootSound);    //shoot sound
+        anim.CrossFadeInFixedTime("BongAttack", 0.01f);
+    }
+
+    public void DamagedByAxe()
+    {
+        RaycastHit hit, hit2, hit3;
 
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 1.5f, playerMask))
         {
@@ -364,35 +391,6 @@ public class WeaponCtrl : MonoBehaviour
                     StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
             }
         }
-        //    else
-        //    {
-        //        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-        //    }
-        //}
-        AxeTimer = 0.0f;
-        audioSource.PlayOneShot(axeSound);
-        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
-        //audioSource.PlayOneShot(shootSound);    //shoot sound
-        anim.CrossFadeInFixedTime("AxeAttack", 0.01f);
-    }
-
-    private void BongAttack()
-    {
-        if (BongTimer < 0.3f)
-        {
-            return;
-        }
-     
-        //    else
-        //    {
-        //        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-        //    }
-        //}
-        BongTimer = 0.0f;
-        audioSource.PlayOneShot(axeSound);
-        //anim.CrossFadeInFixedTime("Shoot", 0.01f);
-        //audioSource.PlayOneShot(shootSound);    //shoot sound
-        anim.CrossFadeInFixedTime("BongAttack", 0.01f);
     }
 
     public void DamagedByBong()

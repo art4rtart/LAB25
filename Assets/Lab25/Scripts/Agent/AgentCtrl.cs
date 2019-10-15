@@ -31,7 +31,7 @@ public class AgentCtrl : MonoBehaviour
     void Update()
     {
 
-        //nv.SetDestination(playerTr.position);
+        nv.SetDestination(playerTr.position);
 
         Vector3 worldDeltaPosition = nv.nextPosition - transform.position;
 

@@ -58,7 +58,10 @@ public class LabAgent : Agent
 		}
 
 		if(feature != null) feature.GetCurrentClipName();
-		if (feature == null || target == null) { this.enabled = false; }
+		if (feature == null || target == null)
+        {
+            this.enabled = false;
+        }
 
 		if (feature == null) {
 			for(int i = 0; i < 668; i++)
@@ -86,164 +89,166 @@ public class LabAgent : Agent
 		}
 	}
 
-	public void MoveAgent(float[] act)
-	{
-		int who = Mathf.FloorToInt(act[0]);
-		int what = Mathf.FloorToInt(act[1]);
-		int how = Mathf.FloorToInt(act[2]);
-
-		if (!foundWho)
-		{
-			switch (who)
-			{
-				case 1:
-					targetName = targetNames[0];
-					break;
-				case 2:
-					targetName = targetNames[1];
-					break;
-				case 3:
-					targetName = targetNames[2];
-					break;
-				case 4:
-					targetName = targetNames[3];
-					break;
-				case 5:
-					targetName = targetNames[4];
-					break;
-				case 6:
-					targetName = targetNames[5];
-					break;
-			}
-		}
-
-		if (!foundWhat)
-		{
-			switch (what)
-			{
-				case 1:
-					targetBehavior = targetBehaviors[0];
-					break;
-				case 2:
-					targetBehavior = targetBehaviors[1];
-					break;
-				case 3:
-					targetBehavior = targetBehaviors[2];
-					break;
-				case 4:
-					targetBehavior = targetBehaviors[3];
-					break;
-				case 5:
-					targetBehavior = targetBehaviors[4];
-					break;
-				case 6:
-					targetBehavior = targetBehaviors[5];
-					break;
-				case 7:
-					targetBehavior = targetBehaviors[6];
-					break;
-				case 8:
-					targetBehavior = targetBehaviors[7];
-					break;
-				case 9:
-					targetBehavior = targetBehaviors[8];
-					break;
-				case 10:
-					targetBehavior = targetBehaviors[9];
-					break;
-				case 11:
-					targetBehavior = targetBehaviors[10];
-					break;
-				case 12:
-					targetBehavior = targetBehaviors[11];
-					break;
-				case 13:
-					targetBehavior = targetBehaviors[12];
-					break;
-				case 14:
-					targetBehavior = targetBehaviors[13];
-					break;
-				case 15:
-					targetBehavior = targetBehaviors[14];
-					break;
-				case 16:
-					targetBehavior = targetBehaviors[15];
-					break;
-				case 17:
-					targetBehavior = targetBehaviors[16];
-					break;
-			}
-		}
-
-		if (foundWhat && foundWho)
-		{
-			switch (how)
-			{
-				//case 1:
-				//	FindOtherTargetReward();
-				//	break;
-
-				case 2:
-					RescueReward();
-					break;
-
-				case 3:
-					agentWeaponCtrl.Fire();
-					isUsingGun = true;
-					isUsingShotGun = false;
-					isUsingFlame = false;
-					//DistanceReward();
-					break;
-
-				case 4:
-					// shotGun
-					agentWeaponCtrl.FireShotGun();
-					isUsingGun = false;
-					isUsingShotGun = true;
-					isUsingFlame = false;
-					break;
-
-				case 5:
-					// flame thrower
-					agentWeaponCtrl.FireFlameThrower();
-					isUsingGun = false;
-					isUsingShotGun = false;
-					isUsingFlame = true;
-					break;
-			}
-
-			// if kill zombie add reward
-			if (target.GetComponent<Health>().hp <= 0 && target.GetComponent<Feature>().nameHash != 1) // && feature.distance < recognizeDistance
-			{
-				AddReward(1f);
-				//Debug.Log("Good, You Killed Zombie");
-				Done();
-			}
-
-			//else if (target.GetComponent<Health>().hp <= 0 && target.GetComponent<Feature>().nameHash != 1) //  && feature.distance >= recognizeDistance
-			//{
-			//	AddReward(-5f);
-			//	Debug.Log("Bad");
-			//	Done();
-			//}
-
-			else if (target.GetComponent<Health>().hp <= 0 && target.GetComponent<Feature>().nameHash == 1)
-			{
-				AddReward(-5f);
-				//Debug.Log("Bad (Killed Human)");
-				Done();
-			}
-		}
-
-		if (feature == null) return;
-		if (targetName == targetNames[feature.nameHash - 1]) { foundWho = true; }
-		if (targetBehavior == feature.animationName) { foundWhat = true; }
-		if (foundWho && foundWhat && !giveReward) { AddReward(1f); giveReward = true; }
+    public void MoveAgent(float[] act)
+    {
+        int who = Mathf.FloorToInt(act[0]);
+        int what = Mathf.FloorToInt(act[1]);
+        int how = Mathf.FloorToInt(act[2]);
 
 
-		// episodeTimeCount = Mathf.Clamp(episodeTimeCount += Time.deltaTime, 0, episodeTotalTime);
-		// if (episodeTimeCount >= episodeTotalTime) { AddReward(-5f); AgentReset(); episodeTimeCount = 0; }
-	}
+        if (!foundWho)
+        {
+            switch (who)
+            {
+                case 1:
+                    targetName = targetNames[0];
+                    break;
+                case 2:
+                    targetName = targetNames[1];
+                    break;
+                case 3:
+                    targetName = targetNames[2];
+                    break;
+                case 4:
+                    targetName = targetNames[3];
+                    break;
+                case 5:
+                    targetName = targetNames[4];
+                    break;
+                case 6:
+                    targetName = targetNames[5];
+                    break;
+            }
+        }
+
+        if (!foundWhat)
+        {
+            switch (what)
+            {
+                case 1:
+                    targetBehavior = targetBehaviors[0];
+                    break;
+                case 2:
+                    targetBehavior = targetBehaviors[1];
+                    break;
+                case 3:
+                    targetBehavior = targetBehaviors[2];
+                    break;
+                case 4:
+                    targetBehavior = targetBehaviors[3];
+                    break;
+                case 5:
+                    targetBehavior = targetBehaviors[4];
+                    break;
+                case 6:
+                    targetBehavior = targetBehaviors[5];
+                    break;
+                case 7:
+                    targetBehavior = targetBehaviors[6];
+                    break;
+                case 8:
+                    targetBehavior = targetBehaviors[7];
+                    break;
+                case 9:
+                    targetBehavior = targetBehaviors[8];
+                    break;
+                case 10:
+                    targetBehavior = targetBehaviors[9];
+                    break;
+                case 11:
+                    targetBehavior = targetBehaviors[10];
+                    break;
+                case 12:
+                    targetBehavior = targetBehaviors[11];
+                    break;
+                case 13:
+                    targetBehavior = targetBehaviors[12];
+                    break;
+                case 14:
+                    targetBehavior = targetBehaviors[13];
+                    break;
+                case 15:
+                    targetBehavior = targetBehaviors[14];
+                    break;
+                case 16:
+                    targetBehavior = targetBehaviors[15];
+                    break;
+                case 17:
+                    targetBehavior = targetBehaviors[16];
+                    break;
+            }
+        }
+
+
+        switch (how)
+        {
+         
+            //case 1:
+            //	FindOtherTargetReward();
+            //	break;
+
+            case 2:
+                RescueReward();
+                break;
+
+            case 3:
+                //Debug.Log("How");
+                agentWeaponCtrl.Fire();
+                isUsingGun = true;
+                isUsingShotGun = false;
+                isUsingFlame = false;
+                //DistanceReward();
+                break;
+
+            case 4:
+                // shotGun
+                agentWeaponCtrl.FireShotGun();
+                isUsingGun = false;
+                isUsingShotGun = true;
+                isUsingFlame = false;
+                break;
+
+            case 5:
+                // flame thrower
+                agentWeaponCtrl.FireFlameThrower();
+                isUsingGun = false;
+                isUsingShotGun = false;
+                isUsingFlame = true;
+                break;
+        }
+
+        // if kill zombie add reward
+        if (target.GetComponent<Health>().hp <= 0 && target.GetComponent<Feature>().nameHash != 1) // && feature.distance < recognizeDistance
+        {
+            AddReward(1f);
+            //Debug.Log("Good, You Killed Zombie");
+            Done();
+        }
+
+        //else if (target.GetComponent<Health>().hp <= 0 && target.GetComponent<Feature>().nameHash != 1) //  && feature.distance >= recognizeDistance
+        //{
+        //	AddReward(-5f);
+        //	Debug.Log("Bad");
+        //	Done();
+        //}
+
+        else if (target.GetComponent<Health>().hp <= 0 && target.GetComponent<Feature>().nameHash == 1)
+        {
+            AddReward(-5f);
+            //Debug.Log("Bad (Killed Human)");
+            Done();
+        }
+
+
+        if (feature == null) return;
+        if (targetName == targetNames[feature.nameHash - 1]) { foundWho = true; }
+        if (targetBehavior == feature.animationName) { foundWhat = true; }
+        if (foundWho && foundWhat && !giveReward) { AddReward(1f); giveReward = true; }
+
+
+        // episodeTimeCount = Mathf.Clamp(episodeTimeCount += Time.deltaTime, 0, episodeTotalTime);
+        // if (episodeTimeCount >= episodeTotalTime) { AddReward(-5f); AgentReset(); episodeTimeCount = 0; }
+    }
 
 	public float episodeTimeCount;
 	public float episodeTotalTime = 15f;
@@ -279,14 +284,14 @@ public class LabAgent : Agent
 			if (target.GetComponent<Feature>().nameHash == 1)
 			{
 				AddReward(1f);
-				Debug.Log("Good, I Rescued Human");
+				//Debug.Log("Good, I Rescued Human");
 				Done();
 			}
 
 			else if (target.GetComponent<Feature>().nameHash != 1)
 			{
 				AddReward(-5f);
-				Debug.Log("Bad (Rescue)");
+				//Debug.Log("Bad (Rescue)");
 				Done();
 			}
 			rescuingOKTemp = true;
@@ -307,7 +312,7 @@ public class LabAgent : Agent
 			else
 			{
 				AddReward(-5f);
-				Debug.Log("Bad");
+				//Debug.Log("Bad");
 			}
 			calculatingOKTemp = true;
 		}
@@ -328,7 +333,7 @@ public class LabAgent : Agent
 
 		foundWho = foundWhat = false;
 		targetName = targetBehavior = "";
-		startObservation = false;
+		//startObservation = false;
 		//generateZombie.ActivateZombie();
 
 		rescuing = false;
@@ -352,7 +357,7 @@ public class LabAgent : Agent
 
 		foundWho = foundWhat = false;
 		targetName = targetBehavior = "";
-		startObservation = false;
+		//startObservation = false;
 		//generateZombie.ActivateZombie();
 
 		rescuing = false;
