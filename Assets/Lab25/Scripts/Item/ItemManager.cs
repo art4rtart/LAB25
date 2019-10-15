@@ -176,8 +176,8 @@ public class ItemManager : MonoBehaviour
 								player.transform.SetParent(elevator.GetComponent<Elevator>().elevator.transform);
 								player.GetComponent<CharacterController>().enabled = false;
 							}
-							else
-								Debug.Log("You have to install a bomb!!");
+							//else
+							//	Debug.Log("You have to install a bomb!!");
 						}
 					}
 				}

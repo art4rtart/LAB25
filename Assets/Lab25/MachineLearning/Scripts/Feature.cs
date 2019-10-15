@@ -193,11 +193,11 @@ public class Feature : MonoBehaviour
 
 	public void Die()
 	{
-		Debug.Log("I'm dead, because i'm zombie");
+		//Debug.Log("I'm dead, because i'm zombie");
 	}
 
 	public void Survived()
 	{
-		Debug.Log("I've survived, because i'm human");
+		//Debug.Log("I've survived, because i'm human");
 	}
 }

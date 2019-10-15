@@ -9,7 +9,7 @@ public class GoToLogoScene : MonoBehaviour
 	{
 		if(Input.GetKeyDown(KeyCode.Semicolon))
 		{
-			Debug.Log("HI");
+			//Debug.Log("HI");
 			SceneManager.LoadScene("1. KPU");
 		}
 	}

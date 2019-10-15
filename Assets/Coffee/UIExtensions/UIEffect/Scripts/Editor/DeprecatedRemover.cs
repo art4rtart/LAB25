@@ -45,7 +45,7 @@ namespace Coffee.UIExtensions.Editors
 				}
 
 				AssetDatabase.Refresh();
-				UnityEngine.Debug.Log(sb);
+				//UnityEngine.Debug.Log(sb);
 			}
 		}
 		#endif

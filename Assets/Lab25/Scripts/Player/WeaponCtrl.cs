@@ -201,7 +201,7 @@ public class WeaponCtrl : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-				Debug.Log("Click");
+				//Debug.Log("Click");
 				if (info.IsName("Idle(AXE)") || info.IsName("Idle(IRON)"))
 				{
 					anim.SetTrigger("doWeaponChange");
@@ -209,7 +209,7 @@ public class WeaponCtrl : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log("Click Ing");
+					//Debug.Log("Click Ing");
 
 
 					anim.SetTrigger("endHearter");

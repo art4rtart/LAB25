@@ -8,8 +8,8 @@ public class MissionButton : MonoBehaviour
 	{
 		if(other.gameObject.CompareTag("Moveable"))
 		{
-			Debug.Log("HI");
-			Debug.Log(other.gameObject.name);
+			//Debug.Log("HI");
+			//Debug.Log(other.gameObject.name);
 			StartCoroutine(Checker());
 		}
 	}
@@ -30,6 +30,6 @@ public class MissionButton : MonoBehaviour
 			yield return null;
 		}
 
-		Debug.Log("Open");
+		//Debug.Log("Open");
 	}
 }

@@ -20,11 +20,11 @@ public class FadeTrigger : MonoBehaviour
 
 	void Update()
 	{
-		Debug.Log(checkOnce);
+		//Debug.Log(checkOnce);
 
 		if (checkOnce)
 		{
-			Debug.Log("HI");
+			//Debug.Log("HI");
 			eTime += Time.deltaTime;
 
 			if (eTime >= 1f)

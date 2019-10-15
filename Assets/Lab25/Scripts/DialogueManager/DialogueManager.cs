@@ -42,7 +42,7 @@ public class DialogueManager : MonoBehaviour
 
 	void EndDialouge()
 	{
-		Debug.Log("End of conversation");
+		//Debug.Log("End of conversation");
 	}
 
 	IEnumerator TypeSentence (string sentence)

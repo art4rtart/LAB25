@@ -152,7 +152,7 @@ public class CameraViewController : MonoBehaviour
 		Vector3 currentCamPos = new Vector3(current.position.x, skyTarget.position.y, current.position.z);
 		Vector3 targetCamPos = new Vector3(target.position.x, skyTarget.position.y, target.position.z);
 
-		Debug.Log(currentCamPos);
+		//Debug.Log(currentCamPos);
 		while (currentCamPos != targetCamPos)
 		{
 			currentCamPos = Vector3.Lerp(currentCamPos, targetCamPos, changeValue);

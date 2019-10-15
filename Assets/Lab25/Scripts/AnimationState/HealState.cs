@@ -31,7 +31,7 @@ public class HealState : StateMachineBehaviour
             //    Healing.hpGapBetterThan50 = false;
 
             PlayerManager.hp += 70;
-			Debug.Log(PlayerManager.hp);
+			//Debug.Log(PlayerManager.hp);
 			if (PlayerManager.hp > 100) PlayerManager.hp = 100f;
 			UIManager.Instance.TextUpdate();
             isHeal = true;

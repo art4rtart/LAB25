@@ -17,7 +17,9 @@ public class MoveToNextScene : MonoBehaviour
 	void Awake()
 	{
 		Screen.SetResolution(1920, 1080, true);
-	}
+        PlayerManager.hp = 100;
+
+    }
 	void Start()
 	{
 		if(isTrigger)

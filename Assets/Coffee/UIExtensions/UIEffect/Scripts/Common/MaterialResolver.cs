@@ -45,7 +45,7 @@ namespace Coffee.UIExtensions
 				return mat;
 			}
 
-			Debug.Log("Generate material : " + variantName);
+			//Debug.Log("Generate material : " + variantName);
 			mat = new Material(shader);
 			mat.shaderKeywords = keywords;
 

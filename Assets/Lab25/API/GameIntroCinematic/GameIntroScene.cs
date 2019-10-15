@@ -53,7 +53,7 @@ public class GameIntroScene : MonoBehaviour
 
 	public void LoadScene()
 	{
-		Debug.Log("Skip!");
+		//Debug.Log("Skip!");
 		moveToNextScene.LoadSceneTrigger();
 	}
 
