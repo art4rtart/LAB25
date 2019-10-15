@@ -197,15 +197,15 @@ public class Her0inEnemy : MonoBehaviour
 	//    hitPos = pos;
 	//}
 
-	private void OnDrawGizmosSelected()
-	{
-		if (!isGenerated)
-		{
-			Gizmos.color = Color.red;
-			Gizmos.DrawWireSphere(transform.position, findRadius);
-		}
-		else return;
-	}
+	//private void OnDrawGizmosSelected()
+	//{
+	//	if (!isGenerated)
+	//	{
+	//		Gizmos.color = Color.red;
+	//		Gizmos.DrawWireSphere(transform.position, findRadius);
+	//	}
+	//	else return;
+	//}
 
 	public void AfterDie(Vector3 pos)
 	{

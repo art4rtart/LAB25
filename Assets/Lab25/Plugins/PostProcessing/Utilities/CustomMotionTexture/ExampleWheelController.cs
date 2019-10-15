@@ -20,7 +20,6 @@ public class ExampleWheelController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("asdasd");
         if (Input.GetKey (KeyCode.UpArrow)) // Rotate forward
             m_Rigidbody.AddRelativeTorque(new Vector3(-1 * acceleration, 0, 0), ForceMode.Acceleration); // Add forward torque to mesh
         else if (Input.GetKey (KeyCode.DownArrow)) // Rotate backward

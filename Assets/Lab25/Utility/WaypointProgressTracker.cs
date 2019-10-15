@@ -137,16 +137,16 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        private void OnDrawGizmos()
-        {
-            if (Application.isPlaying)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawLine(transform.position, target.position);
-                Gizmos.DrawWireSphere(circuit.GetRoutePosition(progressDistance), 1);
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawLine(target.position, target.position + target.forward);
-            }
-        }
+        //private void OnDrawGizmos()
+        //{
+        //    if (Application.isPlaying)
+        //    {
+        //        Gizmos.color = Color.green;
+        //        Gizmos.DrawLine(transform.position, target.position);
+        //        Gizmos.DrawWireSphere(circuit.GetRoutePosition(progressDistance), 1);
+        //        Gizmos.color = Color.yellow;
+        //        Gizmos.DrawLine(target.position, target.position + target.forward);
+        //    }
+        //}
     }
 }

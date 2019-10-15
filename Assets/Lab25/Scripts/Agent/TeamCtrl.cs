@@ -93,11 +93,11 @@ public class TeamCtrl : MonoBehaviour
         }
     }
 
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, enemyFindRadius);
-	}
+	//private void OnDrawGizmosSelected()
+	//{
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawWireSphere(transform.position, enemyFindRadius);
+	//}
 
 	bool enableTrigger;
 	void OnCollisionEnter(Collision other)

@@ -45,7 +45,7 @@ public class TeamPlayer : MonoBehaviour
 
 	public IEnumerator FollowPlayer()
 	{
-        Debug.Log("asd");
+        //Debug.Log("asd");
 		float refreshRate = .25f;
 		animator.SetBool("Walking", true);
 
@@ -65,12 +65,12 @@ public class TeamPlayer : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, 3);
+	//private void OnDrawGizmosSelected()
+	//{
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawWireSphere(transform.position, 3);
 
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireSphere(transform.position, findRadius);
-	}
+	//	Gizmos.color = Color.yellow;
+	//	Gizmos.DrawWireSphere(transform.position, findRadius);
+	//}
 }

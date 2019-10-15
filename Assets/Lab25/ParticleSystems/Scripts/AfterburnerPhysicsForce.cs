@@ -43,26 +43,26 @@ namespace UnityStandardAssets.Effects
         }
 
 
-        private void OnDrawGizmosSelected()
-        {
-            //check for editor time simulation to avoid null ref
-            if(m_Sphere == null)
-                m_Sphere = (GetComponent<Collider>() as SphereCollider);
+        //private void OnDrawGizmosSelected()
+        //{
+        //    //check for editor time simulation to avoid null ref
+        //    if(m_Sphere == null)
+        //        m_Sphere = (GetComponent<Collider>() as SphereCollider);
 
-            m_Sphere.radius = effectDistance*.5f;
-            m_Sphere.center = new Vector3(0, 0, effectDistance*.5f);
-            var directions = new Vector3[] {Vector3.up, -Vector3.up, Vector3.right, -Vector3.right};
-            var perpDirections = new Vector3[] {-Vector3.right, Vector3.right, Vector3.up, -Vector3.up};
-            Gizmos.color = new Color(0, 1, 0, 0.5f);
-            for (int n = 0; n < 4; ++n)
-            {
-                Vector3 origin = transform.position + transform.rotation*directions[n]*effectWidth*0.5f;
+        //    m_Sphere.radius = effectDistance*.5f;
+        //    m_Sphere.center = new Vector3(0, 0, effectDistance*.5f);
+        //    var directions = new Vector3[] {Vector3.up, -Vector3.up, Vector3.right, -Vector3.right};
+        //    var perpDirections = new Vector3[] {-Vector3.right, Vector3.right, Vector3.up, -Vector3.up};
+        //    Gizmos.color = new Color(0, 1, 0, 0.5f);
+        //    for (int n = 0; n < 4; ++n)
+        //    {
+        //        Vector3 origin = transform.position + transform.rotation*directions[n]*effectWidth*0.5f;
 
-                Vector3 direction =
-                    transform.TransformDirection(Quaternion.AngleAxis(effectAngle, perpDirections[n])*Vector3.forward);
+        //        Vector3 direction =
+        //            transform.TransformDirection(Quaternion.AngleAxis(effectAngle, perpDirections[n])*Vector3.forward);
 
-                Gizmos.DrawLine(origin, origin + direction*m_Sphere.radius*2);
-            }
-        }
+        //        Gizmos.DrawLine(origin, origin + direction*m_Sphere.radius*2);
+        //    }
+        //}
     }
 }

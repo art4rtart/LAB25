@@ -136,11 +136,7 @@ public class PlayerCtrl : MonoBehaviour
         float lastHeight = m_CharacterController.height;
         m_CharacterController.height = Mathf.Lerp(m_CharacterController.height, playerHeight, Time.deltaTime * 9f);
         Vector3 tmpPos = transform.position;
-		//tmpPos.y += (m_CharacterController.height - lastHeight);
-		//transform.position = tmpPos;
-		//Debug.Log(m_CharacterController.isGrounded);
-		//if (m_CharacterController.isGrounded) newYPos = this.transform.position.y;
-		//if (isCollidedInfectee) { this.transform.position = new Vector3(transform.position.x, newYPos, transform.position.z); }
+	
 	}
 
 

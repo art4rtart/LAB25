@@ -88,9 +88,9 @@ public class AttackRange : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(this.transform.position, viewRadius);
-	}
+	//private void OnDrawGizmosSelected()
+	//{
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawWireSphere(this.transform.position, viewRadius);
+	//}
 }

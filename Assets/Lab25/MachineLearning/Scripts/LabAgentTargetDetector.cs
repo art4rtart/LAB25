@@ -37,12 +37,12 @@ public class LabAgentTargetDetector : MonoBehaviour
 		}
 	}
 
-	void OnDrawGizmosSelected()
-	{
-		Vector3 forward = transform.TransformDirection(Vector3.forward) * sight;
-		Debug.DrawRay(transform.position, forward, Color.green);
+	//void OnDrawGizmosSelected()
+	//{
+	//	Vector3 forward = transform.TransformDirection(Vector3.forward) * sight;
+	//	Debug.DrawRay(transform.position, forward, Color.green);
 
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, range);
-	}
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawWireSphere(transform.position, range);
+	//}
 }

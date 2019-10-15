@@ -103,9 +103,9 @@ public class TeamManager : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(player.transform.position, findRadius);
-	}
+	//private void OnDrawGizmosSelected()
+	//{
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawWireSphere(player.transform.position, findRadius);
+	//}
 }

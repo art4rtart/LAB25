@@ -150,16 +150,16 @@ namespace UnityStandardAssets.Utility
         }
 
 
-        private void OnDrawGizmos()
-        {
-            DrawGizmos(false);
-        }
+        //private void OnDrawGizmos()
+        //{
+        //    DrawGizmos(false);
+        //}
 
 
-        private void OnDrawGizmosSelected()
-        {
-            DrawGizmos(true);
-        }
+        //private void OnDrawGizmosSelected()
+        //{
+        //    DrawGizmos(true);
+        //}
 
 
         private void DrawGizmos(bool selected)

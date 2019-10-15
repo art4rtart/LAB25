@@ -210,7 +210,7 @@ public class AgentShoot : Agent
         {
             if (isFire)
             {
-                Debug.Log("Very Bad");
+                //Debug.Log("Very Bad");
                 AddReward(-5.0f / agentParameters.maxStep);
             }
             else
@@ -225,7 +225,7 @@ public class AgentShoot : Agent
 
         if (isKill)
         {
-            Debug.Log("Nice Kill");
+            //Debug.Log("Nice Kill");
             AddReward(1.0f);
             isKill = false;
         }

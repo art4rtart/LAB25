@@ -65,12 +65,12 @@ public class ScreamInfectee : MonoBehaviour
 		}
 	}
 
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.blue;
-		Gizmos.DrawWireSphere(transform.position, findRadius);
+	//private void OnDrawGizmosSelected()
+	//{
+	//	Gizmos.color = Color.blue;
+	//	Gizmos.DrawWireSphere(transform.position, findRadius);
 
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, getZombieRadius);
-	}
+	//	Gizmos.color = Color.red;
+	//	Gizmos.DrawWireSphere(transform.position, getZombieRadius);
+	//}
 }

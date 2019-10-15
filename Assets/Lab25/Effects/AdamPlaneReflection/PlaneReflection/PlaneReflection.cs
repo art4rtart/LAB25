@@ -449,17 +449,17 @@ m_reflectionCamera.transform.rotation = Quaternion.LookRotation(reflectedDir, sr
     public bool ssnap;
     Vector3 spos, sup; Quaternion srot;
     float sfov, snear, sfar, saspect;
-    void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        var s = transform.rotation * new Vector3(0.15f, 0.05f, 0.1f);
-        s.Set(Mathf.Abs(s.x), Mathf.Abs(s.y), s.z = Mathf.Abs(s.z));
-        Gizmos.DrawCube(transform.position, s);
-        Gizmos.DrawSphere(transform.position + transform.up * 0.025f, 0.05f);
+    //void OnDrawGizmos() {
+    //    Gizmos.color = Color.red;
+    //    var s = transform.rotation * new Vector3(0.15f, 0.05f, 0.1f);
+    //    s.Set(Mathf.Abs(s.x), Mathf.Abs(s.y), s.z = Mathf.Abs(s.z));
+    //    Gizmos.DrawCube(transform.position, s);
+    //    Gizmos.DrawSphere(transform.position + transform.up * 0.025f, 0.05f);
 
-        if(sfov != 0f && snear != 0f && sfar != 0f) {
-            Gizmos.DrawLine(spos, spos + sup * 0.5f);
-            Gizmos.matrix = Matrix4x4.TRS(spos, srot, Vector3.one);
-            Gizmos.DrawFrustum(Vector3.zero, sfov, sfar, snear, saspect);
-        }
-    }
+    //    if(sfov != 0f && snear != 0f && sfar != 0f) {
+    //        Gizmos.DrawLine(spos, spos + sup * 0.5f);
+    //        Gizmos.matrix = Matrix4x4.TRS(spos, srot, Vector3.one);
+    //        Gizmos.DrawFrustum(Vector3.zero, sfov, sfar, snear, saspect);
+    //    }
+    //}
 }
