@@ -30,8 +30,8 @@ public class WeaponCtrl : MonoBehaviour
 
     // Scifi
     private int sciBulletsPerMag = 150;
-    [HideInInspector]public int sciBulletsTotal = 1500;
-    [HideInInspector]public int sciCurrentBullets = 150;
+    [HideInInspector]public int sciBulletsTotal = 3500;
+    [HideInInspector]public int sciCurrentBullets = 300;
     private float sciRange = 100f;
     private float sciFireRate = 0.05f;
     private float sciAccuracy = 0.005f;

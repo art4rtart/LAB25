@@ -39,42 +39,52 @@ public class UTRSShop : MonoBehaviour
 	public void BuyMedicalKit()
 	{
 		medicalKitPrice = UTRSUpgrade.Instance.medicalKit.upgradePrice;
-		if (UTRSManager.Instance.totalGold - medicalKitPrice > 0)
+		if (UTRSManager.Instance.totalGold - medicalKitPrice >= 0)
 			UTRSManager.Instance.totalGold -= medicalKitPrice;
+		ItemManager.Instance.medicalKitCount++;
+		UIManager.Instance.TextUpdate();
 	}
 
 	public void BuyAdrenaline()
 	{
 		adrenalinePrice = UTRSUpgrade.Instance.adrenaline.upgradePrice;
-		if (UTRSManager.Instance.totalGold - adrenalinePrice > 0)
+		if (UTRSManager.Instance.totalGold - adrenalinePrice >= 0)
 			UTRSManager.Instance.totalGold -= adrenalinePrice;
+		ItemManager.Instance.adrenalineCount++;
+		UIManager.Instance.TextUpdate();
 	}
 
 	public void BuyAkBullet()
 	{
 		akBulletPrice = UTRSUpgrade.Instance.akBullet.upgradePrice;
-		if (UTRSManager.Instance.totalGold - akBulletPrice > 0)
+		if (UTRSManager.Instance.totalGold - akBulletPrice >= 0)
 			UTRSManager.Instance.totalGold -= akBulletPrice;
+		WeaponCtrl.Instance.akBulletsTotal += 30;
+		UIManager.Instance.TextUpdate();
 	}
 
 	public void BuySciFiBullet()
 	{
 		scifiBulletPrice = UTRSUpgrade.Instance.scifiBullet.upgradePrice;
-		if (UTRSManager.Instance.totalGold - scifiBulletPrice > 0)
+		if (UTRSManager.Instance.totalGold - scifiBulletPrice >= 0)
 			UTRSManager.Instance.totalGold -= scifiBulletPrice;
+		WeaponCtrl.Instance.sciBulletsTotal += 150;
+		UIManager.Instance.TextUpdate();
 	}
 
 	public void BuyArmor()
 	{
 		armorPrice = UTRSUpgrade.Instance.damageVest.upgradePrice;
-		if (UTRSManager.Instance.totalGold - armorPrice > 0)
+		if (UTRSManager.Instance.totalGold - armorPrice >= 0)
 			UTRSManager.Instance.totalGold -= armorPrice;
+		PlayerManager.armor += 50;
+		UIManager.Instance.TextUpdate();
 	}
 
 	public void BuyAKGun()
 	{
 		akGunPrice = UTRSUpgrade.Instance.weaponAk.upgradePrice;
-		if (UTRSManager.Instance.totalGold - akGunPrice > 0)
+		if (UTRSManager.Instance.totalGold - akGunPrice >= 0)
 		{
 			UTRSManager.Instance.totalGold -= akGunPrice;
 			goodAnim.SetTrigger("ElectricStickToAk");
@@ -85,7 +95,27 @@ public class UTRSShop : MonoBehaviour
 	public void BuySciFiGun()
 	{
 		scifiGunPrice = UTRSUpgrade.Instance.weaponScifi.upgradePrice;
-		if (UTRSManager.Instance.totalGold - scifiGunPrice > 0)
+		if (UTRSManager.Instance.totalGold - scifiGunPrice >= 0)
+		{
+			UTRSManager.Instance.totalGold -= scifiGunPrice;
+			// scifi ready
+		}
+	}
+
+	public void BuyMedic()
+	{
+		scifiGunPrice = UTRSUpgrade.Instance.weaponScifi.upgradePrice;
+		if (UTRSManager.Instance.totalGold - scifiGunPrice >= 0)
+		{
+			UTRSManager.Instance.totalGold -= scifiGunPrice;
+			// scifi ready
+		}
+	}
+
+	public void BuyGuard()
+	{
+		scifiGunPrice = UTRSUpgrade.Instance.weaponScifi.upgradePrice;
+		if (UTRSManager.Instance.totalGold - scifiGunPrice >= 0)
 		{
 			UTRSManager.Instance.totalGold -= scifiGunPrice;
 			// scifi ready

@@ -64,6 +64,7 @@ public class Her0inEnemy : MonoBehaviour
 
 	void Start()
 	{
+		damagedEffect = FindObjectOfType<DamagedEffect>();
 		info = GetComponent<Health>();
 		info.diedByBullet.AddListener(AfterDie);
 

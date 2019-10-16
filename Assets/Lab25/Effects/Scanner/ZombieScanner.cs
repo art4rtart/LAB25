@@ -4,6 +4,18 @@ using System.Collections;
 [ExecuteInEditMode]
 public class ZombieScanner : MonoBehaviour
 {
+	public static ZombieScanner Instance
+	{
+		get
+		{
+			if (instance != null)
+				return instance;
+			instance = FindObjectOfType<ZombieScanner>();
+			return instance;
+		}
+	}
+	private static ZombieScanner instance;
+
 	public Material EffectMaterial;
 	public float ScanDistance = 0;
 
@@ -19,7 +31,7 @@ public class ZombieScanner : MonoBehaviour
 
 	public float findRadius = 10f;
 	public LayerMask zombieMask;
-
+	public bool isUTRSMode;
 	void Update()
 	{
 		if (scanning)
@@ -28,14 +40,17 @@ public class ZombieScanner : MonoBehaviour
 				ScanDistance += Time.deltaTime * scanSpeed;
 			else scanning = false;
 
-			Collider[] zombieInRadius = Physics.OverlapSphere(player.transform.position, findRadius, zombieMask);
-
-			for(int i = 0; i < zombieInRadius.Length; i++)
+			if (!isUTRSMode)
 			{
-				if (Vector3.Distance(this.transform.position, zombieInRadius[i].transform.position) <= ScanDistance)
+				Collider[] zombieInRadius = Physics.OverlapSphere(player.transform.position, findRadius, zombieMask);
+
+				for (int i = 0; i < zombieInRadius.Length; i++)
 				{
-					if(zombieInRadius[i].GetComponent<Her0inEnemy>() != null && !zombieInRadius[i].GetComponent<Her0inEnemy>().spawnEffect.enabled)
-						zombieInRadius[i].GetComponent<Her0inEnemy>().spawnEffect.enabled = true;
+					if (Vector3.Distance(this.transform.position, zombieInRadius[i].transform.position) <= ScanDistance)
+					{
+						if (zombieInRadius[i].GetComponent<Her0inEnemy>() != null && !zombieInRadius[i].GetComponent<Her0inEnemy>().spawnEffect.enabled)
+							zombieInRadius[i].GetComponent<Her0inEnemy>().spawnEffect.enabled = true;
+					}
 				}
 			}
 		}

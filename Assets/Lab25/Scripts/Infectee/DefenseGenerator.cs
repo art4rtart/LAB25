@@ -127,13 +127,16 @@ public class DefenseGenerator : MonoBehaviour
     public IEnumerator StartGenerate()
     {
         yield return new WaitForSeconds(startDelay);
-
         StartCoroutine(Generate());
-    }
+		yield return new WaitForSeconds(1f);
+		ZombieScanner.Instance.scanning = true;
+	}
 
     public IEnumerator WaveGenerate()
     {
 		yield return new WaitForSeconds(stageClearDelay);
 		StartCoroutine(Generate());
+		yield return new WaitForSeconds(1f);
+		ZombieScanner.Instance.scanning = true;
     }
 }

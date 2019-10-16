@@ -45,7 +45,7 @@ public class ChangeRagDoll : MonoBehaviour
 		CopyAnimCharacterTransformToRagdoll(charObj.transform, ragdollObj.transform);
 		if(ragDollScr.Electricity != null) ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<ParticleSystem>().Stop();
 
-		if (attackedByElectricStick)
+		if (attackedByElectricStick && this.gameObject.transform.GetChild(0).GetComponent<Health>().hp < 0)
 		{
             AudioSource tmpAudio = ragDollScr.Electricity.GetComponent<AudioSource>();
 

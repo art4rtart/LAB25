@@ -114,6 +114,7 @@ public class UTRSManager : MonoBehaviour
 			{
 				weaponSwap = !weaponSwap;
 				isUsingAk = !isUsingAk;
+
 				if (!weaponSwap) { player.GetComponent<Animator>().SetTrigger("SciFitoAk"); player.GetComponent<Animator>().SetTrigger("NotUsingSciFi"); }
 
 				player.GetComponent<Animator>().SetTrigger("doWeaponChange");
@@ -135,7 +136,7 @@ public class UTRSManager : MonoBehaviour
 		}
 	}
 
-	bool isUsingAk = false;
+	public bool isUsingAk = true;
 
 	void OnApplicationQuit()
 	{

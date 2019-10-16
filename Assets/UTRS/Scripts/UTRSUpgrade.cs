@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public class Effect
@@ -55,6 +56,31 @@ public class UTRSUpgrade : MonoBehaviour
 
 	WeaponCtrl weaponCtrl;
 
+	[Header("TextMeshPro")]
+	public TextMeshProUGUI medicalKitCurrentValueText;
+	public TextMeshProUGUI medicalKitTargetValueText;
+	public TextMeshProUGUI medicalKitUpgradePriceText;
+
+	public TextMeshProUGUI adrenalineCurrentValueText;
+	public TextMeshProUGUI adrenalineTargetValueText;
+	public TextMeshProUGUI adrenalineUpgradePriceText;
+
+	public TextMeshProUGUI armorCurrentValueText;
+	public TextMeshProUGUI armorTargetValueText;
+	public TextMeshProUGUI armorUpgradePriceText;
+
+	public TextMeshProUGUI akBulletCurrentValueText;
+	public TextMeshProUGUI akBulletTargetValueText;
+	public TextMeshProUGUI akBulletUpgradePriceText;
+
+	public TextMeshProUGUI sciFiBulletCurrentValueText;
+	public TextMeshProUGUI ciFiBulletTargetValueText;
+	public TextMeshProUGUI ciFiBulletUpgradePriceText;
+
+	public TextMeshProUGUI akUpgradePriceText;
+	public TextMeshProUGUI scifiUpgradePriceText;
+
+	public 
 	void Awake()
 	{
 		anim = GetComponent<Animator>();
