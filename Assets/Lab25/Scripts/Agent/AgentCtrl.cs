@@ -30,8 +30,7 @@ public class AgentCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        nv.SetDestination(playerTr.position);
+        if(myTeamCtrl.isMyTeam) nv.SetDestination(playerTr.position);
 
         Vector3 worldDeltaPosition = nv.nextPosition - transform.position;
 

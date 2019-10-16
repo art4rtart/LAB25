@@ -38,33 +38,36 @@ public class TeamCtrl : MonoBehaviour
 
     void Update()
     {
-		//if (SetDestination) navmesh.SetDestination(Player.transform.position);
-
-		Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, enemyFindRadius, enemyMask);
-        targetToInfectee = false;
-		//Debug.Log(enemyInRadius.Length);
-
-		if (enemyInRadius.Length == 0)
+		if (isMyTeam)
 		{
-			if(flamethrower != null) flamethrower.StopFlameThrower();
-			if (labAgent != null) labAgent.enabled = false;
-		}
+			//if (SetDestination) navmesh.SetDestination(Player.transform.position);
 
-		else
-		{ 
-			for (int i = 0; i < enemyInRadius.Length; ++i)
+			Collider[] enemyInRadius = Physics.OverlapSphere(transform.position, enemyFindRadius, enemyMask);
+			targetToInfectee = false;
+			//Debug.Log(enemyInRadius.Length);
+
+			if (enemyInRadius.Length == 0)
 			{
-				RaycastHit hit;
-				if (Physics.Raycast(shootPos.transform.position, shootPos.transform.forward, out hit, 10f))
+				if (flamethrower != null) flamethrower.StopFlameThrower();
+				if (labAgent != null) labAgent.enabled = false;
+			}
+
+			else
+			{
+				for (int i = 0; i < enemyInRadius.Length; ++i)
 				{
-					if( hit.transform.tag.Equals("Infectee"))
+					RaycastHit hit;
+					if (Physics.Raycast(shootPos.transform.position, shootPos.transform.forward, out hit, 10f))
 					{
-						transform.LookAt(new Vector3(enemyInRadius[i].transform.position.x, this.transform.position.y, enemyInRadius[i].transform.position.z));
-						labAgent.target = enemyInRadius[i].transform.gameObject;
-						labAgent.feature = enemyInRadius[i].GetComponent<Feature>();
-						if (labAgent.target != null && labAgent.feature != null) labAgent.enabled = true;
-						else labAgent.enabled = false;
-						break;
+						if (hit.transform.tag.Equals("Infectee"))
+						{
+							transform.LookAt(new Vector3(enemyInRadius[i].transform.position.x, this.transform.position.y, enemyInRadius[i].transform.position.z));
+							labAgent.target = enemyInRadius[i].transform.gameObject;
+							labAgent.feature = enemyInRadius[i].GetComponent<Feature>();
+							if (labAgent.target != null && labAgent.feature != null) labAgent.enabled = true;
+							else labAgent.enabled = false;
+							break;
+						}
 					}
 				}
 			}

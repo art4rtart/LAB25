@@ -202,7 +202,7 @@ public class WeaponCtrl : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
 				//Debug.Log("Click");
-				if (info.IsName("Idle(AXE)") || info.IsName("Idle(IRON)"))
+				if (info.IsName("Idle(AXE)") || info.IsName("Idle(Iron)"))
 				{
 					anim.SetTrigger("doWeaponChange");
 
@@ -240,11 +240,11 @@ public class WeaponCtrl : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 // To Axe or To Bong
-                if ( info.IsName("Idle(AK)") || info.IsName("Idle(SCIFI)") )
+                if ( info.IsName("Idle(AK)") || info.IsName("Idle(Scifi)") )
                 {
                     anim.SetTrigger("doWeaponChange");
                     StartCoroutine("DelayResetdoWeaponChange");
-                }
+                }	
 				else
 				{
 					anim.SetTrigger("endHearter");

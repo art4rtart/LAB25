@@ -41,11 +41,11 @@ public class PlayerManager : MonoBehaviour
 
 	private void Awake()
 	{
-		if (DataManager.Instance == null) return;
-		if (DataManager.Instance.initGame) { DataManager.Instance.InitGame(); }
-		else { DataManager.Instance.GetTotalData(FindObjectOfType<MoveToNextScene>().currentStageNum); }
-		DataManager.Instance.initGame = false;
-        PlayerManager.hp = 100;
+		//if (DataManager.Instance == null) return;
+		//if (DataManager.Instance.initGame) { DataManager.Instance.InitGame(); }
+		//else { DataManager.Instance.GetTotalData(FindObjectOfType<MoveToNextScene>().currentStageNum); }
+		//DataManager.Instance.initGame = false;
+        hp = 100;
     }
 
     private void Start()

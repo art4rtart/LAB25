@@ -44,9 +44,5 @@ public class Radio : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds(1f);
-		if (!scriptTrigger.activeSelf) missionScript.GetComponent<Animator>().SetTrigger("Finish");
-		missionScript.Type();
-
-		yield return new WaitForSeconds(5f);
 	}
 }

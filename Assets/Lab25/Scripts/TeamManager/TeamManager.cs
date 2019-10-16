@@ -12,6 +12,7 @@ public class TeamManager : MonoBehaviour
 	public Slider teamTimeCountSlider;
 	public LayerMask teamMask;
 	int teamCount;
+	public LabAgent labAgent;
 
 	[Header("Range")]
 	public float findRadius;
@@ -86,6 +87,7 @@ public class TeamManager : MonoBehaviour
 			{
 				teamCount++;
 				teamInRadius[i].GetComponent<TeamCtrl>().isMyTeam = true;
+				labAgent.enabled = true;
 				StartCoroutine(teamInRadius[i].GetComponent<TeamCtrl>().FollowPlayer());
 			}
 

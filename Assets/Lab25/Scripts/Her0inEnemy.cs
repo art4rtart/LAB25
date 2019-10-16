@@ -244,8 +244,11 @@ public class Her0inEnemy : MonoBehaviour
 
 			else return;
 		}
+	}
 
-		else if (other.gameObject.CompareTag("Player"))
+	void OnCollisionStay(Collision other)
+	{
+		if (other.gameObject.CompareTag("Player"))
 		{
 			PlayerCtrl.Instance.m_WalkSpeed = 4;
 			PlayerCtrl.Instance.m_RunSpeed = 4;

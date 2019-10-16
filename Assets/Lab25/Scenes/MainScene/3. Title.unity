@@ -12155,6 +12155,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DataManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4328355784011531976, guid: 9d46ad3751690624dab6293a51f36f25,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4328355784011531982, guid: 9d46ad3751690624dab6293a51f36f25,
         type: 3}
       propertyPath: m_LocalPosition.x

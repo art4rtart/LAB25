@@ -39,7 +39,10 @@ public class ChangeRagDoll : MonoBehaviour
 
     public IEnumerator ChangeRagdoll()
     {
-        CopyAnimCharacterTransformToRagdoll(charObj.transform, ragdollObj.transform);
+		PlayerCtrl.Instance.m_WalkSpeed = 4;
+		PlayerCtrl.Instance.m_RunSpeed = 10;
+
+		CopyAnimCharacterTransformToRagdoll(charObj.transform, ragdollObj.transform);
 		if(ragDollScr.Electricity != null) ragdollObj.GetComponent<RagDollDIeCtrl>().Electricity.GetComponent<ParticleSystem>().Stop();
 
 		if (attackedByElectricStick)
