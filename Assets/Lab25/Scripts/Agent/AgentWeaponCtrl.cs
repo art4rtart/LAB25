@@ -103,7 +103,7 @@ public class AgentWeaponCtrl : MonoBehaviour
             if (health && health.hp > 0)
             {
 			
-                health.ApplyDamage(43, hit.transform.InverseTransformPoint(hit.point));
+                health.ApplyDamage(86, hit.transform.InverseTransformPoint(hit.point));
                 if (health.hp <= 0)
                 {
                     StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
@@ -150,7 +150,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 
                 if (health && health.hp > 0)
                 {
-                    health.ApplyDamage(43, hit.transform.InverseTransformPoint(hit.point));
+                    health.ApplyDamage(100, hit.transform.InverseTransformPoint(hit.point));
                     if (health.hp <= 0)
                     {
                         StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
@@ -195,7 +195,7 @@ public class AgentWeaponCtrl : MonoBehaviour
 
             if (health && health.hp > 0)
             {
-                health.ApplyDamage(flameDamage, hit.transform.InverseTransformPoint(hit.point));
+                health.ApplyDamage(90, hit.transform.InverseTransformPoint(hit.point));
                 if (health.hp <= 0)
                 {
                     StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));

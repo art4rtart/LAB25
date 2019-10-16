@@ -488,7 +488,7 @@ public class WeaponCtrl : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * akAccuracy, out hit, akRange, playerMask))
         {
-			Debug.Log(hit.transform.name);
+			//Debug.Log(hit.transform.name);
 			Health health = hit.transform.GetComponent<Health>();
 
 			if (health && health.hp > 0)
@@ -602,6 +602,7 @@ public class WeaponCtrl : MonoBehaviour
             {
                 anim.CrossFadeInFixedTime("AKReload", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
+              
             }
         }
         else if (myWeapnType.Equals( WEAPON.SCI_FI))
@@ -612,6 +613,7 @@ public class WeaponCtrl : MonoBehaviour
             {
                 anim.CrossFadeInFixedTime("SciFiReload", 0.01f); // Reloading
                 audioSource.PlayOneShot(reloadSound);
+               
             }
         }
     }

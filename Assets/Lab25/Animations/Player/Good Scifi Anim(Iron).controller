@@ -4514,12 +4514,12 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 1107227732889358334}
-    second:
-    - {fileID: 1109006859011826600}
   - first: {fileID: 1107344572966185938}
     second:
     - {fileID: 1109980061092632274}
+  - first: {fileID: 1107227732889358334}
+    second:
+    - {fileID: 1109006859011826600}
   - first: {fileID: 1107738709795962830}
     second:
     - {fileID: 1109702853365139730}
