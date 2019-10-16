@@ -63,6 +63,6 @@ public class WeaponManager : MonoBehaviour
 
     public void ChangeStartIron()
     {
-        anim.runtimeAnimatorController = weaponCtrls[3];
+        anim.runtimeAnimatorController = weaponCtrls[5];
     }
 }

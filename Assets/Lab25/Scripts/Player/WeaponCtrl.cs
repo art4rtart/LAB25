@@ -106,7 +106,7 @@ public class WeaponCtrl : MonoBehaviour
 		UIManager.Instance.bulletsPerMagazine = akCurrentBullets;
 		UIManager.Instance.totalBullet = akBulletsTotal;
 
-        playerMask = (-1) - (1 << LayerMask.NameToLayer("Player"));
+        playerMask = (-1) - (1 << LayerMask.NameToLayer("Player")) + (1 << LayerMask.NameToLayer("Item")); ;
     }
 
 	public bool isHoldingBomb;
@@ -367,7 +367,7 @@ public class WeaponCtrl : MonoBehaviour
     {
         RaycastHit hit, hit2, hit3;
 
-        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 1.5f, playerMask))
+        if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward, out hit, 3f, playerMask))
         {
             Health health = hit.transform.GetComponent<Health>();
 
@@ -488,6 +488,7 @@ public class WeaponCtrl : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(shootPoint.position, shootPoint.transform.forward + Random.onUnitSphere * akAccuracy, out hit, akRange, playerMask))
         {
+			Debug.Log(hit.transform.name);
 			Health health = hit.transform.GetComponent<Health>();
 
 			if (health && health.hp > 0)

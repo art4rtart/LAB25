@@ -359,6 +359,10 @@ public class ItemManager : MonoBehaviour
 				hasBattery = true;
 				break;
 
+			case "ElectricityStick":
+				WeaponManager.Instance.ChangeStartIron();
+				break;
+
 			case "Sci-Fi Machine Gun":
                 WeaponManager.Instance.ChangeStartScifi();
                 break;

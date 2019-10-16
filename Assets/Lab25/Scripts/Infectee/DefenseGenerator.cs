@@ -76,8 +76,9 @@ public class DefenseGenerator : MonoBehaviour
             if (killedInfectee == waveEnemy * wave && allEnemyIsSpawned)
             {
                 stageClear = true;
-
-                generatedZombieCount = 0;
+				UTRSManager.Instance.waitingTime = 20f;
+				UTRSManager.Instance.UTRSTimeAnim.SetBool("Generate", false);
+				generatedZombieCount = 0;
                 killedInfectee = 0;
                 stageClear = false;
                 wave += 1;
@@ -87,8 +88,8 @@ public class DefenseGenerator : MonoBehaviour
             }
             yield return checkTimer;
         }
-        
     }
+
     public IEnumerator Generate()
     {
         GameObject infectee;

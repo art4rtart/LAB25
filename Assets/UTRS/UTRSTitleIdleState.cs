@@ -13,7 +13,7 @@ public class UTRSTitleIdleState : StateMachineBehaviour
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
-		if(stateInfo.normalizedTime >= 1f) animator.SetTrigger("CountTime");
+		if(stateInfo.normalizedTime >= 1f && DefenseGenerator.Instance.stageClear || DefenseGenerator.Instance.wave == 1) animator.SetTrigger("CountTime");
 	}
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
