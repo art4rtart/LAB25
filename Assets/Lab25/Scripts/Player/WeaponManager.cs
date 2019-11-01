@@ -58,11 +58,17 @@ public class WeaponManager : MonoBehaviour
 
     public void ChangeStartScifi()
     {
-        anim.runtimeAnimatorController = weaponCtrls[1];
+        if( anim.runtimeAnimatorController.Equals(weaponCtrls[0]))
+            anim.runtimeAnimatorController = weaponCtrls[1];
+        else if (anim.runtimeAnimatorController.Equals(weaponCtrls[2]))
+            anim.runtimeAnimatorController = weaponCtrls[3];
     }
 
     public void ChangeStartIron()
     {
-        anim.runtimeAnimatorController = weaponCtrls[5];
+        if (anim.runtimeAnimatorController.Equals(weaponCtrls[0]))
+            anim.runtimeAnimatorController = weaponCtrls[2];
+        else if (anim.runtimeAnimatorController.Equals(weaponCtrls[1]))
+            anim.runtimeAnimatorController = weaponCtrls[6];
     }
 }
