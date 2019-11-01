@@ -95,6 +95,11 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			m_WalkSpeed = 4;
+			m_RunSpeed = 10;
+		}
 
 		// Power Over Whelming
 		if (Input.GetKeyDown(KeyCode.P))

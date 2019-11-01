@@ -77,7 +77,7 @@ public class UTRSShop : MonoBehaviour
 		armorPrice = UTRSUpgrade.Instance.damageVest.upgradePrice;
 		if (UTRSManager.Instance.totalGold - armorPrice >= 0)
 			UTRSManager.Instance.totalGold -= armorPrice;
-		PlayerManager.armor += 50;
+		PlayerManager.armor = Mathf.Clamp(PlayerManager.armor += 20, 0, 100f);
 		UIManager.Instance.TextUpdate();
 	}
 
