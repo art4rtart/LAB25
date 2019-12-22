@@ -14,7 +14,8 @@ public class FlameThrower : MonoBehaviour
 
 	public void UseFlameThrower()
 	{
-		if (!particleObject.isPlaying) particleObject.Play();
+        /*if (!particleObject.isPlaying)*/
+        particleObject.Play();
 	}
 
 	public void StopFlameThrower()

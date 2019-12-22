@@ -314,7 +314,7 @@ public class WeaponCtrl : MonoBehaviour
     {
         //Debug.DrawRay(shootPoint.transform.position, (shootPoint.transform.forward * 2 + shootPoint.transform.right).normalized * 100f, Color.red);
         //Debug.DrawRay(shootPoint.transform.position, ((shootPoint.transform.forward * 2 + shootPoint.transform.right * -1f)).normalized * 100f, Color.red);
-
+        //Debug.Log(camRecoil.eulerAngles);
         if (myWeapnType .Equals( WEAPON.AKM))
         {
             if (fireTimer < akFireRate)

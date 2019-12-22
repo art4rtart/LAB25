@@ -29,10 +29,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Please/0908/Stage2/Stage2.unity
     guid: 05589cdb844a7134daede583ac583679
-  - enabled: 1
+  - enabled: 0
     path: Assets/Lab25/Scenes/GUI/Stage/Stage3.unity
     guid: bee655112fe179048866d25ed72e0a37
-  - enabled: 0
+  - enabled: 1
     path: Assets/Lab25/Scenes/GUI/Stage/Stage4.unity
     guid: 5ed43463887c1d648be1e423dbdf6a02
   - enabled: 0

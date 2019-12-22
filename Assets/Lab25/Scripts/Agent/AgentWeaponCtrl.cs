@@ -16,9 +16,9 @@ public class AgentWeaponCtrl : MonoBehaviour
     private Vector3 originalPos;
     public float accuracy;
     private float originalAccuracy;
-    public int damage;
-    public int shotGunDamage;
-    public int flameDamage;
+    //public int damage;
+    //public int shotGunDamage;
+    //public int flameDamage;
     public int medicalKitCount;
 
     // Parameters
@@ -79,7 +79,7 @@ public class AgentWeaponCtrl : MonoBehaviour
     {
         //Debug.DrawRay(shootPos.transform.position, shootPos.transform.forward * 100f, Color.red);
 
-        if (fireTimer < fireRate)
+        if (fireTimer <= 1.1)
             fireTimer += Time.fixedDeltaTime;
  
         //Vector3 forward = transform.TransformDirection(Vector3.forward) * 199f;
@@ -88,12 +88,13 @@ public class AgentWeaponCtrl : MonoBehaviour
 
     public void Fire()
     {
-  
+        labAgent.curAction = LabAgent.AGENTACTION.GUN;
         if (fireTimer < fireRate)
         {
             return;
         }
-
+        labAgent.isShot = true;
+       
         RaycastHit hit;
         if (Physics.Raycast(shootPos.transform.position, shootPos.transform.forward, out hit, 100f, playerMask))
         {
@@ -102,10 +103,36 @@ public class AgentWeaponCtrl : MonoBehaviour
 
             if (health && health.hp > 0)
             {
-			
-                health.ApplyDamage(86, hit.transform.InverseTransformPoint(hit.point));
+
+                if (labAgent.guessTargetID == 0 || labAgent.guessTargetID == 1)
+                {
+                    //Debug.Log("Clear");
+                    labAgent.damage = 40;
+                    labAgent.AddReward(5.0f);
+                    health.ApplyDamage(labAgent.damage, hit.transform.InverseTransformPoint(hit.point));
+                }
+                else
+                {
+                    //Debug.Log("Fail");
+                    labAgent.damage = 25;
+                    labAgent.AddReward(-1.0f);
+                    health.ApplyDamage(labAgent.damage, hit.transform.InverseTransformPoint(hit.point));
+                }
+
+                //Debug.Log(health.hp);
                 if (health.hp <= 0)
                 {
+                    //labAgent.generator.killedInfectee++;
+
+                    labAgent.AddReward(10.0f);
+                 
+                    //if (labAgent.generator.killedInfectee == labAgent.generator.generatedZombieCount)
+                    //{
+                    //    labAgent.ResetGenerator();
+                    //    labAgent.ResetValues();
+                    //}
+                    //else
+                        labAgent.ResetValues();
                     StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                 }
 
@@ -136,41 +163,72 @@ public class AgentWeaponCtrl : MonoBehaviour
 
     public void FireShotGun()
     {
+        labAgent.curAction = LabAgent.AGENTACTION.SHOTGUN;
         if (fireTimer < shotFireRate)
         {
+
             return;
         }
-
+        labAgent.isShot = true;
+       
         RaycastHit hit;
         for (int i = 0; i < 5; ++i)
         {
             if (Physics.Raycast(shootPos.transform.position, shootPos.transform.forward, out hit, 100f, playerMask))
             {
+
                 Health health = hit.transform.GetComponent<Health>();
 
-                if (health && health.hp > 0)
+            if (health && health.hp > 0)
+            {
+                if (labAgent.guessTargetID == 2 || labAgent.guessTargetID == 3)
                 {
-                    health.ApplyDamage(100, hit.transform.InverseTransformPoint(hit.point));
-                    if (health.hp <= 0)
-                    {
-                        StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
-                    }
-
-
-                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
-
+                    //Debug.Log("Clear");
+                    labAgent.damage = 40;
+                    labAgent.AddReward(5.0f);
+                    health.ApplyDamage(labAgent.damage, hit.transform.InverseTransformPoint(hit.point));
                 }
                 else
                 {
-                    if (!hit.transform.tag.Equals(playerStr))
-                    {
-                        StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
-                    }
-                    else
-                    {
-                        StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
-                    }
+                    //Debug.Log("Fail");
+                    labAgent.damage = 25;
+                    labAgent.AddReward(-1.0f);
+                    health.ApplyDamage(labAgent.damage, hit.transform.InverseTransformPoint(hit.point));
                 }
+
+                //Debug.Log(health.hp);
+                if (health.hp <= 0)
+                {
+                 
+                    //labAgent.generator.killedInfectee++;
+
+  
+                    labAgent.AddReward(10.0f);
+                    //if (labAgent.generator.killedInfectee == labAgent.generator.generatedZombieCount)
+                    //{
+                    //    labAgent.ResetGenerator();
+                    //    labAgent.ResetValues();
+                    //}
+                    //else
+                        labAgent.ResetValues();
+                    StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
+                }
+
+
+                StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+
+            }
+            else
+            {
+                if (!hit.transform.tag.Equals(playerStr))
+                {
+                    StartCoroutine(ParticleManager.Instance.FireEffect(hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal)));
+                }
+                else
+                {
+                    StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
+                }
+            }
             }
         }
         currentBullets--;
@@ -183,24 +241,57 @@ public class AgentWeaponCtrl : MonoBehaviour
 
     public void FireFlameThrower()
     {
+        labAgent.curAction = LabAgent.AGENTACTION.FLAME;
         if (fireTimer < flameFireRate)
         {
             return;
         }
-
+        labAgent.isShot = true;
+       
         RaycastHit hit;
+        flameThrower.UseFlameThrower();
         if (Physics.Raycast(shootPos.transform.position, shootPos.transform.forward, out hit, 100f, playerMask))
         {
+
             Health health = hit.transform.GetComponent<Health>();
 
             if (health && health.hp > 0)
             {
-                health.ApplyDamage(90, hit.transform.InverseTransformPoint(hit.point));
+
+                if (labAgent.guessTargetID == 4 || labAgent.guessTargetID == 5)
+                {
+                    //Debug.Log("Clear");
+                    labAgent.damage = 40;
+                    labAgent.AddReward(5.0f);
+                    health.ApplyDamage(labAgent.damage, hit.transform.InverseTransformPoint(hit.point));
+                }
+                else
+                {
+                    //Debug.Log("Fail");
+                    labAgent.damage = 25;
+                    labAgent.AddReward(-1.0f);
+                    health.ApplyDamage(labAgent.damage, hit.transform.InverseTransformPoint(hit.point));
+                }
+
+                //Debug.Log(health.hp);
+
                 if (health.hp <= 0)
                 {
+                    //labAgent.generator.killedInfectee++;
+
+                   
+                    //labAgent.AddReward(10.0f);
+                    //if (labAgent.generator.killedInfectee == labAgent.generator.generatedZombieCount)
+                    //{
+                    //    labAgent.ResetGenerator();
+                    //    labAgent.ResetValues();
+                    //}
+                    //else
+                        labAgent.ResetValues();
+
                     StartCoroutine(ParticleManager.Instance.BloodTraceEffect(hit.transform.position));
                 }
-                flameThrower.UseFlameThrower();
+                
 
                 StartCoroutine(ParticleManager.Instance.BloodEffect(hit.point));
 
@@ -222,8 +313,9 @@ public class AgentWeaponCtrl : MonoBehaviour
         currentBullets--;
         fireTimer = 0.0f;
         anim.CrossFadeInFixedTime("Shoot", 0.01f);
+        
         //audioSource.PlayOneShot(shootSound);    //shoot sound
-                                                //muzzleFlash.Play();
+        //muzzleFlash.Play();
     }
 
     public void Healing()

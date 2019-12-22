@@ -4,200 +4,174 @@ using UnityEngine;
 
 public class Feature : MonoBehaviour
 {
-	static float totalPolygon;
+    // Rule
+    public int infecteeID;
 
-	static string[] lastName = new string[] { "Oliver", "George", "Harry", "Jack", "Jacob", "Noah", "Charlie",
-		"Thomas", "Oscar", "William", "James", "Henry", "Edward", "Joesph",
-		"Lucas", "Logan", "Theo", "Herrison" , "Benjamin" , "Louis" , "Dylan" , "Adam",
-		"Teddy" , "Tobby", "Jake" , "Louie" , "Elijah" , "Luke" , "Gabriel" , "Alex" , "Kai"   };
+    public static int MAX_HEIGHT = 180;
+    public static int MAX_WEIGHT = 100;
 
-	static string[] middleName = new string[] { ".A.", ".B.", ".C.", ".D.", ".E.", ".F.", ".G.", ".H.", ".I.", ".J.",
-		".K.", ".L.", ".M.", ".N.", ".O.", ".P.", ".Q.", ".R.", ".S.", ".T.", ".U.",
-		".V.", ".W.", ".X.", ".Y . ", ".Z." };
+    public static float MAX_RECOGNIZE_RANGE = 20f;
 
-	static string[] firstName = new string[] { "Smith", "Johnson", "Willaims", "Jones", "Brown", "Davis", "Miller", "Wilson", "Moore", "Taylor",
-		"Green", "Anderson", "Thomas", "Jackson", "White", "Harris", "Cater", "Richardson", "Cox", "Howard",
-		"Ward", "Carter", "Baker", "Adams", "Nelson", "Morgan", "Cook", "Stark", "Rogers", "Scoot", "Hill", "Wright",
-		"King", "Murphy", "Bell", "Richardson", "Martin", "Young" };
+    // Feature Data
+    public enum eye_color { RED, DARK_RED };
+    public enum damagedBody_degree { NORMAL, HARD };
+    public enum damagedBrain_degree { NORMAL, HARD };
+    public enum damagedCloth_degree { NORMAL, HARD };
+    public enum walking_power { NORMAL, GOOD };
+    public enum running_power { NORMAL, GOOD };
+    public enum attack_tendency { NORMAL, STRONG };
+    public enum persist_degree { NORMAL, STRONG };
 
-	static string[] departments = new string[] { "VirusRoom", "VacineRoom", "MainLobby", "DisinfectionRoom" };
+    public eye_color myEyeColor;
+    public damagedBody_degree myBody;
+    public damagedBrain_degree myBrain;
+    public damagedCloth_degree myCloth;
+    public walking_power wkPower;
+    public running_power rnPower;
+    public attack_tendency akTendency;
+    public persist_degree psDgr;
 
-	static string[] types = new string[] { "Human", "Zombie_1", "Zombie_2", "Transparent", "Police", "Boss" };
+    public float height;
+    public float weight;
+    public float senseOfSight;
+    public float senseOfSmell;
+    public float senseOfHearing;
+    public float senseOfTouch;
+    public float senseOfTaste;
+    public float RecognizeRange;
 
-	string[] animationStates = new string[] { "Idle_1", "Idle_2", "Idle_3", "Walk_1", "Walk_2", "Walk_3", "Run_1", "Run_2", "Attack_1", "Attack_2", "Attack_3", "Attack_4", "Attack_5", "Crash", "Die", "Shoot", "Push" };
+    public Transform[] Ankles;
 
-	Animator animator;
-	public SkinnedMeshRenderer skinnedMeshRenderer;
-	bool initTrigger = false;
-	int triggerNum = 0;
-
-	public string gameObjectName;
-	public string gameObjectTag;
-	public string type;
-	public string department;
-	public Color eyeColor;
-	public float moveSpeed;
-	public float bodyMaintainence;          // percentage
-	public float currentPolygon;
-	public Transform[] Ankles;
-	public float distance;
-	public string animationName;
-	public int nameHash;
-
-	public float maxSpeedValue;
-
-	void Awake()
-	{
-		animator = GetComponent<Animator>();
-	}
-
-	void OnEnable()
+    void OnEnable()
 	{
 		GetComponent<Health>().hp = 100;
 		GenerateFeatures();
 	}
 
-	public void GenerateFeatures()
-	{
-		// get tag
-		gameObjectTag = this.gameObject.tag;
-
-		// common features
-		distance = Random.Range(0f, 30f);
-		gameObjectName = lastName[Random.Range(0, lastName.Length)] + middleName[Random.Range(0, middleName.Length)] + firstName[Random.Range(0, firstName.Length)];
-		type = GetZombieType(this.gameObject.name);
-		department = departments[Random.Range(0, departments.Length)];
-		totalPolygon = skinnedMeshRenderer.sharedMesh.triangles.Length * 0.3f;  //? 설마 점의 개수?
-
-		// zombie animation features
-		//if (initTrigger) { animator.SetBool(triggerNum.ToString(), false); initTrigger = false; };
-		//triggerNum = Random.Range(1, GetTriggerLength(type));
-		//animator.SetBool(triggerNum.ToString(), true);
-
-        GetCurrentClipName();
-        //
-        // zombie features
-        if (gameObjectTag == "Infectee") {
-			eyeColor = new Color(Random.Range(0.50f, 1f), 0, 0);
-			moveSpeed = Random.Range(3.5f, 4.5f);
-			maxSpeedValue = 4.5f;
-			currentPolygon = totalPolygon - Random.Range(0, totalPolygon * 0.8f);
-		}
-		// human features
-		else
-		{
-			eyeColor = new Color(Random.Range(0.95f, 1f), Random.Range(0.95f, 1f), Random.Range(0.95f, 1f));
-			moveSpeed = Random.Range(5f, 8.5f);
-			maxSpeedValue = 8.5f;
-			currentPolygon = totalPolygon - Random.Range(0, 100);
-		}
-        bodyMaintainence = currentPolygon / totalPolygon * 100;
-		
-
-		initTrigger = true;
-		// print("features generated!");
-	}
-
-    public void GetCurrentClipName()
+    public void GenerateFeatures()
     {
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        for (int i = 0; i < animationStates.Length; i++)
+        switch (infecteeID)
         {
-            if (stateInfo.IsName(animationStates[i]))
-            {
-                animationName = animationStates[i];
-                return;
-            }
+            case 0:
+                myEyeColor = eye_color.RED;
+                myBody = damagedBody_degree.NORMAL;
+                myBrain = damagedBrain_degree.NORMAL;
+                myCloth = damagedCloth_degree.NORMAL;
+                wkPower = walking_power.NORMAL;
+                rnPower = running_power.GOOD;
+                akTendency = attack_tendency.NORMAL;
+                psDgr = persist_degree.NORMAL;
 
-            else
-            {
-                animationName = "NULL";
-            }
+                height = 180;
+                weight = 50;
+                senseOfSight = 0.5f; ;
+                senseOfSmell = 0.3f;
+                senseOfHearing = 0.8f;
+                senseOfTouch = 1f;
+                senseOfTaste = 0.2f;
+                RecognizeRange = 15f;
+                break;
+
+            case 1:
+                myEyeColor = eye_color.RED;
+                myBody = damagedBody_degree.NORMAL;
+                myBrain = damagedBrain_degree.NORMAL;
+                myCloth = damagedCloth_degree.NORMAL;
+                wkPower = walking_power.GOOD;
+                rnPower = running_power.NORMAL;
+                akTendency = attack_tendency.STRONG;
+                psDgr = persist_degree.STRONG;
+
+                height = 160;
+                weight = 100;
+                senseOfSight = 0.9f; ;
+                senseOfSmell = 0.7f;
+                senseOfHearing = 0.2f;
+                senseOfTouch = 0.5f;
+                senseOfTaste = 0.8f;
+                RecognizeRange = 10f;
+                break;
+
+            case 2:
+                myEyeColor = eye_color.RED;
+                myBody = damagedBody_degree.HARD;
+                myBrain = damagedBrain_degree.HARD;
+                myCloth = damagedCloth_degree.HARD;
+                wkPower = walking_power.NORMAL;
+                rnPower = running_power.GOOD;
+                akTendency = attack_tendency.NORMAL;
+                psDgr = persist_degree.STRONG;
+
+                height = 160;
+                weight = 100;
+                senseOfSight = 0.5f;
+                senseOfSmell = 0.7f;
+                senseOfHearing = 0.8f;
+                senseOfTouch = 0.5f;
+                senseOfTaste = 0.8f;
+                RecognizeRange = 10f;
+                break;
+
+            case 3:
+                myEyeColor = eye_color.DARK_RED;
+                myBody = damagedBody_degree.NORMAL;
+                myBrain = damagedBrain_degree.HARD;
+                myCloth = damagedCloth_degree.HARD;
+                wkPower = walking_power.NORMAL;
+                rnPower = running_power.NORMAL;
+                akTendency = attack_tendency.STRONG;
+                psDgr = persist_degree.NORMAL;
+
+                height = 180;
+                weight = 100;
+                senseOfSight = 0.9f;
+                senseOfSmell = 0.3f;
+                senseOfHearing = 0.2f;
+                senseOfTouch = 1f;
+                senseOfTaste = 0.8f;
+                RecognizeRange = 10f;
+                break;
+
+            case 4:
+                myEyeColor = eye_color.DARK_RED;
+                myBody = damagedBody_degree.HARD;
+                myBrain = damagedBrain_degree.NORMAL;
+                myCloth = damagedCloth_degree.HARD;
+                wkPower = walking_power.GOOD;
+                rnPower = running_power.GOOD;
+                akTendency = attack_tendency.STRONG;
+                psDgr = persist_degree.NORMAL;
+
+                height = 160;
+                weight = 50;
+                senseOfSight = 0.5f;
+                senseOfSmell = 0.3f;
+                senseOfHearing = 0.2f;
+                senseOfTouch = 0.5f;
+                senseOfTaste = 0.2f;
+                RecognizeRange = 15f;
+                break;
+
+            case 5:
+                myEyeColor = eye_color.DARK_RED;
+                myBody = damagedBody_degree.HARD;
+                myBrain = damagedBrain_degree.HARD;
+                myCloth = damagedCloth_degree.NORMAL;
+                wkPower = walking_power.GOOD;
+                rnPower = running_power.NORMAL;
+                akTendency = attack_tendency.NORMAL;
+                psDgr = persist_degree.STRONG;
+
+                height = 180;
+                weight = 50;
+                senseOfSight = 0.9f;
+                senseOfSmell = 0.7f;
+                senseOfHearing = 0.8f;
+                senseOfTouch = 1f;
+                senseOfTaste = 0.2f;
+                RecognizeRange = 15f;
+                break;
+
         }
     }
-	
-
-	string GetZombieType(string name)
-	{
-		string zombieType = "";
-		switch (name)
-		{
-			case "Human":
-				zombieType = "Human";
-				nameHash = 1;
-				break;
-
-			case "KnitInfectee":
-				zombieType = "Zombie_1";
-				nameHash = 2;
-				break;
-
-			case "MedicInfectee":
-				zombieType = "Zombie_2";
-				nameHash = 3;
-				break;
-
-			case "Limpid":
-				zombieType = "Transparent";
-				nameHash = 4;
-				break;
-
-			case "GuardInfectee":
-				zombieType = "Police";
-				nameHash = 5;
-				break;
-
-			case "Charger":
-				zombieType = "Boss";
-				nameHash = 6;
-				break;
-		}
-
-		return zombieType;
-	}
-
-	int GetTriggerLength(string type)
-	{
-		int triggerLength = 0;
-
-		switch (type)
-		{
-			case "Human":
-				triggerLength = 5;
-				break;
-
-			case "Zombie_1":
-				triggerLength = 10;
-				break;
-
-			case "Zombie_2":
-				triggerLength = 10;
-				break;
-
-			case "Transparent":
-				triggerLength = 9;
-				break;
-
-			case "Police":
-				triggerLength = 10;
-				break;
-
-			case "Zombie_5":
-				triggerLength = 8;
-				break;
-		}
-
-		return triggerLength;
-	}
-
-	public void Die()
-	{
-		//Debug.Log("I'm dead, because i'm zombie");
-	}
-
-	public void Survived()
-	{
-		//Debug.Log("I've survived, because i'm human");
-	}
 }

@@ -39,7 +39,7 @@ public class Health : MonoBehaviour
 		{
 			diedByBullet.Invoke(hitpos);
 			died.Invoke();
-			if (itemDrop != null) itemDrop.DropItem();
+			//if (itemDrop != null) itemDrop.DropItem();
 			if(isUTRSMode) UTRSManager.Instance.totalGold += bounty;
 		}
 	}

@@ -41,10 +41,12 @@ public class WeaponSway : MonoBehaviour
         Mathf.Clamp(positionY, -maxAmount, maxAmount);
         Mathf.Clamp(rotationX, -maxAmount, maxAmount);
         Mathf.Clamp(rotationY, -maxAmount, maxAmount);
-
+       
         Vector3 swayPosition = new Vector3(positionX, positionY, 0);
         Quaternion swayRotation = new Quaternion(rotationX, rotationY, 0, 1);
 
+        //Debug.Log(originalPosition + swayPosition);
+        //Debug.Log(swayRotation);
         transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition + swayPosition, Time.deltaTime * smoothAmount);
         transform.localRotation = Quaternion.Slerp(transform.localRotation, swayRotation, Time.deltaTime * smoothAmount);
     }
